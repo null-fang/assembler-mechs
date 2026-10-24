@@ -28,6 +28,7 @@ Build a mech from modular parts. Fight turn-based 1v1 in 3D arenas — PvE campa
 
 ```
 src/
+  Workspace/  — Lobby + Arenas (Rojo .model.json geometry)
   Shared/
     Combat/   — Types, MechState, Resolver, NpcBrain
     Parts/    — Slots, Catalog, StarterMech, CratePick3
@@ -40,6 +41,8 @@ src/
     Remotes   — fight remotes
   Client/
     CombatHud — rough campaign + turn UI
+tools/
+  generate_maps.py — regen lobby/arena model.json
 ```
 
 PvP matchmaking stays a stub; both modes share `Resolver` / `CombatHost`.

@@ -1,0 +1,843 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Floor",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          100,
+          2,
+          70
+        ],
+        "Position": [
+          400,
+          -1,
+          0
+        ],
+        "Color": [
+          0.5098039215686274,
+          0.5176470588235295,
+          0.5411764705882353
+        ],
+        "Material": "Concrete",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Channel",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          1.5,
+          70
+        ],
+        "Position": [
+          400,
+          -0.4,
+          0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.35294117647058826,
+          0.47058823529411764
+        ],
+        "Material": "Glass",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.25
+      }
+    },
+    {
+      "Name": "PierWest",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          36,
+          2.5,
+          60
+        ],
+        "Position": [
+          372,
+          0.5,
+          0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.4392156862745098,
+          0.4627450980392157
+        ],
+        "Material": "Concrete",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "PierEast",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          36,
+          2.5,
+          60
+        ],
+        "Position": [
+          428,
+          0.5,
+          0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.4392156862745098,
+          0.4627450980392157
+        ],
+        "Material": "Concrete",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard0_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4,
+          2
+        ],
+        "Position": [
+          360,
+          3.5,
+          -28
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.2549019607843137,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard0_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4,
+          2
+        ],
+        "Position": [
+          360,
+          3.5,
+          28
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.2549019607843137,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard1_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4,
+          2
+        ],
+        "Position": [
+          380,
+          3.5,
+          -28
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.2549019607843137,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard1_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4,
+          2
+        ],
+        "Position": [
+          380,
+          3.5,
+          28
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.2549019607843137,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard2_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4,
+          2
+        ],
+        "Position": [
+          420,
+          3.5,
+          -28
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.2549019607843137,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard2_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4,
+          2
+        ],
+        "Position": [
+          420,
+          3.5,
+          28
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.2549019607843137,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard3_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4,
+          2
+        ],
+        "Position": [
+          440,
+          3.5,
+          -28
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.2549019607843137,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard3_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4,
+          2
+        ],
+        "Position": [
+          440,
+          3.5,
+          28
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.2549019607843137,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ShedLeft",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          16,
+          40
+        ],
+        "Position": [
+          352,
+          8,
+          0
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.35294117647058826,
+          0.4117647058823529
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ShedRight",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          16,
+          40
+        ],
+        "Position": [
+          448,
+          8,
+          0
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.35294117647058826,
+          0.4117647058823529
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Catwalk",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          20,
+          0.6,
+          6
+        ],
+        "Position": [
+          400,
+          8,
+          0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRail",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          0.4,
+          0.4
+        ],
+        "Position": [
+          400,
+          10,
+          -3.2
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.2901960784313726,
+          0.3137254901960784
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatPost0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.2,
+          0.35
+        ],
+        "Position": [
+          393.0,
+          9.1,
+          -3.2
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatPost1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.2,
+          0.35
+        ],
+        "Position": [
+          400.0,
+          9.1,
+          -3.2
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatPost2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.2,
+          0.35
+        ],
+        "Position": [
+          407.0,
+          9.1,
+          -3.2
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "PadA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          1.2,
+          14
+        ],
+        "Position": [
+          372,
+          2.1,
+          0
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.5490196078431373,
+          0.6666666666666666
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Spawn",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              2.5,
+              0
+            ]
+          }
+        },
+        {
+          "Name": "PadLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.2,
+            "PixelsPerStud": 20
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "P1",
+                "TextScaled": true,
+                "Font": "SourceSansBold",
+                "TextColor3": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "PadB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          1.2,
+          14
+        ],
+        "Position": [
+          428,
+          2.1,
+          0
+        ],
+        "Color": [
+          0.6666666666666666,
+          0.39215686274509803,
+          0.23529411764705882
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Spawn",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              2.5,
+              0
+            ]
+          }
+        },
+        {
+          "Name": "PadLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.2,
+            "PixelsPerStud": 20
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "P2",
+                "TextScaled": true,
+                "Font": "SourceSansBold",
+                "TextColor3": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ArenaOrigin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          2,
+          2
+        ],
+        "Position": [
+          400,
+          2.5,
+          0
+        ],
+        "Color": [
+          1.0,
+          0.7843137254901961,
+          0.1568627450980392
+        ],
+        "Material": "Neon",
+        "Transparency": 0.35,
+        "CanCollide": false,
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Center",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          8,
+          2
+        ],
+        "Position": [
+          372,
+          6,
+          -20
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.4,
+            "Range": 40,
+            "Color": [
+              0.7843137254901961,
+              0.8627450980392157,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          8,
+          2
+        ],
+        "Position": [
+          428,
+          6,
+          -20
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.4,
+            "Range": 40,
+            "Color": [
+              0.7843137254901961,
+              0.8627450980392157,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          8,
+          2
+        ],
+        "Position": [
+          372,
+          6,
+          20
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.4,
+            "Range": 40,
+            "Color": [
+              0.7843137254901961,
+              0.8627450980392157,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          8,
+          2
+        ],
+        "Position": [
+          428,
+          6,
+          20
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.4,
+            "Range": 40,
+            "Color": [
+              0.7843137254901961,
+              0.8627450980392157,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    }
+  ]
+}

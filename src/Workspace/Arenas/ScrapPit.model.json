@@ -1,0 +1,641 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Floor",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          90,
+          2,
+          90
+        ],
+        "Position": [
+          0,
+          -1,
+          400
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.29411764705882354,
+          0.21568627450980393
+        ],
+        "Material": "Ground",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "PitRing",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          50,
+          1,
+          50
+        ],
+        "Position": [
+          0,
+          0.1,
+          400
+        ],
+        "Color": [
+          0.3333333333333333,
+          0.21568627450980393,
+          0.1568627450980392
+        ],
+        "Material": "Slate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Barrier0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          80,
+          6,
+          4
+        ],
+        "Position": [
+          0,
+          3,
+          356
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.23529411764705882,
+          0.17647058823529413
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Barrier1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          80,
+          6,
+          4
+        ],
+        "Position": [
+          0,
+          3,
+          444
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.23529411764705882,
+          0.17647058823529413
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Barrier2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          6,
+          72
+        ],
+        "Position": [
+          -44,
+          3,
+          400
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.23529411764705882,
+          0.17647058823529413
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Barrier3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          6,
+          72
+        ],
+        "Position": [
+          44,
+          3,
+          400
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.23529411764705882,
+          0.17647058823529413
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapPile0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          5,
+          7
+        ],
+        "Position": [
+          -30,
+          2.5,
+          370
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3,
+          4
+        ],
+        "Position": [
+          -26,
+          1.5,
+          367
+        ],
+        "Color": [
+          0.39215686274509803,
+          0.27450980392156865,
+          0.19607843137254902
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapPile1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          5,
+          7
+        ],
+        "Position": [
+          28,
+          2.5,
+          372
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3,
+          4
+        ],
+        "Position": [
+          32,
+          1.5,
+          369
+        ],
+        "Color": [
+          0.39215686274509803,
+          0.27450980392156865,
+          0.19607843137254902
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapPile2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          5,
+          7
+        ],
+        "Position": [
+          -28,
+          2.5,
+          430
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3,
+          4
+        ],
+        "Position": [
+          -24,
+          1.5,
+          427
+        ],
+        "Color": [
+          0.39215686274509803,
+          0.27450980392156865,
+          0.19607843137254902
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapPile3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          5,
+          7
+        ],
+        "Position": [
+          30,
+          2.5,
+          428
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3,
+          4
+        ],
+        "Position": [
+          34,
+          1.5,
+          425
+        ],
+        "Color": [
+          0.39215686274509803,
+          0.27450980392156865,
+          0.19607843137254902
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CraneTower",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          28,
+          4
+        ],
+        "Position": [
+          38,
+          14,
+          362
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CraneArm",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          36,
+          2,
+          3
+        ],
+        "Position": [
+          20,
+          26,
+          362
+        ],
+        "Color": [
+          0.7843137254901961,
+          0.5490196078431373,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "PadA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          1.2,
+          14
+        ],
+        "Position": [
+          -22,
+          0.6,
+          400
+        ],
+        "Color": [
+          0.7058823529411765,
+          0.35294117647058826,
+          0.19607843137254902
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Spawn",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              2.5,
+              0
+            ]
+          }
+        },
+        {
+          "Name": "PadLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.2,
+            "PixelsPerStud": 20
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "P1",
+                "TextScaled": true,
+                "Font": "SourceSansBold",
+                "TextColor3": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "PadB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          1.2,
+          14
+        ],
+        "Position": [
+          22,
+          0.6,
+          400
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.47058823529411764,
+          0.6274509803921569
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Spawn",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              2.5,
+              0
+            ]
+          }
+        },
+        {
+          "Name": "PadLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.2,
+            "PixelsPerStud": 20
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "P2",
+                "TextScaled": true,
+                "Font": "SourceSansBold",
+                "TextColor3": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ArenaOrigin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          2,
+          2
+        ],
+        "Position": [
+          0,
+          1,
+          400
+        ],
+        "Color": [
+          1.0,
+          0.7843137254901961,
+          0.1568627450980392
+        ],
+        "Material": "Neon",
+        "Transparency": 0.35,
+        "CanCollide": false,
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Center",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ArenaLamp",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          1,
+          4
+        ],
+        "Position": [
+          0,
+          22,
+          400
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.1568627450980392,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 2.0,
+            "Range": 70,
+            "Color": [
+              1.0,
+              0.7843137254901961,
+              0.5490196078431373
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    }
+  ]
+}
