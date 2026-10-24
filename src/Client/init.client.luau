@@ -1,2 +1,5 @@
--- Assembler client entry (scaffold). UI / garage / HUD come later.
-print("[Assembler] Client loaded (UI stubs TBD)")
+-- Assembler client entry — mounts the campaign combat HUD.
+
+local CombatHud = require(script:WaitForChild("CombatHud"))
+
+CombatHud.mount()

@@ -1,7 +1,8 @@
--- Abstraction over NPC script vs remote player. Combat sim should take this,
--- not a concrete Player or NPC table, so PvE ladder and PvP arena share one resolver.
+-- Abstraction over NPC script vs remote player.
+-- Combat sim takes BattleOpponent + loadout → FighterState; same resolver for PvE and PvP.
 
 local BattleMode = require(script.Parent.BattleMode)
+local Slots = require(script.Parent.Parent.Parts.Slots)
 
 export type OpponentKind = "Npc" | "Player"
 
@@ -10,29 +11,42 @@ export type BattleOpponent = {
 	displayName: string,
 	kind: OpponentKind,
 	mode: BattleMode.BattleMode,
-	-- Mech loadout / combat snapshot filled by later combat work.
 	mechId: string?,
+	-- Optional prebuilt loadout (NPCs always set this; players resolve from inventory).
+	loadout: Slots.EquippedLoadout?,
 }
 
 local BattleOpponent = {}
 
-function BattleOpponent.fromNpc(id: string, displayName: string, mechId: string?): BattleOpponent
+function BattleOpponent.fromNpc(
+	id: string,
+	displayName: string,
+	mechId: string?,
+	loadout: Slots.EquippedLoadout?
+): BattleOpponent
 	return {
 		id = id,
 		displayName = displayName,
 		kind = "Npc",
 		mode = BattleMode.PvE,
 		mechId = mechId,
+		loadout = loadout,
 	}
 end
 
-function BattleOpponent.fromPlayer(userId: number, displayName: string, mechId: string?): BattleOpponent
+function BattleOpponent.fromPlayer(
+	userId: number,
+	displayName: string,
+	mechId: string?,
+	loadout: Slots.EquippedLoadout?
+): BattleOpponent
 	return {
 		id = tostring(userId),
 		displayName = displayName,
 		kind = "Player",
 		mode = BattleMode.PvP,
 		mechId = mechId,
+		loadout = loadout,
 	}
 end
 

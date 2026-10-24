@@ -9,35 +9,37 @@ Build a mech from modular parts. Fight turn-based 1v1 in 3D arenas — PvE campa
 | GitHub | [`null-fang/assembler-mechs`](https://github.com/null-fang/assembler-mechs) |
 | Roblox Place owner (later) | **Eman99Mason** |
 
-## Combat quick rules (stub)
+## Combat quick rules
 
-- **AP (action points):** ~**2 AP per turn** (SuperMechs-like). Spend AP to move and/or attack.
-- **Resources:** Integrity (HP), Temperature, Battery Life.
-- **Damage triad:** Physical / mechanical, Heat, Energy.
-- **Weight:** Every part has weight; chassis has capacity (soft overweight penalty preferred; see code comments).
+- **AP:** **2 actions per turn.** Spend AP to move and/or fire; End Turn hands it off.
+- **Core Integrity:** 0 = scrap.
+- **Core Temperature:** overheat → skip your next turn. (Freeze = Phase 2.)
+- **Battery Life:** 0 → energy weapons dark for a few moves while recharging. (Over-Voltage = Phase 2.)
+- **Damage:** Physical / Heat / Energy.
+- **Weight:** soft Integrity penalty when over chassis capacity.
 
-## Open with Rojo + Studio
+## Play the first slice (Studio + Rojo)
 
-1. Install [Aftman](https://github.com/LPGhatguy/aftman), then from this repo:
-   ```bash
-   aftman install
-   ```
-2. Start Rojo:
-   ```bash
-   rojo serve
-   ```
-3. In Roblox Studio (account **Eman99Mason** when publishing), install the [Rojo plugin](https://rojo.space/docs/v7/getting-started/installation/), open a blank place (or sync into your experience), and **Connect** to the serve address (default `localhost:34872`).
-4. Optional: `rojo build -o Assembler.rbxlx` for a one-shot place file.
-
-Wally is present but unused until packages are needed (`wally install` when you add deps).
+1. `aftman install` then `rojo serve` (or `rojo build -o Assembler.rbxlx`).
+2. Connect the Rojo plugin in Studio (account **Eman99Mason** when publishing).
+3. Play Solo — left HUD lists the campaign ladder. Start fight 1, spend AP, End Turn, climb.
 
 ## Layout
 
 ```
 src/
-  Shared/   — types + pure logic (combat, parts, economy, modes)
-  Server/   — campaign ladder, matchmaking stub, economy, combat host
-  Client/   — thin entry; UI later
+  Shared/
+    Combat/   — Types, MechState, Resolver, NpcBrain
+    Parts/    — Slots, Catalog, StarterMech, CratePick3
+    Modes/    — BattleMode, BattleOpponent
+    Economy/  — Currency, Rewards, SellDuplicate
+  Server/
+    Combat/   — CombatHost (PvE + PvP entry)
+    Campaign/ — Ladder (~10 NPCs), CampaignService
+    PvP/      — Matchmaking stub
+    Remotes   — fight remotes
+  Client/
+    CombatHud — rough campaign + turn UI
 ```
 
-Scaffold only — no full combat sim, models, or polished UI yet.
+PvP matchmaking stays a stub; both modes share `Resolver` / `CombatHost`.
