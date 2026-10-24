@@ -10,12 +10,14 @@ local CombatHost = require(script.Combat.CombatHost)
 local EconomyService = require(script.Economy.EconomyService)
 local InventoryService = require(script.Parts.InventoryService)
 local ArenaService = require(script.World.ArenaService)
+local LobbyPrompts = require(script.World.LobbyPrompts)
 
 Remotes.init()
 
 task.spawn(function()
 	if ArenaService.ensureWorld() then
 		print("[Assembler] Lobby + Arenas found — GaragePedestal / PadA / PadB ready")
+		LobbyPrompts.wire(Remotes)
 	end
 end)
 
@@ -147,8 +149,13 @@ Remotes.SubmitAction.OnServerInvoke = function(player, action)
 
 	local settled = CampaignService.settleIfFinished(player.UserId, live)
 	if settled then
-		ArenaService.teleportPlayerToLobby(player)
 		Remotes.FightSettled:FireClient(player, settled)
+		task.delay(1.35, function()
+			if player.Parent then
+				ArenaService.teleportPlayerToLobby(player)
+				Remotes.ReturnLobby:FireClient(player, settled)
+			end
+		end)
 		return { ok = true, battle = snap, settled = settled }
 	end
 
@@ -157,4 +164,4 @@ end
 
 local _ = Matchmaking
 
-print("[Assembler] Server ready — garage on GaragePedestal; fights on PadA/PadB")
+print("[Assembler] Server ready — walk Campaign terminal / Garage pedestal")

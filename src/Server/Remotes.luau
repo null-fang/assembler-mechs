@@ -50,6 +50,9 @@ function Remotes.init()
 	Remotes.BattleUpdated = remoteEvent("BattleUpdated")
 	Remotes.FightSettled = remoteEvent("FightSettled")
 	Remotes.InventoryUpdated = remoteEvent("InventoryUpdated")
+	Remotes.OpenCampaign = remoteEvent("OpenCampaign")
+	Remotes.OpenGarage = remoteEvent("OpenGarage")
+	Remotes.ReturnLobby = remoteEvent("ReturnLobby")
 end
 
 return Remotes

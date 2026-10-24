@@ -1,55 +1,37 @@
 # Assembler
 
-Build a mech from modular parts. Fight turn-based 1v1 in 3D arenas — PvE campaign first (~10 NPC ladder), PvP infra from day one. Open crates, pick one of three cards, climb rarities. SuperMechs-shaped combat (Integrity, Temperature, Battery; Physical / Heat / Energy) with Roblox presentation and a Ball vs Ball–style pick-3 loop.
+Build a mech from modular parts. Fight turn-based 1v1 in 3D arenas — PvE campaign first (~10 NPC ladder), PvP infra from day one.
 
-**Design plan** lives in the Cursor Project Context (`docs/assembler-design-plan.md`) — not duplicated here.
+**Design plan** lives in the Cursor Project Context (`docs/assembler-design-plan.md`).
 
 | | |
 | --- | --- |
 | GitHub | [`null-fang/assembler-mechs`](https://github.com/null-fang/assembler-mechs) |
+| Branch | `cursor/combat-slice-774e` |
 | Roblox Place owner (later) | **Eman99Mason** |
 
-## Combat quick rules
+## Playtest (Bob)
 
-- **AP:** **2 actions per turn.** Spend AP to move and/or fire; End Turn hands it off.
-- **Core Integrity:** 0 = scrap.
-- **Core Temperature:** overheat → skip your next turn. (Freeze = Phase 2.)
-- **Battery Life:** 0 → energy weapons dark for a few moves while recharging. (Over-Voltage = Phase 2.)
-- **Damage:** Physical / Heat / Energy.
-- **Weight:** soft Integrity penalty when over chassis capacity.
+1. `git fetch origin && git checkout cursor/combat-slice-774e && git pull origin cursor/combat-slice-774e`
+2. `aftman install` then `rojo serve` (or `rojo build -o Assembler.rbxlx` and open the place)
+3. Studio → Rojo Connect → **Play Solo**
+4. You spawn in the **mech bay lobby** (floor, hangar). Primary mech is on the **Garage pedestal**.
+5. Walk to the cyan **Campaign** terminal → **Open** → start fight **1**.
+6. Teleport to Scrap Pit / Dry Dock / Night Yard; mechs on **PadA/PadB**; turn HUD + side camera.
+7. Win/lose → return to lobby with common + XP. Optional: Garage pedestal (or HUD Garage) to swap parts.
 
-## Play the first slice (Studio + Rojo)
+## Combat rules
 
-1. `aftman install` then `rojo serve` (or `rojo build -o Assembler.rbxlx`).
-2. Connect the Rojo plugin in Studio (account **Eman99Mason** when publishing).
-3. Play Solo — left HUD lists the campaign ladder. Start fight 1, spend AP, End Turn, climb.
+- **2 AP / turn** — move and/or fire, then End turn.
+- Integrity / Temperature (overheat skips) / Battery (energy guns dark while recharging).
+- Damage: Physical / Heat / Energy. Soft overweight Integrity penalty.
 
 ## Layout
 
 ```
-src/
-  Workspace/  — Lobby + Arenas (Rojo .model.json geometry)
-  Shared/
-    Combat/   — Types, MechState, Resolver, NpcBrain
-    Parts/    — Slots, Catalog, StarterMech, CratePick3
-    Modes/    — BattleMode, BattleOpponent
-    Economy/  — Currency, Rewards, SellDuplicate
-  Server/
-    Combat/   — CombatHost (PvE + PvP entry)
-    Campaign/ — Ladder (~10 NPCs), CampaignService
-    PvP/      — Matchmaking stub
-    Remotes   — fight remotes
-  Client/
-    CombatHud — campaign + turn overlay
-    GarageHud — secondary part swap UI
-  Server/World/
-    ArenaService — mount mechs on GaragePedestal + PadA/PadB
-  Shared/Assembler/
-    Assembler — low-poly Model from loadout sockets
-tools/
-  generate_maps.py — regen lobby/arena model.json
+src/Workspace/     Lobby + Arenas (Rojo maps)
+src/Shared/        Combat, Assembler, Parts, Modes, Economy
+src/Server/World/  ArenaService, LobbyPrompts
+src/Server/Parts/  InventoryService
+src/Client/        CombatHud, GarageHud, BattleCamera
 ```
-
-PvP matchmaking stays a stub; both modes share `Resolver` / `CombatHost`.
-
-**World:** Lobby `GaragePedestal` shows your Primary mech. Campaign fights cycle ScrapPit → DryDock → NightYard and place both mechs on `PadA` / `PadB`.

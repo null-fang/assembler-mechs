@@ -1,7 +1,10 @@
--- Campaign + combat overlay — secondary to the 3D lobby/arenas.
+-- World-first HUD: thin lobby hint, campaign from terminal, battle overlay + camera.
+-- No locked-mechs wall as the first thing you see.
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local BattleCamera = require(script.Parent:WaitForChild("BattleCamera"))
 
 local CombatHud = {}
 
@@ -15,18 +18,24 @@ local StartFight = remotesFolder:WaitForChild("StartFight")
 local SubmitAction = remotesFolder:WaitForChild("SubmitAction")
 local BattleUpdated = remotesFolder:WaitForChild("BattleUpdated")
 local FightSettled = remotesFolder:WaitForChild("FightSettled")
+local OpenCampaign = remotesFolder:WaitForChild("OpenCampaign")
+local OpenGarage = remotesFolder:WaitForChild("OpenGarage")
+local ReturnLobby = remotesFolder:WaitForChild("ReturnLobby")
 
 local GarageHud
 
 local screen
+local hintBar
+local campaignRoot
 local campaignFrame
-local battleFrame
+local battleRoot
 local statusLabel
 local logLabel
 local resourceLabel
 local actionFolder
 local fightButtons
 local walletLabel
+local inBattle = false
 
 local function makeTextButton(parent, text, size, pos)
 	local b = Instance.new("TextButton")
@@ -74,104 +83,113 @@ local function setStatus(text)
 	statusLabel.Text = text
 end
 
-local function showCampaign()
-	campaignFrame.Visible = true
-	battleFrame.Visible = false
-end
-
-local function showBattle()
-	campaignFrame.Visible = false
-	battleFrame.Visible = true
-	if GarageHud and GarageHud.isOpen() then
-		GarageHud.setOpen(false)
-	end
-end
-
 local function refreshBootstrap()
-	local boot = GetBootstrap:InvokeServer()
-	walletLabel.Text = ("Common: %d   XP: %d   Cleared: %d/%d"):format(
+	local ok, boot = pcall(function()
+		return GetBootstrap:InvokeServer()
+	end)
+	if not ok or not boot then
+		walletLabel.Text = "Assembler Bay"
+		return
+	end
+	walletLabel.Text = ("Common %d · XP %d · Cleared %d/%d"):format(
 		boot.wallet.common,
 		boot.progress.xp,
 		boot.progress.highestCleared,
 		boot.ladderCount
 	)
-	local lo = boot.loadout
-	statusLabel.Text = ("Primary: %s · %s · %s"):format(
-		lo.torso or "?",
-		lo.legs or "?",
-		lo.drone or "no drone"
-	)
+	if not inBattle then
+		local lo = boot.loadout
+		setStatus(
+			("Primary ready: %s · walk to Campaign (cyan) or Garage pedestal"):format(lo.torso or "mech")
+		)
+	end
 	if GarageHud and boot.inventory then
 		GarageHud.applySnapshot(boot.inventory)
 	end
 end
 
-local function refreshCampaignList()
+local function hideCampaign()
+	campaignRoot.Visible = false
+end
+
+local function startFight(index: number)
+	setStatus("Deploying…")
+	hideCampaign()
+	local result = StartFight:InvokeServer(index)
+	if not result or not result.ok then
+		setStatus((result and result.error) or "Could not start")
+		return
+	end
+	if result.arenaId then
+		BattleCamera.startForArena(result.arenaId)
+	end
+	CombatHud.renderBattle(result.battle)
+end
+
+function CombatHud.openCampaign()
+	if inBattle then
+		return
+	end
+	if GarageHud and GarageHud.isOpen() then
+		GarageHud.setOpen(false)
+	end
+	campaignRoot.Visible = true
 	clearChildren(fightButtons)
 	local fights = ListCampaign:InvokeServer()
-	for i, fight in fights do
-		local label = fight.name
-		if fight.arenaId then
-			label = label .. "  [" .. fight.arenaId .. "]"
-		end
-		if fight.cleared then
-			label = label .. "  (cleared)"
-		elseif not fight.unlocked then
-			label = label .. "  (locked)"
-		end
-		local row = makeTextButton(
-			fightButtons,
-			("%d. %s"):format(fight.index, label),
-			UDim2.new(1, -8, 0, 32),
-			UDim2.new(0, 4, 0, (i - 1) * 36)
-		)
-		row.Name = "FightRow"
-		if not fight.unlocked then
-			row.BackgroundColor3 = Color3.fromRGB(28, 28, 30)
-			row.TextColor3 = Color3.fromRGB(120, 120, 120)
-			row.Active = false
-			row.AutoButtonColor = false
-		else
+	local y = 0
+	local lockedShown = false
+	for _, fight in fights do
+		if fight.unlocked then
+			local tag = if fight.cleared then " · cleared" else ""
+			local arena = if fight.arenaId then (" · " .. fight.arenaId) else ""
+			local row = makeTextButton(
+				fightButtons,
+				("%d. %s%s%s  (+%d)"):format(fight.index, fight.name, tag, arena, fight.rewardCommon),
+				UDim2.new(1, -8, 0, 34),
+				UDim2.new(0, 4, 0, y)
+			)
+			row.Name = "FightRow"
 			row.MouseButton1Click:Connect(function()
-				setStatus("Starting fight " .. fight.index .. "…")
-				local result = StartFight:InvokeServer(fight.index)
-				if not result.ok then
-					setStatus(result.error or "Could not start")
-					return
-				end
-				showBattle()
-				CombatHud.renderBattle(result.battle)
-				if result.arenaId then
-					setStatus("Arena: " .. result.arenaId)
-				end
+				startFight(fight.index)
 			end)
+			row.MouseEnter:Connect(function()
+				setStatus(fight.blurb)
+			end)
+			y += 38
+		elseif not lockedShown then
+			local row = makeLabel(
+				fightButtons,
+				("Next: %d. %s — clear an open fight first."):format(fight.index, fight.name),
+				UDim2.new(1, -8, 0, 28),
+				UDim2.new(0, 4, 0, y),
+				13
+			)
+			row.Name = "FightRow"
+			row.TextColor3 = Color3.fromRGB(130, 130, 140)
+			lockedShown = true
+			y += 32
 		end
-		row.MouseEnter:Connect(function()
-			if fight.unlocked then
-				setStatus(fight.blurb .. "  ·  win +" .. tostring(fight.rewardCommon) .. " common")
-			end
-		end)
 	end
-	fightButtons.CanvasSize = UDim2.new(0, 0, 0, #fights * 36)
+	fightButtons.CanvasSize = UDim2.new(0, 0, 0, y)
+	setStatus("Your starter mech is equipped. Pick a fight.")
 end
 
 local function formatSide(side)
-	return ("%s  HP %d/%d  Temp %d/%d  Bat %d/%d  Tile %d"):format(
+	return ("%s  HP %d/%d  Temp %d/%d  Bat %d/%d"):format(
 		side.displayName,
 		side.integrity,
 		side.integrityMax,
 		side.temperature,
 		side.temperatureMax,
 		side.battery,
-		side.batteryMax,
-		side.position
+		side.batteryMax
 	)
 end
 
 local function renderLog(log)
 	local lines = {}
-	local start = math.max(1, #log - 8)
-	for i = start, #log do
+	local start = math.max(1, #(log or {}) - 7)
+	for i = start, #(log or {}) do
 		table.insert(lines, log[i].text)
 	end
 	logLabel.Text = table.concat(lines, "\n")
@@ -199,9 +217,9 @@ end
 
 local function submit(action)
 	local result = SubmitAction:InvokeServer(action)
-	if not result.ok then
-		setStatus(result.error or "Action failed")
-		if result.battle then
+	if not result or not result.ok then
+		setStatus((result and result.error) or "Action failed")
+		if result and result.battle then
 			CombatHud.renderBattle(result.battle)
 		end
 		return
@@ -213,20 +231,28 @@ local function submit(action)
 end
 
 function CombatHud.renderBattle(battle)
-	showBattle()
+	inBattle = true
+	hideCampaign()
+	hintBar.Visible = false
+	battleRoot.Visible = true
+	if GarageHud and GarageHud.isOpen() then
+		GarageHud.setOpen(false)
+	end
+	if battle.arenaId then
+		BattleCamera.startForArena(battle.arenaId)
+	end
+
 	local you = if battle.playerSide == "A" then battle.sideA else battle.sideB
 	local foe = if battle.playerSide == "A" then battle.sideB else battle.sideA
 
-	local arenaLine = if battle.arenaId then ("Arena " .. battle.arenaId) else "Arena"
 	resourceLabel.Text = table.concat({
-		arenaLine
-			.. " · Turn "
-			.. tostring(battle.turnIndex)
-			.. " · AP "
-			.. tostring(battle.apRemaining)
-			.. "/"
-			.. tostring(battle.apMax),
-		"Range " .. tostring(battle.distance),
+		("%s · Turn %d · AP %d/%d · Range %d"):format(
+			battle.arenaId or "Arena",
+			battle.turnIndex,
+			battle.apRemaining,
+			battle.apMax,
+			battle.distance
+		),
 		formatSide(you),
 		formatSide(foe),
 	}, "\n")
@@ -243,20 +269,18 @@ function CombatHud.renderBattle(battle)
 
 	renderLog(battle.log or {})
 	clearActions()
-
 	if battle.outcome ~= "Ongoing" then
 		return
 	end
 
-	local actions = battle.legalActions or {}
-	for i, action in actions do
+	for i, action in battle.legalActions or {} do
 		local col = (i - 1) % 3
 		local row = math.floor((i - 1) / 3)
 		local btn = makeTextButton(
 			actionFolder,
 			actionLabel(action),
 			UDim2.new(0, 120, 0, 32),
-			UDim2.new(0, col * 128, 0, row * 36)
+			UDim2.new(0, 8 + col * 128, 0, row * 36)
 		)
 		local captured = action
 		btn.MouseButton1Click:Connect(function()
@@ -267,12 +291,19 @@ end
 
 function CombatHud.onSettled(settled)
 	local verb = if settled.won then "Win" else "Loss"
-	setStatus(("%s · +%d common · +%d XP"):format(verb, settled.common, settled.xp))
-	task.delay(1.2, function()
-		showCampaign()
-		refreshBootstrap()
-		refreshCampaignList()
-	end)
+	setStatus(("%s · +%d common · +%d XP — returning to bay…"):format(verb, settled.common, settled.xp))
+end
+
+function CombatHud.onReturnLobby(settled)
+	inBattle = false
+	battleRoot.Visible = false
+	hintBar.Visible = true
+	BattleCamera.stop()
+	if settled then
+		local verb = if settled.won then "Win" else "Loss"
+		setStatus(("%s recorded. +%d common · +%d XP"):format(verb, settled.common, settled.xp))
+	end
+	refreshBootstrap()
 end
 
 function CombatHud.mount(garageModule)
@@ -281,30 +312,32 @@ function CombatHud.mount(garageModule)
 	screen = Instance.new("ScreenGui")
 	screen.Name = "AssemblerHud"
 	screen.ResetOnSpawn = false
+	screen.IgnoreGuiInset = true
 	screen.Parent = playerGui
 
 	if GarageHud then
 		GarageHud.mount(screen)
 	end
 
-	-- Compact left panel — world stays visible.
-	local root = Instance.new("Frame")
-	root.Size = UDim2.new(0, 380, 0, 460)
-	root.Position = UDim2.new(0, 12, 0, 12)
-	root.BackgroundColor3 = Color3.fromRGB(18, 20, 24)
-	root.BackgroundTransparency = 0.12
-	root.BorderSizePixel = 0
-	root.Parent = screen
-	local rootCorner = Instance.new("UICorner")
-	rootCorner.CornerRadius = UDim.new(0, 8)
-	rootCorner.Parent = root
+	-- Thin lobby chrome (not a locked-mechs wall)
+	hintBar = Instance.new("Frame")
+	hintBar.Name = "HintBar"
+	hintBar.Size = UDim2.new(0, 440, 0, 78)
+	hintBar.Position = UDim2.new(0, 16, 0, 16)
+	hintBar.BackgroundColor3 = Color3.fromRGB(14, 16, 20)
+	hintBar.BackgroundTransparency = 0.12
+	hintBar.BorderSizePixel = 0
+	hintBar.Parent = screen
+	local hc = Instance.new("UICorner")
+	hc.CornerRadius = UDim.new(0, 8)
+	hc.Parent = hintBar
 
-	makeLabel(root, "Assembler", UDim2.new(1, -100, 0, 28), UDim2.new(0, 12, 0, 8), 22).Font =
+	makeLabel(hintBar, "Assembler", UDim2.new(1, -100, 0, 24), UDim2.new(0, 12, 0, 6), 18).Font =
 		Enum.Font.GothamBold
-	walletLabel = makeLabel(root, "", UDim2.new(1, -16, 0, 20), UDim2.new(0, 12, 0, 36), 13)
-	statusLabel = makeLabel(root, "", UDim2.new(1, -16, 0, 36), UDim2.new(0, 12, 0, 56), 13)
+	walletLabel = makeLabel(hintBar, "", UDim2.new(1, -16, 0, 18), UDim2.new(0, 12, 0, 30), 13)
+	statusLabel = makeLabel(hintBar, "", UDim2.new(1, -16, 0, 24), UDim2.new(0, 12, 0, 50), 13)
 
-	local garageBtn = makeTextButton(root, "Garage", UDim2.new(0, 72, 0, 26), UDim2.new(1, -84, 0, 10))
+	local garageBtn = makeTextButton(hintBar, "Garage", UDim2.new(0, 72, 0, 26), UDim2.new(1, -84, 0, 8))
 	garageBtn.BackgroundColor3 = Color3.fromRGB(55, 72, 96)
 	garageBtn.MouseButton1Click:Connect(function()
 		if GarageHud then
@@ -312,62 +345,92 @@ function CombatHud.mount(garageModule)
 		end
 	end)
 
-	campaignFrame = Instance.new("Frame")
-	campaignFrame.Size = UDim2.new(1, -16, 1, -108)
-	campaignFrame.Position = UDim2.new(0, 8, 0, 100)
-	campaignFrame.BackgroundTransparency = 1
-	campaignFrame.Parent = root
+	-- Campaign panel (hidden until terminal)
+	campaignRoot = Instance.new("Frame")
+	campaignRoot.Name = "CampaignPanel"
+	campaignRoot.Size = UDim2.new(0, 380, 0, 420)
+	campaignRoot.Position = UDim2.new(0, 16, 0, 106)
+	campaignRoot.BackgroundColor3 = Color3.fromRGB(16, 18, 22)
+	campaignRoot.BackgroundTransparency = 0.06
+	campaignRoot.BorderSizePixel = 0
+	campaignRoot.Visible = false
+	campaignRoot.Parent = screen
+	local cc = Instance.new("UICorner")
+	cc.CornerRadius = UDim.new(0, 8)
+	cc.Parent = campaignRoot
 
-	makeLabel(campaignFrame, "Campaign ladder", UDim2.new(1, 0, 0, 22), UDim2.new(0, 4, 0, 0), 16).Font =
+	makeLabel(campaignRoot, "Campaign ladder", UDim2.new(1, -16, 0, 24), UDim2.new(0, 12, 0, 10), 16).Font =
 		Enum.Font.GothamMedium
+	makeLabel(
+		campaignRoot,
+		"Open fights only. Primary mech is already built — no locked bay wall.",
+		UDim2.new(1, -16, 0, 36),
+		UDim2.new(0, 12, 0, 36),
+		12
+	)
+
+	campaignFrame = Instance.new("Frame")
+	campaignFrame.Size = UDim2.new(1, -16, 1, -100)
+	campaignFrame.Position = UDim2.new(0, 8, 0, 76)
+	campaignFrame.BackgroundTransparency = 1
+	campaignFrame.Parent = campaignRoot
 
 	fightButtons = Instance.new("ScrollingFrame")
-	fightButtons.Size = UDim2.new(1, 0, 1, -28)
-	fightButtons.Position = UDim2.new(0, 0, 0, 28)
+	fightButtons.Size = UDim2.new(1, 0, 1, 0)
 	fightButtons.BackgroundTransparency = 1
 	fightButtons.ScrollBarThickness = 4
 	fightButtons.BorderSizePixel = 0
 	fightButtons.Parent = campaignFrame
 
-	battleFrame = Instance.new("Frame")
-	battleFrame.Size = UDim2.new(1, -16, 1, -108)
-	battleFrame.Position = UDim2.new(0, 8, 0, 100)
-	battleFrame.BackgroundTransparency = 1
-	battleFrame.Visible = false
-	battleFrame.Parent = root
-
-	resourceLabel = makeLabel(battleFrame, "", UDim2.new(1, 0, 0, 90), UDim2.new(0, 0, 0, 0), 12)
-	logLabel = makeLabel(battleFrame, "", UDim2.new(1, 0, 0, 140), UDim2.new(0, 0, 0, 96), 12)
-	logLabel.TextColor3 = Color3.fromRGB(170, 180, 190)
-
-	actionFolder = Instance.new("Frame")
-	actionFolder.Size = UDim2.new(1, 0, 0, 120)
-	actionFolder.Position = UDim2.new(0, 0, 0, 250)
-	actionFolder.BackgroundTransparency = 1
-	actionFolder.Parent = battleFrame
-
-	local back = makeTextButton(
-		battleFrame,
-		"Finish the fight on the pads",
-		UDim2.new(1, 0, 0, 28),
-		UDim2.new(0, 0, 1, -32)
-	)
-	back.MouseButton1Click:Connect(function()
-		setStatus("Fire / move / End turn until someone's scrap.")
+	local closeC = makeTextButton(campaignRoot, "Close", UDim2.new(0, 72, 0, 28), UDim2.new(1, -84, 1, -40))
+	closeC.MouseButton1Click:Connect(function()
+		hideCampaign()
+		refreshBootstrap()
 	end)
 
+	-- Battle overlay (bottom-left)
+	battleRoot = Instance.new("Frame")
+	battleRoot.Name = "BattlePanel"
+	battleRoot.Size = UDim2.new(0, 420, 0, 320)
+	battleRoot.Position = UDim2.new(0, 16, 1, -336)
+	battleRoot.BackgroundColor3 = Color3.fromRGB(16, 18, 22)
+	battleRoot.BackgroundTransparency = 0.08
+	battleRoot.BorderSizePixel = 0
+	battleRoot.Visible = false
+	battleRoot.Parent = screen
+	local bc = Instance.new("UICorner")
+	bc.CornerRadius = UDim.new(0, 8)
+	bc.Parent = battleRoot
+
+	resourceLabel = makeLabel(battleRoot, "", UDim2.new(1, -16, 0, 70), UDim2.new(0, 8, 0, 8), 12)
+	logLabel = makeLabel(battleRoot, "", UDim2.new(1, -16, 0, 100), UDim2.new(0, 8, 0, 80), 12)
+	logLabel.TextColor3 = Color3.fromRGB(170, 180, 190)
+	actionFolder = Instance.new("Frame")
+	actionFolder.Size = UDim2.new(1, -8, 0, 110)
+	actionFolder.Position = UDim2.new(0, 0, 0, 190)
+	actionFolder.BackgroundTransparency = 1
+	actionFolder.Parent = battleRoot
+
+	OpenCampaign.OnClientEvent:Connect(function()
+		CombatHud.openCampaign()
+	end)
+	OpenGarage.OnClientEvent:Connect(function()
+		if GarageHud then
+			GarageHud.setOpen(true)
+		end
+	end)
 	BattleUpdated.OnClientEvent:Connect(function(battle)
 		CombatHud.renderBattle(battle)
 	end)
-
 	FightSettled.OnClientEvent:Connect(function(settled)
 		CombatHud.onSettled(settled)
 	end)
+	ReturnLobby.OnClientEvent:Connect(function(settled)
+		CombatHud.onReturnLobby(settled)
+	end)
 
 	refreshBootstrap()
-	refreshCampaignList()
-	showCampaign()
-	print("[Assembler] HUD mounted — Garage + campaign over lobby/arenas")
+	print("[Assembler] World-first HUD — use Campaign terminal / Garage pedestal")
 end
 
 return CombatHud
