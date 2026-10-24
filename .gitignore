@@ -1,0 +1,19 @@
+# Sourcemap / Rojo
+sourcemap.json
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+
+# Wally
+Packages/
+ServerPackages/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
