@@ -1,4 +1,4 @@
--- Assembler server entry — campaign combat slice.
+-- Assembler server entry — lobby world + campaign combat + mech bay.
 
 local Players = game:GetService("Players")
 
@@ -8,31 +8,94 @@ local Matchmaking = require(script.PvP.Matchmaking)
 local CampaignService = require(script.Campaign.CampaignService)
 local CombatHost = require(script.Combat.CombatHost)
 local EconomyService = require(script.Economy.EconomyService)
-local InventoryStub = require(script.Parts.InventoryStub)
+local InventoryService = require(script.Parts.InventoryService)
+local ArenaService = require(script.World.ArenaService)
 
 Remotes.init()
+
+task.spawn(function()
+	if ArenaService.ensureWorld() then
+		print("[Assembler] Lobby + Arenas found — GaragePedestal / PadA / PadB ready")
+	end
+end)
 
 local firstSlice = Ladder.buildFirstSlice()
 print(("[Assembler] Campaign ladder ready: %d NPC fights (no bosses)"):format(#firstSlice))
 print("[Assembler] PvP matchmaking stub loaded (shared combat path intact)")
 
+local function refreshPreview(player: Player)
+	CampaignService.rememberDisplayName(player.UserId, player.DisplayName)
+	local loadout = InventoryService.activeLoadout(player.UserId)
+	ArenaService.spawnGaragePreview(loadout, player.DisplayName)
+end
+
 Players.PlayerAdded:Connect(function(player)
-	InventoryStub.grantStarter(player.UserId)
+	InventoryService.grantStarter(player.UserId)
 	EconomyService.getWallet(player.UserId)
 	CampaignService.getProgress(player.UserId)
+	CampaignService.rememberDisplayName(player.UserId, player.DisplayName)
+	task.defer(function()
+		refreshPreview(player)
+	end)
+	player.CharacterAdded:Connect(function()
+		task.wait(0.5)
+		ArenaService.teleportPlayerToLobby(player)
+	end)
+	if player.Character then
+		task.defer(function()
+			ArenaService.teleportPlayerToLobby(player)
+		end)
+	end
 end)
 
 for _, player in Players:GetPlayers() do
-	InventoryStub.grantStarter(player.UserId)
+	InventoryService.grantStarter(player.UserId)
+	task.defer(function()
+		refreshPreview(player)
+	end)
 end
 
 Remotes.GetBootstrap.OnServerInvoke = function(player)
 	return {
 		wallet = EconomyService.getWallet(player.UserId),
 		progress = CampaignService.getProgress(player.UserId),
-		loadout = InventoryStub.loadoutSummary(player.UserId),
+		loadout = InventoryService.loadoutSummary(player.UserId),
+		inventory = InventoryService.clientSnapshot(player.UserId),
 		ladderCount = Ladder.FIRST_SLICE_COUNT,
+		activeArena = ArenaService.getActiveArenaId(),
 	}
+end
+
+Remotes.GetInventory.OnServerInvoke = function(player)
+	return InventoryService.clientSnapshot(player.UserId)
+end
+
+Remotes.EquipPart.OnServerInvoke = function(player, uid, target)
+	if typeof(uid) ~= "string" or typeof(target) ~= "string" then
+		return { ok = false, error = "Bad args" }
+	end
+	local ok, err = InventoryService.equip(player.UserId, uid, target)
+	if not ok then
+		return { ok = false, error = err or "Equip failed" }
+	end
+	refreshPreview(player)
+	local snap = InventoryService.clientSnapshot(player.UserId)
+	Remotes.InventoryUpdated:FireClient(player, snap)
+	return { ok = true, inventory = snap }
+end
+
+Remotes.UnequipPart.OnServerInvoke = function(player, field)
+	if typeof(field) ~= "string" then
+		return { ok = false, error = "Bad args" }
+	end
+	local ok, err = InventoryService.unequip(player.UserId, field)
+	if not ok then
+		return { ok = false, error = err or "Unequip failed" }
+	end
+	refreshPreview(player)
+	local snap = InventoryService.clientSnapshot(player.UserId)
+	Remotes.InventoryUpdated:FireClient(player, snap)
+	return { ok = true, inventory = snap }
 end
 
 Remotes.ListCampaign.OnServerInvoke = function(player)
@@ -47,9 +110,14 @@ Remotes.StartFight.OnServerInvoke = function(player, fightIndex)
 	if not live then
 		return { ok = false, error = err or "Could not start" }
 	end
+	local arenaId = (live :: any).arenaId
+	if arenaId then
+		ArenaService.teleportPlayerToArena(player, arenaId)
+	end
 	local snap = CombatHost.snapshot(live)
+	snap.arenaId = arenaId
 	Remotes.BattleUpdated:FireClient(player, snap)
-	return { ok = true, battle = snap }
+	return { ok = true, battle = snap, arenaId = arenaId }
 end
 
 Remotes.GetBattle.OnServerInvoke = function(player)
@@ -79,6 +147,7 @@ Remotes.SubmitAction.OnServerInvoke = function(player, action)
 
 	local settled = CampaignService.settleIfFinished(player.UserId, live)
 	if settled then
+		ArenaService.teleportPlayerToLobby(player)
 		Remotes.FightSettled:FireClient(player, settled)
 		return { ok = true, battle = snap, settled = settled }
 	end
@@ -86,7 +155,6 @@ Remotes.SubmitAction.OnServerInvoke = function(player, action)
 	return { ok = true, battle = snap }
 end
 
--- Keep PvP stub reachable without breaking the shared path.
 local _ = Matchmaking
 
-print("[Assembler] Server ready — enter a campaign fight from the client HUD")
+print("[Assembler] Server ready — garage on GaragePedestal; fights on PadA/PadB")

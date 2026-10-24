@@ -40,9 +40,16 @@ src/
     PvP/      — Matchmaking stub
     Remotes   — fight remotes
   Client/
-    CombatHud — rough campaign + turn UI
+    CombatHud — campaign + turn overlay
+    GarageHud — secondary part swap UI
+  Server/World/
+    ArenaService — mount mechs on GaragePedestal + PadA/PadB
+  Shared/Assembler/
+    Assembler — low-poly Model from loadout sockets
 tools/
   generate_maps.py — regen lobby/arena model.json
 ```
 
 PvP matchmaking stays a stub; both modes share `Resolver` / `CombatHost`.
+
+**World:** Lobby `GaragePedestal` shows your Primary mech. Campaign fights cycle ScrapPit → DryDock → NightYard and place both mechs on `PadA` / `PadB`.

@@ -1,5 +1,6 @@
--- Assembler client entry — mounts the campaign combat HUD.
+-- Assembler client — world-first HUD: campaign overlay + secondary garage.
 
 local CombatHud = require(script:WaitForChild("CombatHud"))
+local GarageHud = require(script:WaitForChild("GarageHud"))
 
-CombatHud.mount()
+CombatHud.mount(GarageHud)

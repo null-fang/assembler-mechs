@@ -66,6 +66,7 @@ function MechState.fromLoadout(
 	assert(torso and torso.torsoStats, "Loadout needs a torso with torsoStats")
 	local ts = torso.torsoStats
 
+	-- Torso baselines + non-torso contribs (torso.contrib mirrors torsoStats — don't double).
 	local integrityMax = ts.integrity
 	local temperatureMax = ts.temperatureMax
 	local cooling = ts.cooling
@@ -76,6 +77,30 @@ function MechState.fromLoadout(
 	local resistH = ts.resistHeat
 	local resistE = ts.resistEnergy
 
+	local function addNonTorso(part: Slots.PartDef?)
+		if not part or part == loadout.torso or not part.contrib then
+			return
+		end
+		local c = part.contrib
+		integrityMax += c.integrity or 0
+		temperatureMax += c.temperatureMax or 0
+		cooling += c.cooling or 0
+		batteryMax += c.batteryMax or 0
+		batteryRegen += c.batteryRegen or 0
+	end
+	addNonTorso(loadout.leftLeg)
+	addNonTorso(loadout.rightLeg)
+	addNonTorso(loadout.lowerLeft)
+	addNonTorso(loadout.lowerRight)
+	addNonTorso(loadout.shoulderLeft)
+	addNonTorso(loadout.shoulderRight)
+	addNonTorso(loadout.battery)
+	addNonTorso(loadout.cpu)
+	addNonTorso(loadout.drone)
+	for _, chip in loadout.chips do
+		addNonTorso(chip)
+	end
+
 	for _, chip in loadout.chips do
 		local c = chip :: Catalog.CatalogPart
 		local cs = c.chipStats
@@ -83,14 +108,14 @@ function MechState.fromLoadout(
 			resistP += cs.resistPhysical or 0
 			resistH += cs.resistHeat or 0
 			resistE += cs.resistEnergy or 0
-			cooling += cs.coolingBonus or 0
-			integrityMax += cs.integrityBonus or 0
+			-- integrityBonus / coolingBonus already in chip.contrib; chipStats keep resist.
 		end
 	end
 
 	if loadout.battery then
 		local b = loadout.battery :: Catalog.CatalogPart
-		if b.batteryStats then
+		-- batteryStats mirrored into contrib; skip double-add if contrib present.
+		if b.batteryStats and not b.contrib then
 			batteryMax += b.batteryStats.batteryMaxBonus
 			batteryRegen += b.batteryStats.batteryRegenBonus
 		end

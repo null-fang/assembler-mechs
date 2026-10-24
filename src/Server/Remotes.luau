@@ -43,9 +43,13 @@ function Remotes.init()
 	Remotes.StartFight = remoteFunction("StartFight")
 	Remotes.SubmitAction = remoteFunction("SubmitAction")
 	Remotes.GetBattle = remoteFunction("GetBattle")
+	Remotes.GetInventory = remoteFunction("GetInventory")
+	Remotes.EquipPart = remoteFunction("EquipPart")
+	Remotes.UnequipPart = remoteFunction("UnequipPart")
 
 	Remotes.BattleUpdated = remoteEvent("BattleUpdated")
 	Remotes.FightSettled = remoteEvent("FightSettled")
+	Remotes.InventoryUpdated = remoteEvent("InventoryUpdated")
 end
 
 return Remotes
