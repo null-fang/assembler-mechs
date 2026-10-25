@@ -1,5 +1,8 @@
 -- Build a visible low-poly mech Model from an equipped loadout.
--- Colored Block parts on sockets — readable silhouette at combat distance.
+-- Prefers MeshPart kits under ReplicatedStorage.AssemblerAssets when present;
+-- otherwise articulated blocks/cylinders (not a single cube pile).
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Sockets = require(script.Parent.Sockets)
 local Slots = require(script.Parent.Parent.Parts.Slots)
@@ -9,9 +12,7 @@ local Assembler = {}
 
 export type BuildOptions = {
 	name: string?,
-	-- Anchor all parts (arena display).
 	anchored: boolean?,
-	-- Tint multiplier for NPC vs player (optional slight shift).
 	teamTint: Color3?,
 }
 
@@ -24,6 +25,22 @@ local function rarityEdge(rarity: Slots.PartRarity): Color3
 	return Color3.fromRGB(40, 40, 44)
 end
 
+local function tryAssetClone(partId: string): Instance?
+	local assets = ReplicatedStorage:FindFirstChild("AssemblerAssets")
+	if not assets then
+		return nil
+	end
+	local partsFolder = assets:FindFirstChild("Parts")
+	if not partsFolder then
+		return nil
+	end
+	local template = partsFolder:FindFirstChild(partId)
+	if not template then
+		return nil
+	end
+	return template:Clone()
+end
+
 local function makeBlock(
 	parent: Model,
 	name: string,
@@ -31,7 +48,8 @@ local function makeBlock(
 	cframe: CFrame,
 	color: Color3,
 	rarity: Slots.PartRarity,
-	anchored: boolean
+	anchored: boolean,
+	shape: Enum.PartType?
 ): Part
 	local p = Instance.new("Part")
 	p.Name = name
@@ -39,6 +57,7 @@ local function makeBlock(
 	p.CFrame = cframe
 	p.Color = color
 	p.Material = Enum.Material.SmoothPlastic
+	p.Shape = shape or Enum.PartType.Block
 	p.Anchored = anchored
 	p.CanCollide = false
 	p.CanQuery = false
@@ -48,7 +67,6 @@ local function makeBlock(
 	p.BottomSurface = Enum.SurfaceType.Smooth
 	p.Parent = parent
 
-	-- Thin selection box for uncommon/rare so rarity reads at distance.
 	if rarity ~= "Common" then
 		local box = Instance.new("SelectionBox")
 		box.Adornee = p
@@ -77,6 +95,16 @@ local function tint(color: Color3, teamTint: Color3?): Color3
 	return color:Lerp(teamTint, 0.18)
 end
 
+local function shapeForSocket(socketName: Sockets.SocketName): Enum.PartType?
+	if socketName == "LeftHip" or socketName == "RightHip" then
+		return Enum.PartType.Cylinder
+	end
+	if socketName == "Drone" then
+		return Enum.PartType.Ball
+	end
+	return nil
+end
+
 local function attachPart(
 	model: Model,
 	torsoCF: CFrame,
@@ -90,23 +118,79 @@ local function attachPart(
 	end
 	local catalogPart = partDef :: Catalog.CatalogPart
 	local socket = Sockets.get(socketName)
+	local cf = socketCFrame(torsoCF, socket)
+
+	-- Real part kits from models worker, if synced.
+	local asset = tryAssetClone(partDef.id)
+	if asset then
+		if asset:IsA("Model") then
+			asset.Name = socketName .. "_" .. partDef.id
+			asset:PivotTo(cf)
+			for _, d in asset:GetDescendants() do
+				if d:IsA("BasePart") then
+					d.Anchored = anchored
+					d.CanCollide = false
+				end
+			end
+			asset.Parent = model
+			return
+		elseif asset:IsA("BasePart") then
+			asset.Name = socketName .. "_" .. partDef.id
+			asset.CFrame = cf
+			asset.Anchored = anchored
+			asset.CanCollide = false
+			asset.Parent = model
+			return
+		end
+	end
+
 	local size = (catalogPart.visual and catalogPart.visual.size) or socket.defaultSize
 	local color = tint(
 		(catalogPart.visual and catalogPart.visual.color) or Color3.fromRGB(120, 120, 120),
 		teamTint
 	)
-	local cf = socketCFrame(torsoCF, socket)
-	makeBlock(model, socketName .. "_" .. partDef.id, size, cf, color, partDef.rarity, anchored)
+	local shape = shapeForSocket(socketName)
+	-- Cylinders in Roblox are X-aligned; spin legs upright.
+	local partCF = cf
+	if shape == Enum.PartType.Cylinder then
+		partCF = cf * CFrame.Angles(0, 0, math.rad(90))
+		size = Vector3.new(size.Y, size.X, size.Z)
+	end
+	makeBlock(model, socketName .. "_" .. partDef.id, size, partCF, color, partDef.rarity, anchored, shape)
+
+	-- Extra articulation so limbs/weapons read less like loose cubes.
+	if socketName == "LeftHip" or socketName == "RightHip" then
+		local foot = makeBlock(
+			model,
+			socketName .. "_Foot",
+			Vector3.new(size.Z * 0.9, 0.45, size.Y * 1.15),
+			cf * CFrame.new(0, -size.X * 0.55, 0.15),
+			color:Lerp(Color3.new(0, 0, 0), 0.2),
+			partDef.rarity,
+			anchored,
+			nil
+		)
+		local _ = foot
+	elseif socketName == "LowerLeft" or socketName == "LowerRight" or socketName == "ShoulderLeft" or socketName == "ShoulderRight" then
+		makeBlock(
+			model,
+			socketName .. "_Barrel",
+			Vector3.new(size.X * 0.55, size.Y * 0.55, size.Z * 0.55),
+			cf * CFrame.new(0, 0, -size.Z * 0.55),
+			color:Lerp(Color3.new(1, 1, 1), 0.12),
+			partDef.rarity,
+			anchored,
+			Enum.PartType.Cylinder
+		)
+	end
 end
 
--- Place model so foot plane rests on padTopY at worldPosition.xz.
 function Assembler.worldCFrameAt(padPosition: Vector3, facing: Vector3?): CFrame
 	local look = facing or Vector3.new(0, 0, -1)
 	if look.Magnitude < 0.05 then
 		look = Vector3.new(0, 0, -1)
 	end
 	look = Vector3.new(look.X, 0, look.Z).Unit
-	-- Torso center height above pad surface.
 	local origin = Vector3.new(padPosition.X, padPosition.Y + Sockets.TORSO_HEIGHT, padPosition.Z)
 	return CFrame.lookAt(origin, origin + look)
 end
@@ -119,10 +203,8 @@ function Assembler.buildModel(loadout: SoftSlots.EquippedLoadout, opts: BuildOpt
 	local model = Instance.new("Model")
 	model.Name = options.name or "AssembledMech"
 
-	-- Build around identity; caller :PivotTo the result.
 	local torsoCF = CFrame.new(0, 0, 0)
 
-	-- Head nub for silhouette readability (not a slot — pure visual).
 	if loadout.torso then
 		local torso = loadout.torso :: Catalog.CatalogPart
 		attachPart(model, torsoCF, "Torso", loadout.torso, anchored, teamTint)
@@ -137,7 +219,29 @@ function Assembler.buildModel(loadout: SoftSlots.EquippedLoadout, opts: BuildOpt
 			torsoCF * CFrame.new(0, 2.15, 0.1),
 			headColor,
 			torso.rarity,
-			anchored
+			anchored,
+			nil
+		)
+		-- Shoulder fairings for silhouette
+		makeBlock(
+			model,
+			"PauldronL",
+			Vector3.new(1.2, 0.7, 1.4),
+			torsoCF * CFrame.new(-2.0, 1.1, 0),
+			headColor:Lerp(Color3.new(0, 0, 0), 0.15),
+			torso.rarity,
+			anchored,
+			nil
+		)
+		makeBlock(
+			model,
+			"PauldronR",
+			Vector3.new(1.2, 0.7, 1.4),
+			torsoCF * CFrame.new(2.0, 1.1, 0),
+			headColor:Lerp(Color3.new(0, 0, 0), 0.15),
+			torso.rarity,
+			anchored,
+			nil
 		)
 	end
 
@@ -151,7 +255,6 @@ function Assembler.buildModel(loadout: SoftSlots.EquippedLoadout, opts: BuildOpt
 	attachPart(model, torsoCF, "CPU", loadout.cpu, anchored, teamTint)
 	attachPart(model, torsoCF, "Drone", loadout.drone, anchored, teamTint)
 
-	-- Tiny chip markers on torso face (non-combat visual only).
 	for i, chip in loadout.chips do
 		local c = chip :: Catalog.CatalogPart
 		local color = tint((c.visual and c.visual.color) or Color3.fromRGB(80, 100, 80), teamTint)
@@ -163,15 +266,16 @@ function Assembler.buildModel(loadout: SoftSlots.EquippedLoadout, opts: BuildOpt
 			torsoCF * CFrame.new(x, 0.4, 1.35),
 			color,
 			chip.rarity,
-			anchored
+			anchored,
+			nil
 		)
 	end
 
-	local primary = model:FindFirstChild("Torso_" .. ((loadout.torso and loadout.torso.id) or ""))
+	local primary = model:FindFirstChild("Torso_" .. ((loadout.torso and loadout.torso.id) or ""), true)
 	if primary and primary:IsA("BasePart") then
 		model.PrimaryPart = primary
 	else
-		local any = model:FindFirstChildWhichIsA("BasePart")
+		local any = model:FindFirstChildWhichIsA("BasePart", true)
 		if any then
 			model.PrimaryPart = any
 		end
@@ -185,7 +289,6 @@ function Assembler.buildModel(loadout: SoftSlots.EquippedLoadout, opts: BuildOpt
 	return model
 end
 
--- Serialize loadout to part ids for remotes / rebuild.
 function Assembler.loadoutToIds(loadout: SoftSlots.EquippedLoadout): { [string]: any }
 	local function idOf(p: SoftSlots.PartDef?): string?
 		return if p then p.id else nil

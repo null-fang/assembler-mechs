@@ -24,6 +24,7 @@ def part(
     transparency: float | None = None,
     can_collide: bool | None = None,
     shape: str | None = None,
+    orientation: list[float] | None = None,
 ) -> dict:
     props: dict = {
         "Anchored": True,
@@ -40,6 +41,8 @@ def part(
         props["CanCollide"] = can_collide
     if shape is not None:
         props["Shape"] = shape
+    if orientation is not None:
+        props["Orientation"] = orientation
     return {"Name": name, "ClassName": "Part", "Properties": props}
 
 
@@ -255,14 +258,25 @@ def build_lobby() -> dict:
     # Slightly raised center strip
     kids.append(part("CenterBay", [40, 0.4, 36], [0, 0.2, 0], color=rgb(70, 74, 82), material="Metal"))
 
-    # Hangar shell — open front (negative Z), closed back/sides
+    # Hangar shell — closed back/sides + front wall with door opening (no void)
     kids.append(part("WallBack", [160, 28, 2], [0, 13, 59], color=WALL, material="Concrete"))
     kids.append(part("WallLeft", [2, 28, 120], [-79, 13, 0], color=WALL, material="Concrete"))
     kids.append(part("WallRight", [2, 28, 120], [79, 13, 0], color=WALL, material="Concrete"))
-    # Partial front framing (open bay doors)
-    kids.append(part("FrontLeftPillar", [6, 28, 4], [-55, 13, -58], color=STEEL, material="Metal"))
-    kids.append(part("FrontRightPillar", [6, 28, 4], [55, 13, -58], color=STEEL, material="Metal"))
-    kids.append(part("FrontLintels", [116, 4, 4], [0, 26, -58], color=STEEL_DARK, material="Metal"))
+    # Front wall: solid wings + header; center bay door stays walkable
+    kids.append(part("WallFrontLeft", [52, 28, 2], [-54, 13, -59], color=WALL, material="Concrete"))
+    kids.append(part("WallFrontRight", [52, 28, 2], [54, 13, -59], color=WALL, material="Concrete"))
+    kids.append(part("WallFrontHeader", [56, 8, 2], [0, 23, -59], color=STEEL_DARK, material="Metal"))
+    kids.append(part("FrontLeftPillar", [6, 28, 4], [-28, 13, -58], color=STEEL, material="Metal"))
+    kids.append(part("FrontRightPillar", [6, 28, 4], [28, 13, -58], color=STEEL, material="Metal"))
+    kids.append(part("FrontLintels", [56, 3, 4], [0, 19, -58], color=STEEL, material="Metal"))
+    # Exterior apron so the door doesn't open into empty void
+    kids.append(
+        part("ExteriorApron", [160, 2, 48], [0, -1, -84], color=rgb(70, 74, 80), material="Asphalt")
+    )
+    kids.append(part("ExteriorLip", [160, 1, 2], [0, -0.4, -60], color=STEEL_DARK, material="Metal"))
+    # Side returns outside the door so sky void is framed
+    kids.append(part("ExteriorWingL", [2, 18, 40], [-79, 8, -80], color=WALL, material="Concrete"))
+    kids.append(part("ExteriorWingR", [2, 18, 40], [79, 8, -80], color=WALL, material="Concrete"))
 
     # Roof beams (open hangar feel)
     for i, x in enumerate((-50, -25, 0, 25, 50)):
@@ -332,7 +346,7 @@ def build_lobby() -> dict:
     fill["Children"] = [point_light("Fill", 1.2, 80, rgb(255, 230, 190))]
     kids.append(fill)
 
-    # Spawn
+    # Spawn — inside bay, facing +Z toward garage (not out the door into sky)
     kids.append(
         {
             "Name": "SpawnLocation",
@@ -340,7 +354,8 @@ def build_lobby() -> dict:
             "Properties": {
                 "Anchored": True,
                 "Size": [12, 1, 12],
-                "Position": [0, 0.5, -30],
+                "Position": [0, 0.5, -28],
+                "Orientation": [0, 180, 0],
                 "Color": rgb(80, 140, 200),
                 "Material": "Neon",
                 "Duration": 0,
