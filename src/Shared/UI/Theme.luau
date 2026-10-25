@@ -1,19 +1,25 @@
--- Assembler UI theme — shared by Join HUD, Campaign, Garage, Combat.
--- RSC-12 (UI redesign) should extend this module rather than hardcoding colors.
+-- Assembler UI theme — steel bay + amber/cyan terminals.
+-- Shared by Join HUD, Campaign, Garage, Combat. Extend here; don't hardcode.
 
 local Theme = {}
 
--- Steel bay + amber/cyan terminal accents (matches lobby props, not gray slop).
 Theme.colors = {
 	bgDeep = Color3.fromRGB(8, 12, 18),
 	bgPanel = Color3.fromRGB(16, 22, 32),
 	bgRaised = Color3.fromRGB(24, 34, 48),
 	bgInset = Color3.fromRGB(12, 18, 26),
+	bgHover = Color3.fromRGB(34, 48, 68),
+	bgPress = Color3.fromRGB(18, 26, 38),
+
 	stroke = Color3.fromRGB(48, 64, 82),
 	strokeBright = Color3.fromRGB(72, 98, 128),
+	strokeFocus = Color3.fromRGB(56, 196, 204),
+
 	text = Color3.fromRGB(232, 238, 246),
 	textDim = Color3.fromRGB(148, 162, 180),
 	textMuted = Color3.fromRGB(100, 114, 132),
+	textOnAccent = Color3.fromRGB(12, 16, 22),
+
 	accent = Color3.fromRGB(232, 168, 56), -- amber
 	accentSoft = Color3.fromRGB(196, 140, 48),
 	cyan = Color3.fromRGB(56, 196, 204), -- campaign terminal
@@ -22,25 +28,53 @@ Theme.colors = {
 	danger = Color3.fromRGB(196, 72, 64),
 	ok = Color3.fromRGB(88, 176, 112),
 	locked = Color3.fromRGB(56, 62, 72),
+
+	integrity = Color3.fromRGB(88, 176, 112),
+	integrityTrack = Color3.fromRGB(18, 42, 30),
+	temperature = Color3.fromRGB(224, 122, 61),
+	temperatureTrack = Color3.fromRGB(52, 28, 16),
+	battery = Color3.fromRGB(72, 148, 204),
+	batteryTrack = Color3.fromRGB(16, 32, 52),
+
+	rarity = {
+		Common = Color3.fromRGB(168, 176, 188),
+		Uncommon = Color3.fromRGB(95, 191, 122),
+		Rare = Color3.fromRGB(232, 184, 72),
+	},
 }
 
 Theme.fonts = {
-	title = Enum.Font.GothamBold,
-	body = Enum.Font.Gotham,
-	button = Enum.Font.GothamMedium,
+	display = Enum.Font.Michroma,
+	title = Enum.Font.Oswald,
+	body = Enum.Font.BuilderSans,
+	button = Enum.Font.BuilderSansMedium,
+	mono = Enum.Font.RobotoMono,
 }
 
 Theme.radii = {
 	sm = 4,
 	md = 8,
 	lg = 12,
+	bar = 4,
 }
 
 Theme.transparency = {
-	panel = 0.08,
-	bar = 0.05,
+	panel = 0.06,
+	bar = 0.04,
 	overlay = 0.35,
 }
+
+Theme.tween = {
+	open = TweenInfo.new(0.22, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+	close = TweenInfo.new(0.16, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+	hover = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+	press = TweenInfo.new(0.05, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+	bar = TweenInfo.new(0.28, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+}
+
+function Theme.rarityColor(rarity: string): Color3
+	return Theme.colors.rarity[rarity] or Theme.colors.rarity.Common
+end
 
 function Theme.corner(parent: Instance, radius: number?)
 	local c = Instance.new("UICorner")
@@ -66,6 +100,19 @@ function Theme.padding(parent: Instance, px: number)
 	p.PaddingRight = UDim.new(0, px)
 	p.Parent = parent
 	return p
+end
+
+function Theme.accentStrip(parent: Instance, color: Color3?)
+	local strip = Instance.new("Frame")
+	strip.Name = "AccentStrip"
+	strip.Size = UDim2.new(0, 3, 1, 0)
+	strip.BackgroundColor3 = color or Theme.colors.accent
+	strip.BorderSizePixel = 0
+	if parent:IsA("GuiObject") then
+		strip.ZIndex = parent.ZIndex + 1
+	end
+	strip.Parent = parent
+	return strip
 end
 
 function Theme.label(
@@ -113,7 +160,7 @@ function Theme.button(
 	return b
 end
 
-function Theme.panel(parent: Instance, name: string, size: UDim2, pos: UDim2)
+function Theme.panel(parent: Instance, name: string, size: UDim2, pos: UDim2, accent: Color3?)
 	local f = Instance.new("Frame")
 	f.Name = name
 	f.Size = size
@@ -121,9 +168,11 @@ function Theme.panel(parent: Instance, name: string, size: UDim2, pos: UDim2)
 	f.BackgroundColor3 = Theme.colors.bgPanel
 	f.BackgroundTransparency = Theme.transparency.panel
 	f.BorderSizePixel = 0
+	f.ClipsDescendants = true
 	f.Parent = parent
 	Theme.corner(f, Theme.radii.md)
 	Theme.stroke(f, Theme.colors.stroke, 1)
+	Theme.accentStrip(f, accent or Theme.colors.accent)
 	return f
 end
 

@@ -6,6 +6,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Theme = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("UI"):WaitForChild("Theme"))
 local ModalMouse = require(script.Parent:WaitForChild("ModalMouse"))
 local LobbyCamera = require(script.Parent:WaitForChild("LobbyCamera"))
+local Button = require(script.Parent:WaitForChild("UI"):WaitForChild("Button"))
+local TweenUtil = require(script.Parent:WaitForChild("UI"):WaitForChild("TweenUtil"))
+local Tooltip = require(script.Parent:WaitForChild("UI"):WaitForChild("Tooltip"))
 
 local JoinHud = {}
 
@@ -20,6 +23,8 @@ local cameraBtn: TextButton
 local mechsPanel: Frame
 local settingsPanel: Frame
 local mechsList: Frame
+local mechsRest: UDim2
+local settingsRest: UDim2
 local callbacks: {
 	openCampaign: () -> (),
 	openGarage: () -> (),
@@ -40,15 +45,27 @@ local function refreshCameraButton()
 end
 
 local function hideSidePanels()
-	mechsPanel.Visible = false
-	settingsPanel.Visible = false
+	if mechsPanel.Visible then
+		mechsPanel.Visible = false
+		mechsPanel.Position = mechsRest
+	end
+	if settingsPanel.Visible then
+		settingsPanel.Visible = false
+		settingsPanel.Position = settingsRest
+	end
 	ModalMouse.pop("mechs")
 	ModalMouse.pop("settings")
 end
 
+local function openSide(panel: Frame, rest: UDim2, id: string)
+	ModalMouse.push(id)
+	panel.BackgroundTransparency = Theme.transparency.panel
+	TweenUtil.openFrom(panel, UDim2.new(rest.X.Scale, rest.X.Offset + 24, rest.Y.Scale, rest.Y.Offset), rest, Theme.transparency.panel)
+end
+
 local function renderMechs(boot)
 	for _, child in mechsList:GetChildren() do
-		if child:IsA("GuiObject") then
+		if child:IsA("GuiObject") and not child:IsA("UIListLayout") then
 			child:Destroy()
 		end
 	end
@@ -60,21 +77,29 @@ local function renderMechs(boot)
 	}
 	local active = (inv and inv.activeBay) or "Primary"
 	local loadout = boot and boot.loadout
-	local y = 0
 	for _, bay in bays do
 		local row = Instance.new("Frame")
-		row.Size = UDim2.new(1, -8, 0, 52)
-		row.Position = UDim2.new(0, 4, 0, y)
+		row.Size = UDim2.new(1, -4, 0, 54)
 		row.BackgroundColor3 = if bay.unlocked then Theme.colors.bgRaised else Theme.colors.locked
 		row.BorderSizePixel = 0
 		row.Parent = mechsList
 		Theme.corner(row, Theme.radii.sm)
 		if bay.id == active and bay.unlocked then
 			Theme.stroke(row, Theme.colors.accent, 1.5)
+		else
+			Theme.stroke(row, Theme.colors.stroke, 1)
 		end
 
+		local strip = Instance.new("Frame")
+		strip.Size = UDim2.new(0, 3, 1, -8)
+		strip.Position = UDim2.new(0, 4, 0, 4)
+		strip.BackgroundColor3 = if bay.unlocked then Theme.colors.accent else Theme.colors.textMuted
+		strip.BorderSizePixel = 0
+		strip.Parent = row
+		Theme.corner(strip, 2)
+
 		local title = if bay.unlocked then bay.name else (bay.name .. " · locked")
-		Theme.label(row, title, UDim2.new(1, -16, 0, 20), UDim2.new(0, 10, 0, 6), 14, {
+		Theme.label(row, title, UDim2.new(1, -20, 0, 20), UDim2.new(0, 14, 0, 6), 14, {
 			font = Theme.fonts.button,
 			color = if bay.unlocked then Theme.colors.text else Theme.colors.textMuted,
 		})
@@ -84,12 +109,11 @@ local function renderMechs(boot)
 		elseif bay.unlocked then
 			detail = "Empty bay"
 		else
-			detail = "Unlock later (PvP lives)"
+			detail = "Unlock later"
 		end
-		Theme.label(row, detail, UDim2.new(1, -16, 0, 18), UDim2.new(0, 10, 0, 28), 12, {
+		Theme.label(row, detail, UDim2.new(1, -20, 0, 18), UDim2.new(0, 14, 0, 28), 12, {
 			color = Theme.colors.textDim,
 		})
-		y += 58
 	end
 end
 
@@ -144,49 +168,50 @@ end
 function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 	screen = parent
 	callbacks = cbs
+	Tooltip.bind(screen)
 
 	bar = Instance.new("Frame")
 	bar.Name = "JoinBar"
-	bar.Size = UDim2.new(0, 640, 0, 72)
-	bar.Position = UDim2.new(0.5, -320, 1, -92)
+	bar.Size = UDim2.new(0, 680, 0, 78)
+	bar.Position = UDim2.new(0.5, -340, 1, -98)
 	bar.BackgroundColor3 = Theme.colors.bgDeep
 	bar.BackgroundTransparency = Theme.transparency.bar
 	bar.BorderSizePixel = 0
 	bar.Parent = screen
 	Theme.corner(bar, Theme.radii.lg)
 	Theme.stroke(bar, Theme.colors.strokeBright, 1)
+	Theme.accentStrip(bar, Theme.colors.accent)
 
-	local brand = Theme.label(bar, "ASSEMBLER", UDim2.new(0, 120, 0, 22), UDim2.new(0, 16, 0, 8), 16, {
-		font = Theme.fonts.title,
+	local brand = Theme.label(bar, "ASSEMBLER", UDim2.new(0, 160, 0, 24), UDim2.new(0, 16, 0, 10), 18, {
+		font = Theme.fonts.display,
 		color = Theme.colors.accent,
 	})
 	brand.Name = "Brand"
 
-	walletLabel = Theme.label(bar, "", UDim2.new(0, 280, 0, 18), UDim2.new(0, 16, 0, 34), 12, {
-		color = Theme.colors.textDim,
+	walletLabel = Theme.label(bar, "", UDim2.new(0, 300, 0, 18), UDim2.new(0, 16, 0, 36), 12, {
+		font = Theme.fonts.mono,
+		color = Theme.colors.accentSoft,
 	})
-	statusLabel = Theme.label(bar, "", UDim2.new(0, 300, 0, 16), UDim2.new(0, 16, 0, 52), 11, {
+	statusLabel = Theme.label(bar, "", UDim2.new(0, 320, 0, 16), UDim2.new(0, 16, 0, 54), 11, {
 		color = Theme.colors.textMuted,
 	})
 
-	local btnW = 88
-	local btnH = 36
-	local gap = 8
 	local actions = {
-		{ id = "campaign", text = "Campaign", bg = Theme.colors.cyanDeep },
-		{ id = "garage", text = "Garage", bg = Theme.colors.garage },
-		{ id = "mechs", text = "Mechs", bg = Theme.colors.bgRaised },
-		{ id = "settings", text = "Settings", bg = Theme.colors.bgRaised },
+		{ id = "campaign", text = "Campaign", variant = "cyan" :: any, tip = "Fight ladder" },
+		{ id = "garage", text = "Garage", variant = "garage" :: any, tip = "Swap parts" },
+		{ id = "mechs", text = "Mechs", variant = "secondary" :: any, tip = "Bay slots" },
+		{ id = "settings", text = "Settings", variant = "secondary" :: any, tip = "Camera look" },
 	}
+	local btnW, btnH, gap = 92, 38, 8
 	local totalW = #actions * btnW + (#actions - 1) * gap
-	local startX = 640 - totalW - 16
+	local startX = 680 - totalW - 18
 	for i, a in actions do
 		local x = startX + (i - 1) * (btnW + gap)
-		local btn = Theme.button(bar, a.text, UDim2.new(0, btnW, 0, btnH), UDim2.new(0, x, 0, 18), {
-			bg = a.bg,
+		local btn = Button.create(bar, a.text, UDim2.new(0, btnW, 0, btnH), UDim2.new(0, x, 0, 20), a.variant, {
 			textSize = 13,
 		})
 		btn.Name = "Btn_" .. a.id
+		Tooltip.attach(btn, a.tip)
 		btn.MouseButton1Click:Connect(function()
 			if callbacks and callbacks.isBusy() then
 				return
@@ -199,11 +224,13 @@ function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 				callbacks.openGarage()
 			elseif a.id == "mechs" then
 				local open = not mechsPanel.Visible
-				settingsPanel.Visible = false
-				ModalMouse.pop("settings")
-				mechsPanel.Visible = open
-				ModalMouse.set("mechs", open)
+				if settingsPanel.Visible then
+					settingsPanel.Visible = false
+					settingsPanel.Position = settingsRest
+					ModalMouse.pop("settings")
+				end
 				if open then
+					openSide(mechsPanel, mechsRest, "mechs")
 					JoinHud.refresh()
 					local ok, boot = pcall(function()
 						return GetBootstrap:InvokeServer()
@@ -211,72 +238,81 @@ function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 					if ok then
 						renderMechs(boot)
 					end
+				else
+					mechsPanel.Visible = false
+					ModalMouse.pop("mechs")
 				end
 			elseif a.id == "settings" then
 				local open = not settingsPanel.Visible
-				mechsPanel.Visible = false
-				ModalMouse.pop("mechs")
-				settingsPanel.Visible = open
-				ModalMouse.set("settings", open)
+				if mechsPanel.Visible then
+					mechsPanel.Visible = false
+					mechsPanel.Position = mechsRest
+					ModalMouse.pop("mechs")
+				end
+				if open then
+					openSide(settingsPanel, settingsRest, "settings")
+				else
+					settingsPanel.Visible = false
+					ModalMouse.pop("settings")
+				end
 			end
 		end)
 	end
 
-	-- Mechs panel (compact slots, not a catalog wall)
-	mechsPanel = Theme.panel(screen, "MechsPanel", UDim2.new(0, 300, 0, 220), UDim2.new(1, -316, 1, -330))
+	mechsRest = UDim2.new(1, -316, 1, -340)
+	mechsPanel = Theme.panel(screen, "MechsPanel", UDim2.new(0, 300, 0, 240), mechsRest, Theme.colors.accent)
 	mechsPanel.Visible = false
-	Theme.label(mechsPanel, "Mech slots", UDim2.new(1, -20, 0, 22), UDim2.new(0, 12, 0, 10), 16, {
+	Theme.label(mechsPanel, "MECH SLOTS", UDim2.new(1, -90, 0, 22), UDim2.new(0, 14, 0, 12), 16, {
 		font = Theme.fonts.title,
 		color = Theme.colors.accent,
 	})
 	Theme.label(
 		mechsPanel,
 		"Starter is on Primary. Extra bays unlock later.",
-		UDim2.new(1, -20, 0, 32),
-		UDim2.new(0, 12, 0, 34),
+		UDim2.new(1, -24, 0, 28),
+		UDim2.new(0, 14, 0, 36),
 		12,
 		{ color = Theme.colors.textDim }
 	)
 	mechsList = Instance.new("Frame")
-	mechsList.Size = UDim2.new(1, -16, 1, -84)
-	mechsList.Position = UDim2.new(0, 8, 0, 72)
+	mechsList.Size = UDim2.new(1, -20, 1, -90)
+	mechsList.Position = UDim2.new(0, 10, 0, 72)
 	mechsList.BackgroundTransparency = 1
 	mechsList.Parent = mechsPanel
-	local closeMechs = Theme.button(mechsPanel, "Close", UDim2.new(0, 64, 0, 26), UDim2.new(1, -76, 0, 8), {
-		bg = Theme.colors.bgInset,
-	})
+	local mechLayout = Instance.new("UIListLayout")
+	mechLayout.Padding = UDim.new(0, 6)
+	mechLayout.Parent = mechsList
+	local closeMechs = Button.create(mechsPanel, "Close", UDim2.new(0, 64, 0, 26), UDim2.new(1, -78, 0, 10), "ghost")
 	closeMechs.MouseButton1Click:Connect(function()
 		mechsPanel.Visible = false
+		mechsPanel.Position = mechsRest
 		ModalMouse.pop("mechs")
 	end)
 
-	-- Settings panel
-	settingsPanel = Theme.panel(screen, "SettingsPanel", UDim2.new(0, 300, 0, 160), UDim2.new(1, -316, 1, -270))
+	settingsRest = UDim2.new(1, -316, 1, -280)
+	settingsPanel = Theme.panel(screen, "SettingsPanel", UDim2.new(0, 300, 0, 170), settingsRest, Theme.colors.cyan)
 	settingsPanel.Visible = false
-	Theme.label(settingsPanel, "Settings", UDim2.new(1, -20, 0, 22), UDim2.new(0, 12, 0, 10), 16, {
+	Theme.label(settingsPanel, "SETTINGS", UDim2.new(1, -90, 0, 22), UDim2.new(0, 14, 0, 12), 16, {
 		font = Theme.fonts.title,
-		color = Theme.colors.accent,
+		color = Theme.colors.cyan,
 	})
 	Theme.label(
 		settingsPanel,
-		"Press V (or this button) for mouse look while walking. Cursor stays free for menus.",
-		UDim2.new(1, -20, 0, 36),
-		UDim2.new(0, 12, 0, 36),
+		"V (or Cam) for mouse look while walking. Menus keep the cursor free.",
+		UDim2.new(1, -24, 0, 40),
+		UDim2.new(0, 14, 0, 38),
 		12,
 		{ color = Theme.colors.textDim }
 	)
-	cameraBtn = Theme.button(settingsPanel, "Cam · free", UDim2.new(1, -24, 0, 34), UDim2.new(0, 12, 0, 82), {
-		bg = Theme.colors.bgRaised,
-	})
+	cameraBtn = Button.create(settingsPanel, "Cam · free", UDim2.new(1, -28, 0, 34), UDim2.new(0, 14, 0, 88), "secondary")
 	cameraBtn.MouseButton1Click:Connect(function()
 		LobbyCamera.toggleLook()
 		refreshCameraButton()
 	end)
-	local closeSettings = Theme.button(settingsPanel, "Close", UDim2.new(0, 64, 0, 26), UDim2.new(1, -76, 0, 8), {
-		bg = Theme.colors.bgInset,
-	})
+	local closeSettings = Button.create(settingsPanel, "Close", UDim2.new(0, 64, 0, 26), UDim2.new(1, -78, 0, 10), "ghost")
 	closeSettings.MouseButton1Click:Connect(function()
 		settingsPanel.Visible = false
+		settingsPanel.Position = settingsRest
 		ModalMouse.pop("settings")
 	end)
 
