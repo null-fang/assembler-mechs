@@ -162,6 +162,7 @@ local function shapeForSocket(socketName: Sockets.SocketName): Enum.PartType?
 	return nil
 end
 
+-- Returns true when an authored AssemblerAssets kit was mounted (no block fallback).
 local function attachPart(
 	model: Model,
 	torsoCF: CFrame,
@@ -169,9 +170,9 @@ local function attachPart(
 	partDef: Slots.PartDef?,
 	anchored: boolean,
 	teamTint: Color3?
-)
+): boolean
 	if not partDef then
-		return
+		return false
 	end
 	local catalogPart = partDef :: Catalog.CatalogPart
 	local socket = Sockets.get(socketName)
@@ -186,7 +187,7 @@ local function attachPart(
 			polishAuthoredModel(asset, partDef.rarity, teamTint, anchored)
 			asset.Parent = model
 			asset:PivotTo(cf)
-			return
+			return true
 		elseif asset:IsA("BasePart") then
 			asset.Name = socketName .. "_" .. partDef.id
 			asset.CFrame = cf
@@ -196,7 +197,7 @@ local function attachPart(
 				asset.Color = tint(asset.Color, teamTint)
 			end
 			asset.Parent = model
-			return
+			return true
 		end
 	end
 
@@ -239,6 +240,7 @@ local function attachPart(
 			Enum.PartType.Cylinder
 		)
 	end
+	return false
 end
 
 function Assembler.worldCFrameAt(padPosition: Vector3, facing: Vector3?): CFrame
@@ -260,56 +262,61 @@ function Assembler.buildModel(loadout: Slots.EquippedLoadout, opts: BuildOptions
 	model.Name = options.name or "AssembledMech"
 
 	local torsoCF = CFrame.new(0, 0, 0)
+	local usedKits = false
 
 	if loadout.torso then
 		local torso = loadout.torso :: Catalog.CatalogPart
-		attachPart(model, torsoCF, "Torso", loadout.torso, anchored, teamTint)
-		local headColor = tint(
-			(torso.visual and torso.visual.color or Color3.fromRGB(120, 100, 80)):Lerp(Color3.new(1, 1, 1), 0.15),
-			teamTint
-		)
-		makeBlock(
-			model,
-			"HeadNub",
-			Vector3.new(1.6, 1.1, 1.6),
-			torsoCF * CFrame.new(0, 2.15, 0.1),
-			headColor,
-			torso.rarity,
-			anchored,
-			nil
-		)
-		-- Shoulder fairings for silhouette
-		makeBlock(
-			model,
-			"PauldronL",
-			Vector3.new(1.2, 0.7, 1.4),
-			torsoCF * CFrame.new(-2.0, 1.1, 0),
-			headColor:Lerp(Color3.new(0, 0, 0), 0.15),
-			torso.rarity,
-			anchored,
-			nil
-		)
-		makeBlock(
-			model,
-			"PauldronR",
-			Vector3.new(1.2, 0.7, 1.4),
-			torsoCF * CFrame.new(2.0, 1.1, 0),
-			headColor:Lerp(Color3.new(0, 0, 0), 0.15),
-			torso.rarity,
-			anchored,
-			nil
-		)
+		local torsoFromKit = attachPart(model, torsoCF, "Torso", loadout.torso, anchored, teamTint)
+		usedKits = usedKits or torsoFromKit
+		-- Block head/pauldrons only for the articulated fallback silhouette.
+		-- Authored torso kits already include stubs / hull detail.
+		if not torsoFromKit then
+			local headColor = tint(
+				(torso.visual and torso.visual.color or Color3.fromRGB(120, 100, 80)):Lerp(Color3.new(1, 1, 1), 0.15),
+				teamTint
+			)
+			makeBlock(
+				model,
+				"HeadNub",
+				Vector3.new(1.6, 1.1, 1.6),
+				torsoCF * CFrame.new(0, 2.15, 0.1),
+				headColor,
+				torso.rarity,
+				anchored,
+				nil
+			)
+			makeBlock(
+				model,
+				"PauldronL",
+				Vector3.new(1.2, 0.7, 1.4),
+				torsoCF * CFrame.new(-2.0, 1.1, 0),
+				headColor:Lerp(Color3.new(0, 0, 0), 0.15),
+				torso.rarity,
+				anchored,
+				nil
+			)
+			makeBlock(
+				model,
+				"PauldronR",
+				Vector3.new(1.2, 0.7, 1.4),
+				torsoCF * CFrame.new(2.0, 1.1, 0),
+				headColor:Lerp(Color3.new(0, 0, 0), 0.15),
+				torso.rarity,
+				anchored,
+				nil
+			)
+		end
 	end
 
-	attachPart(model, torsoCF, "LeftHip", loadout.leftLeg, anchored, teamTint)
-	attachPart(model, torsoCF, "RightHip", loadout.rightLeg, anchored, teamTint)
-	attachPart(model, torsoCF, "LowerLeft", loadout.lowerLeft, anchored, teamTint)
-	attachPart(model, torsoCF, "LowerRight", loadout.lowerRight, anchored, teamTint)
-	attachPart(model, torsoCF, "ShoulderLeft", loadout.shoulderLeft, anchored, teamTint)
-	attachPart(model, torsoCF, "ShoulderRight", loadout.shoulderRight, anchored, teamTint)
-	attachPart(model, torsoCF, "Battery", loadout.battery, anchored, teamTint)
-	attachPart(model, torsoCF, "CPU", loadout.cpu, anchored, teamTint)
-	attachPart(model, torsoCF, "Drone", loadout.drone, anchored, teamTint)
+	usedKits = attachPart(model, torsoCF, "LeftHip", loadout.leftLeg, anchored, teamTint) or usedKits
+	usedKits = attachPart(model, torsoCF, "RightHip", loadout.rightLeg, anchored, teamTint) or usedKits
+	usedKits = attachPart(model, torsoCF, "LowerLeft", loadout.lowerLeft, anchored, teamTint) or usedKits
+	usedKits = attachPart(model, torsoCF, "LowerRight", loadout.lowerRight, anchored, teamTint) or usedKits
+	usedKits = attachPart(model, torsoCF, "ShoulderLeft", loadout.shoulderLeft, anchored, teamTint) or usedKits
+	usedKits = attachPart(model, torsoCF, "ShoulderRight", loadout.shoulderRight, anchored, teamTint) or usedKits
+	usedKits = attachPart(model, torsoCF, "Battery", loadout.battery, anchored, teamTint) or usedKits
+	usedKits = attachPart(model, torsoCF, "CPU", loadout.cpu, anchored, teamTint) or usedKits
+	usedKits = attachPart(model, torsoCF, "Drone", loadout.drone, anchored, teamTint) or usedKits
 
 	for i, chip in loadout.chips do
 		local c = chip :: Catalog.CatalogPart
@@ -321,6 +328,7 @@ function Assembler.buildModel(loadout: Slots.EquippedLoadout, opts: BuildOptions
 			polishAuthoredModel(chipAsset, chip.rarity, teamTint, anchored)
 			chipAsset.Parent = model
 			chipAsset:PivotTo(chipCF)
+			usedKits = true
 		else
 			local color = tint((c.visual and c.visual.color) or Color3.fromRGB(80, 100, 80), teamTint)
 			makeBlock(
@@ -358,7 +366,7 @@ function Assembler.buildModel(loadout: Slots.EquippedLoadout, opts: BuildOptions
 	if loadout.torso then
 		model:SetAttribute("TorsoId", loadout.torso.id)
 	end
-	model:SetAttribute("UsesPartModels", ReplicatedStorage:FindFirstChild("AssemblerAssets") ~= nil)
+	model:SetAttribute("UsesPartModels", usedKits)
 
 	return model
 end
