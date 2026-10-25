@@ -6,6 +6,9 @@
       "$className": "ReplicatedStorage",
       "Shared": {
         "$path": "src/Shared"
+      },
+      "AssemblerAssets": {
+        "$path": "src/AssemblerAssets"
       }
     },
     "ServerScriptService": {
@@ -33,10 +36,18 @@
     "Lighting": {
       "$className": "Lighting",
       "$properties": {
-        "Ambient": [0.28, 0.3, 0.34],
+        "Ambient": [
+          0.28,
+          0.3,
+          0.34
+        ],
         "Brightness": 2.2,
         "ClockTime": 15.5,
-        "OutdoorAmbient": [0.35, 0.36, 0.4],
+        "OutdoorAmbient": [
+          0.35,
+          0.36,
+          0.4
+        ],
         "GlobalShadows": true,
         "EnvironmentDiffuseScale": 0.4,
         "EnvironmentSpecularScale": 0.3
