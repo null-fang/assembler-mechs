@@ -1,0 +1,181 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "ShoulderMount",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.2,
+          0.55,
+          1.0
+        ],
+        "Position": [
+          0,
+          -0.15,
+          -0.7
+        ],
+        "Color": [
+          0.36705882352941177,
+          0.2447058823529412,
+          0.16823529411764707
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Base",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.4,
+          0.5,
+          1.4
+        ],
+        "Position": [
+          0,
+          -0.1,
+          0
+        ],
+        "Color": [
+          0.36705882352941177,
+          0.2447058823529412,
+          0.16823529411764707
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Tube",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.9,
+          2.0
+        ],
+        "Position": [
+          0,
+          0.5,
+          0.5
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3137254901960784,
+          0.21568627450980393
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      }
+    },
+    {
+      "Name": "AccentRing",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.05,
+          0.2,
+          1.05
+        ],
+        "Position": [
+          0,
+          0.5,
+          0
+        ],
+        "Color": [
+          0.64,
+          0.5333333333333333,
+          0.4666666666666667
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bipod",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.2,
+          0.7,
+          0.25
+        ],
+        "Position": [
+          0,
+          -0.2,
+          0.6
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.11764705882352941,
+          0.13333333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

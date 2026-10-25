@@ -1,0 +1,181 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "Mount",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.7,
+          0.7
+        ],
+        "Position": [
+          0,
+          0,
+          -0.9
+        ],
+        "Color": [
+          0.2980392156862745,
+          0.3137254901960784,
+          0.26666666666666666
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Motor",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.0,
+          0.9,
+          1.1
+        ],
+        "Position": [
+          0,
+          0,
+          -0.2
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.39215686274509803,
+          0.3333333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bit",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.5,
+          1.6
+        ],
+        "Position": [
+          0,
+          0,
+          1.1
+        ],
+        "Color": [
+          0.2980392156862745,
+          0.3137254901960784,
+          0.26666666666666666
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      }
+    },
+    {
+      "Name": "AccentRing",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.05,
+          0.2,
+          1.05
+        ],
+        "Position": [
+          0,
+          0,
+          0.4
+        ],
+        "Color": [
+          0.592156862745098,
+          0.6049019607843138,
+          0.5666666666666667
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Handle",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.4,
+          0.7,
+          0.4
+        ],
+        "Position": [
+          0,
+          -0.7,
+          -0.3
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.11764705882352941,
+          0.13333333333333333
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

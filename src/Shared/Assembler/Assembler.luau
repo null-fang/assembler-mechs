@@ -1,6 +1,6 @@
 -- Build a visible low-poly mech Model from an equipped loadout.
--- Prefers MeshPart kits under ReplicatedStorage.AssemblerAssets when present;
--- otherwise articulated blocks/cylinders (not a single cube pile).
+-- Prefers authored multi-Part kits under ReplicatedStorage.AssemblerAssets.Parts
+-- (named by catalog PartId). Falls back to articulated blocks/cylinders.
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
@@ -39,6 +39,70 @@ local function tryAssetClone(partId: string): Instance?
 		return nil
 	end
 	return template:Clone()
+end
+
+local function tint(color: Color3, teamTint: Color3?): Color3
+	if not teamTint then
+		return color
+	end
+	return color:Lerp(teamTint, 0.18)
+end
+
+local function resolvePrimary(model: Model): BasePart?
+	local root = model:FindFirstChild("Root")
+	if root and root:IsA("BasePart") then
+		root.Transparency = 1
+		model.PrimaryPart = root
+		return root
+	end
+	local any = model:FindFirstChildWhichIsA("BasePart", true)
+	if any then
+		model.PrimaryPart = any
+		return any
+	end
+	return nil
+end
+
+local function polishAuthoredModel(
+	asset: Model,
+	rarity: Slots.PartRarity,
+	teamTint: Color3?,
+	anchored: boolean
+)
+	resolvePrimary(asset)
+	for _, d in asset:GetDescendants() do
+		if d:IsA("BasePart") then
+			d.Anchored = anchored
+			d.CanCollide = false
+			d.CanQuery = false
+			d.CanTouch = false
+			d.Massless = true
+			if d.Name == "Root" then
+				d.Transparency = 1
+			elseif string.sub(d.Name, 1, 6) == "Accent" then
+				local edge = rarityEdge(rarity)
+				if rarity == "Common" then
+					d.Color = tint(d.Color, teamTint)
+				else
+					d.Color = tint(d.Color:Lerp(edge, 0.55), teamTint)
+					d.Material = Enum.Material.Neon
+				end
+			elseif teamTint then
+				d.Color = tint(d.Color, teamTint)
+			end
+		end
+	end
+	if rarity ~= "Common" then
+		local root = asset.PrimaryPart
+		if root then
+			local box = Instance.new("SelectionBox")
+			box.Adornee = root
+			box.Color3 = rarityEdge(rarity)
+			box.LineThickness = 0.04
+			box.Transparency = 0.45
+			box.Parent = asset
+		end
+	end
 end
 
 local function makeBlock(
@@ -88,13 +152,6 @@ local function socketCFrame(torsoCF: CFrame, socket: Sockets.SocketDef): CFrame
 	return torsoCF * CFrame.new(socket.offset) * extra
 end
 
-local function tint(color: Color3, teamTint: Color3?): Color3
-	if not teamTint then
-		return color
-	end
-	return color:Lerp(teamTint, 0.18)
-end
-
 local function shapeForSocket(socketName: Sockets.SocketName): Enum.PartType?
 	if socketName == "LeftHip" or socketName == "RightHip" then
 		return Enum.PartType.Cylinder
@@ -120,25 +177,24 @@ local function attachPart(
 	local socket = Sockets.get(socketName)
 	local cf = socketCFrame(torsoCF, socket)
 
-	-- Real part kits from models worker, if synced.
+	-- Real multi-Part kits from AssemblerAssets.Parts/<partId>, if synced.
 	local asset = tryAssetClone(partDef.id)
 	if asset then
 		if asset:IsA("Model") then
 			asset.Name = socketName .. "_" .. partDef.id
-			asset:PivotTo(cf)
-			for _, d in asset:GetDescendants() do
-				if d:IsA("BasePart") then
-					d.Anchored = anchored
-					d.CanCollide = false
-				end
-			end
+			asset:SetAttribute("PartId", partDef.id)
+			polishAuthoredModel(asset, partDef.rarity, teamTint, anchored)
 			asset.Parent = model
+			asset:PivotTo(cf)
 			return
 		elseif asset:IsA("BasePart") then
 			asset.Name = socketName .. "_" .. partDef.id
 			asset.CFrame = cf
 			asset.Anchored = anchored
 			asset.CanCollide = false
+			if teamTint then
+				asset.Color = tint(asset.Color, teamTint)
+			end
 			asset.Parent = model
 			return
 		end
@@ -195,7 +251,7 @@ function Assembler.worldCFrameAt(padPosition: Vector3, facing: Vector3?): CFrame
 	return CFrame.lookAt(origin, origin + look)
 end
 
-function Assembler.buildModel(loadout: SoftSlots.EquippedLoadout, opts: BuildOptions?): Model
+function Assembler.buildModel(loadout: Slots.EquippedLoadout, opts: BuildOptions?): Model
 	local options = opts or {}
 	local anchored = if options.anchored == nil then true else options.anchored
 	local teamTint = options.teamTint
@@ -257,23 +313,40 @@ function Assembler.buildModel(loadout: SoftSlots.EquippedLoadout, opts: BuildOpt
 
 	for i, chip in loadout.chips do
 		local c = chip :: Catalog.CatalogPart
-		local color = tint((c.visual and c.visual.color) or Color3.fromRGB(80, 100, 80), teamTint)
 		local x = -0.55 + (i - 1) * 0.7
-		makeBlock(
-			model,
-			"Chip_" .. tostring(i),
-			Vector3.new(0.45, 0.2, 0.35),
-			torsoCF * CFrame.new(x, 0.4, 1.35),
-			color,
-			chip.rarity,
-			anchored,
-			nil
-		)
+		local chipCF = torsoCF * CFrame.new(x, 0.4, 1.35)
+		local chipAsset = tryAssetClone(chip.id)
+		if chipAsset and chipAsset:IsA("Model") then
+			chipAsset.Name = "Chip_" .. tostring(i) .. "_" .. chip.id
+			polishAuthoredModel(chipAsset, chip.rarity, teamTint, anchored)
+			chipAsset.Parent = model
+			chipAsset:PivotTo(chipCF)
+		else
+			local color = tint((c.visual and c.visual.color) or Color3.fromRGB(80, 100, 80), teamTint)
+			makeBlock(
+				model,
+				"Chip_" .. tostring(i),
+				Vector3.new(0.45, 0.2, 0.35),
+				chipCF,
+				color,
+				chip.rarity,
+				anchored,
+				nil
+			)
+		end
 	end
 
-	local primary = model:FindFirstChild("Torso_" .. ((loadout.torso and loadout.torso.id) or ""), true)
-	if primary and primary:IsA("BasePart") then
-		model.PrimaryPart = primary
+	-- Prefer authored torso Root as mech PrimaryPart for PivotTo.
+	local torsoChild = if loadout.torso then model:FindFirstChild("Torso_" .. loadout.torso.id) else nil
+	if torsoChild and torsoChild:IsA("Model") then
+		local root = torsoChild:FindFirstChild("Root")
+		if root and root:IsA("BasePart") then
+			model.PrimaryPart = root
+		elseif torsoChild.PrimaryPart then
+			model.PrimaryPart = torsoChild.PrimaryPart
+		end
+	elseif torsoChild and torsoChild:IsA("BasePart") then
+		model.PrimaryPart = torsoChild
 	else
 		local any = model:FindFirstChildWhichIsA("BasePart", true)
 		if any then
@@ -285,12 +358,13 @@ function Assembler.buildModel(loadout: SoftSlots.EquippedLoadout, opts: BuildOpt
 	if loadout.torso then
 		model:SetAttribute("TorsoId", loadout.torso.id)
 	end
+	model:SetAttribute("UsesPartModels", ReplicatedStorage:FindFirstChild("AssemblerAssets") ~= nil)
 
 	return model
 end
 
-function Assembler.loadoutToIds(loadout: SoftSlots.EquippedLoadout): { [string]: any }
-	local function idOf(p: SoftSlots.PartDef?): string?
+function Assembler.loadoutToIds(loadout: Slots.EquippedLoadout): { [string]: any }
+	local function idOf(p: Slots.PartDef?): string?
 		return if p then p.id else nil
 	end
 	local chips = {}
@@ -312,14 +386,14 @@ function Assembler.loadoutToIds(loadout: SoftSlots.EquippedLoadout): { [string]:
 	}
 end
 
-function Assembler.loadoutFromIds(ids: { [string]: any }): SoftSlots.EquippedLoadout
-	local function req(id: any): SoftSlots.PartDef?
+function Assembler.loadoutFromIds(ids: { [string]: any }): Slots.EquippedLoadout
+	local function req(id: any): Slots.PartDef?
 		if typeof(id) ~= "string" then
 			return nil
 		end
 		return Catalog.require(id)
 	end
-	local function weapon(id: any, slot: SoftSlots.SlotKind): SoftSlots.PartDef?
+	local function weapon(id: any, slot: Slots.SlotKind): Slots.PartDef?
 		if typeof(id) ~= "string" then
 			return nil
 		end

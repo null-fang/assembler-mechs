@@ -1,0 +1,238 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "Hull",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          4.4,
+          2.4,
+          2.8
+        ],
+        "Position": [
+          0,
+          -0.2,
+          0
+        ],
+        "Color": [
+          0.29411764705882354,
+          0.3058823529411765,
+          0.3215686274509804
+        ],
+        "Material": "Concrete",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "SlopedCrest",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          4.0,
+          0.8,
+          2.4
+        ],
+        "Position": [
+          0,
+          1.2,
+          0
+        ],
+        "Color": [
+          0.24117647058823533,
+          0.2508235294117647,
+          0.263686274509804
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ViewSlit",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.0,
+          0.35,
+          0.3
+        ],
+        "Position": [
+          0,
+          0.6,
+          1.45
+        ],
+        "Color": [
+          0.5411764705882353,
+          0.5488235294117647,
+          0.5590196078431373
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "SideArmorL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
+          2.2,
+          2.6
+        ],
+        "Position": [
+          -2.3,
+          0,
+          0
+        ],
+        "Color": [
+          0.2647058823529412,
+          0.27529411764705886,
+          0.28941176470588237
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "SideArmorR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
+          2.2,
+          2.6
+        ],
+        "Position": [
+          2.3,
+          0,
+          0
+        ],
+        "Color": [
+          0.2647058823529412,
+          0.27529411764705886,
+          0.28941176470588237
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "TrackGuard",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          4.2,
+          0.5,
+          1.2
+        ],
+        "Position": [
+          0,
+          -1.4,
+          0.6
+        ],
+        "Color": [
+          0.24117647058823533,
+          0.2508235294117647,
+          0.263686274509804
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Antenna",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          1.4,
+          0.2
+        ],
+        "Position": [
+          1.2,
+          2.0,
+          -0.6
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.17254901960784313,
+          0.19607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

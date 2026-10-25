@@ -1,0 +1,239 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "HipBall",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.7,
+          0.9
+        ],
+        "Position": [
+          0,
+          1.1,
+          0
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.17058823529411765,
+          0.15294117647058825
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Ball"
+      }
+    },
+    {
+      "Name": "ThighBlock",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.5,
+          1.1,
+          1.5
+        ],
+        "Position": [
+          0,
+          0.4,
+          0
+        ],
+        "Color": [
+          0.25098039215686274,
+          0.22745098039215686,
+          0.20392156862745098
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "KneeCap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.4,
+          0.5,
+          1.4
+        ],
+        "Position": [
+          0,
+          -0.3,
+          0
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.17058823529411765,
+          0.15294117647058825
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ShinBlock",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.55,
+          1.0,
+          1.55
+        ],
+        "Position": [
+          0,
+          -1.0,
+          0
+        ],
+        "Color": [
+          0.25098039215686274,
+          0.22745098039215686,
+          0.20392156862745098
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "FootPad",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.9,
+          0.4,
+          1.9
+        ],
+        "Position": [
+          0,
+          -1.65,
+          0.1
+        ],
+        "Color": [
+          0.1411764705882353,
+          0.13333333333333333,
+          0.12549019607843137
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentStud",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.4,
+          0.4,
+          0.4
+        ],
+        "Position": [
+          -0.5,
+          -0.3,
+          0.7
+        ],
+        "Color": [
+          0.47568627450980394,
+          0.4592156862745098,
+          0.4427450980392157
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ToeLip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.7,
+          0.35,
+          0.5
+        ],
+        "Position": [
+          0,
+          -1.55,
+          0.9
+        ],
+        "Color": [
+          0.22086274509803921,
+          0.20015686274509803,
+          0.17945098039215687
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

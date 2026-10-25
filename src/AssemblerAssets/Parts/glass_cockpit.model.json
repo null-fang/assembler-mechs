@@ -1,0 +1,239 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "Hull",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          3.6,
+          2.5,
+          2.1
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          0.5490196078431373,
+          0.6274509803921569,
+          0.6666666666666666
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Canopy",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.2,
+          1.2,
+          1.6
+        ],
+        "Position": [
+          0,
+          0.9,
+          0.5
+        ],
+        "Color": [
+          0.7294117647058824,
+          0.7764705882352941,
+          0.8
+        ],
+        "Material": "Glass",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.35
+      }
+    },
+    {
+      "Name": "AccentRim",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.4,
+          0.2,
+          1.8
+        ],
+        "Position": [
+          0,
+          0.35,
+          0.5
+        ],
+        "Color": [
+          0.7068627450980393,
+          0.7578431372549019,
+          0.7833333333333333
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CheekL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.6,
+          1.0,
+          1.0
+        ],
+        "Position": [
+          -1.8,
+          0.5,
+          0.4
+        ],
+        "Color": [
+          0.4501960784313726,
+          0.5145098039215686,
+          0.5466666666666666
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CheekR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.6,
+          1.0,
+          1.0
+        ],
+        "Position": [
+          1.8,
+          0.5,
+          0.4
+        ],
+        "Color": [
+          0.4501960784313726,
+          0.5145098039215686,
+          0.5466666666666666
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Belly",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.8,
+          0.8,
+          1.6
+        ],
+        "Position": [
+          0,
+          -1.2,
+          0.2
+        ],
+        "Color": [
+          0.4501960784313726,
+          0.5145098039215686,
+          0.5466666666666666
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BackFin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.3,
+          1.6,
+          1.2
+        ],
+        "Position": [
+          0,
+          0.8,
+          -1.3
+        ],
+        "Color": [
+          0.7068627450980393,
+          0.7578431372549019,
+          0.7833333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}
