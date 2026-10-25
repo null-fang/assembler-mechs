@@ -1,12 +1,11 @@
--- Garage: secondary panel for swapping owned parts. World stays primary.
+-- Garage: secondary panel for swapping owned parts. Modal unlocks mouse.
 
-local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local GarageHud = {}
+local Theme = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("UI"):WaitForChild("Theme"))
+local ModalMouse = require(script.Parent:WaitForChild("ModalMouse"))
 
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
+local GarageHud = {}
 
 local remotesFolder = ReplicatedStorage:WaitForChild("AssemblerRemotes")
 local GetInventory = remotesFolder:WaitForChild("GetInventory")
@@ -14,7 +13,6 @@ local EquipPart = remotesFolder:WaitForChild("EquipPart")
 local UnequipPart = remotesFolder:WaitForChild("UnequipPart")
 local InventoryUpdated = remotesFolder:WaitForChild("InventoryUpdated")
 
-local screen
 local root
 local slotList
 local bagList
@@ -39,40 +37,6 @@ local SLOT_ROWS = {
 	{ field = "Chip", label = "Chip (add)" },
 }
 
-local function makeLabel(parent, text, size, pos, textSize)
-	local l = Instance.new("TextLabel")
-	l.Size = size
-	l.Position = pos
-	l.BackgroundTransparency = 1
-	l.TextColor3 = Color3.fromRGB(220, 220, 220)
-	l.Font = Enum.Font.Gotham
-	l.TextSize = textSize or 13
-	l.TextXAlignment = Enum.TextXAlignment.Left
-	l.TextYAlignment = Enum.TextYAlignment.Top
-	l.TextWrapped = true
-	l.Text = text
-	l.Parent = parent
-	return l
-end
-
-local function makeButton(parent, text, size, pos)
-	local b = Instance.new("TextButton")
-	b.Size = size
-	b.Position = pos
-	b.BackgroundColor3 = Color3.fromRGB(42, 48, 58)
-	b.BorderSizePixel = 0
-	b.TextColor3 = Color3.fromRGB(230, 230, 230)
-	b.Font = Enum.Font.GothamMedium
-	b.TextSize = 13
-	b.Text = text
-	b.AutoButtonColor = true
-	b.Parent = parent
-	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, 4)
-	corner.Parent = b
-	return b
-end
-
 local function clear(frame)
 	for _, child in frame:GetChildren() do
 		if child:IsA("GuiObject") and child.Name ~= "Title" then
@@ -87,7 +51,7 @@ local function rarityColor(rarity: string): Color3
 	elseif rarity == "Uncommon" then
 		return Color3.fromRGB(140, 180, 120)
 	end
-	return Color3.fromRGB(170, 175, 185)
+	return Theme.colors.textDim
 end
 
 local function equippedName(field: string): string
@@ -163,7 +127,9 @@ end
 local function refreshBag()
 	clear(bagList)
 	if not snapshot or not selectedSlot then
-		makeLabel(bagList, "Pick a slot on the left.", UDim2.new(1, -8, 0, 40), UDim2.new(0, 4, 0, 4), 12)
+		Theme.label(bagList, "Pick a slot on the left.", UDim2.new(1, -8, 0, 40), UDim2.new(0, 4, 0, 4), 12, {
+			color = Theme.colors.textDim,
+		})
 		return
 	end
 	local y = 4
@@ -178,8 +144,10 @@ local function refreshBag()
 		any = true
 		local s = owned.summary
 		local line = ("%s  ·  %s  ·  w%d"):format(s.name, s.rarity, s.weight)
-		local btn = makeButton(bagList, line, UDim2.new(1, -8, 0, 30), UDim2.new(0, 4, 0, y))
-		btn.TextColor3 = rarityColor(s.rarity)
+		local btn = Theme.button(bagList, line, UDim2.new(1, -8, 0, 30), UDim2.new(0, 4, 0, y), {
+			bg = Theme.colors.bgRaised,
+			textColor = rarityColor(s.rarity),
+		})
 		btn.TextXAlignment = Enum.TextXAlignment.Left
 		local pad = Instance.new("UIPadding")
 		pad.PaddingLeft = UDim.new(0, 8)
@@ -202,7 +170,9 @@ local function refreshBag()
 		y += 34
 	end
 	if not any then
-		makeLabel(bagList, "No spare parts for this slot.", UDim2.new(1, -8, 0, 40), UDim2.new(0, 4, 0, 4), 12)
+		Theme.label(bagList, "No spare parts for this slot.", UDim2.new(1, -8, 0, 40), UDim2.new(0, 4, 0, 4), 12, {
+			color = Theme.colors.textDim,
+		})
 	end
 	bagList.CanvasSize = UDim2.new(0, 0, 0, y + 8)
 end
@@ -216,27 +186,24 @@ local function refreshSlots()
 	for _, row in SLOT_ROWS do
 		local name = equippedName(row.field)
 		local label = ("%s — %s"):format(row.label, name)
-		local btn = makeButton(slotList, label, UDim2.new(1, -8, 0, 28), UDim2.new(0, 4, 0, y))
+		local btn = Theme.button(slotList, label, UDim2.new(1, -8, 0, 28), UDim2.new(0, 4, 0, y), {
+			bg = if selectedSlot == row.field then Theme.colors.cyanDeep else Theme.colors.bgRaised,
+		})
 		btn.TextXAlignment = Enum.TextXAlignment.Left
 		local pad = Instance.new("UIPadding")
 		pad.PaddingLeft = UDim.new(0, 8)
 		pad.Parent = btn
-		if selectedSlot == row.field then
-			btn.BackgroundColor3 = Color3.fromRGB(70, 90, 120)
-		end
 		local field = row.field
 		btn.MouseButton1Click:Connect(function()
 			selectedSlot = field
 			GarageHud.render()
 		end)
-		-- Unequip on right-ish: small × for non-chip-add
 		if field ~= "Chip" and name ~= "—" then
-			local x = makeButton(slotList, "×", UDim2.new(0, 28, 0, 28), UDim2.new(1, -36, 0, y))
-			x.BackgroundColor3 = Color3.fromRGB(70, 40, 40)
+			local x = Theme.button(slotList, "×", UDim2.new(0, 28, 0, 28), UDim2.new(1, -36, 0, y), {
+				bg = Theme.colors.danger,
+			})
 			x.MouseButton1Click:Connect(function()
-				local unequipField = field
-				-- For chips we'd need chip:N; chip add row doesn't unequip.
-				local result = UnequipPart:InvokeServer(unequipField)
+				local result = UnequipPart:InvokeServer(field)
 				if not result.ok then
 					setStatus(result.error or "Unequip failed")
 					return
@@ -272,6 +239,7 @@ end
 function GarageHud.setOpen(isOpen: boolean)
 	open = isOpen
 	root.Visible = isOpen
+	ModalMouse.set("garage", isOpen)
 	if isOpen then
 		snapshot = GetInventory:InvokeServer()
 		GarageHud.render()
@@ -286,54 +254,41 @@ function GarageHud.isOpen(): boolean
 	return open
 end
 
-function GarageHud.mount(parentGui: ScreenGui?)
-	screen = parentGui
-	if not screen then
-		screen = Instance.new("ScreenGui")
-		screen.Name = "AssemblerGarage"
-		screen.ResetOnSpawn = false
-		screen.Parent = playerGui
-	end
-
-	root = Instance.new("Frame")
-	root.Name = "GaragePanel"
-	root.Size = UDim2.new(0, 520, 0, 360)
-	root.Position = UDim2.new(1, -536, 0, 16)
-	root.BackgroundColor3 = Color3.fromRGB(16, 18, 22)
-	root.BackgroundTransparency = 0.08
-	root.BorderSizePixel = 0
+function GarageHud.mount(parentGui: ScreenGui)
+	root = Theme.panel(parentGui, "GaragePanel", UDim2.new(0, 520, 0, 380), UDim2.new(1, -540, 0, 24))
 	root.Visible = false
-	root.Parent = screen
-	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, 8)
-	corner.Parent = root
 
-	makeLabel(root, "Garage — Primary", UDim2.new(1, -20, 0, 24), UDim2.new(0, 12, 0, 8), 18).Font =
-		Enum.Font.GothamBold
-	statusLabel = makeLabel(root, "", UDim2.new(1, -20, 0, 20), UDim2.new(0, 12, 0, 34), 12)
-	statusLabel.TextColor3 = Color3.fromRGB(170, 180, 190)
+	Theme.label(root, "Garage — Primary", UDim2.new(1, -100, 0, 24), UDim2.new(0, 14, 0, 10), 18, {
+		font = Theme.fonts.title,
+		color = Theme.colors.accent,
+	})
+	statusLabel = Theme.label(root, "", UDim2.new(1, -24, 0, 20), UDim2.new(0, 14, 0, 36), 12, {
+		color = Theme.colors.textDim,
+	})
 
-	local left = Instance.new("ScrollingFrame")
-	left.Name = "Slots"
-	left.Size = UDim2.new(0.48, -10, 1, -70)
-	left.Position = UDim2.new(0, 8, 0, 58)
-	left.BackgroundTransparency = 1
-	left.ScrollBarThickness = 4
-	left.BorderSizePixel = 0
-	left.Parent = root
-	slotList = left
+	slotList = Instance.new("ScrollingFrame")
+	slotList.Name = "Slots"
+	slotList.Size = UDim2.new(0.48, -10, 1, -78)
+	slotList.Position = UDim2.new(0, 8, 0, 62)
+	slotList.BackgroundTransparency = 1
+	slotList.ScrollBarThickness = 4
+	slotList.BorderSizePixel = 0
+	slotList.CanvasSize = UDim2.new(0, 0, 0, 0)
+	slotList.Parent = root
 
-	local right = Instance.new("ScrollingFrame")
-	right.Name = "Bag"
-	right.Size = UDim2.new(0.48, -10, 1, -70)
-	right.Position = UDim2.new(0.5, 2, 0, 58)
-	right.BackgroundTransparency = 1
-	right.ScrollBarThickness = 4
-	right.BorderSizePixel = 0
-	right.Parent = root
-	bagList = right
+	bagList = Instance.new("ScrollingFrame")
+	bagList.Name = "Bag"
+	bagList.Size = UDim2.new(0.48, -10, 1, -78)
+	bagList.Position = UDim2.new(0.5, 2, 0, 62)
+	bagList.BackgroundTransparency = 1
+	bagList.ScrollBarThickness = 4
+	bagList.BorderSizePixel = 0
+	bagList.CanvasSize = UDim2.new(0, 0, 0, 0)
+	bagList.Parent = root
 
-	local close = makeButton(root, "Close", UDim2.new(0, 72, 0, 26), UDim2.new(1, -84, 0, 8))
+	local close = Theme.button(root, "Close", UDim2.new(0, 72, 0, 26), UDim2.new(1, -86, 0, 10), {
+		bg = Theme.colors.bgInset,
+	})
 	close.MouseButton1Click:Connect(function()
 		GarageHud.setOpen(false)
 	end)

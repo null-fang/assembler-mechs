@@ -1,7 +1,8 @@
--- Elevated side camera for arena fights.
+-- Elevated side camera for arena fights. Stops lobby follow cam while active.
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 
 local BattleCamera = {}
@@ -11,6 +12,7 @@ local savedType: Enum.CameraType? = nil
 local conn: RBXScriptConnection? = nil
 local targetPos: Vector3? = nil
 local lookAt: Vector3? = nil
+local active = false
 
 local function computeFromArena(arenaId: string): (Vector3?, Vector3?)
 	local arenas = Workspace:FindFirstChild("Arenas")
@@ -57,11 +59,15 @@ function BattleCamera.startForArena(arenaId: string)
 	if not cam then
 		return
 	end
+	active = true
 	savedType = cam.CameraType
 	cam.CameraType = Enum.CameraType.Scriptable
 	targetPos = camPos
 	lookAt = focus
 	cam.CFrame = CFrame.lookAt(camPos, focus)
+	-- Combat HUD needs a free cursor for action buttons.
+	UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+	UserInputService.MouseIconEnabled = true
 	if conn then
 		conn:Disconnect()
 	end
@@ -71,10 +77,16 @@ function BattleCamera.startForArena(arenaId: string)
 			return
 		end
 		c.CFrame = c.CFrame:Lerp(CFrame.lookAt(targetPos, lookAt), 0.1)
+		-- Keep mouse free even if something else tries to lock it mid-fight.
+		if active then
+			UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+			UserInputService.MouseIconEnabled = true
+		end
 	end)
 end
 
 function BattleCamera.stop()
+	active = false
 	if conn then
 		conn:Disconnect()
 		conn = nil
@@ -90,6 +102,10 @@ function BattleCamera.stop()
 			cam.CameraSubject = humanoid
 		end
 	end
+end
+
+function BattleCamera.isActive(): boolean
+	return active
 end
 
 return BattleCamera
