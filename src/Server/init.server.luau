@@ -11,8 +11,13 @@ local EconomyService = require(script.Economy.EconomyService)
 local InventoryService = require(script.Parts.InventoryService)
 local ArenaService = require(script.World.ArenaService)
 local LobbyPrompts = require(script.World.LobbyPrompts)
+local PlayerSession = require(script.Session.PlayerSession)
 
 Remotes.init()
+
+-- Soft rate limit for turn submits (modern remote hygiene).
+local lastSubmitAt: { [number]: number } = {}
+local SUBMIT_MIN_GAP = 0.05
 
 task.spawn(function()
 	if ArenaService.ensureWorld() then
@@ -32,6 +37,7 @@ local function refreshPreview(player: Player)
 end
 
 Players.PlayerAdded:Connect(function(player)
+	PlayerSession.toLobby(player)
 	InventoryService.grantStarter(player.UserId)
 	EconomyService.getWallet(player.UserId)
 	CampaignService.getProgress(player.UserId)
@@ -41,6 +47,14 @@ Players.PlayerAdded:Connect(function(player)
 	end)
 	player.CharacterAdded:Connect(function()
 		task.wait(0.5)
+		-- Don't yank mid-fight if character respawns during combat.
+		if player:GetAttribute("AssemblerPhase") == "Combat" then
+			local arenaId = player:GetAttribute("AssemblerArena")
+			if typeof(arenaId) == "string" and arenaId ~= "" then
+				ArenaService.teleportPlayerToArena(player, arenaId :: any)
+				return
+			end
+		end
 		ArenaService.teleportPlayerToLobby(player)
 	end)
 	if player.Character then
@@ -113,6 +127,7 @@ Remotes.StartFight.OnServerInvoke = function(player, fightIndex)
 		return { ok = false, error = err or "Could not start" }
 	end
 	local arenaId = (live :: any).arenaId
+	PlayerSession.toCombat(player, arenaId, math.floor(fightIndex))
 	if arenaId then
 		ArenaService.teleportPlayerToArena(player, arenaId)
 	end
@@ -134,6 +149,13 @@ Remotes.SubmitAction.OnServerInvoke = function(player, action)
 	if typeof(action) ~= "table" or typeof(action.kind) ~= "string" then
 		return { ok = false, error = "Bad action" }
 	end
+	local now = os.clock()
+	local prev = lastSubmitAt[player.UserId]
+	if prev and now - prev < SUBMIT_MIN_GAP then
+		return { ok = false, error = "Slow down" }
+	end
+	lastSubmitAt[player.UserId] = now
+
 	local live = CombatHost.getForUser(player.UserId)
 	if not live then
 		return { ok = false, error = "No active fight" }
@@ -149,6 +171,7 @@ Remotes.SubmitAction.OnServerInvoke = function(player, action)
 
 	local settled = CampaignService.settleIfFinished(player.UserId, live)
 	if settled then
+		PlayerSession.toLobby(player)
 		Remotes.FightSettled:FireClient(player, settled)
 		task.delay(1.35, function()
 			if player.Parent then

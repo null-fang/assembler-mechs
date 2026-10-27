@@ -4,6 +4,7 @@
 local Workspace = game:GetService("Workspace")
 local Assembler = require(game.ReplicatedStorage.Shared.Assembler.Assembler)
 local SoftSlots = require(game.ReplicatedStorage.Shared.Parts.Slots)
+local WorldBootstrap = require(script.Parent.WorldBootstrap)
 
 local ArenaService = {}
 
@@ -182,6 +183,8 @@ local function placeOn(
 	end
 	model.Parent = parent
 	addNameplate(model, displayName)
+	local isPreview = attrs ~= nil and attrs.Preview == true
+	WorldBootstrap.tagMech(model, isPreview)
 	return model
 end
 
@@ -193,6 +196,7 @@ function ArenaService.ensureWorld(): boolean
 		warn("[Assembler] Lobby/Arenas missing — Rojo maps not synced yet")
 		return false
 	end
+	WorldBootstrap.tagWorld(lobby, arenas)
 	return true
 end
 

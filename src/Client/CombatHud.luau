@@ -9,6 +9,7 @@ local BattleCamera = require(script.Parent:WaitForChild("BattleCamera"))
 local LobbyCamera = require(script.Parent:WaitForChild("LobbyCamera"))
 local ModalMouse = require(script.Parent:WaitForChild("ModalMouse"))
 local JoinHud = require(script.Parent:WaitForChild("JoinHud"))
+local SessionBridge = require(script.Parent:WaitForChild("SessionBridge"))
 local Button = require(script.Parent:WaitForChild("UI"):WaitForChild("Button"))
 local TweenUtil = require(script.Parent:WaitForChild("UI"):WaitForChild("TweenUtil"))
 local ResourceBar = require(script.Parent:WaitForChild("UI"):WaitForChild("ResourceBar"))
@@ -610,6 +611,14 @@ function CombatHud.mount(garageModule)
 	end)
 
 	LobbyCamera.start()
+	SessionBridge.onChanged(function(phase, arena, _fight)
+		-- Attribute-driven phase (juice/onboarding can subscribe the same bridge).
+		if phase == "Combat" and arena ~= "" then
+			setStatus(("In combat · %s"):format(arena))
+		elseif phase == "Lobby" and not inBattle then
+			refreshBootstrap()
+		end
+	end)
 	refreshBootstrap()
 	print("[Assembler] UI redesign — Theme panels, rarity, bars, ModalMouse intact")
 end
