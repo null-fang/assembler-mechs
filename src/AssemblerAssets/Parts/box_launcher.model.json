@@ -61,7 +61,7 @@
       }
     },
     {
-      "Name": "Magazine",
+      "Name": "Cradle",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -70,14 +70,72 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.7,
-          1.1,
-          1.4
+          1.5,
+          0.55,
+          1.2
         ],
         "Position": [
           0,
-          0.2,
+          -0.05,
           0
+        ],
+        "Color": [
+          0.29058823529411765,
+          0.3058823529411765,
+          0.27529411764705886
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "PodA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.7,
+          1.1
+        ],
+        "Position": [
+          -0.45,
+          0.35,
+          0.3
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.39215686274509803,
+          0.35294117647058826
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "PodB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.7,
+          1.1
+        ],
+        "Position": [
+          0.45,
+          0.35,
+          0.3
         ],
         "Color": [
           0.37254901960784315,
@@ -99,13 +157,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          0.45,
-          1.6
+          1.1,
+          0.35,
+          1.5
         ],
         "Position": [
           0,
-          0.15,
+          0.25,
           1.2
         ],
         "Color": [
@@ -128,13 +186,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.3,
-          0.8,
-          1.0
+          0.25,
+          0.7,
+          0.9
         ],
         "Position": [
-          0.85,
-          0.2,
+          0.9,
+          0.25,
           0
         ],
         "Color": [
@@ -157,17 +215,46 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          0.2,
-          1.0
+          1.0,
+          0.15,
+          0.8
         ],
         "Position": [
           0,
-          0.8,
-          0
+          0.75,
+          0.1
         ],
         "Color": [
           0.10980392156862745,
+          0.11764705882352941,
+          0.13333333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "FeedBelt",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.9
+        ],
+        "Position": [
+          0,
+          0.15,
+          0.5
+        ],
+        "Color": [
+          0.11764705882352941,
           0.11764705882352941,
           0.13333333333333333
         ],

@@ -1,0 +1,387 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "Body",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.4,
+          0.9
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          0.7058823529411765,
+          0.47058823529411764,
+          0.7843137254901961
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "WingL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.1,
+          0.6
+        ],
+        "Position": [
+          -0.55,
+          0.15,
+          0
+        ],
+        "Color": [
+          0.7647058823529412,
+          0.5764705882352941,
+          0.8274509803921568
+        ],
+        "Material": "Glass",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.3
+      }
+    },
+    {
+      "Name": "WingR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.1,
+          0.6
+        ],
+        "Position": [
+          0.55,
+          0.15,
+          0
+        ],
+        "Color": [
+          0.7647058823529412,
+          0.5764705882352941,
+          0.8274509803921568
+        ],
+        "Material": "Glass",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.3
+      }
+    },
+    {
+      "Name": "AccentSpark",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          0.25,
+          0.25
+        ],
+        "Position": [
+          0,
+          0.2,
+          0.4
+        ],
+        "Color": [
+          0.8088235294117647,
+          0.6558823529411765,
+          0.8598039215686274
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Tail",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.5
+        ],
+        "Position": [
+          0,
+          0,
+          -0.6
+        ],
+        "Color": [
+          0.5647058823529413,
+          0.3764705882352941,
+          0.6274509803921569
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentTrimA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.385,
+          0.08399999999999999,
+          0.08399999999999999
+        ],
+        "Position": [
+          0.24499999999999997,
+          0.175,
+          0.27999999999999997
+        ],
+        "Color": [
+          0.823529411764706,
+          0.6823529411764706,
+          0.8705882352941177
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentTrimB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.08399999999999999,
+          0.385,
+          0.08399999999999999
+        ],
+        "Position": [
+          -0.27999999999999997,
+          0.06999999999999999,
+          0.24499999999999997
+        ],
+        "Color": [
+          0.823529411764706,
+          0.6823529411764706,
+          0.8705882352941177
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "TrimStud",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.13999999999999999,
+          0.13999999999999999,
+          0.13999999999999999
+        ],
+        "Position": [
+          0.35,
+          -0.13999999999999999,
+          0.175
+        ],
+        "Color": [
+          0.49411764705882355,
+          0.32941176470588235,
+          0.5490196078431372
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "TrimStud2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.13999999999999999,
+          0.13999999999999999,
+          0.13999999999999999
+        ],
+        "Position": [
+          -0.35,
+          -0.13999999999999999,
+          0.175
+        ],
+        "Color": [
+          0.49411764705882355,
+          0.32941176470588235,
+          0.5490196078431372
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "GlowCore",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.24499999999999997,
+          0.24499999999999997,
+          0.24499999999999997
+        ],
+        "Position": [
+          0,
+          0.24499999999999997,
+          0.385
+        ],
+        "Color": [
+          0.823529411764706,
+          0.6823529411764706,
+          0.8705882352941177
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.15
+      }
+    },
+    {
+      "Name": "GlowHalo",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.48999999999999994,
+          0.055999999999999994,
+          0.48999999999999994
+        ],
+        "Position": [
+          0,
+          0.315,
+          0.13999999999999999
+        ],
+        "Color": [
+          0.823529411764706,
+          0.6823529411764706,
+          0.8705882352941177
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.35
+      }
+    },
+    {
+      "Name": "AccentTrimC",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.63,
+          0.06999999999999999,
+          0.06999999999999999
+        ],
+        "Position": [
+          0,
+          -0.24499999999999997,
+          0.35
+        ],
+        "Color": [
+          0.823529411764706,
+          0.6823529411764706,
+          0.8705882352941177
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

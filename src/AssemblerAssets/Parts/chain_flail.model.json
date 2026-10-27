@@ -1,0 +1,354 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "Mount",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.7,
+          0.7
+        ],
+        "Position": [
+          0,
+          0,
+          -0.9
+        ],
+        "Color": [
+          0.3764705882352941,
+          0.3450980392156863,
+          0.3137254901960784
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Forearm",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.8,
+          0.65,
+          1.2
+        ],
+        "Position": [
+          0,
+          0,
+          -0.1
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.43137254901960786,
+          0.39215686274509803
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Guard",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.15,
+          0.25,
+          0.9
+        ],
+        "Position": [
+          0,
+          0.35,
+          0.5
+        ],
+        "Color": [
+          0.3764705882352941,
+          0.3450980392156863,
+          0.3137254901960784
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Blade",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18,
+          0.55,
+          1.9
+        ],
+        "Position": [
+          0,
+          0.05,
+          1.4
+        ],
+        "Color": [
+          0.55,
+          0.5166666666666667,
+          0.48333333333333334
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentEdge",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.08,
+          0.45,
+          1.7
+        ],
+        "Position": [
+          0.12,
+          0.05,
+          1.4
+        ],
+        "Color": [
+          0.6558823529411765,
+          0.6303921568627451,
+          0.6049019607843138
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Spike",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          0.25,
+          0.7
+        ],
+        "Position": [
+          0,
+          0.35,
+          1.9
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.11764705882352941,
+          0.13333333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Pommel",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.5,
+          0.35
+        ],
+        "Position": [
+          0,
+          0,
+          -0.95
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.11764705882352941,
+          0.13333333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentTrimA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          0.35,
+          0.25,
+          0.4
+        ],
+        "Color": [
+          0.6823529411764706,
+          0.6588235294117647,
+          0.6352941176470588
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentTrimB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.55,
+          0.12
+        ],
+        "Position": [
+          -0.4,
+          0.1,
+          0.35
+        ],
+        "Color": [
+          0.6823529411764706,
+          0.6588235294117647,
+          0.6352941176470588
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "TrimStud",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0.5,
+          -0.2,
+          0.25
+        ],
+        "Color": [
+          0.32941176470588235,
+          0.30196078431372547,
+          0.2745098039215686
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "TrimStud2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          -0.5,
+          -0.2,
+          0.25
+        ],
+        "Color": [
+          0.32941176470588235,
+          0.30196078431372547,
+          0.2745098039215686
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

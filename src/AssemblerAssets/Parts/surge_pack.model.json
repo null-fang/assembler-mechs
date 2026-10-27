@@ -177,6 +177,35 @@
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
+    },
+    {
+      "Name": "AccentTrimA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.385,
+          0.08399999999999999,
+          0.08399999999999999
+        ],
+        "Position": [
+          0.24499999999999997,
+          0.175,
+          0.27999999999999997
+        ],
+        "Color": [
+          0.45882352941176474,
+          0.5882352941176471,
+          0.6588235294117647
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
     }
   ]
 }

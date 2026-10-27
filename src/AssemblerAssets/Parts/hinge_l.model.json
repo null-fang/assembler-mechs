@@ -1,0 +1,385 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "HipBall",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.7,
+          0.9
+        ],
+        "Position": [
+          0,
+          1.1,
+          0
+        ],
+        "Color": [
+          0.3235294117647059,
+          0.3382352941176471,
+          0.3529411764705882
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Ball"
+      }
+    },
+    {
+      "Name": "Upper",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.0,
+          1.1,
+          1.0
+        ],
+        "Position": [
+          -0.05,
+          0.45,
+          0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.45098039215686275,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "HingeDisk",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.15,
+          0.3,
+          1.15
+        ],
+        "Position": [
+          -0.1,
+          -0.2,
+          0
+        ],
+        "Color": [
+          0.3235294117647059,
+          0.3382352941176471,
+          0.3529411764705882
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      }
+    },
+    {
+      "Name": "Lower",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.95,
+          1.2,
+          0.95
+        ],
+        "Position": [
+          -0.05,
+          -1.0,
+          0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.45098039215686275,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "PivotPin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          0.7,
+          0.25
+        ],
+        "Position": [
+          -0.55,
+          -0.2,
+          0
+        ],
+        "Color": [
+          0.6019607843137255,
+          0.615686274509804,
+          0.6294117647058823
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Foot",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.35,
+          0.35,
+          1.5
+        ],
+        "Position": [
+          0,
+          -1.75,
+          0.2
+        ],
+        "Color": [
+          0.1411764705882353,
+          0.13333333333333333,
+          0.12549019607843137
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Heel",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
+          0.4,
+          0.5
+        ],
+        "Position": [
+          0,
+          -1.7,
+          -0.55
+        ],
+        "Color": [
+          0.3235294117647059,
+          0.3382352941176471,
+          0.3529411764705882
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentBolt",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          0.25,
+          0.25
+        ],
+        "Position": [
+          -0.35,
+          0.5,
+          0.5
+        ],
+        "Color": [
+          0.6019607843137255,
+          0.615686274509804,
+          0.6294117647058823
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentTrimA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.49500000000000005,
+          0.108,
+          0.108
+        ],
+        "Position": [
+          0.315,
+          0.225,
+          0.36000000000000004
+        ],
+        "Color": [
+          0.6588235294117647,
+          0.6705882352941177,
+          0.6823529411764706
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentTrimB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.108,
+          0.49500000000000005,
+          0.108
+        ],
+        "Position": [
+          -0.36000000000000004,
+          0.09000000000000001,
+          0.315
+        ],
+        "Color": [
+          0.6588235294117647,
+          0.6705882352941177,
+          0.6823529411764706
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "TrimStud",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18000000000000002,
+          0.18000000000000002,
+          0.18000000000000002
+        ],
+        "Position": [
+          0.45,
+          -0.18000000000000002,
+          0.225
+        ],
+        "Color": [
+          0.30196078431372547,
+          0.3156862745098039,
+          0.32941176470588235
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "TrimStud2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18000000000000002,
+          0.18000000000000002,
+          0.18000000000000002
+        ],
+        "Position": [
+          -0.45,
+          -0.18000000000000002,
+          0.225
+        ],
+        "Color": [
+          0.30196078431372547,
+          0.3156862745098039,
+          0.32941176470588235
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

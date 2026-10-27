@@ -32,7 +32,7 @@
       }
     },
     {
-      "Name": "Hull",
+      "Name": "Core",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -41,9 +41,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          4.0,
-          2.8,
-          2.4
+          3.2,
+          2.2,
+          1.9
         ],
         "Position": [
           0,
@@ -70,14 +70,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          3.4,
-          1.8,
+          3.0,
+          1.6,
           0.4
         ],
         "Position": [
           0,
-          0.2,
-          1.3
+          0.25,
+          1.2
         ],
         "Color": [
           0.3376470588235294,
@@ -99,14 +99,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          2.4,
+          0.3,
+          2.0,
           0.2
         ],
         "Position": [
           0,
-          0.1,
-          1.45
+          0.15,
+          1.4
         ],
         "Color": [
           0.6176470588235294,
@@ -128,12 +128,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          1.0,
-          1.4
+          1.15,
+          0.95,
+          1.3
         ],
         "Position": [
-          -2.2,
+          -2.05,
           1.0,
           0
         ],
@@ -157,12 +157,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          1.0,
-          1.4
+          1.15,
+          0.95,
+          1.3
         ],
         "Position": [
-          2.2,
+          2.05,
           1.0,
           0
         ],
@@ -186,13 +186,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          3.6,
-          0.6,
-          2.0
+          3.2,
+          0.5,
+          1.8
         ],
         "Position": [
           0,
-          -1.5,
+          -1.4,
           0.1
         ],
         "Color": [
@@ -215,14 +215,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          2.8,
-          1.2,
-          0.5
+          2.4,
+          1.0,
+          0.45
         ],
         "Position": [
           0,
-          0.6,
-          -1.4
+          0.55,
+          -1.25
         ],
         "Color": [
           0.1568627450980392,
@@ -244,13 +244,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.4,
-          0.35,
-          1.4
+          1.3,
+          0.3,
+          1.3
         ],
         "Position": [
           0,
-          1.55,
+          1.4,
           0.1
         ],
         "Color": [
@@ -259,6 +259,93 @@
           0.2733333333333333
         ],
         "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "SideSkirtL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.35,
+          1.4,
+          1.4
+        ],
+        "Position": [
+          -1.85,
+          -0.2,
+          0
+        ],
+        "Color": [
+          0.3788235294117647,
+          0.3427450980392157,
+          0.30666666666666664
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "SideSkirtR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.35,
+          1.4,
+          1.4
+        ],
+        "Position": [
+          1.85,
+          -0.2,
+          0
+        ],
+        "Color": [
+          0.3788235294117647,
+          0.3427450980392157,
+          0.30666666666666664
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentTrimA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.8800000000000001,
+          0.192,
+          0.192
+        ],
+        "Position": [
+          0.5599999999999999,
+          0.4,
+          0.6400000000000001
+        ],
+        "Color": [
+          0.6470588235294118,
+          0.6235294117647059,
+          0.6000000000000001
+        ],
+        "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }

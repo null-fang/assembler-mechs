@@ -17,12 +17,41 @@ export type BuildOptions = {
 }
 
 local function rarityEdge(rarity: Slots.PartRarity): Color3
-	if rarity == "Rare" then
+	if rarity == "Blessed" or rarity == "Relic" then
+		return Color3.fromRGB(255, 230, 160)
+	elseif rarity == "Mythic" then
+		return Color3.fromRGB(220, 70, 200)
+	elseif rarity == "Legendary" then
+		return Color3.fromRGB(255, 150, 40)
+	elseif rarity == "Epic" then
+		return Color3.fromRGB(150, 80, 220)
+	elseif rarity == "Rare" then
 		return Color3.fromRGB(210, 170, 70)
 	elseif rarity == "Uncommon" then
 		return Color3.fromRGB(140, 170, 120)
 	end
 	return Color3.fromRGB(40, 40, 44)
+end
+
+local function rarityRank(rarity: Slots.PartRarity): number
+	if rarity == "Blessed" or rarity == "Relic" then
+		return 6
+	elseif rarity == "Mythic" then
+		return 5
+	elseif rarity == "Legendary" then
+		return 4
+	elseif rarity == "Epic" then
+		return 3
+	elseif rarity == "Rare" then
+		return 2
+	elseif rarity == "Uncommon" then
+		return 1
+	end
+	return 0
+end
+
+local function isAccentOrGlow(name: string): boolean
+	return string.sub(name, 1, 6) == "Accent" or string.sub(name, 1, 4) == "Glow"
 end
 
 local function tryAssetClone(partId: string): Instance?
@@ -79,13 +108,18 @@ local function polishAuthoredModel(
 			d.Massless = true
 			if d.Name == "Root" then
 				d.Transparency = 1
-			elseif string.sub(d.Name, 1, 6) == "Accent" then
+			elseif isAccentOrGlow(d.Name) then
 				local edge = rarityEdge(rarity)
-				if rarity == "Common" then
+				local rank = rarityRank(rarity)
+				if rank == 0 then
 					d.Color = tint(d.Color, teamTint)
 				else
-					d.Color = tint(d.Color:Lerp(edge, 0.55), teamTint)
+					local blend = if rank >= 3 then 0.75 else 0.55
+					d.Color = tint(d.Color:Lerp(edge, blend), teamTint)
 					d.Material = Enum.Material.Neon
+					if rank >= 3 and string.sub(d.Name, 1, 4) == "Glow" then
+						d.Transparency = math.min(d.Transparency, 0.25)
+					end
 				end
 			elseif teamTint then
 				d.Color = tint(d.Color, teamTint)
@@ -95,11 +129,12 @@ local function polishAuthoredModel(
 	if rarity ~= "Common" then
 		local root = asset.PrimaryPart
 		if root then
+			local rank = rarityRank(rarity)
 			local box = Instance.new("SelectionBox")
 			box.Adornee = root
 			box.Color3 = rarityEdge(rarity)
-			box.LineThickness = 0.04
-			box.Transparency = 0.45
+			box.LineThickness = if rank >= 3 then 0.07 else 0.04
+			box.Transparency = if rank >= 3 then 0.28 else 0.45
 			box.Parent = asset
 		end
 	end

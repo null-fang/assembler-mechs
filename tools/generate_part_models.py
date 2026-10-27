@@ -144,25 +144,53 @@ def build_torso(base: list[float], *, style: str) -> list[dict]:
         ]
     elif style == "plate":
         kids += [
-            part("Hull", [4.0, 2.8, 2.4], [0, 0, 0], color=hull, material="Metal"),
-            part("BreastPlate", [3.4, 1.8, 0.4], [0, 0.2, 1.3], color=panel, material="DiamondPlate"),
-            part("AccentStripe", [0.35, 2.4, 0.2], [0, 0.1, 1.45], color=accent, material="Neon"),
-            part("PauldronL", [1.2, 1.0, 1.4], [-2.2, 1.0, 0], color=panel, material="Metal"),
-            part("PauldronR", [1.2, 1.0, 1.4], [2.2, 1.0, 0], color=panel, material="Metal"),
-            part("Skirt", [3.6, 0.6, 2.0], [0, -1.5, 0.1], color=darken(hull, 0.12), material="Metal"),
-            part("BackRadiator", [2.8, 1.2, 0.5], [0, 0.6, -1.4], color=vent, material="Metal"),
-            part("NeckRing", [1.4, 0.35, 1.4], [0, 1.55, 0.1], color=panel, material="Metal"),
+            part("Core", [3.2, 2.2, 1.9], [0, 0, 0], color=hull, material="Metal"),
+            part("BreastPlate", [3.0, 1.6, 0.4], [0, 0.25, 1.2], color=panel, material="DiamondPlate"),
+            part("AccentStripe", [0.3, 2.0, 0.2], [0, 0.15, 1.4], color=accent, material="Neon"),
+            part("PauldronL", [1.15, 0.95, 1.3], [-2.05, 1.0, 0], color=panel, material="Metal"),
+            part("PauldronR", [1.15, 0.95, 1.3], [2.05, 1.0, 0], color=panel, material="Metal"),
+            part("Skirt", [3.2, 0.5, 1.8], [0, -1.4, 0.1], color=darken(hull, 0.12), material="Metal"),
+            part("BackRadiator", [2.4, 1.0, 0.45], [0, 0.55, -1.25], color=vent, material="Metal"),
+            part("NeckRing", [1.3, 0.3, 1.3], [0, 1.4, 0.1], color=panel, material="Metal"),
+            part("SideSkirtL", [0.35, 1.4, 1.4], [-1.85, -0.2, 0], color=darken(hull, 0.08), material="Metal"),
+            part("SideSkirtR", [0.35, 1.4, 1.4], [1.85, -0.2, 0], color=darken(hull, 0.08), material="Metal"),
         ]
     elif style == "tin":
+        # Stacked rings + flanges — not one stretched can
         kids += [
-            part("Hull", [3.4, 2.4, 2.0], [0, 0, 0], color=hull, material="Metal"),
-            part("Cap", [3.0, 0.5, 1.8], [0, 1.35, 0], color=lighten(hull, 0.15), material="Metal"),
-            part("AccentBand", [3.5, 0.3, 2.1], [0, 0.2, 0], color=accent, material="Neon"),
-            part("CanSeamL", [0.15, 2.2, 1.9], [-1.65, 0, 0], color=panel, material="Metal"),
-            part("CanSeamR", [0.15, 2.2, 1.9], [1.65, 0, 0], color=panel, material="Metal"),
-            part("FrontLogo", [1.0, 1.0, 0.2], [0, 0.3, 1.1], color=vent, material="SmoothPlastic"),
-            part("HipRing", [2.8, 0.4, 1.6], [0, -1.3, 0], color=panel, material="Metal"),
-            part("Intake", [1.6, 0.7, 0.5], [0, -0.5, -1.2], color=vent, material="Metal"),
+            part("RingMid", [3.2, 1.1, 1.9], [0, 0.1, 0], color=hull, material="Metal"),
+            part("RingTop", [2.9, 0.85, 1.7], [0, 1.05, 0], color=lighten(hull, 0.12), material="Metal"),
+            part("RingBot", [3.0, 0.8, 1.75], [0, -0.85, 0], color=darken(hull, 0.1), material="Metal"),
+            part("Cap", [2.6, 0.4, 1.5], [0, 1.6, 0], color=panel, material="Metal"),
+            part("AccentBand", [3.35, 0.22, 2.0], [0, 0.35, 0], color=accent, material="Neon"),
+            part("FlangeL", [0.35, 1.6, 1.4], [-1.7, 0.1, 0], color=panel, material="Metal"),
+            part("FlangeR", [0.35, 1.6, 1.4], [1.7, 0.1, 0], color=panel, material="Metal"),
+            part("FrontBadge", [0.9, 0.7, 0.2], [0, 0.4, 1.05], color=vent, material="SmoothPlastic"),
+            part("HipSkirt", [2.8, 0.45, 1.5], [0, -1.4, 0.05], color=panel, material="Metal"),
+            part("Intake", [1.4, 0.55, 0.55], [0, -0.4, -1.15], color=vent, material="Metal"),
+        ]
+    elif style == "wedge":
+        kids += [
+            part("Core", [3.0, 2.0, 1.8], [0, -0.1, 0], color=hull, material="Metal"),
+            part("SlopePlate", [3.4, 0.35, 2.2], [0, 1.0, 0.15], color=panel, material="DiamondPlate"),
+            part("Keel", [2.2, 0.7, 2.0], [0, -1.2, 0.2], color=darken(hull, 0.15), material="Metal"),
+            part("AccentCrest", [0.3, 1.6, 0.25], [0, 0.3, 1.15], color=accent, material="Neon"),
+            part("CheekL", [0.7, 1.4, 1.2], [-1.7, 0.2, 0.2], color=panel, material="Metal"),
+            part("CheekR", [0.7, 1.4, 1.2], [1.7, 0.2, 0.2], color=panel, material="Metal"),
+            part("Nose", [1.6, 0.9, 0.7], [0, 0.2, 1.2], color=lighten(hull, 0.1), material="Metal"),
+            part("BackFin", [0.35, 1.4, 1.0], [0, 0.6, -1.2], color=vent, material="Metal"),
+        ]
+    elif style == "rib":
+        kids += [
+            part("Spine", [1.4, 2.6, 1.6], [0, 0, 0], color=hull, material="Metal"),
+            part("Rib1", [3.4, 0.35, 2.0], [0, 0.8, 0], color=panel, material="Metal"),
+            part("Rib2", [3.6, 0.35, 2.1], [0, 0.1, 0], color=panel, material="Metal"),
+            part("Rib3", [3.2, 0.35, 1.9], [0, -0.6, 0], color=panel, material="Metal"),
+            part("AccentWire", [0.15, 2.2, 0.15], [0.5, 0.1, 0.9], color=accent, material="Neon"),
+            part("AccentWire2", [0.15, 2.2, 0.15], [-0.5, 0.1, 0.9], color=accent, material="Neon"),
+            part("Sternum", [1.8, 1.2, 0.35], [0, 0.2, 1.1], color=darken(hull, 0.1), material="Metal"),
+            part("HipYoke", [2.6, 0.5, 1.4], [0, -1.4, 0], color=panel, material="Metal"),
+            part("BackCage", [2.0, 1.6, 0.5], [0, 0.2, -1.15], color=vent, material="Metal"),
         ]
     elif style == "rivet":
         kids += [
@@ -176,15 +204,19 @@ def build_torso(base: list[float], *, style: str) -> list[dict]:
             part("Exhaust2", [0.6, 0.6, 1.2], [-0.8, 0.8, -1.5], color=vent, material="Metal"),
         ]
     elif style == "vault":
+        # Layered safe — core + plates, not one huge diamond box
         kids += [
-            part("Hull", [4.2, 3.0, 2.6], [0, 0, 0], color=hull, material="DiamondPlate"),
-            part("Door", [2.2, 2.0, 0.35], [0, 0.1, 1.4], color=panel, material="Metal"),
-            part("AccentLock", [0.5, 0.5, 0.3], [0.6, 0.1, 1.55], color=accent, material="Neon"),
-            part("HingeL", [0.3, 2.0, 0.3], [-1.2, 0.1, 1.4], color=vent, material="Metal"),
-            part("HingeR", [0.3, 2.0, 0.3], [1.2, 0.1, 1.4], color=vent, material="Metal"),
-            part("CornerL", [0.8, 0.8, 0.8], [-1.9, 1.2, 1.0], color=panel, material="Metal"),
-            part("CornerR", [0.8, 0.8, 0.8], [1.9, 1.2, 1.0], color=panel, material="Metal"),
-            part("BackSafe", [3.0, 2.2, 0.8], [0, 0, -1.5], color=darken(hull, 0.15), material="Metal"),
+            part("Core", [3.2, 2.4, 2.0], [0, 0, 0], color=hull, material="Metal"),
+            part("FacePlate", [2.4, 1.8, 0.35], [0, 0.15, 1.25], color=panel, material="DiamondPlate"),
+            part("AccentLock", [0.45, 0.45, 0.3], [0.55, 0.15, 1.5], color=accent, material="Neon"),
+            part("HingeL", [0.28, 1.8, 0.28], [-1.3, 0.15, 1.25], color=vent, material="Metal"),
+            part("HingeR", [0.28, 1.8, 0.28], [1.3, 0.15, 1.25], color=vent, material="Metal"),
+            part("CornerL", [0.7, 0.7, 0.7], [-1.8, 1.15, 0.9], color=panel, material="Metal"),
+            part("CornerR", [0.7, 0.7, 0.7], [1.8, 1.15, 0.9], color=panel, material="Metal"),
+            part("SideBoltL", [0.45, 2.0, 1.6], [-1.9, 0, 0], color=darken(hull, 0.12), material="Metal"),
+            part("SideBoltR", [0.45, 2.0, 1.6], [1.9, 0, 0], color=darken(hull, 0.12), material="Metal"),
+            part("BackSafe", [2.6, 1.8, 0.7], [0, 0.1, -1.35], color=darken(hull, 0.18), material="Metal"),
+            part("RoofLip", [3.4, 0.35, 2.1], [0, 1.4, 0], color=panel, material="Metal"),
         ]
     elif style == "lattice":
         kids += [
@@ -253,13 +285,36 @@ def build_leg(base: list[float], *, style: str, side: str) -> list[dict]:
             part("HeelSpike", [0.35, 0.5, 0.35], [0, -2.0, -0.4], color=joint, material="Metal"),
         ]
     elif style == "stump":
+        # Tapered armor stack + flared foot — not stacked cubes
         kids += [
-            part("ThighBlock", [1.5, 1.1, 1.5], [0, 0.4, 0], color=armor, material="CorrodedMetal"),
-            part("KneeCap", [1.4, 0.5, 1.4], [0, -0.3, 0], color=joint, material="Metal"),
-            part("ShinBlock", [1.55, 1.0, 1.55], [0, -1.0, 0], color=armor, material="CorrodedMetal"),
-            part("FootPad", [1.9, 0.4, 1.9], [0, -1.65, 0.1], color=sole, material="SmoothPlastic"),
-            part("AccentStud", [0.4, 0.4, 0.4], [0.5 * s, -0.3, 0.7], color=accent, material="Neon"),
-            part("ToeLip", [1.7, 0.35, 0.5], [0, -1.55, 0.9], color=panel_safe(armor), material="Metal"),
+            part("Thigh", [1.25, 1.15, 1.25], [0.05 * s, 0.4, 0], color=armor, material="CorrodedMetal"),
+            part("ThighPlate", [0.25, 0.9, 1.0], [0.7 * s, 0.35, 0.1], color=panel_safe(armor), material="Metal"),
+            part("KneeCap", [1.15, 0.45, 1.15], [0.08 * s, -0.3, 0.05], color=joint, material="Metal", shape="Cylinder"),
+            part("Shin", [1.05, 1.05, 1.1], [0.05 * s, -1.0, 0], color=armor, material="CorrodedMetal"),
+            part("Ankle", [1.2, 0.35, 1.2], [0, -1.55, 0.05], color=joint, material="Metal"),
+            part("FootPad", [1.7, 0.35, 1.75], [0, -1.85, 0.2], color=sole, material="SmoothPlastic"),
+            part("AccentStud", [0.35, 0.35, 0.35], [0.45 * s, -0.3, 0.65], color=accent, material="Neon"),
+            part("ToeLip", [1.4, 0.3, 0.45], [0, -1.7, 0.95], color=panel_safe(armor), material="Metal"),
+        ]
+    elif style == "hoof":
+        kids += [
+            part("Thigh", [1.05, 1.2, 1.05], [0.08 * s, 0.4, 0], color=armor, material="Metal"),
+            part("Knee", [0.9, 0.4, 0.9], [0.1 * s, -0.35, 0], color=joint, material="Metal"),
+            part("Shin", [0.95, 1.1, 0.95], [0.08 * s, -1.05, 0], color=armor, material="Metal"),
+            part("Fetlock", [1.05, 0.35, 1.0], [0, -1.6, 0.1], color=joint, material="Metal"),
+            part("Hoof", [1.25, 0.4, 1.45], [0, -1.95, 0.25], color=sole, material="SmoothPlastic"),
+            part("AccentCalk", [0.3, 0.25, 0.3], [0.15 * s, -2.05, 0.7], color=accent, material="Neon"),
+            part("Tendon", [0.2, 1.0, 0.2], [0.5 * s, 0.05, 0.25], color=darken(armor, 0.2), material="Metal"),
+        ]
+    elif style == "hinge":
+        kids += [
+            part("Upper", [1.0, 1.1, 1.0], [0.05 * s, 0.45, 0], color=armor, material="Metal"),
+            part("HingeDisk", [1.15, 0.3, 1.15], [0.1 * s, -0.2, 0], color=joint, material="Metal", shape="Cylinder"),
+            part("Lower", [0.95, 1.2, 0.95], [0.05 * s, -1.0, 0], color=armor, material="Metal"),
+            part("PivotPin", [0.25, 0.7, 0.25], [0.55 * s, -0.2, 0], color=accent, material="Neon"),
+            part("Foot", [1.35, 0.35, 1.5], [0, -1.75, 0.2], color=sole, material="SmoothPlastic"),
+            part("Heel", [0.7, 0.4, 0.5], [0, -1.7, -0.55], color=joint, material="Metal"),
+            part("AccentBolt", [0.25, 0.25, 0.25], [0.35 * s, 0.5, 0.5], color=accent, material="Neon"),
         ]
     elif style == "digit":
         kids += [
@@ -312,8 +367,51 @@ def panel_safe(c: list[float]) -> list[float]:
     return darken(c, 0.12)
 
 
+RARITY_RANK = {
+    "Common": 0,
+    "Uncommon": 1,
+    "Rare": 2,
+    "Epic": 3,
+    "Legendary": 4,
+    "Mythic": 5,
+    "Blessed": 6,
+    "Relic": 6,
+}
+
+
+def rarity_trim(base: list[float], *, rarity: str, scale: float = 1.0) -> list[dict]:
+    """Extra trim density + glow accents by rarity. Glow* lights up on Epic+ at assemble."""
+    rank = RARITY_RANK.get(rarity, 0)
+    if rank <= 0:
+        return []
+    accent = lighten(base, 0.4)
+    dark = darken(base, 0.3)
+    s = scale
+    kids: list[dict] = [
+        part("AccentTrimA", [0.55 * s, 0.12 * s, 0.12 * s], [0.35 * s, 0.25 * s, 0.4 * s], color=accent, material="Neon"),
+    ]
+    if rank >= 2:
+        kids += [
+            part("AccentTrimB", [0.12 * s, 0.55 * s, 0.12 * s], [-0.4 * s, 0.1 * s, 0.35 * s], color=accent, material="Neon"),
+            part("TrimStud", [0.2 * s, 0.2 * s, 0.2 * s], [0.5 * s, -0.2 * s, 0.25 * s], color=dark, material="Metal"),
+            part("TrimStud2", [0.2 * s, 0.2 * s, 0.2 * s], [-0.5 * s, -0.2 * s, 0.25 * s], color=dark, material="Metal"),
+        ]
+    if rank >= 3:
+        kids += [
+            part("GlowCore", [0.35 * s, 0.35 * s, 0.35 * s], [0, 0.35 * s, 0.55 * s], color=accent, material="Neon", transparency=0.15),
+            part("GlowHalo", [0.7 * s, 0.08 * s, 0.7 * s], [0, 0.45 * s, 0.2 * s], color=accent, material="Neon", transparency=0.35),
+            part("AccentTrimC", [0.9 * s, 0.1 * s, 0.1 * s], [0, -0.35 * s, 0.5 * s], color=accent, material="Neon"),
+        ]
+    if rank >= 4:
+        kids += [
+            part("GlowVein", [0.1 * s, 0.8 * s, 0.1 * s], [0.45 * s, 0.1 * s, 0.15 * s], color=accent, material="Neon", transparency=0.2),
+            part("AccentCrest", [0.4 * s, 0.25 * s, 0.15 * s], [0, 0.55 * s, 0.45 * s], color=lighten(accent, 0.2), material="Neon"),
+        ]
+    return kids
+
+
 def build_lower_weapon(base: list[float], *, style: str) -> list[dict]:
-    """Lower/arm weapons: snap, rivet, ember, needle, cleaver, drill, spray, hook."""
+    """Lower/arm weapons: snap, rivet, ember, needle, cleaver, drill, spray, hook, mg, beam, melee, shield."""
     kids: list[dict] = []
     body = base
     dark = darken(base, 0.2)
@@ -373,6 +471,44 @@ def build_lower_weapon(base: list[float], *, style: str) -> list[dict]:
             part("AccentValve", [0.35, 0.35, 0.35], [0.4, 0.5, 0], color=accent, material="Neon"),
             part("Hose", [0.2, 0.2, 0.8], [0.5, -0.2, -0.6], color=muzzle, material="SmoothPlastic"),
         ]
+    elif style == "mg":
+        kids += [
+            part("Receiver", [0.85, 0.7, 1.3], [0, 0.05, 0], color=body, material="Metal"),
+            part("Barrel", [0.28, 0.28, 1.8], [0, 0.15, 1.4], color=dark, material="Metal"),
+            part("CoolingJacket", [0.45, 0.45, 1.0], [0, 0.15, 0.9], color=darken(body, 0.1), material="Metal", shape="Cylinder"),
+            part("BeltBox", [0.7, 0.55, 0.55], [0.55, -0.15, 0.1], color=muzzle, material="Metal"),
+            part("AccentFeed", [0.2, 0.2, 0.7], [0.35, 0.05, 0.35], color=accent, material="Neon"),
+            part("Grip", [0.35, 0.55, 0.35], [0, -0.55, -0.2], color=muzzle, material="SmoothPlastic"),
+            part("MuzzleBrake", [0.4, 0.35, 0.35], [0, 0.15, 2.2], color=muzzle, material="Metal"),
+        ]
+    elif style == "beam":
+        kids += [
+            part("LensHousing", [0.85, 0.75, 1.1], [0, 0.1, 0], color=body, material="Metal"),
+            part("Crystal", [0.45, 0.45, 0.7], [0, 0.15, 0.7], color=accent, material="Glass", transparency=0.25),
+            part("Emitter", [0.35, 0.35, 0.9], [0, 0.15, 1.5], color=dark, material="Neon"),
+            part("AccentBeam", [0.12, 0.12, 1.4], [0, 0.15, 1.3], color=accent, material="Neon"),
+            part("FocusRing", [0.7, 0.15, 0.7], [0, 0.15, 0.35], color=muzzle, material="Metal"),
+            part("Capacitor", [0.4, 0.55, 0.4], [0.5, -0.1, -0.2], color=dark, material="Metal"),
+        ]
+    elif style == "melee":
+        kids += [
+            part("Forearm", [0.8, 0.65, 1.2], [0, 0, -0.1], color=body, material="Metal"),
+            part("Guard", [1.15, 0.25, 0.9], [0, 0.35, 0.5], color=dark, material="Metal"),
+            part("Blade", [0.18, 0.55, 1.9], [0, 0.05, 1.4], color=lighten(body, 0.15), material="Metal"),
+            part("AccentEdge", [0.08, 0.45, 1.7], [0.12, 0.05, 1.4], color=accent, material="Neon"),
+            part("Spike", [0.25, 0.25, 0.7], [0, 0.35, 1.9], color=muzzle, material="Metal"),
+            part("Pommel", [0.5, 0.5, 0.35], [0, 0, -0.95], color=muzzle, material="Metal"),
+        ]
+    elif style == "shield":
+        kids += [
+            part("Brace", [0.7, 0.55, 1.0], [0, 0, -0.2], color=dark, material="Metal"),
+            part("Face", [1.6, 2.0, 0.25], [0, 0.15, 0.7], color=body, material="DiamondPlate"),
+            part("Boss", [0.55, 0.55, 0.3], [0, 0.2, 0.9], color=dark, material="Metal"),
+            part("AccentRim", [1.7, 0.15, 0.15], [0, 1.05, 0.75], color=accent, material="Neon"),
+            part("AccentRimBot", [1.7, 0.15, 0.15], [0, -0.75, 0.75], color=accent, material="Neon"),
+            part("LipL", [0.25, 1.6, 0.35], [-0.85, 0.15, 0.7], color=panel_safe(body), material="Metal"),
+            part("LipR", [0.25, 1.6, 0.35], [0.85, 0.15, 0.7], color=panel_safe(body), material="Metal"),
+        ]
     else:  # hook
         kids += [
             part("Arm", [0.7, 0.55, 1.5], [0, 0, 0], color=body, material="Metal"),
@@ -384,7 +520,7 @@ def build_lower_weapon(base: list[float], *, style: str) -> list[dict]:
 
 
 def build_shoulder_weapon(base: list[float], *, style: str) -> list[dict]:
-    """Shoulder weapons: brick, arc, bite, slag, box, twin, mortar, spear."""
+    """Shoulder weapons: brick, arc, bite, slag, box, twin, mortar, spear, mg, beam, rocket."""
     kids: list[dict] = []
     body = base
     dark = darken(base, 0.22)
@@ -394,11 +530,15 @@ def build_shoulder_weapon(base: list[float], *, style: str) -> list[dict]:
     kids.append(part("ShoulderMount", [1.2, 0.55, 1.0], [0, -0.15, -0.7], color=dark, material="Metal"))
 
     if style == "brick":
+        # Broken silhouette — plates + collar instead of one concrete brick
         kids += [
-            part("Block", [1.6, 1.0, 1.8], [0, 0.15, 0.2], color=body, material="Concrete"),
-            part("Barrel", [0.55, 0.55, 1.4], [0, 0.2, 1.4], color=dark, material="Metal"),
-            part("AccentBand", [1.65, 0.2, 0.2], [0, 0.55, 0.3], color=accent, material="Neon"),
-            part("Breech", [1.3, 0.8, 0.6], [0, 0.1, -0.9], color=tip, material="Metal"),
+            part("Breech", [1.35, 0.85, 0.9], [0, 0.1, -0.35], color=dark, material="Metal"),
+            part("Receiver", [1.2, 0.7, 1.1], [0, 0.2, 0.55], color=body, material="Metal"),
+            part("Barrel", [0.5, 0.5, 1.5], [0, 0.25, 1.55], color=dark, material="Metal", shape="Cylinder"),
+            part("Collar", [0.85, 0.25, 0.85], [0, 0.25, 0.95], color=panel_safe(body), material="Metal"),
+            part("AccentBand", [1.3, 0.18, 0.18], [0, 0.6, 0.2], color=accent, material="Neon"),
+            part("SidePlateL", [0.2, 0.7, 1.0], [-0.75, 0.15, 0.2], color=panel_safe(body), material="Metal"),
+            part("SidePlateR", [0.2, 0.7, 1.0], [0.75, 0.15, 0.2], color=panel_safe(body), material="Metal"),
         ]
     elif style == "arc":
         kids += [
@@ -423,11 +563,15 @@ def build_shoulder_weapon(base: list[float], *, style: str) -> list[dict]:
             part("Support", [0.4, 0.9, 0.4], [0, -0.5, -0.2], color=tip, material="Metal"),
         ]
     elif style == "box":
+        # Pod cluster instead of magazine brick
         kids += [
-            part("Magazine", [1.7, 1.1, 1.4], [0, 0.2, 0], color=body, material="Metal"),
-            part("Barrels", [1.2, 0.45, 1.6], [0, 0.15, 1.2], color=dark, material="Metal"),
-            part("AccentPanel", [0.3, 0.8, 1.0], [0.85, 0.2, 0], color=accent, material="Neon"),
-            part("Hatch", [1.2, 0.2, 1.0], [0, 0.8, 0], color=tip, material="Metal"),
+            part("Cradle", [1.5, 0.55, 1.2], [0, -0.05, 0], color=dark, material="Metal"),
+            part("PodA", [0.55, 0.7, 1.1], [-0.45, 0.35, 0.3], color=body, material="Metal"),
+            part("PodB", [0.55, 0.7, 1.1], [0.45, 0.35, 0.3], color=body, material="Metal"),
+            part("Barrels", [1.1, 0.35, 1.5], [0, 0.25, 1.2], color=dark, material="Metal"),
+            part("AccentPanel", [0.25, 0.7, 0.9], [0.9, 0.25, 0], color=accent, material="Neon"),
+            part("Hatch", [1.0, 0.15, 0.8], [0, 0.75, 0.1], color=tip, material="Metal"),
+            part("FeedBelt", [0.2, 0.2, 0.9], [0, 0.15, 0.5], color=muzzle_safe(), material="Metal"),
         ]
     elif style == "twin":
         kids += [
@@ -443,6 +587,36 @@ def build_shoulder_weapon(base: list[float], *, style: str) -> list[dict]:
             part("AccentRing", [1.05, 0.2, 1.05], [0, 0.5, 0], color=accent, material="Neon"),
             part("Bipod", [1.2, 0.7, 0.25], [0, -0.2, 0.6], color=tip, material="Metal"),
         ]
+    elif style == "mg":
+        kids += [
+            part("Receiver", [1.2, 0.75, 1.4], [0, 0.2, 0.2], color=body, material="Metal"),
+            part("Barrel", [0.32, 0.32, 2.0], [0, 0.25, 1.5], color=dark, material="Metal"),
+            part("Jacket", [0.5, 0.5, 1.1], [0, 0.25, 1.0], color=darken(body, 0.12), material="Metal", shape="Cylinder"),
+            part("AmmoDrum", [0.85, 0.85, 0.7], [0.7, 0.1, -0.1], color=tip, material="Metal", shape="Cylinder"),
+            part("AccentFeed", [0.25, 0.25, 0.8], [0.4, 0.25, 0.3], color=accent, material="Neon"),
+            part("Sight", [0.15, 0.4, 0.5], [0, 0.65, 0.4], color=tip, material="Metal"),
+            part("Muzzle", [0.4, 0.4, 0.3], [0, 0.25, 2.4], color=tip, material="Metal"),
+        ]
+    elif style == "beam":
+        kids += [
+            part("Mast", [0.7, 0.7, 1.6], [0, 0.25, 0.3], color=body, material="Metal"),
+            part("Lens", [0.55, 0.55, 0.55], [0, 0.3, 1.2], color=accent, material="Glass", transparency=0.2),
+            part("Emitter", [0.4, 0.4, 1.0], [0, 0.3, 1.7], color=dark, material="Neon"),
+            part("AccentBeam", [0.15, 0.15, 1.6], [0, 0.45, 0.9], color=accent, material="Neon"),
+            part("CoilL", [0.3, 0.5, 0.5], [-0.5, 0.2, 0.1], color=dark, material="Metal"),
+            part("CoilR", [0.3, 0.5, 0.5], [0.5, 0.2, 0.1], color=dark, material="Metal"),
+            part("Dish", [1.1, 0.15, 1.1], [0, 0.55, 0.2], color=tip, material="Metal"),
+        ]
+    elif style == "rocket":
+        kids += [
+            part("Rack", [1.6, 0.45, 1.3], [0, 0.05, 0.1], color=dark, material="Metal"),
+            part("TubeL", [0.45, 0.45, 1.8], [-0.45, 0.4, 0.5], color=body, material="Metal", shape="Cylinder"),
+            part("TubeR", [0.45, 0.45, 1.8], [0.45, 0.4, 0.5], color=body, material="Metal", shape="Cylinder"),
+            part("TubeMid", [0.4, 0.4, 1.5], [0, 0.75, 0.35], color=darken(body, 0.1), material="Metal", shape="Cylinder"),
+            part("AccentNose", [0.25, 0.25, 0.35], [0, 0.75, 1.2], color=accent, material="Neon"),
+            part("FinL", [0.15, 0.45, 0.5], [-0.75, 0.35, -0.2], color=tip, material="Metal"),
+            part("FinR", [0.15, 0.45, 0.5], [0.75, 0.35, -0.2], color=tip, material="Metal"),
+        ]
     else:  # spear
         kids += [
             part("Shaft", [0.35, 0.35, 2.8], [0, 0.15, 0.6], color=body, material="Metal"),
@@ -451,6 +625,10 @@ def build_shoulder_weapon(base: list[float], *, style: str) -> list[dict]:
             part("Counter", [0.6, 0.6, 0.6], [0, 0.1, -0.9], color=tip, material="Metal"),
         ]
     return kids
+
+
+def muzzle_safe() -> list[float]:
+    return rgb(30, 30, 34)
 
 
 def build_battery(base: list[float], *, style: str) -> list[dict]:
@@ -602,6 +780,7 @@ PART_RECIPES: dict[str, tuple[str, list[float], dict]] = {}
 
 
 def reg(pid: str, kind: str, color: list[float], **kwargs) -> None:
+    kwargs.setdefault("rarity", "Common")
     PART_RECIPES[pid] = (kind, color, kwargs)
 
 
@@ -722,68 +901,166 @@ reg("chip_plate", "chip", rgb(110, 120, 100), style="shield")
 reg("chip_rust", "chip", rgb(130, 90, 70), style="skin")
 
 # More weapons / support (deep bay)
-reg("saw_arm", "lower", rgb(130, 130, 135), style="cleaver")
-reg("ram_fist", "lower", rgb(100, 95, 90), style="snap")
-reg("plasma_dab", "lower", rgb(90, 180, 210), style="needle")
-reg("coal_mitt", "lower", rgb(160, 80, 40), style="ember")
-reg("auger_bit", "lower", rgb(95, 100, 85), style="drill")
-reg("grapple_hook", "lower", rgb(80, 85, 95), style="hook")
-reg("foam_sprayer", "lower", rgb(160, 160, 150), style="spray")
-reg("hammer_hand", "lower", rgb(120, 110, 100), style="snap")
-reg("crate_mortar", "shoulder", rgb(110, 95, 70), style="mortar")
-reg("coil_spear", "shoulder", rgb(60, 120, 170), style="spear")
-reg("junk_box", "shoulder", rgb(90, 85, 75), style="box")
-reg("flare_twin", "shoulder", rgb(200, 100, 50), style="twin")
-reg("slag_brick", "shoulder", rgb(130, 70, 45), style="brick")
-reg("arc_fork", "shoulder", rgb(70, 160, 210), style="arc")
-reg("heat_lance", "shoulder", rgb(210, 90, 40), style="bite")
-reg("pitch_pot", "shoulder", rgb(55, 45, 40), style="slag")
-reg("cell_strip", "battery", rgb(40, 55, 65), style="stack")
-reg("wet_cell", "battery", rgb(45, 90, 100), style="drum")
-reg("junk_brick", "battery", rgb(60, 58, 55), style="desk")
-reg("surge_pack", "battery", rgb(25, 80, 110), style="bay")
-reg("core_cell", "battery", rgb(30, 100, 120), style="deep")
-reg("fried_cpu", "cpu", rgb(90, 60, 50), style="scrap")
-reg("lab_cpu", "cpu", rgb(70, 130, 110), style="bay")
-reg("prism_cpu", "cpu", rgb(50, 100, 140), style="optic")
-reg("buzz_drone", "drone", rgb(170, 160, 70), style="moth")
-reg("crate_mite", "drone", rgb(100, 85, 65), style="floor")
-reg("cross_beep", "drone", rgb(90, 170, 130), style="beep")
-reg("glass_orb", "drone", rgb(120, 160, 190), style="orb")
-reg("crawl_bit", "drone", rgb(85, 75, 65), style="spider")
-reg("chip_foam", "chip", rgb(120, 130, 140), style="heat")
-reg("chip_braid", "chip", rgb(50, 130, 140), style="wire")
-reg("chip_oil", "chip", rgb(140, 120, 50), style="grease")
-reg("chip_bulk", "chip", rgb(100, 105, 95), style="shield")
-reg("chip_scab", "chip", rgb(120, 85, 70), style="skin")
+reg("saw_arm", "lower", rgb(130, 130, 135), style="cleaver", rarity="Uncommon")
+reg("ram_fist", "lower", rgb(100, 95, 90), style="snap", rarity="Uncommon")
+reg("plasma_dab", "lower", rgb(90, 180, 210), style="needle", rarity="Uncommon")
+reg("coal_mitt", "lower", rgb(160, 80, 40), style="ember", rarity="Uncommon")
+reg("auger_bit", "lower", rgb(95, 100, 85), style="drill", rarity="Uncommon")
+reg("grapple_hook", "lower", rgb(80, 85, 95), style="hook", rarity="Uncommon")
+reg("foam_sprayer", "lower", rgb(160, 160, 150), style="spray", rarity="Uncommon")
+reg("hammer_hand", "lower", rgb(120, 110, 100), style="snap", rarity="Uncommon")
+reg("crate_mortar", "shoulder", rgb(110, 95, 70), style="mortar", rarity="Uncommon")
+reg("coil_spear", "shoulder", rgb(60, 120, 170), style="spear", rarity="Uncommon")
+reg("junk_box", "shoulder", rgb(90, 85, 75), style="box", rarity="Uncommon")
+reg("flare_twin", "shoulder", rgb(200, 100, 50), style="twin", rarity="Uncommon")
+reg("slag_brick", "shoulder", rgb(130, 70, 45), style="brick", rarity="Uncommon")
+reg("arc_fork", "shoulder", rgb(70, 160, 210), style="arc", rarity="Uncommon")
+reg("heat_lance", "shoulder", rgb(210, 90, 40), style="bite", rarity="Uncommon")
+reg("pitch_pot", "shoulder", rgb(55, 45, 40), style="slag", rarity="Uncommon")
+reg("cell_strip", "battery", rgb(40, 55, 65), style="stack", rarity="Uncommon")
+reg("wet_cell", "battery", rgb(45, 90, 100), style="drum", rarity="Uncommon")
+reg("junk_brick", "battery", rgb(60, 58, 55), style="desk", rarity="Uncommon")
+reg("surge_pack", "battery", rgb(25, 80, 110), style="bay", rarity="Uncommon")
+reg("core_cell", "battery", rgb(30, 100, 120), style="deep", rarity="Uncommon")
+reg("fried_cpu", "cpu", rgb(90, 60, 50), style="scrap", rarity="Uncommon")
+reg("lab_cpu", "cpu", rgb(70, 130, 110), style="bay", rarity="Uncommon")
+reg("prism_cpu", "cpu", rgb(50, 100, 140), style="optic", rarity="Rare")
+reg("buzz_drone", "drone", rgb(170, 160, 70), style="moth", rarity="Uncommon")
+reg("crate_mite", "drone", rgb(100, 85, 65), style="floor", rarity="Uncommon")
+reg("cross_beep", "drone", rgb(90, 170, 130), style="beep", rarity="Uncommon")
+reg("glass_orb", "drone", rgb(120, 160, 190), style="orb", rarity="Uncommon")
+reg("crawl_bit", "drone", rgb(85, 75, 65), style="spider", rarity="Uncommon")
+reg("chip_foam", "chip", rgb(120, 130, 140), style="heat", rarity="Common")
+reg("chip_braid", "chip", rgb(50, 130, 140), style="wire", rarity="Common")
+reg("chip_oil", "chip", rgb(140, 120, 50), style="grease", rarity="Common")
+reg("chip_bulk", "chip", rgb(100, 105, 95), style="shield", rarity="Common")
+reg("chip_scab", "chip", rgb(120, 85, 70), style="skin", rarity="Common")
 
 for side in ("l", "r"):
-    reg(f"cargo_{side}", "leg", rgb(90, 85, 70), style="workboot", side=side)
-    reg(f"blade_{side}", "leg", rgb(140, 145, 150), style="sprint", side=side)
-    reg(f"block_{side}", "leg", rgb(70, 68, 65), style="stump", side=side)
-    reg(f"grip_{side}", "leg", rgb(100, 90, 80), style="claw", side=side)
-    reg(f"hydro_{side}", "leg", rgb(85, 100, 110), style="piston", side=side)
+    reg(f"cargo_{side}", "leg", rgb(90, 85, 70), style="workboot", side=side, rarity="Uncommon")
+    reg(f"blade_{side}", "leg", rgb(140, 145, 150), style="sprint", side=side, rarity="Uncommon")
+    reg(f"block_{side}", "leg", rgb(70, 68, 65), style="stump", side=side, rarity="Uncommon")
+    reg(f"grip_{side}", "leg", rgb(100, 90, 80), style="claw", side=side, rarity="Uncommon")
+    reg(f"hydro_{side}", "leg", rgb(85, 100, 110), style="piston", side=side, rarity="Uncommon")
+
+# Bay torsos (match prior Uncommon bay)
+for pid, col, sty in (
+    ("oil_drum_chest", rgb(55, 70, 55), "tin"),
+    ("panel_wagon", rgb(105, 95, 85), "plate"),
+    ("scaffold_cage", rgb(150, 140, 90), "lattice"),
+    ("slab_fort", rgb(75, 78, 82), "bunker"),
+    ("chrome_can", rgb(190, 195, 200), "tin"),
+    ("bolt_bunker", rgb(95, 70, 55), "rivet"),
+    ("wire_hulk", rgb(80, 95, 100), "cage"),
+    ("dock_locker", rgb(60, 85, 100), "vault"),
+):
+    # already registered above without rarity — upgrade in place
+    if pid in PART_RECIPES:
+        kind, color, kwargs = PART_RECIPES[pid]
+        kwargs["rarity"] = "Uncommon"
+        PART_RECIPES[pid] = (kind, color, kwargs)
+
+# --- Depth pass: weapons / rarities / silhouettes ---
+
+# Torsos — wedge / rib + improved tin/vault users
+reg("wedge_breast", "torso", rgb(110, 100, 90), style="wedge", rarity="Uncommon")
+reg("keel_plate", "torso", rgb(85, 95, 105), style="wedge", rarity="Rare")
+reg("rib_tower", "torso", rgb(120, 115, 100), style="rib", rarity="Uncommon")
+reg("bone_frame", "torso", rgb(160, 155, 145), style="rib", rarity="Rare")
+reg("fluted_can", "torso", rgb(150, 155, 150), style="tin", rarity="Uncommon")
+reg("apron_hull", "torso", rgb(95, 88, 78), style="plate", rarity="Uncommon")
+reg("spike_cage", "torso", rgb(100, 70, 55), style="cage", rarity="Rare")
+reg("crest_vault", "torso", rgb(70, 75, 95), style="vault", rarity="Epic")
+reg("torch_bunker", "torso", rgb(130, 75, 45), style="bunker", rarity="Rare")
+reg("glass_wedge", "torso", rgb(130, 170, 185), style="glass", rarity="Epic")
+
+# Lower — MG / beam / melee / shield
+reg("chatter_gun", "lower", rgb(95, 100, 105), style="mg", rarity="Uncommon")
+reg("belt_feeder", "lower", rgb(110, 105, 95), style="mg", rarity="Rare")
+reg("spit_mg", "lower", rgb(80, 85, 90), style="mg", rarity="Common")
+reg("ray_glove", "lower", rgb(70, 160, 200), style="beam", rarity="Rare")
+reg("lens_poke", "lower", rgb(90, 140, 180), style="beam", rarity="Uncommon")
+reg("pulse_mitt", "lower", rgb(140, 80, 200), style="beam", rarity="Epic")
+reg("scrap_blade", "lower", rgb(140, 135, 130), style="melee", rarity="Uncommon")
+reg("mace_arm", "lower", rgb(100, 95, 90), style="melee", rarity="Common")
+reg("chain_flail", "lower", rgb(120, 110, 100), style="melee", rarity="Rare")
+reg("spike_gaunt", "lower", rgb(90, 85, 80), style="melee", rarity="Uncommon")
+reg("riot_lid", "lower", rgb(100, 105, 110), style="shield", rarity="Common")
+reg("plate_guard", "lower", rgb(85, 90, 100), style="shield", rarity="Uncommon")
+reg("buckler_arm", "lower", rgb(130, 120, 100), style="shield", rarity="Rare")
+reg("aegis_door", "lower", rgb(70, 90, 140), style="shield", rarity="Epic")
+
+# Shoulder — rocket / beam / MG
+reg("rocket_pod", "shoulder", rgb(110, 95, 70), style="rocket", rarity="Rare")
+reg("tube_swarm", "shoulder", rgb(90, 80, 65), style="rocket", rarity="Uncommon")
+reg("rack_salvo", "shoulder", rgb(120, 85, 55), style="rocket", rarity="Epic")
+reg("cluster_rack", "shoulder", rgb(100, 90, 75), style="rocket", rarity="Rare")
+reg("hammer_rocket", "shoulder", rgb(130, 70, 50), style="rocket", rarity="Uncommon")
+reg("sun_beam", "shoulder", rgb(220, 160, 50), style="beam", rarity="Epic")
+reg("prism_mast", "shoulder", rgb(100, 140, 200), style="beam", rarity="Epic")
+reg("frost_beam", "shoulder", rgb(100, 180, 210), style="beam", rarity="Rare")
+reg("chatter_rack", "shoulder", rgb(95, 100, 105), style="mg", rarity="Uncommon")
+reg("spitfire_pod", "shoulder", rgb(140, 90, 60), style="mg", rarity="Rare")
+reg("gale_mg", "shoulder", rgb(80, 95, 110), style="mg", rarity="Common")
+reg("belt_tower", "shoulder", rgb(105, 100, 90), style="mg", rarity="Uncommon")
+
+# Legs — hoof / hinge pairs + improved stump users
+for side in ("l", "r"):
+    reg(f"hoof_{side}", "leg", rgb(95, 75, 55), style="hoof", side=side, rarity="Uncommon")
+    reg(f"hinge_{side}", "leg", rgb(110, 115, 120), style="hinge", side=side, rarity="Rare")
+    reg(f"pad_{side}", "leg", rgb(75, 72, 68), style="stump", side=side, rarity="Common")
+    reg(f"spur_{side}", "leg", rgb(120, 90, 70), style="claw", side=side, rarity="Uncommon")
+    reg(f"ski_{side}", "leg", rgb(140, 150, 160), style="sprint", side=side, rarity="Rare")
+
+# Support kits
+reg("pulse_cell", "battery", rgb(50, 80, 120), style="deep", rarity="Rare")
+reg("crystal_pack", "battery", rgb(80, 60, 140), style="bay", rarity="Epic")
+reg("arc_cell", "battery", rgb(40, 110, 130), style="drum", rarity="Uncommon")
+reg("neural_cpu", "cpu", rgb(60, 100, 140), style="optic", rarity="Epic")
+reg("fused_cpu", "cpu", rgb(90, 70, 50), style="bay", rarity="Rare")
+reg("scout_mite", "drone", rgb(110, 100, 80), style="spider", rarity="Uncommon")
+reg("pulse_moth", "drone", rgb(180, 120, 200), style="moth", rarity="Epic")
+reg("chip_glow", "chip", rgb(140, 100, 200), style="wire", rarity="Epic")
+reg("chip_vein", "chip", rgb(90, 140, 160), style="heat", rarity="Rare")
+reg("chip_mirror", "chip", rgb(160, 170, 180), style="shield", rarity="Uncommon")
+
+
+def trim_scale_for(kind: str) -> float:
+    if kind == "torso":
+        return 1.6
+    if kind in ("shoulder", "lower"):
+        return 1.0
+    if kind == "leg":
+        return 0.9
+    if kind in ("battery", "drone"):
+        return 0.7
+    if kind == "cpu":
+        return 0.45
+    return 0.35  # chip
 
 
 def build_children(kind: str, color: list[float], kwargs: dict) -> list[dict]:
     style = kwargs.get("style", "cage")
     if kind == "torso":
-        return build_torso(color, style=style)
-    if kind == "leg":
-        return build_leg(color, style=style, side=kwargs.get("side", "r"))
-    if kind == "lower":
-        return build_lower_weapon(color, style=style)
-    if kind == "shoulder":
-        return build_shoulder_weapon(color, style=style)
-    if kind == "battery":
-        return build_battery(color, style=style)
-    if kind == "cpu":
-        return build_cpu(color, style=style)
-    if kind == "drone":
-        return build_drone(color, style=style)
-    if kind == "chip":
-        return build_chip(color, style=style)
-    raise ValueError(f"unknown kind {kind}")
+        kids = build_torso(color, style=style)
+    elif kind == "leg":
+        kids = build_leg(color, style=style, side=kwargs.get("side", "r"))
+    elif kind == "lower":
+        kids = build_lower_weapon(color, style=style)
+    elif kind == "shoulder":
+        kids = build_shoulder_weapon(color, style=style)
+    elif kind == "battery":
+        kids = build_battery(color, style=style)
+    elif kind == "cpu":
+        kids = build_cpu(color, style=style)
+    elif kind == "drone":
+        kids = build_drone(color, style=style)
+    elif kind == "chip":
+        kids = build_chip(color, style=style)
+    else:
+        raise ValueError(f"unknown kind {kind}")
+    kids += rarity_trim(color, rarity=kwargs.get("rarity", "Common"), scale=trim_scale_for(kind))
+    return kids
 
 
 def write_model(path: Path, data: dict) -> None:
@@ -798,17 +1075,20 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
     counts: dict[str, int] = {}
+    rarities: dict[str, str] = {}
     for pid, (kind, color, kwargs) in sorted(PART_RECIPES.items()):
         children = build_children(kind, color, kwargs)
         assert len(children) >= 3, f"{pid} too few parts ({len(children)})"
         write_model(OUT / f"{pid}.model.json", pack_model(children))
         counts[kind] = counts.get(kind, 0) + 1
+        rarities[pid] = kwargs.get("rarity", "Common")
 
     # Manifest lives outside RS so Rojo does not sync it as an Instance
     manifest = {
         "count": len(PART_RECIPES),
         "byKind": counts,
         "ids": sorted(PART_RECIPES.keys()),
+        "rarities": rarities,
     }
     man_path = ROOT / "tools" / "part_models_manifest.json"
     man_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")

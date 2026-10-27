@@ -62,7 +62,7 @@
       }
     },
     {
-      "Name": "ThighBlock",
+      "Name": "Thigh",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -71,12 +71,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          1.1,
-          1.5
+          1.25,
+          1.15,
+          1.25
         ],
         "Position": [
-          0,
+          -0.05,
           0.4,
           0
         ],
@@ -86,6 +86,35 @@
           0.23529411764705882
         ],
         "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ThighPlate",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          0.9,
+          1.0
+        ],
+        "Position": [
+          -0.7,
+          0.35,
+          0.1
+        ],
+        "Color": [
+          0.18980392156862746,
+          0.18980392156862746,
+          0.20705882352941177
+        ],
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -100,14 +129,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.4,
-          0.5,
-          1.4
+          1.15,
+          0.45,
+          1.15
         ],
         "Position": [
-          0,
+          -0.08,
           -0.3,
-          0
+          0.05
         ],
         "Color": [
           0.16176470588235295,
@@ -116,11 +145,12 @@
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       }
     },
     {
-      "Name": "ShinBlock",
+      "Name": "Shin",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -129,12 +159,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.55,
-          1.0,
-          1.55
+          1.05,
+          1.05,
+          1.1
         ],
         "Position": [
-          0,
+          -0.05,
           -1.0,
           0
         ],
@@ -149,6 +179,35 @@
       }
     },
     {
+      "Name": "Ankle",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.2,
+          0.35,
+          1.2
+        ],
+        "Position": [
+          0,
+          -1.55,
+          0.05
+        ],
+        "Color": [
+          0.16176470588235295,
+          0.16176470588235295,
+          0.1764705882352941
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
       "Name": "FootPad",
       "ClassName": "Part",
       "Properties": {
@@ -158,14 +217,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.9,
-          0.4,
-          1.9
+          1.7,
+          0.35,
+          1.75
         ],
         "Position": [
           0,
-          -1.65,
-          0.1
+          -1.85,
+          0.2
         ],
         "Color": [
           0.1411764705882353,
@@ -187,14 +246,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
-          0.4,
-          0.4
+          0.35,
+          0.35,
+          0.35
         ],
         "Position": [
-          -0.5,
+          -0.45,
           -0.3,
-          0.7
+          0.65
         ],
         "Color": [
           0.45098039215686275,
@@ -216,14 +275,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.7,
-          0.35,
-          0.5
+          1.4,
+          0.3,
+          0.45
         ],
         "Position": [
           0,
-          -1.55,
-          0.9
+          -1.7,
+          0.95
         ],
         "Color": [
           0.18980392156862746,

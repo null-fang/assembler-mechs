@@ -1,0 +1,298 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "HipBall",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.7,
+          0.9
+        ],
+        "Position": [
+          0,
+          1.1,
+          0
+        ],
+        "Color": [
+          0.22058823529411764,
+          0.21176470588235294,
+          0.2
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Ball"
+      }
+    },
+    {
+      "Name": "Thigh",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.25,
+          1.15,
+          1.25
+        ],
+        "Position": [
+          0.05,
+          0.4,
+          0
+        ],
+        "Color": [
+          0.29411764705882354,
+          0.2823529411764706,
+          0.26666666666666666
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ThighPlate",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          0.9,
+          1.0
+        ],
+        "Position": [
+          0.7,
+          0.35,
+          0.1
+        ],
+        "Color": [
+          0.25882352941176473,
+          0.2484705882352941,
+          0.23466666666666666
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "KneeCap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.15,
+          0.45,
+          1.15
+        ],
+        "Position": [
+          0.08,
+          -0.3,
+          0.05
+        ],
+        "Color": [
+          0.22058823529411764,
+          0.21176470588235294,
+          0.2
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      }
+    },
+    {
+      "Name": "Shin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.05,
+          1.05,
+          1.1
+        ],
+        "Position": [
+          0.05,
+          -1.0,
+          0
+        ],
+        "Color": [
+          0.29411764705882354,
+          0.2823529411764706,
+          0.26666666666666666
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Ankle",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.2,
+          0.35,
+          1.2
+        ],
+        "Position": [
+          0,
+          -1.55,
+          0.05
+        ],
+        "Color": [
+          0.22058823529411764,
+          0.21176470588235294,
+          0.2
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "FootPad",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.7,
+          0.35,
+          1.75
+        ],
+        "Position": [
+          0,
+          -1.85,
+          0.2
+        ],
+        "Color": [
+          0.1411764705882353,
+          0.13333333333333333,
+          0.12549019607843137
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentStud",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.35,
+          0.35,
+          0.35
+        ],
+        "Position": [
+          0.45,
+          -0.3,
+          0.65
+        ],
+        "Color": [
+          0.5058823529411764,
+          0.49764705882352944,
+          0.4866666666666667
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ToeLip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.4,
+          0.3,
+          0.45
+        ],
+        "Position": [
+          0,
+          -1.7,
+          0.95
+        ],
+        "Color": [
+          0.25882352941176473,
+          0.2484705882352941,
+          0.23466666666666666
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

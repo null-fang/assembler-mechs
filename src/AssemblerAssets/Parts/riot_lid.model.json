@@ -1,0 +1,267 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "Mount",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.7,
+          0.7
+        ],
+        "Position": [
+          0,
+          0,
+          -0.9
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.32941176470588235,
+          0.3450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Brace",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
+          0.55,
+          1.0
+        ],
+        "Position": [
+          0,
+          0,
+          -0.2
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.32941176470588235,
+          0.3450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Face",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.6,
+          2.0,
+          0.25
+        ],
+        "Position": [
+          0,
+          0.15,
+          0.7
+        ],
+        "Color": [
+          0.39215686274509803,
+          0.4117647058823529,
+          0.43137254901960786
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Boss",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.55,
+          0.3
+        ],
+        "Position": [
+          0,
+          0.2,
+          0.9
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.32941176470588235,
+          0.3450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentRim",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.7,
+          0.15,
+          0.15
+        ],
+        "Position": [
+          0,
+          1.05,
+          0.75
+        ],
+        "Color": [
+          0.6049019607843138,
+          0.6176470588235294,
+          0.6303921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentRimBot",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.7,
+          0.15,
+          0.15
+        ],
+        "Position": [
+          0,
+          -0.75,
+          0.75
+        ],
+        "Color": [
+          0.6049019607843138,
+          0.6176470588235294,
+          0.6303921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "LipL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          1.6,
+          0.35
+        ],
+        "Position": [
+          -0.85,
+          0.15,
+          0.7
+        ],
+        "Color": [
+          0.34509803921568627,
+          0.3623529411764706,
+          0.37960784313725493
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "LipR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          1.6,
+          0.35
+        ],
+        "Position": [
+          0.85,
+          0.15,
+          0.7
+        ],
+        "Color": [
+          0.34509803921568627,
+          0.3623529411764706,
+          0.37960784313725493
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

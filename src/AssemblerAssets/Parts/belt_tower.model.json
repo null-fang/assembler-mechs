@@ -1,0 +1,298 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      }
+    },
+    {
+      "Name": "ShoulderMount",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.2,
+          0.55,
+          1.0
+        ],
+        "Position": [
+          0,
+          -0.15,
+          -0.7
+        ],
+        "Color": [
+          0.3211764705882353,
+          0.3058823529411765,
+          0.27529411764705886
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Receiver",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.2,
+          0.75,
+          1.4
+        ],
+        "Position": [
+          0,
+          0.2,
+          0.2
+        ],
+        "Color": [
+          0.4117647058823529,
+          0.39215686274509803,
+          0.35294117647058826
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Barrel",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.32,
+          0.32,
+          2.0
+        ],
+        "Position": [
+          0,
+          0.25,
+          1.5
+        ],
+        "Color": [
+          0.3211764705882353,
+          0.3058823529411765,
+          0.27529411764705886
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Jacket",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.5,
+          1.1
+        ],
+        "Position": [
+          0,
+          0.25,
+          1.0
+        ],
+        "Color": [
+          0.3623529411764706,
+          0.34509803921568627,
+          0.31058823529411766
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      }
+    },
+    {
+      "Name": "AmmoDrum",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.85,
+          0.85,
+          0.7
+        ],
+        "Position": [
+          0.7,
+          0.1,
+          -0.1
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.11764705882352941,
+          0.13333333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      }
+    },
+    {
+      "Name": "AccentFeed",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          0.25,
+          0.8
+        ],
+        "Position": [
+          0.4,
+          0.25,
+          0.3
+        ],
+        "Color": [
+          0.6,
+          0.5866666666666667,
+          0.56
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Sight",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.15,
+          0.4,
+          0.5
+        ],
+        "Position": [
+          0,
+          0.65,
+          0.4
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.11764705882352941,
+          0.13333333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Muzzle",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.4,
+          0.4,
+          0.3
+        ],
+        "Position": [
+          0,
+          0.25,
+          2.4
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.11764705882352941,
+          0.13333333333333333
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "AccentTrimA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          0.35,
+          0.25,
+          0.4
+        ],
+        "Color": [
+          0.6470588235294118,
+          0.6352941176470588,
+          0.611764705882353
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    }
+  ]
+}

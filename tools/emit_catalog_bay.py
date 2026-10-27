@@ -20,21 +20,53 @@ OUT = ROOT / "src" / "Shared" / "Parts" / "CatalogBay.luau"
 TORSO_STYLES = {
     "oil_drum_chest", "panel_wagon", "scaffold_cage", "slab_fort", "chrome_can",
     "bolt_bunker", "wire_hulk", "dock_locker",
+    "wedge_breast", "keel_plate", "rib_tower", "bone_frame", "fluted_can",
+    "apron_hull", "spike_cage", "crest_vault", "torch_bunker", "glass_wedge",
 }
 LOWER = {
     "saw_arm", "ram_fist", "plasma_dab", "coal_mitt", "auger_bit", "grapple_hook",
     "foam_sprayer", "hammer_hand",
+    "chatter_gun", "belt_feeder", "spit_mg", "ray_glove", "lens_poke", "pulse_mitt",
+    "scrap_blade", "mace_arm", "chain_flail", "spike_gaunt",
+    "riot_lid", "plate_guard", "buckler_arm", "aegis_door",
 }
 SHOULDER = {
     "crate_mortar", "coil_spear", "junk_box", "flare_twin", "slag_brick",
     "arc_fork", "heat_lance", "pitch_pot",
+    "rocket_pod", "tube_swarm", "rack_salvo", "cluster_rack", "hammer_rocket",
+    "sun_beam", "prism_mast", "frost_beam",
+    "chatter_rack", "spitfire_pod", "gale_mg", "belt_tower",
 }
-BATTERY = {"cell_strip", "wet_cell", "junk_brick", "surge_pack", "core_cell"}
-CPU = {"fried_cpu", "lab_cpu", "prism_cpu"}
-DRONE = {"buzz_drone", "crate_mite", "cross_beep", "glass_orb", "crawl_bit"}
-CHIP = {"chip_foam", "chip_braid", "chip_oil", "chip_bulk", "chip_scab"}
+BATTERY = {
+    "cell_strip", "wet_cell", "junk_brick", "surge_pack", "core_cell",
+    "pulse_cell", "crystal_pack", "arc_cell",
+}
+CPU = {"fried_cpu", "lab_cpu", "prism_cpu", "neural_cpu", "fused_cpu"}
+DRONE = {
+    "buzz_drone", "crate_mite", "cross_beep", "glass_orb", "crawl_bit",
+    "scout_mite", "pulse_moth",
+}
+CHIP = {
+    "chip_foam", "chip_braid", "chip_oil", "chip_bulk", "chip_scab",
+    "chip_glow", "chip_vein", "chip_mirror",
+}
 
-LEG_PREFIXES = ("cargo_", "blade_", "block_", "grip_", "hydro_")
+LEG_PREFIXES = (
+    "cargo_", "blade_", "block_", "grip_", "hydro_",
+    "hoof_", "hinge_", "pad_", "spur_", "ski_",
+)
+
+# Weapon damage / mount flavor for bay emit
+LOWER_ENERGY = {"plasma_dab", "ray_glove", "lens_poke", "pulse_mitt"}
+LOWER_HEAT = {"coal_mitt", "torch_palm"}
+LOWER_SHIELD = {"riot_lid", "plate_guard", "buckler_arm", "aegis_door"}
+SHOULDER_ENERGY = {
+    "coil_spear", "arc_fork", "sun_beam", "prism_mast", "frost_beam",
+}
+SHOULDER_HEAT = {
+    "flare_twin", "heat_lance", "pitch_pot", "crate_mortar",
+    "rocket_pod", "tube_swarm", "rack_salvo", "cluster_rack", "hammer_rocket",
+}
 
 NAME_OVERRIDES = {
     "oil_drum_chest": "Oil Drum Chest",
@@ -79,6 +111,57 @@ NAME_OVERRIDES = {
     "chip_oil": "Chip: Oil Film",
     "chip_bulk": "Chip: Bulk Plate",
     "chip_scab": "Chip: Scab Seal",
+    "wedge_breast": "Wedge Breast",
+    "keel_plate": "Keel Plate",
+    "rib_tower": "Rib Tower",
+    "bone_frame": "Bone Frame",
+    "fluted_can": "Fluted Can",
+    "apron_hull": "Apron Hull",
+    "spike_cage": "Spike Cage",
+    "crest_vault": "Crest Vault",
+    "torch_bunker": "Torch Bunker",
+    "glass_wedge": "Glass Wedge",
+    "chatter_gun": "Chatter Gun",
+    "belt_feeder": "Belt Feeder",
+    "spit_mg": "Spit MG",
+    "ray_glove": "Ray Glove",
+    "lens_poke": "Lens Poke",
+    "pulse_mitt": "Pulse Mitt",
+    "scrap_blade": "Scrap Blade",
+    "mace_arm": "Mace Arm",
+    "chain_flail": "Chain Flail",
+    "spike_gaunt": "Spike Gaunt",
+    "riot_lid": "Riot Lid",
+    "plate_guard": "Plate Guard",
+    "buckler_arm": "Buckler Arm",
+    "aegis_door": "Aegis Door",
+    "rocket_pod": "Rocket Pod",
+    "tube_swarm": "Tube Swarm",
+    "rack_salvo": "Rack Salvo",
+    "cluster_rack": "Cluster Rack",
+    "hammer_rocket": "Hammer Rocket",
+    "sun_beam": "Sun Beam",
+    "prism_mast": "Prism Mast",
+    "frost_beam": "Frost Beam",
+    "chatter_rack": "Chatter Rack",
+    "spitfire_pod": "Spitfire Pod",
+    "gale_mg": "Gale MG",
+    "belt_tower": "Belt Tower",
+    "pulse_cell": "Pulse Cell",
+    "crystal_pack": "Crystal Pack",
+    "arc_cell": "Arc Cell",
+    "neural_cpu": "Neural CPU",
+    "fused_cpu": "Fused CPU",
+    "scout_mite": "Scout Mite",
+    "pulse_moth": "Pulse Moth",
+    "chip_glow": "Chip: Glow Trace",
+    "chip_vein": "Chip: Vein Line",
+    "chip_mirror": "Chip: Mirror Pad",
+    "hoof": "Hoof",
+    "hinge": "Hinge",
+    "pad": "Pad",
+    "spur": "Spur",
+    "ski": "Ski",
 }
 
 
@@ -118,21 +201,30 @@ def existing_ids() -> set[str]:
     return set(re.findall(r"\bid\s*=\s*\"([a-z0-9_]+)\"", text))
 
 
+RARITIES: dict[str, str] = {}
+
+
+def rarity_of(pid: str, default: str = "Uncommon") -> str:
+    return RARITIES.get(pid, default)
+
+
 def torso_entry(pid: str) -> str:
     name = humanize(pid)
+    rar = rarity_of(pid)
+    integ = 280 if rar in ("Epic", "Legendary") else (250 if rar == "Rare" else 240)
     return f"""\t{pid} = part({{
 \t\tid = "{pid}",
 \t\tname = "{name}",
 \t\tslot = "Torso",
-\t\trarity = "Uncommon",
+\t\trarity = "{rar}",
 \t\tweight = 30,
 \t\tsellWorth = 55,
 \t\tlevel = 1,
 \t\ttooltip = "Bay chassis kit.",
-\t\tcontrib = {{ integrity = 240, temperatureMax = 105, cooling = 18, batteryMax = 88, batteryRegen = 12 }},
+\t\tcontrib = {{ integrity = {integ}, temperatureMax = 105, cooling = 18, batteryMax = 88, batteryRegen = 12 }},
 \t\tvisual = {{ color = rgb(100, 100, 100), size = Vector3.new(4.0, 3.1, 2.6) }},
 \t\ttorsoStats = {{
-\t\t\tintegrity = 240,
+\t\t\tintegrity = {integ},
 \t\t\ttemperatureMax = 105,
 \t\t\tcooling = 18,
 \t\t\tbatteryMax = 88,
@@ -148,12 +240,13 @@ def torso_entry(pid: str) -> str:
 def leg_entry(pid: str) -> str:
     side = "LeftLeg" if pid.endswith("_l") else "RightLeg"
     variant = pid.rsplit("_", 1)[0]
-    move = 3 if variant in ("blade", "hydro") else (1 if variant == "block" else 2)
+    move = 3 if variant in ("blade", "hydro", "ski") else (1 if variant in ("block", "pad") else 2)
+    rar = rarity_of(pid)
     return f"""\t{pid} = part({{
 \t\tid = "{pid}",
 \t\tname = "{humanize(pid)}",
 \t\tslot = "{side}",
-\t\trarity = "Uncommon",
+\t\trarity = "{rar}",
 \t\tweight = 10,
 \t\tsellWorth = 36,
 \t\tlevel = 1,
@@ -167,19 +260,38 @@ def leg_entry(pid: str) -> str:
 
 
 def lower_entry(pid: str) -> str:
-    dtype = "Heat" if pid in ("coal_mitt",) else ("Energy" if pid in ("plasma_dab",) else "Physical")
-    dmg = 28 if dtype == "Physical" else (22 if dtype == "Heat" else 26)
+    if pid in LOWER_SHIELD:
+        dtype = "Physical"
+        dmg = 8
+        tip = "Guard. Range 1."
+        rmax = 1
+    elif pid in LOWER_ENERGY:
+        dtype = "Energy"
+        dmg = 26
+        tip = "Energy. Range 1-3."
+        rmax = 3
+    elif pid in LOWER_HEAT:
+        dtype = "Heat"
+        dmg = 22
+        tip = "Heat. Range 1-3."
+        rmax = 3
+    else:
+        dtype = "Physical"
+        dmg = 28
+        tip = "Physical. Range 1-3."
+        rmax = 3
+    rar = rarity_of(pid)
     return f"""\t{pid} = part({{
 \t\tid = "{pid}",
 \t\tname = "{humanize(pid)}",
 \t\tslot = "LowerLeft",
-\t\trarity = "Uncommon",
+\t\trarity = "{rar}",
 \t\tweight = 9,
 \t\tsellWorth = 40,
 \t\tlevel = 1,
 \t\ttooltip = "Lower mount weapon kit.",
 \t\tmountClass = "Lower",
-\t\tcontrib = {{ integrity = 2 }},
+\t\tcontrib = {{ integrity = {"12" if pid in LOWER_SHIELD else "2"} }},
 \t\tvisual = {{ color = rgb(110, 110, 110), size = Vector3.new(1.1, 1.0, 2.4) }},
 \t\tweaponStats = {{
 \t\t\tdamageType = "{dtype}",
@@ -187,20 +299,27 @@ def lower_entry(pid: str) -> str:
 \t\t\theatCost = 6,
 \t\t\tbatteryCost = {0 if dtype == "Physical" else 6},
 \t\t\trangeMin = 1,
-\t\t\trangeMax = 3,
+\t\t\trangeMax = {rmax},
 \t\t\tapCost = 1,
-\t\t\ttooltip = "{dtype}. Range 1-3.",
+\t\t\ttooltip = "{tip}",
 \t\t}},
 \t}}),"""
 
 
 def shoulder_entry(pid: str) -> str:
-    dtype = "Energy" if pid in ("coil_spear", "arc_fork") else ("Heat" if pid in ("flare_twin", "heat_lance", "pitch_pot", "crate_mortar") else "Physical")
+    if pid in SHOULDER_ENERGY:
+        dtype = "Energy"
+    elif pid in SHOULDER_HEAT:
+        dtype = "Heat"
+    else:
+        dtype = "Physical"
+    rar = rarity_of(pid)
+    dmg = 36 if rar in ("Epic", "Legendary") else 30
     return f"""\t{pid} = part({{
 \t\tid = "{pid}",
 \t\tname = "{humanize(pid)}",
 \t\tslot = "ShoulderRight",
-\t\trarity = "Uncommon",
+\t\trarity = "{rar}",
 \t\tweight = 13,
 \t\tsellWorth = 50,
 \t\tlevel = 1,
@@ -210,7 +329,7 @@ def shoulder_entry(pid: str) -> str:
 \t\tvisual = {{ color = rgb(100, 100, 100), size = Vector3.new(1.5, 1.1, 2.8) }},
 \t\tweaponStats = {{
 \t\t\tdamageType = "{dtype}",
-\t\t\tdamage = 30,
+\t\t\tdamage = {dmg},
 \t\t\theatCost = 8,
 \t\t\tbatteryCost = {0 if dtype == "Physical" else 10},
 \t\t\trangeMin = 2,
@@ -222,28 +341,31 @@ def shoulder_entry(pid: str) -> str:
 
 
 def battery_entry(pid: str) -> str:
+    rar = rarity_of(pid)
+    bonus = 48 if rar in ("Epic", "Legendary") else (40 if rar == "Rare" else 32)
     return f"""\t{pid} = part({{
 \t\tid = "{pid}",
 \t\tname = "{humanize(pid)}",
 \t\tslot = "Battery",
-\t\trarity = "Uncommon",
+\t\trarity = "{rar}",
 \t\tweight = 7,
 \t\tsellWorth = 40,
 \t\tlevel = 1,
 \t\ttooltip = "Pack kit.",
-\t\tcontrib = {{ batteryMax = 32, batteryRegen = 7 }},
+\t\tcontrib = {{ batteryMax = {bonus}, batteryRegen = 7 }},
 \t\tvisual = {{ color = rgb(40, 70, 85), size = Vector3.new(1.7, 1.1, 0.85) }},
-\t\tbatteryStats = {{ batteryMaxBonus = 32, batteryRegenBonus = 7 }},
+\t\tbatteryStats = {{ batteryMaxBonus = {bonus}, batteryRegenBonus = 7 }},
 \t}}),"""
 
 
 def cpu_entry(pid: str) -> str:
-    tier = 3 if pid == "prism_cpu" else (2 if pid == "lab_cpu" else 1)
+    rar = rarity_of(pid)
+    tier = 4 if pid == "neural_cpu" else (3 if pid in ("prism_cpu", "fused_cpu") else (2 if pid == "lab_cpu" else 1))
     return f"""\t{pid} = part({{
 \t\tid = "{pid}",
 \t\tname = "{humanize(pid)}",
 \t\tslot = "CPU",
-\t\trarity = "Uncommon",
+\t\trarity = "{rar}",
 \t\tweight = 3,
 \t\tsellWorth = 30,
 \t\tlevel = 1,
@@ -255,12 +377,13 @@ def cpu_entry(pid: str) -> str:
 
 
 def drone_entry(pid: str) -> str:
-    dtype = "Energy" if pid in ("buzz_drone", "glass_orb") else ("Heat" if pid == "cross_beep" else "Physical")
+    dtype = "Energy" if pid in ("buzz_drone", "glass_orb", "pulse_moth") else ("Heat" if pid == "cross_beep" else "Physical")
+    rar = rarity_of(pid)
     return f"""\t{pid} = part({{
 \t\tid = "{pid}",
 \t\tname = "{humanize(pid)}",
 \t\tslot = "Drone",
-\t\trarity = "Uncommon",
+\t\trarity = "{rar}",
 \t\tweight = 5,
 \t\tsellWorth = 40,
 \t\tlevel = 1,
@@ -279,11 +402,12 @@ def drone_entry(pid: str) -> str:
 
 
 def chip_entry(pid: str) -> str:
+    rar = rarity_of(pid, "Common")
     return f"""\t{pid} = part({{
 \t\tid = "{pid}",
 \t\tname = "{humanize(pid)}",
 \t\tslot = "Chip",
-\t\trarity = "Common",
+\t\trarity = "{rar}",
 \t\tweight = 2,
 \t\tsellWorth = 18,
 \t\tlevel = 1,
@@ -307,7 +431,9 @@ EMITTERS = {
 
 
 def main() -> None:
+    global RARITIES
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    RARITIES = dict(manifest.get("rarities") or {})
     have = existing_ids()
     missing = sorted(pid for pid in manifest["ids"] if pid not in have)
     blocks = []
