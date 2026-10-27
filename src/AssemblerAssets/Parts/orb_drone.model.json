@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.95,
-          0.95
+          0.9,
+          0.9,
+          0.9
         ],
         "Position": [
           0,
@@ -69,7 +69,7 @@
       }
     },
     {
-      "Name": "Core",
+      "Name": "GlowCore",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -88,17 +88,16 @@
           0
         ],
         "Color": [
-          0.6049019607843138,
-          0.7068627450980393,
-          0.8088235294117647
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth",
-        "Shape": "Ball"
+        "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -111,9 +110,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
+          1.1,
           0.12,
-          1.15
+          1.1
         ],
         "Position": [
           0,
@@ -121,13 +120,14 @@
           0
         ],
         "Color": [
-          0.3137254901960784,
-          0.43921568627450985,
-          0.5647058823529413
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"

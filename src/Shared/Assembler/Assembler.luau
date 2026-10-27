@@ -125,10 +125,9 @@ local function polishAuthoredModel(
 			d.Massless = true
 			if d.Name == "Root" then
 				d.Transparency = 1
-			elseif isTexturedBasePart(d) then
-				-- Socket/Assembler contract: do not recolor authored textures.
-				continue
 			elseif isAccentOrGlow(d.Name) then
+				-- Rarity neon on Accent*/Glow* only. TextureApply may still stamp
+				-- hazard/emissive overlays; Color3 tint must not be skipped.
 				local edge = rarityEdge(rarity)
 				local rank = rarityRank(rarity)
 				if rank == 0 then
@@ -141,9 +140,11 @@ local function polishAuthoredModel(
 						d.Transparency = math.min(d.Transparency, 0.25)
 					end
 				end
-			elseif teamTint then
-				d.Color = tint(d.Color, teamTint)
+			elseif isTexturedBasePart(d) then
+				-- Hull TextureRole / TexturePixels bake — never wash Color3 maps.
+				continue
 			end
+			-- No teamTint on body parts (preserves industrial plating read).
 		end
 	end
 	if rarity ~= "Common" then

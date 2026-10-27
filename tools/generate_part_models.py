@@ -1,10 +1,18 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Generate Rojo .model.json mech part kits for Assembler.
 
-Each Model is multi-Part low-poly (panels, barrels, joints, feet) ΓÇö never a single cube.
+Each Model is multi-Part low-poly (panels, rims, barrels, joints, feet) — never a single cube.
+Parts stamp Attribute TextureRole (tools/texture_ids.json). TextureApply bakes TexturePixels
+in Play when rbxassetid is empty; Texture children emit only after Studio upload fills IDs.
+
 Local origin = socket attach point. Child named Root is PrimaryPart (set by Assembler).
 
-Regen: python tools/generate_part_models.py
+Regen:
+  python3 tools/generate_textures.py   # PNG + embeds + TextureIds
+  python3 tools/generate_part_models.py
+  python3 tools/emit_catalog_bay.py
+  python3 tools/verify_part_coverage.py
+  python3 tools/smoke_textured_kits.py
 """
 
 from __future__ import annotations
@@ -30,7 +38,8 @@ TEXTURE_IDS = load_texture_ids()
 
 def texture_role_for(name: str, material: str) -> str:
     hints = TEXTURE_IDS.get("nameHints") or {}
-    for prefix, key in hints.items():
+    # Longer prefixes first (Glow before Core so GlowCore → emissive).
+    for prefix, key in sorted(hints.items(), key=lambda kv: -len(kv[0])):
         if name.startswith(prefix) or prefix in name:
             return key
     mat_hints = TEXTURE_IDS.get("materialHints") or {}
@@ -88,7 +97,7 @@ def part(
     pos: list[float],
     *,
     color: list[float],
-    material: str = "SmoothPlastic",
+    material: str = "Metal",
     transparency: float | None = None,
     shape: str | None = None,
 ) -> dict:
@@ -156,14 +165,74 @@ def wedge(
 
 
 def cf(pos: list[float], *, look_z: bool = True) -> list[float]:
-    """Identity-ish CFrame at position (Rojo CFrame as 12-float row-major?).
-
-    Rojo model.json CFrame is typically [x,y,z, R00,R01,R02, R10,R11,R12, R20,R21,R22]
-    or components list. Use Position-only Parts where possible; wedges need CFrame.
-    """
-    # Position + identity rotation matrix (column-major as used by many Rojo dumps)
+    """CFrame at position with identity rotation (Rojo 12-float form)."""
     x, y, z = pos
     return [x, y, z, 1, 0, 0, 0, 1, 0, 0, 0, 1]
+
+
+CAUTION = rgb(232, 168, 48)
+
+
+def rim_front(
+    base: str,
+    size: list[float],
+    pos: list[float],
+    *,
+    color: list[float],
+    thickness: float = 0.1,
+    material: str = "Metal",
+) -> list[dict]:
+    """Thin bevel rim on the +Z face — silhouette read without a flat box."""
+    sx, sy, sz = size
+    x, y, z = pos
+    fz = z + sz / 2 + thickness / 2
+    t = thickness
+    rim_c = lighten(color, 0.12)
+    return [
+        part(f"{base}RimT", [sx + t * 2, t, t], [x, y + sy / 2, fz], color=rim_c, material=material),
+        part(f"{base}RimB", [sx + t * 2, t, t], [x, y - sy / 2, fz], color=rim_c, material=material),
+        part(f"{base}RimL", [t, sy, t], [x - sx / 2 - t / 2, y, fz], color=rim_c, material=material),
+        part(f"{base}RimR", [t, sy, t], [x + sx / 2 + t / 2, y, fz], color=rim_c, material=material),
+    ]
+
+
+def inset_front(
+    name: str,
+    size: list[float],
+    pos: list[float],
+    *,
+    color: list[float],
+    material: str = "DiamondPlate",
+    depth: float = 0.12,
+    shrink: float = 0.18,
+) -> dict:
+    sx, sy, sz = size
+    x, y, z = pos
+    return part(
+        name,
+        [max(0.2, sx - shrink * 2), max(0.2, sy - shrink * 2), depth],
+        [x, y, z + sz / 2 + depth / 2],
+        color=darken(color, 0.1),
+        material=material,
+    )
+
+
+def caution_tape(name: str, size: list[float], pos: list[float]) -> list[dict]:
+    """Yellow/black hazard strip (TextureRole → hazard_stripe via nameHints)."""
+    return [
+        part(name, size, pos, color=CAUTION, material="SmoothPlastic"),
+        part(
+            name + "Blk",
+            [size[0] * 0.45, size[1], size[2] * 1.05],
+            [pos[0] - size[0] * 0.2, pos[1], pos[2]],
+            color=rgb(24, 24, 26),
+            material="SmoothPlastic",
+        ),
+    ]
+
+
+def joint_cyl(name: str, size: list[float], pos: list[float], *, color: list[float]) -> dict:
+    return part(name, size, pos, color=color, material="Metal", shape="Cylinder")
 
 
 def root_marker() -> dict:
@@ -182,252 +251,6 @@ def pack_model(children: list[dict]) -> dict:
     return {"ClassName": "Model", "Children": [root_marker()] + children}
 
 
-# ---------------------------------------------------------------------------
-# Geometry builders ΓÇö each returns child parts (excluding Root)
-# ---------------------------------------------------------------------------
-
-
-def build_torso(base: list[float], *, style: str) -> list[dict]:
-    """Chassis styles: cage, plate, tin, rivet, vault, lattice, bunker, glass."""
-    kids: list[dict] = []
-    hull = base
-    panel = darken(base, 0.18)
-    accent = lighten(base, 0.35)
-    vent = rgb(40, 44, 50)
-
-    if style == "cage":
-        kids += [
-            part("Hull", [3.6, 2.6, 2.2], [0, 0, 0], color=hull, material="CorrodedMetal"),
-            part("RibL", [0.35, 2.8, 2.4], [-1.7, 0, 0], color=panel, material="Metal"),
-            part("RibR", [0.35, 2.8, 2.4], [1.7, 0, 0], color=panel, material="Metal"),
-            part("ChestBar", [3.2, 0.45, 0.35], [0, 0.4, 1.15], color=accent, material="Metal"),
-            part("AccentVent", [1.4, 0.9, 0.25], [0, -0.3, 1.2], color=vent, material="Metal"),
-            part("HipPlate", [3.0, 0.5, 1.8], [0, -1.4, 0], color=panel, material="Metal"),
-            part("ShoulderStubL", [0.8, 0.7, 1.0], [-2.0, 1.1, 0], color=hull, material="Metal"),
-            part("ShoulderStubR", [0.8, 0.7, 1.0], [2.0, 1.1, 0], color=hull, material="Metal"),
-            part("BackPack", [2.4, 1.6, 0.7], [0, 0.2, -1.35], color=panel, material="Metal"),
-        ]
-    elif style == "plate":
-        kids += [
-            part("Core", [3.2, 2.2, 1.9], [0, 0, 0], color=hull, material="Metal"),
-            part("BreastPlate", [3.0, 1.6, 0.4], [0, 0.25, 1.2], color=panel, material="DiamondPlate"),
-            part("AccentStripe", [0.3, 2.0, 0.2], [0, 0.15, 1.4], color=accent, material="Neon"),
-            part("PauldronL", [1.15, 0.95, 1.3], [-2.05, 1.0, 0], color=panel, material="Metal"),
-            part("PauldronR", [1.15, 0.95, 1.3], [2.05, 1.0, 0], color=panel, material="Metal"),
-            part("Skirt", [3.2, 0.5, 1.8], [0, -1.4, 0.1], color=darken(hull, 0.12), material="Metal"),
-            part("BackRadiator", [2.4, 1.0, 0.45], [0, 0.55, -1.25], color=vent, material="Metal"),
-            part("NeckRing", [1.3, 0.3, 1.3], [0, 1.4, 0.1], color=panel, material="Metal"),
-            part("SideSkirtL", [0.35, 1.4, 1.4], [-1.85, -0.2, 0], color=darken(hull, 0.08), material="Metal"),
-            part("SideSkirtR", [0.35, 1.4, 1.4], [1.85, -0.2, 0], color=darken(hull, 0.08), material="Metal"),
-        ]
-    elif style == "tin":
-        # Stacked rings + flanges — not one stretched can
-        kids += [
-            part("RingMid", [3.2, 1.1, 1.9], [0, 0.1, 0], color=hull, material="Metal"),
-            part("RingTop", [2.9, 0.85, 1.7], [0, 1.05, 0], color=lighten(hull, 0.12), material="Metal"),
-            part("RingBot", [3.0, 0.8, 1.75], [0, -0.85, 0], color=darken(hull, 0.1), material="Metal"),
-            part("Cap", [2.6, 0.4, 1.5], [0, 1.6, 0], color=panel, material="Metal"),
-            part("AccentBand", [3.35, 0.22, 2.0], [0, 0.35, 0], color=accent, material="Neon"),
-            part("FlangeL", [0.35, 1.6, 1.4], [-1.7, 0.1, 0], color=panel, material="Metal"),
-            part("FlangeR", [0.35, 1.6, 1.4], [1.7, 0.1, 0], color=panel, material="Metal"),
-            part("FrontBadge", [0.9, 0.7, 0.2], [0, 0.4, 1.05], color=vent, material="SmoothPlastic"),
-            part("HipSkirt", [2.8, 0.45, 1.5], [0, -1.4, 0.05], color=panel, material="Metal"),
-            part("Intake", [1.4, 0.55, 0.55], [0, -0.4, -1.15], color=vent, material="Metal"),
-        ]
-    elif style == "wedge":
-        kids += [
-            part("Core", [3.0, 2.0, 1.8], [0, -0.1, 0], color=hull, material="Metal"),
-            part("SlopePlate", [3.4, 0.35, 2.2], [0, 1.0, 0.15], color=panel, material="DiamondPlate"),
-            part("Keel", [2.2, 0.7, 2.0], [0, -1.2, 0.2], color=darken(hull, 0.15), material="Metal"),
-            part("AccentCrest", [0.3, 1.6, 0.25], [0, 0.3, 1.15], color=accent, material="Neon"),
-            part("CheekL", [0.7, 1.4, 1.2], [-1.7, 0.2, 0.2], color=panel, material="Metal"),
-            part("CheekR", [0.7, 1.4, 1.2], [1.7, 0.2, 0.2], color=panel, material="Metal"),
-            part("Nose", [1.6, 0.9, 0.7], [0, 0.2, 1.2], color=lighten(hull, 0.1), material="Metal"),
-            part("BackFin", [0.35, 1.4, 1.0], [0, 0.6, -1.2], color=vent, material="Metal"),
-        ]
-    elif style == "rib":
-        kids += [
-            part("Spine", [1.4, 2.6, 1.6], [0, 0, 0], color=hull, material="Metal"),
-            part("Rib1", [3.4, 0.35, 2.0], [0, 0.8, 0], color=panel, material="Metal"),
-            part("Rib2", [3.6, 0.35, 2.1], [0, 0.1, 0], color=panel, material="Metal"),
-            part("Rib3", [3.2, 0.35, 1.9], [0, -0.6, 0], color=panel, material="Metal"),
-            part("AccentWire", [0.15, 2.2, 0.15], [0.5, 0.1, 0.9], color=accent, material="Neon"),
-            part("AccentWire2", [0.15, 2.2, 0.15], [-0.5, 0.1, 0.9], color=accent, material="Neon"),
-            part("Sternum", [1.8, 1.2, 0.35], [0, 0.2, 1.1], color=darken(hull, 0.1), material="Metal"),
-            part("HipYoke", [2.6, 0.5, 1.4], [0, -1.4, 0], color=panel, material="Metal"),
-            part("BackCage", [2.0, 1.6, 0.5], [0, 0.2, -1.15], color=vent, material="Metal"),
-        ]
-    elif style == "rivet":
-        kids += [
-            part("Hull", [3.8, 2.7, 2.3], [0, 0, 0], color=hull, material="CorrodedMetal"),
-            part("PlateA", [1.6, 1.4, 0.3], [-1.0, 0.4, 1.2], color=panel, material="Metal"),
-            part("PlateB", [1.6, 1.4, 0.3], [1.0, 0.4, 1.2], color=panel, material="Metal"),
-            part("AccentBoltRow", [3.0, 0.25, 0.2], [0, -0.5, 1.25], color=accent, material="Metal"),
-            part("SideCageL", [0.5, 2.4, 2.0], [-2.0, 0, 0], color=darken(hull, 0.2), material="Metal"),
-            part("SideCageR", [0.5, 2.4, 2.0], [2.0, 0, 0], color=darken(hull, 0.2), material="Metal"),
-            part("Exhaust", [0.6, 0.6, 1.2], [0.8, 0.8, -1.5], color=vent, material="Metal"),
-            part("Exhaust2", [0.6, 0.6, 1.2], [-0.8, 0.8, -1.5], color=vent, material="Metal"),
-        ]
-    elif style == "vault":
-        # Layered safe — core + plates, not one huge diamond box
-        kids += [
-            part("Core", [3.2, 2.4, 2.0], [0, 0, 0], color=hull, material="Metal"),
-            part("FacePlate", [2.4, 1.8, 0.35], [0, 0.15, 1.25], color=panel, material="DiamondPlate"),
-            part("AccentLock", [0.45, 0.45, 0.3], [0.55, 0.15, 1.5], color=accent, material="Neon"),
-            part("HingeL", [0.28, 1.8, 0.28], [-1.3, 0.15, 1.25], color=vent, material="Metal"),
-            part("HingeR", [0.28, 1.8, 0.28], [1.3, 0.15, 1.25], color=vent, material="Metal"),
-            part("CornerL", [0.7, 0.7, 0.7], [-1.8, 1.15, 0.9], color=panel, material="Metal"),
-            part("CornerR", [0.7, 0.7, 0.7], [1.8, 1.15, 0.9], color=panel, material="Metal"),
-            part("SideBoltL", [0.45, 2.0, 1.6], [-1.9, 0, 0], color=darken(hull, 0.12), material="Metal"),
-            part("SideBoltR", [0.45, 2.0, 1.6], [1.9, 0, 0], color=darken(hull, 0.12), material="Metal"),
-            part("BackSafe", [2.6, 1.8, 0.7], [0, 0.1, -1.35], color=darken(hull, 0.18), material="Metal"),
-            part("RoofLip", [3.4, 0.35, 2.1], [0, 1.4, 0], color=panel, material="Metal"),
-        ]
-    elif style == "lattice":
-        kids += [
-            part("Core", [2.6, 2.2, 1.8], [0, 0, 0], color=hull, material="Metal"),
-            part("FrameTL", [0.3, 2.8, 0.3], [-1.6, 0, -0.9], color=panel, material="Metal"),
-            part("FrameTR", [0.3, 2.8, 0.3], [1.6, 0, -0.9], color=panel, material="Metal"),
-            part("FrameBL", [0.3, 2.8, 0.3], [-1.6, 0, 0.9], color=panel, material="Metal"),
-            part("FrameBR", [0.3, 2.8, 0.3], [1.6, 0, 0.9], color=panel, material="Metal"),
-            part("Cross", [3.4, 0.25, 0.25], [0, 0.5, 0], color=accent, material="Neon"),
-            part("Cross2", [0.25, 0.25, 2.2], [0, -0.4, 0], color=accent, material="Neon"),
-            part("MeshPanel", [3.2, 1.0, 0.15], [0, 0.8, 1.05], color=vent, material="Metal"),
-        ]
-    elif style == "bunker":
-        kids += [
-            part("Hull", [4.4, 2.4, 2.8], [0, -0.2, 0], color=hull, material="Concrete"),
-            part("SlopedCrest", [4.0, 0.8, 2.4], [0, 1.2, 0], color=panel, material="Metal"),
-            part("ViewSlit", [2.0, 0.35, 0.3], [0, 0.6, 1.45], color=accent, material="Neon"),
-            part("SideArmorL", [0.7, 2.2, 2.6], [-2.3, 0, 0], color=darken(hull, 0.1), material="Metal"),
-            part("SideArmorR", [0.7, 2.2, 2.6], [2.3, 0, 0], color=darken(hull, 0.1), material="Metal"),
-            part("TrackGuard", [4.2, 0.5, 1.2], [0, -1.4, 0.6], color=panel, material="Metal"),
-            part("Antenna", [0.2, 1.4, 0.2], [1.2, 2.0, -0.6], color=vent, material="Metal"),
-        ]
-    else:  # glass / default light shell
-        kids += [
-            part("Hull", [3.6, 2.5, 2.1], [0, 0, 0], color=hull, material="Metal"),
-            part("Canopy", [2.2, 1.2, 1.6], [0, 0.9, 0.5], color=lighten(base, 0.4), material="Glass", transparency=0.35),
-            part("AccentRim", [2.4, 0.2, 1.8], [0, 0.35, 0.5], color=accent, material="Neon"),
-            part("CheekL", [0.6, 1.0, 1.0], [-1.8, 0.5, 0.4], color=panel, material="Metal"),
-            part("CheekR", [0.6, 1.0, 1.0], [1.8, 0.5, 0.4], color=panel, material="Metal"),
-            part("Belly", [2.8, 0.8, 1.6], [0, -1.2, 0.2], color=panel, material="Metal"),
-            part("BackFin", [0.3, 1.6, 1.2], [0, 0.8, -1.3], color=accent, material="Metal"),
-        ]
-    return kids
-
-
-def build_leg(base: list[float], *, style: str, side: str) -> list[dict]:
-    """Leg styles: workboot, sprint, stump, digit, piston, tread, claw, strut.
-    Geometry is mirrored for left/right via side sign.
-    """
-    s = -1.0 if side == "l" else 1.0
-    kids: list[dict] = []
-    armor = base
-    joint = darken(base, 0.25)
-    accent = lighten(base, 0.3)
-    sole = rgb(36, 34, 32)
-
-    # Hip at top of leg socket (~ local 0)
-    kids.append(part("HipBall", [0.9, 0.7, 0.9], [0, 1.1, 0], color=joint, material="Metal", shape="Ball"))
-
-    if style == "workboot":
-        kids += [
-            part("Thigh", [1.1, 1.3, 1.2], [0.05 * s, 0.35, 0], color=armor, material="Metal"),
-            part("Knee", [1.0, 0.55, 1.1], [0.1 * s, -0.4, 0.05], color=joint, material="Metal"),
-            part("Shin", [1.0, 1.2, 1.15], [0.05 * s, -1.15, 0], color=armor, material="Metal"),
-            part("Boot", [1.35, 0.45, 1.7], [0, -1.85, 0.25], color=sole, material="SmoothPlastic"),
-            part("AccentBuckle", [0.7, 0.25, 0.2], [0.15 * s, -1.55, 0.7], color=accent, material="Neon"),
-            part("AnkleGuard", [1.15, 0.35, 1.0], [0, -1.55, 0], color=darken(armor, 0.1), material="Metal"),
-        ]
-    elif style == "sprint":
-        kids += [
-            part("ThighRod", [0.55, 1.5, 0.55], [0.1 * s, 0.3, 0], color=armor, material="Metal"),
-            part("KneeCam", [0.7, 0.45, 0.7], [0.15 * s, -0.55, 0], color=joint, material="Metal"),
-            part("ShinRod", [0.5, 1.6, 0.5], [0.1 * s, -1.4, 0], color=armor, material="Metal"),
-            part("Toe", [0.7, 0.3, 1.2], [0, -2.15, 0.35], color=sole, material="Metal"),
-            part("AccentStripe", [0.2, 1.2, 0.15], [0.35 * s, 0.2, 0.25], color=accent, material="Neon"),
-            part("HeelSpike", [0.35, 0.5, 0.35], [0, -2.0, -0.4], color=joint, material="Metal"),
-        ]
-    elif style == "stump":
-        # Tapered armor stack + flared foot — not stacked cubes
-        kids += [
-            part("Thigh", [1.25, 1.15, 1.25], [0.05 * s, 0.4, 0], color=armor, material="CorrodedMetal"),
-            part("ThighPlate", [0.25, 0.9, 1.0], [0.7 * s, 0.35, 0.1], color=panel_safe(armor), material="Metal"),
-            part("KneeCap", [1.15, 0.45, 1.15], [0.08 * s, -0.3, 0.05], color=joint, material="Metal", shape="Cylinder"),
-            part("Shin", [1.05, 1.05, 1.1], [0.05 * s, -1.0, 0], color=armor, material="CorrodedMetal"),
-            part("Ankle", [1.2, 0.35, 1.2], [0, -1.55, 0.05], color=joint, material="Metal"),
-            part("FootPad", [1.7, 0.35, 1.75], [0, -1.85, 0.2], color=sole, material="SmoothPlastic"),
-            part("AccentStud", [0.35, 0.35, 0.35], [0.45 * s, -0.3, 0.65], color=accent, material="Neon"),
-            part("ToeLip", [1.4, 0.3, 0.45], [0, -1.7, 0.95], color=panel_safe(armor), material="Metal"),
-        ]
-    elif style == "hoof":
-        kids += [
-            part("Thigh", [1.05, 1.2, 1.05], [0.08 * s, 0.4, 0], color=armor, material="Metal"),
-            part("Knee", [0.9, 0.4, 0.9], [0.1 * s, -0.35, 0], color=joint, material="Metal"),
-            part("Shin", [0.95, 1.1, 0.95], [0.08 * s, -1.05, 0], color=armor, material="Metal"),
-            part("Fetlock", [1.05, 0.35, 1.0], [0, -1.6, 0.1], color=joint, material="Metal"),
-            part("Hoof", [1.25, 0.4, 1.45], [0, -1.95, 0.25], color=sole, material="SmoothPlastic"),
-            part("AccentCalk", [0.3, 0.25, 0.3], [0.15 * s, -2.05, 0.7], color=accent, material="Neon"),
-            part("Tendon", [0.2, 1.0, 0.2], [0.5 * s, 0.05, 0.25], color=darken(armor, 0.2), material="Metal"),
-        ]
-    elif style == "hinge":
-        kids += [
-            part("Upper", [1.0, 1.1, 1.0], [0.05 * s, 0.45, 0], color=armor, material="Metal"),
-            part("HingeDisk", [1.15, 0.3, 1.15], [0.1 * s, -0.2, 0], color=joint, material="Metal", shape="Cylinder"),
-            part("Lower", [0.95, 1.2, 0.95], [0.05 * s, -1.0, 0], color=armor, material="Metal"),
-            part("PivotPin", [0.25, 0.7, 0.25], [0.55 * s, -0.2, 0], color=accent, material="Neon"),
-            part("Foot", [1.35, 0.35, 1.5], [0, -1.75, 0.2], color=sole, material="SmoothPlastic"),
-            part("Heel", [0.7, 0.4, 0.5], [0, -1.7, -0.55], color=joint, material="Metal"),
-            part("AccentBolt", [0.25, 0.25, 0.25], [0.35 * s, 0.5, 0.5], color=accent, material="Neon"),
-        ]
-    elif style == "digit":
-        kids += [
-            part("Thigh", [1.0, 1.2, 1.0], [0.1 * s, 0.4, 0], color=armor, material="Metal"),
-            part("Knee", [0.85, 0.4, 0.85], [0.15 * s, -0.35, 0], color=joint, material="Metal"),
-            part("Shin", [0.9, 1.1, 0.9], [0.1 * s, -1.05, 0], color=armor, material="Metal"),
-            part("ToeMid", [0.45, 0.3, 1.0], [0, -1.7, 0.55], color=sole, material="Metal"),
-            part("ToeL", [0.35, 0.25, 0.9], [-0.4, -1.65, 0.45], color=sole, material="Metal"),
-            part("ToeR", [0.35, 0.25, 0.9], [0.4, -1.65, 0.45], color=sole, material="Metal"),
-            part("AccentActuator", [0.25, 0.9, 0.25], [0.45 * s, 0.1, 0.3], color=accent, material="Neon"),
-        ]
-    elif style == "piston":
-        kids += [
-            part("Cylinder", [0.9, 1.8, 0.9], [0, 0.2, 0], color=armor, material="Metal", shape="Cylinder"),
-            part("PistonRod", [0.35, 1.4, 0.35], [0, -1.1, 0], color=joint, material="Metal"),
-            part("Foot", [1.4, 0.35, 1.5], [0, -1.9, 0.15], color=sole, material="Metal"),
-            part("AccentRing", [1.05, 0.2, 1.05], [0, 0.7, 0], color=accent, material="Neon"),
-            part("SideBrace", [0.25, 1.5, 0.6], [0.55 * s, 0.1, 0], color=darken(armor, 0.15), material="Metal"),
-        ]
-    elif style == "tread":
-        kids += [
-            part("Upper", [1.3, 0.9, 1.4], [0, 0.7, 0], color=armor, material="Metal"),
-            part("TrackBox", [1.6, 1.4, 2.0], [0, -0.5, 0.1], color=darken(armor, 0.1), material="DiamondPlate"),
-            part("WheelF", [0.5, 0.9, 0.9], [0.55 * s, -1.0, 0.7], color=joint, material="Metal", shape="Cylinder"),
-            part("WheelB", [0.5, 0.9, 0.9], [0.55 * s, -1.0, -0.6], color=joint, material="Metal", shape="Cylinder"),
-            part("AccentLight", [0.3, 0.3, 0.2], [0, 0.9, 0.75], color=accent, material="Neon"),
-        ]
-    elif style == "claw":
-        kids += [
-            part("Thigh", [1.15, 1.25, 1.15], [0.1 * s, 0.35, 0], color=armor, material="Metal"),
-            part("Shin", [1.0, 1.15, 1.0], [0.1 * s, -1.0, 0], color=armor, material="Metal"),
-            part("Palm", [1.2, 0.35, 1.0], [0, -1.7, 0.2], color=joint, material="Metal"),
-            part("ClawL", [0.3, 0.3, 1.1], [-0.4, -1.75, 0.85], color=sole, material="Metal"),
-            part("ClawR", [0.3, 0.3, 1.1], [0.4, -1.75, 0.85], color=sole, material="Metal"),
-            part("AccentJoint", [0.5, 0.5, 0.5], [0.2 * s, -0.35, 0.4], color=accent, material="Neon"),
-        ]
-    else:  # strut
-        kids += [
-            part("StrutA", [0.4, 1.6, 0.4], [-0.25, 0.3, 0], color=armor, material="Metal"),
-            part("StrutB", [0.4, 1.6, 0.4], [0.25, 0.3, 0], color=armor, material="Metal"),
-            part("KneePlate", [1.1, 0.4, 0.9], [0, -0.55, 0], color=joint, material="Metal"),
-            part("ShinStrut", [0.7, 1.3, 0.7], [0, -1.35, 0], color=armor, material="Metal"),
-            part("Pad", [1.3, 0.3, 1.4], [0, -2.05, 0.15], color=sole, material="SmoothPlastic"),
-            part("AccentWire", [0.12, 1.4, 0.12], [0.45 * s, 0.1, 0.2], color=accent, material="Neon"),
-        ]
-    return kids
-
-
 def panel_safe(c: list[float]) -> list[float]:
     return darken(c, 0.12)
 
@@ -443,397 +266,37 @@ RARITY_RANK = {
     "Relic": 6,
 }
 
+import sm_builders
 
-def rarity_trim(base: list[float], *, rarity: str, scale: float = 1.0) -> list[dict]:
-    """Extra trim density + glow accents by rarity. Glow* lights up on Epic+ at assemble."""
-    rank = RARITY_RANK.get(rarity, 0)
-    if rank <= 0:
-        return []
-    accent = lighten(base, 0.4)
-    dark = darken(base, 0.3)
-    s = scale
-    kids: list[dict] = [
-        part("AccentTrimA", [0.55 * s, 0.12 * s, 0.12 * s], [0.35 * s, 0.25 * s, 0.4 * s], color=accent, material="Neon"),
-    ]
-    if rank >= 2:
-        kids += [
-            part("AccentTrimB", [0.12 * s, 0.55 * s, 0.12 * s], [-0.4 * s, 0.1 * s, 0.35 * s], color=accent, material="Neon"),
-            part("TrimStud", [0.2 * s, 0.2 * s, 0.2 * s], [0.5 * s, -0.2 * s, 0.25 * s], color=dark, material="Metal"),
-            part("TrimStud2", [0.2 * s, 0.2 * s, 0.2 * s], [-0.5 * s, -0.2 * s, 0.25 * s], color=dark, material="Metal"),
-        ]
-    if rank >= 3:
-        kids += [
-            part("GlowCore", [0.35 * s, 0.35 * s, 0.35 * s], [0, 0.35 * s, 0.55 * s], color=accent, material="Neon", transparency=0.15),
-            part("GlowHalo", [0.7 * s, 0.08 * s, 0.7 * s], [0, 0.45 * s, 0.2 * s], color=accent, material="Neon", transparency=0.35),
-            part("AccentTrimC", [0.9 * s, 0.1 * s, 0.1 * s], [0, -0.35 * s, 0.5 * s], color=accent, material="Neon"),
-        ]
-    if rank >= 4:
-        kids += [
-            part("GlowVein", [0.1 * s, 0.8 * s, 0.1 * s], [0.45 * s, 0.1 * s, 0.15 * s], color=accent, material="Neon", transparency=0.2),
-            part("AccentCrest", [0.4 * s, 0.25 * s, 0.15 * s], [0, 0.55 * s, 0.45 * s], color=lighten(accent, 0.2), material="Neon"),
-        ]
-    return kids
+sm_builders.bind(
+    {
+        "part": part,
+        "wedge": wedge,
+        "cf": cf,
+        "rim_front": rim_front,
+        "inset_front": inset_front,
+        "joint_cyl": joint_cyl,
+        "rgb": rgb,
+        "darken": darken,
+        "lighten": lighten,
+        "panel_safe": panel_safe,
+        "CAUTION": CAUTION,
+    }
+)
+
+# SuperMechs-inspired builders (override legacy flat-box styles)
+build_torso = sm_builders.build_torso
+build_leg = sm_builders.build_leg
+build_lower_weapon = sm_builders.build_lower_weapon
+build_shoulder_weapon = sm_builders.build_shoulder_weapon
+build_battery = sm_builders.build_battery
+build_cpu = sm_builders.build_cpu
+build_drone = sm_builders.build_drone
+build_chip = sm_builders.build_chip
+rarity_trim = sm_builders.rarity_trim
 
 
-def build_lower_weapon(base: list[float], *, style: str) -> list[dict]:
-    """Lower/arm weapons: snap, rivet, ember, needle, cleaver, drill, spray, hook, mg, beam, melee, shield."""
-    kids: list[dict] = []
-    body = base
-    dark = darken(base, 0.2)
-    accent = lighten(base, 0.35)
-    muzzle = rgb(30, 30, 34)
 
-    kids.append(part("Mount", [0.9, 0.7, 0.7], [0, 0, -0.9], color=dark, material="Metal"))
-
-    if style == "snap":
-        kids += [
-            part("Forearm", [0.85, 0.7, 1.4], [0, 0, -0.1], color=body, material="Metal"),
-            part("Fist", [1.1, 0.95, 0.9], [0, 0, 1.0], color=dark, material="Metal"),
-            part("Knuckle", [1.15, 0.35, 0.35], [0, 0.35, 1.25], color=accent, material="Neon"),
-            part("Thumb", [0.35, 0.35, 0.7], [0.55, 0.1, 0.7], color=body, material="Metal"),
-        ]
-    elif style == "rivet":
-        kids += [
-            part("Receiver", [0.9, 0.75, 1.5], [0, 0, 0], color=body, material="Metal"),
-            part("Barrel", [0.35, 0.35, 1.4], [0, 0.1, 1.3], color=dark, material="Metal"),
-            part("Mag", [0.5, 0.7, 0.4], [0, -0.55, 0.1], color=muzzle, material="Metal"),
-            part("AccentSight", [0.15, 0.35, 0.5], [0, 0.5, 0.4], color=accent, material="Neon"),
-            part("Muzzle", [0.45, 0.45, 0.3], [0, 0.1, 2.0], color=muzzle, material="Metal"),
-        ]
-    elif style == "ember":
-        kids += [
-            part("Gauntlet", [1.1, 1.0, 1.3], [0, 0, 0], color=body, material="CorrodedMetal"),
-            part("CoreGlow", [0.6, 0.6, 0.6], [0, 0.15, 0.5], color=accent, material="Neon"),
-            part("VentL", [0.25, 0.5, 0.8], [-0.55, 0.2, 0.3], color=dark, material="Metal"),
-            part("VentR", [0.25, 0.5, 0.8], [0.55, 0.2, 0.3], color=dark, material="Metal"),
-            part("PunchPlate", [1.2, 1.05, 0.35], [0, 0, 1.0], color=muzzle, material="Metal"),
-        ]
-    elif style == "needle":
-        kids += [
-            part("Housing", [0.7, 0.6, 1.2], [0, 0, -0.1], color=body, material="Metal"),
-            part("Needle", [0.18, 0.18, 2.0], [0, 0.05, 1.2], color=accent, material="Neon"),
-            part("Coil", [0.55, 0.55, 0.55], [0, 0.05, 0.5], color=dark, material="Metal"),
-            part("Guard", [0.9, 0.15, 0.9], [0, 0.4, 0], color=muzzle, material="Metal"),
-        ]
-    elif style == "cleaver":
-        kids += [
-            part("Haft", [0.45, 0.45, 1.6], [0, 0, 0], color=dark, material="Metal"),
-            part("Blade", [0.15, 1.2, 1.8], [0, 0.2, 1.2], color=body, material="Metal"),
-            part("AccentEdge", [0.08, 1.15, 1.7], [0.12, 0.2, 1.2], color=accent, material="Neon"),
-            part("Pommel", [0.55, 0.55, 0.4], [0, 0, -1.0], color=muzzle, material="Metal"),
-        ]
-    elif style == "drill":
-        kids += [
-            part("Motor", [1.0, 0.9, 1.1], [0, 0, -0.2], color=body, material="Metal"),
-            part("Bit", [0.5, 0.5, 1.6], [0, 0, 1.1], color=dark, material="Metal", shape="Cylinder"),
-            part("AccentRing", [1.05, 0.2, 1.05], [0, 0, 0.4], color=accent, material="Neon"),
-            part("Handle", [0.4, 0.7, 0.4], [0, -0.7, -0.3], color=muzzle, material="SmoothPlastic"),
-        ]
-    elif style == "spray":
-        kids += [
-            part("Tank", [0.95, 0.95, 1.2], [0, 0.1, -0.2], color=body, material="Metal"),
-            part("Nozzle", [0.4, 0.4, 1.0], [0, 0.15, 1.0], color=dark, material="Metal"),
-            part("AccentValve", [0.35, 0.35, 0.35], [0.4, 0.5, 0], color=accent, material="Neon"),
-            part("Hose", [0.2, 0.2, 0.8], [0.5, -0.2, -0.6], color=muzzle, material="SmoothPlastic"),
-        ]
-    elif style == "mg":
-        kids += [
-            part("Receiver", [0.85, 0.7, 1.3], [0, 0.05, 0], color=body, material="Metal"),
-            part("Barrel", [0.28, 0.28, 1.8], [0, 0.15, 1.4], color=dark, material="Metal"),
-            part("CoolingJacket", [0.45, 0.45, 1.0], [0, 0.15, 0.9], color=darken(body, 0.1), material="Metal", shape="Cylinder"),
-            part("BeltBox", [0.7, 0.55, 0.55], [0.55, -0.15, 0.1], color=muzzle, material="Metal"),
-            part("AccentFeed", [0.2, 0.2, 0.7], [0.35, 0.05, 0.35], color=accent, material="Neon"),
-            part("Grip", [0.35, 0.55, 0.35], [0, -0.55, -0.2], color=muzzle, material="SmoothPlastic"),
-            part("MuzzleBrake", [0.4, 0.35, 0.35], [0, 0.15, 2.2], color=muzzle, material="Metal"),
-        ]
-    elif style == "beam":
-        kids += [
-            part("LensHousing", [0.85, 0.75, 1.1], [0, 0.1, 0], color=body, material="Metal"),
-            part("Crystal", [0.45, 0.45, 0.7], [0, 0.15, 0.7], color=accent, material="Glass", transparency=0.25),
-            part("Emitter", [0.35, 0.35, 0.9], [0, 0.15, 1.5], color=dark, material="Neon"),
-            part("AccentBeam", [0.12, 0.12, 1.4], [0, 0.15, 1.3], color=accent, material="Neon"),
-            part("FocusRing", [0.7, 0.15, 0.7], [0, 0.15, 0.35], color=muzzle, material="Metal"),
-            part("Capacitor", [0.4, 0.55, 0.4], [0.5, -0.1, -0.2], color=dark, material="Metal"),
-        ]
-    elif style == "melee":
-        kids += [
-            part("Forearm", [0.8, 0.65, 1.2], [0, 0, -0.1], color=body, material="Metal"),
-            part("Guard", [1.15, 0.25, 0.9], [0, 0.35, 0.5], color=dark, material="Metal"),
-            part("Blade", [0.18, 0.55, 1.9], [0, 0.05, 1.4], color=lighten(body, 0.15), material="Metal"),
-            part("AccentEdge", [0.08, 0.45, 1.7], [0.12, 0.05, 1.4], color=accent, material="Neon"),
-            part("Spike", [0.25, 0.25, 0.7], [0, 0.35, 1.9], color=muzzle, material="Metal"),
-            part("Pommel", [0.5, 0.5, 0.35], [0, 0, -0.95], color=muzzle, material="Metal"),
-        ]
-    elif style == "shield":
-        kids += [
-            part("Brace", [0.7, 0.55, 1.0], [0, 0, -0.2], color=dark, material="Metal"),
-            part("Face", [1.6, 2.0, 0.25], [0, 0.15, 0.7], color=body, material="DiamondPlate"),
-            part("Boss", [0.55, 0.55, 0.3], [0, 0.2, 0.9], color=dark, material="Metal"),
-            part("AccentRim", [1.7, 0.15, 0.15], [0, 1.05, 0.75], color=accent, material="Neon"),
-            part("AccentRimBot", [1.7, 0.15, 0.15], [0, -0.75, 0.75], color=accent, material="Neon"),
-            part("LipL", [0.25, 1.6, 0.35], [-0.85, 0.15, 0.7], color=panel_safe(body), material="Metal"),
-            part("LipR", [0.25, 1.6, 0.35], [0.85, 0.15, 0.7], color=panel_safe(body), material="Metal"),
-        ]
-    else:  # hook
-        kids += [
-            part("Arm", [0.7, 0.55, 1.5], [0, 0, 0], color=body, material="Metal"),
-            part("HookCurve", [0.45, 0.9, 0.45], [0, 0.35, 1.1], color=dark, material="Metal"),
-            part("HookTip", [0.3, 0.3, 0.8], [0, 0.7, 1.5], color=muzzle, material="Metal"),
-            part("AccentChain", [0.2, 0.2, 0.9], [0, -0.35, 0.4], color=accent, material="Neon"),
-        ]
-    return kids
-
-
-def build_shoulder_weapon(base: list[float], *, style: str) -> list[dict]:
-    """Shoulder weapons: brick, arc, bite, slag, box, twin, mortar, spear, mg, beam, rocket."""
-    kids: list[dict] = []
-    body = base
-    dark = darken(base, 0.22)
-    accent = lighten(base, 0.32)
-    tip = rgb(28, 30, 34)
-
-    kids.append(part("ShoulderMount", [1.2, 0.55, 1.0], [0, -0.15, -0.7], color=dark, material="Metal"))
-
-    if style == "brick":
-        # Broken silhouette — plates + collar instead of one concrete brick
-        kids += [
-            part("Breech", [1.35, 0.85, 0.9], [0, 0.1, -0.35], color=dark, material="Metal"),
-            part("Receiver", [1.2, 0.7, 1.1], [0, 0.2, 0.55], color=body, material="Metal"),
-            part("Barrel", [0.5, 0.5, 1.5], [0, 0.25, 1.55], color=dark, material="Metal", shape="Cylinder"),
-            part("Collar", [0.85, 0.25, 0.85], [0, 0.25, 0.95], color=panel_safe(body), material="Metal"),
-            part("AccentBand", [1.3, 0.18, 0.18], [0, 0.6, 0.2], color=accent, material="Neon"),
-            part("SidePlateL", [0.2, 0.7, 1.0], [-0.75, 0.15, 0.2], color=panel_safe(body), material="Metal"),
-            part("SidePlateR", [0.2, 0.7, 1.0], [0.75, 0.15, 0.2], color=panel_safe(body), material="Metal"),
-        ]
-    elif style == "arc":
-        kids += [
-            part("RailBody", [1.1, 0.7, 2.2], [0, 0.1, 0.4], color=body, material="Metal"),
-            part("RailGlow", [0.25, 0.25, 2.4], [0, 0.35, 0.5], color=accent, material="Neon"),
-            part("CoilL", [0.35, 0.55, 0.55], [-0.5, 0.15, 0.2], color=dark, material="Metal"),
-            part("CoilR", [0.35, 0.55, 0.55], [0.5, 0.15, 0.2], color=dark, material="Metal"),
-            part("Emitter", [0.5, 0.5, 0.4], [0, 0.15, 1.7], color=tip, material="Neon"),
-        ]
-    elif style == "bite":
-        kids += [
-            part("Tube", [1.2, 0.85, 2.4], [0, 0.1, 0.5], color=body, material="CorrodedMetal"),
-            part("HeatSink", [1.4, 0.35, 1.6], [0, 0.55, 0.3], color=dark, material="Metal"),
-            part("AccentGlow", [0.4, 0.4, 0.9], [0, 0.15, 1.5], color=accent, material="Neon"),
-            part("MuzzleBell", [0.9, 0.9, 0.45], [0, 0.1, 1.9], color=tip, material="Metal"),
-        ]
-    elif style == "slag":
-        kids += [
-            part("Drum", [1.5, 1.2, 1.5], [0, 0.2, 0], color=body, material="CorrodedMetal"),
-            part("Spout", [0.7, 0.7, 1.3], [0, 0.1, 1.2], color=dark, material="Metal"),
-            part("AccentCrust", [1.0, 0.4, 0.4], [0.4, 0.6, 0.3], color=accent, material="Neon"),
-            part("Support", [0.4, 0.9, 0.4], [0, -0.5, -0.2], color=tip, material="Metal"),
-        ]
-    elif style == "box":
-        # Pod cluster instead of magazine brick
-        kids += [
-            part("Cradle", [1.5, 0.55, 1.2], [0, -0.05, 0], color=dark, material="Metal"),
-            part("PodA", [0.55, 0.7, 1.1], [-0.45, 0.35, 0.3], color=body, material="Metal"),
-            part("PodB", [0.55, 0.7, 1.1], [0.45, 0.35, 0.3], color=body, material="Metal"),
-            part("Barrels", [1.1, 0.35, 1.5], [0, 0.25, 1.2], color=dark, material="Metal"),
-            part("AccentPanel", [0.25, 0.7, 0.9], [0.9, 0.25, 0], color=accent, material="Neon"),
-            part("Hatch", [1.0, 0.15, 0.8], [0, 0.75, 0.1], color=tip, material="Metal"),
-            part("FeedBelt", [0.2, 0.2, 0.9], [0, 0.15, 0.5], color=muzzle_safe(), material="Metal"),
-        ]
-    elif style == "twin":
-        kids += [
-            part("Cradle", [1.5, 0.6, 1.2], [0, 0, 0], color=dark, material="Metal"),
-            part("GunL", [0.4, 0.4, 2.2], [-0.4, 0.25, 0.7], color=body, material="Metal"),
-            part("GunR", [0.4, 0.4, 2.2], [0.4, 0.25, 0.7], color=body, material="Metal"),
-            part("AccentBridge", [1.0, 0.2, 0.2], [0, 0.5, 0.3], color=accent, material="Neon"),
-        ]
-    elif style == "mortar":
-        kids += [
-            part("Base", [1.4, 0.5, 1.4], [0, -0.1, 0], color=dark, material="Metal"),
-            part("Tube", [0.9, 0.9, 2.0], [0, 0.5, 0.5], color=body, material="Metal", shape="Cylinder"),
-            part("AccentRing", [1.05, 0.2, 1.05], [0, 0.5, 0], color=accent, material="Neon"),
-            part("Bipod", [1.2, 0.7, 0.25], [0, -0.2, 0.6], color=tip, material="Metal"),
-        ]
-    elif style == "mg":
-        kids += [
-            part("Receiver", [1.2, 0.75, 1.4], [0, 0.2, 0.2], color=body, material="Metal"),
-            part("Barrel", [0.32, 0.32, 2.0], [0, 0.25, 1.5], color=dark, material="Metal"),
-            part("Jacket", [0.5, 0.5, 1.1], [0, 0.25, 1.0], color=darken(body, 0.12), material="Metal", shape="Cylinder"),
-            part("AmmoDrum", [0.85, 0.85, 0.7], [0.7, 0.1, -0.1], color=tip, material="Metal", shape="Cylinder"),
-            part("AccentFeed", [0.25, 0.25, 0.8], [0.4, 0.25, 0.3], color=accent, material="Neon"),
-            part("Sight", [0.15, 0.4, 0.5], [0, 0.65, 0.4], color=tip, material="Metal"),
-            part("Muzzle", [0.4, 0.4, 0.3], [0, 0.25, 2.4], color=tip, material="Metal"),
-        ]
-    elif style == "beam":
-        kids += [
-            part("Mast", [0.7, 0.7, 1.6], [0, 0.25, 0.3], color=body, material="Metal"),
-            part("Lens", [0.55, 0.55, 0.55], [0, 0.3, 1.2], color=accent, material="Glass", transparency=0.2),
-            part("Emitter", [0.4, 0.4, 1.0], [0, 0.3, 1.7], color=dark, material="Neon"),
-            part("AccentBeam", [0.15, 0.15, 1.6], [0, 0.45, 0.9], color=accent, material="Neon"),
-            part("CoilL", [0.3, 0.5, 0.5], [-0.5, 0.2, 0.1], color=dark, material="Metal"),
-            part("CoilR", [0.3, 0.5, 0.5], [0.5, 0.2, 0.1], color=dark, material="Metal"),
-            part("Dish", [1.1, 0.15, 1.1], [0, 0.55, 0.2], color=tip, material="Metal"),
-        ]
-    elif style == "rocket":
-        kids += [
-            part("Rack", [1.6, 0.45, 1.3], [0, 0.05, 0.1], color=dark, material="Metal"),
-            part("TubeL", [0.45, 0.45, 1.8], [-0.45, 0.4, 0.5], color=body, material="Metal", shape="Cylinder"),
-            part("TubeR", [0.45, 0.45, 1.8], [0.45, 0.4, 0.5], color=body, material="Metal", shape="Cylinder"),
-            part("TubeMid", [0.4, 0.4, 1.5], [0, 0.75, 0.35], color=darken(body, 0.1), material="Metal", shape="Cylinder"),
-            part("AccentNose", [0.25, 0.25, 0.35], [0, 0.75, 1.2], color=accent, material="Neon"),
-            part("FinL", [0.15, 0.45, 0.5], [-0.75, 0.35, -0.2], color=tip, material="Metal"),
-            part("FinR", [0.15, 0.45, 0.5], [0.75, 0.35, -0.2], color=tip, material="Metal"),
-        ]
-    else:  # spear
-        kids += [
-            part("Shaft", [0.35, 0.35, 2.8], [0, 0.15, 0.6], color=body, material="Metal"),
-            part("Head", [0.7, 0.5, 0.9], [0, 0.2, 2.1], color=dark, material="Metal"),
-            part("AccentCore", [0.25, 0.25, 1.2], [0, 0.35, 0.8], color=accent, material="Neon"),
-            part("Counter", [0.6, 0.6, 0.6], [0, 0.1, -0.9], color=tip, material="Metal"),
-        ]
-    return kids
-
-
-def muzzle_safe() -> list[float]:
-    return rgb(30, 30, 34)
-
-
-def build_battery(base: list[float], *, style: str) -> list[dict]:
-    kids: list[dict] = []
-    body = base
-    dark = darken(base, 0.2)
-    accent = lighten(base, 0.4)
-    if style == "desk":
-        kids += [
-            part("Cell", [1.4, 0.85, 0.65], [0, 0, 0], color=body, material="Plastic"),
-            part("Terminal+", [0.25, 0.25, 0.2], [-0.4, 0.5, 0], color=rgb(200, 60, 50), material="Neon"),
-            part("Terminal-", [0.25, 0.25, 0.2], [0.4, 0.5, 0], color=rgb(50, 50, 55), material="Metal"),
-            part("AccentLabel", [0.9, 0.35, 0.1], [0, 0.1, 0.35], color=accent, material="Neon"),
-        ]
-    elif style == "bay":
-        kids += [
-            part("Pack", [1.6, 1.0, 0.75], [0, 0, 0], color=body, material="Metal"),
-            part("CellA", [0.4, 0.7, 0.5], [-0.45, 0, 0.15], color=dark, material="Glass", transparency=0.3),
-            part("CellB", [0.4, 0.7, 0.5], [0.45, 0, 0.15], color=dark, material="Glass", transparency=0.3),
-            part("AccentBus", [1.5, 0.15, 0.15], [0, 0.55, 0], color=accent, material="Neon"),
-            part("Clamp", [1.7, 0.2, 0.2], [0, -0.55, 0], color=rgb(40, 40, 44), material="Metal"),
-        ]
-    elif style == "deep":
-        kids += [
-            part("Core", [1.8, 1.2, 0.85], [0, 0, 0], color=body, material="Metal"),
-            part("Ring", [2.0, 0.25, 1.0], [0, 0.3, 0], color=accent, material="Neon"),
-            part("CapTop", [1.5, 0.3, 0.7], [0, 0.7, 0], color=dark, material="Metal"),
-            part("CapBot", [1.5, 0.3, 0.7], [0, -0.7, 0], color=dark, material="Metal"),
-            part("Port", [0.4, 0.4, 0.3], [0, 0, 0.55], color=rgb(30, 80, 90), material="Neon"),
-        ]
-    elif style == "stack":
-        kids += [
-            part("Layer1", [1.5, 0.35, 0.7], [0, -0.4, 0], color=body, material="Metal"),
-            part("Layer2", [1.5, 0.35, 0.7], [0, 0, 0], color=dark, material="Metal"),
-            part("Layer3", [1.5, 0.35, 0.7], [0, 0.4, 0], color=body, material="Metal"),
-            part("AccentStripe", [0.15, 1.1, 0.15], [0.7, 0, 0.3], color=accent, material="Neon"),
-        ]
-    else:  # drum
-        kids += [
-            part("Drum", [1.3, 1.3, 0.9], [0, 0, 0], color=body, material="Metal", shape="Cylinder"),
-            part("AccentBand", [1.4, 0.2, 1.0], [0, 0.2, 0], color=accent, material="Neon"),
-            part("Lid", [1.1, 0.2, 0.75], [0, 0.7, 0], color=dark, material="Metal"),
-        ]
-    return kids
-
-
-def build_cpu(base: list[float], *, style: str) -> list[dict]:
-    kids: list[dict] = []
-    body = base
-    dark = darken(base, 0.25)
-    accent = lighten(base, 0.35)
-    if style == "scrap":
-        kids += [
-            part("Board", [0.9, 0.12, 0.9], [0, 0, 0], color=body, material="Plastic"),
-            part("Die", [0.4, 0.2, 0.4], [0, 0.15, 0], color=dark, material="Metal"),
-            part("AccentPin", [0.12, 0.12, 0.12], [0.3, 0.12, 0.3], color=accent, material="Neon"),
-            part("AccentPin2", [0.12, 0.12, 0.12], [-0.3, 0.12, -0.3], color=accent, material="Neon"),
-        ]
-    elif style == "bay":
-        kids += [
-            part("Board", [1.0, 0.12, 1.0], [0, 0, 0], color=body, material="Plastic"),
-            part("Heatsink", [0.7, 0.35, 0.7], [0, 0.25, 0], color=dark, material="Metal"),
-            part("AccentLED", [0.2, 0.1, 0.2], [0.35, 0.15, 0.35], color=accent, material="Neon"),
-            part("Cap", [0.15, 0.25, 0.15], [-0.35, 0.2, 0.3], color=rgb(40, 80, 50), material="SmoothPlastic"),
-        ]
-    else:  # crystal / optic
-        kids += [
-            part("Board", [0.95, 0.12, 0.95], [0, 0, 0], color=dark, material="Plastic"),
-            part("Crystal", [0.5, 0.55, 0.5], [0, 0.35, 0], color=accent, material="Glass", transparency=0.25),
-            part("Frame", [0.7, 0.15, 0.7], [0, 0.1, 0], color=body, material="Metal"),
-        ]
-    return kids
-
-
-def build_drone(base: list[float], *, style: str) -> list[dict]:
-    kids: list[dict] = []
-    body = base
-    dark = darken(base, 0.2)
-    accent = lighten(base, 0.35)
-    if style == "floor":
-        kids += [
-            part("Chassis", [1.1, 0.4, 1.2], [0, 0, 0], color=body, material="Metal"),
-            part("WheelL", [0.35, 0.55, 0.55], [-0.55, -0.15, 0.3], color=dark, material="SmoothPlastic", shape="Cylinder"),
-            part("WheelR", [0.35, 0.55, 0.55], [0.55, -0.15, 0.3], color=dark, material="SmoothPlastic", shape="Cylinder"),
-            part("WheelB", [0.3, 0.45, 0.45], [0, -0.1, -0.5], color=dark, material="SmoothPlastic", shape="Cylinder"),
-            part("AccentEye", [0.35, 0.25, 0.2], [0, 0.25, 0.55], color=accent, material="Neon"),
-        ]
-    elif style == "moth":
-        kids += [
-            part("Body", [0.5, 0.4, 0.9], [0, 0, 0], color=body, material="SmoothPlastic"),
-            part("WingL", [0.9, 0.1, 0.6], [-0.55, 0.15, 0], color=lighten(body, 0.2), material="Glass", transparency=0.3),
-            part("WingR", [0.9, 0.1, 0.6], [0.55, 0.15, 0], color=lighten(body, 0.2), material="Glass", transparency=0.3),
-            part("AccentSpark", [0.25, 0.25, 0.25], [0, 0.2, 0.4], color=accent, material="Neon"),
-            part("Tail", [0.2, 0.2, 0.5], [0, 0, -0.6], color=dark, material="Metal"),
-        ]
-    elif style == "beep":
-        kids += [
-            part("Dome", [0.9, 0.7, 0.9], [0, 0.1, 0], color=body, material="SmoothPlastic", shape="Ball"),
-            part("Base", [1.0, 0.25, 1.0], [0, -0.3, 0], color=dark, material="Metal"),
-            part("AccentCross", [0.7, 0.12, 0.12], [0, 0.35, 0.35], color=accent, material="Neon"),
-            part("AccentCross2", [0.12, 0.12, 0.7], [0, 0.35, 0.35], color=accent, material="Neon"),
-        ]
-    elif style == "orb":
-        kids += [
-            part("Sphere", [0.95, 0.95, 0.95], [0, 0, 0], color=body, material="Glass", transparency=0.2, shape="Ball"),
-            part("Core", [0.4, 0.4, 0.4], [0, 0, 0], color=accent, material="Neon", shape="Ball"),
-            part("Ring", [1.15, 0.12, 1.15], [0, 0, 0], color=dark, material="Metal"),
-        ]
-    else:  # spider
-        kids += [
-            part("Body", [0.8, 0.45, 0.9], [0, 0, 0], color=body, material="Metal"),
-            part("LegFL", [0.15, 0.15, 0.7], [-0.5, -0.1, 0.4], color=dark, material="Metal"),
-            part("LegFR", [0.15, 0.15, 0.7], [0.5, -0.1, 0.4], color=dark, material="Metal"),
-            part("LegBL", [0.15, 0.15, 0.7], [-0.5, -0.1, -0.4], color=dark, material="Metal"),
-            part("LegBR", [0.15, 0.15, 0.7], [0.5, -0.1, -0.4], color=dark, material="Metal"),
-            part("AccentEye", [0.3, 0.2, 0.15], [0, 0.2, 0.45], color=accent, material="Neon"),
-        ]
-    return kids
-
-
-def build_chip(base: list[float], *, style: str) -> list[dict]:
-    kids: list[dict] = []
-    body = base
-    accent = lighten(base, 0.3)
-    dark = darken(base, 0.25)
-    kids += [
-        part("Card", [0.55, 0.12, 0.4], [0, 0, 0], color=body, material="Plastic"),
-        part("AccentDie", [0.22, 0.1, 0.22], [0, 0.1, 0], color=accent, material="Neon"),
-    ]
-    if style == "heat":
-        kids.append(part("Fin", [0.45, 0.2, 0.15], [0, 0.2, 0.05], color=dark, material="Metal"))
-    elif style == "wire":
-        kids.append(part("Trace", [0.4, 0.05, 0.08], [0, 0.08, 0.12], color=accent, material="Neon"))
-    elif style == "grease":
-        kids.append(part("Blob", [0.25, 0.15, 0.25], [0.1, 0.12, 0.05], color=lighten(body, 0.15), material="SmoothPlastic"))
-    elif style == "shield":
-        kids.append(part("Shield", [0.35, 0.25, 0.1], [0, 0.18, 0.05], color=dark, material="Metal"))
-    else:
-        kids.append(part("Pad", [0.15, 0.08, 0.15], [-0.15, 0.08, 0.1], color=dark, material="Metal"))
-    return kids
 
 
 # ---------------------------------------------------------------------------

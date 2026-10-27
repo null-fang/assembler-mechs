@@ -44,23 +44,24 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
           0.7,
+          0.55,
           0.7
         ],
         "Position": [
           0,
           0,
-          -0.9
+          -0.85
         ],
         "Color": [
-          0.26666666666666666,
-          0.28235294117647064,
-          0.3137254901960784
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
@@ -78,17 +79,17 @@
         "Size": [
           0.7,
           0.55,
-          1.0
+          0.95
         ],
         "Position": [
           0,
           0,
-          -0.2
+          -0.25
         ],
         "Color": [
-          0.26666666666666666,
-          0.28235294117647064,
-          0.3137254901960784
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -108,14 +109,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.6,
-          2.0,
-          0.25
+          1.7,
+          2.15,
+          0.28
         ],
         "Position": [
           0,
           0.15,
-          0.7
+          0.75
         ],
         "Color": [
           0.3333333333333333,
@@ -123,6 +124,134 @@
           0.39215686274509803
         ],
         "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FaceRimT",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.8599999999999999,
+          0.08,
+          0.08
+        ],
+        "Position": [
+          0,
+          1.2249999999999999,
+          0.93
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FaceRimB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.8599999999999999,
+          0.08,
+          0.08
+        ],
+        "Position": [
+          0,
+          -0.9249999999999999,
+          0.93
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FaceRimL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.08,
+          2.15,
+          0.08
+        ],
+        "Position": [
+          -0.89,
+          0.15,
+          0.93
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FaceRimR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.08,
+          2.15,
+          0.08
+        ],
+        "Position": [
+          0.89,
+          0.15,
+          0.93
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
@@ -142,17 +271,17 @@
         "Size": [
           0.55,
           0.55,
-          0.3
+          0.28
         ],
         "Position": [
           0,
           0.2,
-          0.9
+          0.95
         ],
         "Color": [
-          0.26666666666666666,
-          0.28235294117647064,
-          0.3137254901960784
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -163,7 +292,7 @@
       }
     },
     {
-      "Name": "AccentRim",
+      "Name": "GlowBoss",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -172,58 +301,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.7,
-          0.15,
-          0.15
+          0.35,
+          0.35,
+          0.12
         ],
         "Position": [
           0,
-          1.05,
-          0.75
+          0.2,
+          1.1
         ],
         "Color": [
-          0.5666666666666667,
-          0.5794117647058823,
-          0.6049019607843138
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
-      }
-    },
-    {
-      "Name": "AccentRimBot",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          1.7,
-          0.15,
-          0.15
-        ],
-        "Position": [
-          0,
-          -0.75,
-          0.75
-        ],
-        "Color": [
-          0.5666666666666667,
-          0.5794117647058823,
-          0.6049019607843138
-        ],
-        "Material": "Neon",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -237,13 +334,13 @@
         "CastShadow": true,
         "Size": [
           0.25,
-          1.6,
+          1.7,
           0.35
         ],
         "Position": [
-          -0.85,
+          -0.9,
           0.15,
-          0.7
+          0.75
         ],
         "Color": [
           0.29333333333333333,
@@ -269,13 +366,13 @@
         "CastShadow": true,
         "Size": [
           0.25,
-          1.6,
+          1.7,
           0.35
         ],
         "Position": [
-          0.85,
+          0.9,
           0.15,
-          0.7
+          0.75
         ],
         "Color": [
           0.29333333333333333,
@@ -300,26 +397,58 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.12,
-          0.12
+          0.5,
+          0.1,
+          0.1
         ],
         "Position": [
           0.35,
-          0.25,
-          0.4
+          0.3,
+          0.45
         ],
         "Color": [
-          0.6000000000000001,
-          0.611764705882353,
-          0.6352941176470588
+          0.5,
+          0.5147058823529411,
+          0.5441176470588236
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "GlowPip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.22,
+          0.22,
+          0.12
+        ],
+        "Position": [
+          0,
+          0.4,
+          0.5
+        ],
+        "Color": [
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     }
   ]

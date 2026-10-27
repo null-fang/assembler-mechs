@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.6,
-          1.0,
-          0.75
+          1.5,
+          0.95,
+          0.7
         ],
         "Position": [
           0,
@@ -77,11 +77,11 @@
         "CastShadow": true,
         "Size": [
           0.4,
-          0.7,
-          0.5
+          0.65,
+          0.45
         ],
         "Position": [
-          -0.45,
+          -0.4,
           0,
           0.15
         ],
@@ -110,11 +110,11 @@
         "CastShadow": true,
         "Size": [
           0.4,
-          0.7,
-          0.5
+          0.65,
+          0.45
         ],
         "Position": [
-          0.45,
+          0.4,
           0,
           0.15
         ],
@@ -133,7 +133,7 @@
       }
     },
     {
-      "Name": "AccentBus",
+      "Name": "GlowBus",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -142,9 +142,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.15,
-          0.15
+          1.4,
+          0.14,
+          0.14
         ],
         "Position": [
           0,
@@ -152,48 +152,16 @@
           0
         ],
         "Color": [
-          0.47058823529411764,
-          0.5647058823529412,
-          0.6352941176470588
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
-      }
-    },
-    {
-      "Name": "Clamp",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          1.7,
-          0.2,
-          0.2
-        ],
-        "Position": [
-          0,
-          -0.55,
-          0
-        ],
-        "Color": [
-          0.1568627450980392,
-          0.1568627450980392,
-          0.17254901960784313
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "emissive_strip"
       }
     }
   ]

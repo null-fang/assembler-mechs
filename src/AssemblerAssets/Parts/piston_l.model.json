@@ -35,7 +35,7 @@
       }
     },
     {
-      "Name": "HipBall",
+      "Name": "HipJoint",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -44,31 +44,63 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.7,
-          0.9
+          0.85,
+          0.55,
+          0.85
         ],
         "Position": [
           0,
-          1.1,
+          0,
           0
         ],
         "Color": [
-          0.29411764705882354,
-          0.3088235294117647,
-          0.3235294117647059
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth",
-        "Shape": "Ball"
+        "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "Thigh",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.85,
+          1.0,
+          0.9
+        ],
+        "Position": [
+          -0.1,
+          -0.55,
+          0.35
+        ],
+        "Color": [
+          0.39215686274509803,
+          0.4117647058823529,
+          0.43137254901960786
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
       }
     },
     {
-      "Name": "Cylinder",
+      "Name": "Knee",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -77,19 +109,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          1.8,
-          0.9
+          0.75,
+          0.35,
+          0.75
         ],
         "Position": [
-          0,
-          0.2,
-          0
+          -0.12,
+          -1.15,
+          0.55
         ],
         "Color": [
-          0.39215686274509803,
-          0.4117647058823529,
-          0.43137254901960786
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -101,7 +133,7 @@
       }
     },
     {
-      "Name": "PistonRod",
+      "Name": "Shin",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -110,23 +142,56 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          1.4,
-          0.35
+          0.75,
+          1.05,
+          0.75
         ],
         "Position": [
-          0,
-          -1.1,
-          0
+          -0.08,
+          -1.75,
+          0.15
         ],
         "Color": [
-          0.29411764705882354,
-          0.3088235294117647,
-          0.3235294117647059
+          0.39215686274509803,
+          0.4117647058823529,
+          0.43137254901960786
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Ankle",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.3,
+          0.55
+        ],
+        "Position": [
+          0,
+          -2.25,
+          0.05
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
@@ -142,31 +207,31 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.4,
-          0.35,
-          1.5
+          1.0,
+          0.3,
+          1.35
         ],
         "Position": [
           0,
-          -1.9,
-          0.15
+          -2.45,
+          0.4
         ],
         "Color": [
           0.1411764705882353,
           0.13333333333333333,
           0.12549019607843137
         ],
-        "Material": "Metal",
+        "Material": "SmoothPlastic",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "matte_rubber"
       }
     },
     {
-      "Name": "AccentRing",
-      "ClassName": "Part",
+      "Name": "ShinFairing",
+      "ClassName": "WedgePart",
       "Properties": {
         "Anchored": true,
         "CanCollide": false,
@@ -174,30 +239,39 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
-          0.2,
-          1.05
+          0.35,
+          0.5,
+          0.65
         ],
-        "Position": [
+        "CFrame": [
+          -0.35,
+          -1.5,
+          0.4,
+          1,
           0,
-          0.7,
-          0
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
         ],
         "Color": [
-          0.5745098039215686,
-          0.5882352941176471,
-          0.6019607843137255
+          0.34509803921568627,
+          0.3623529411764706,
+          0.37960784313725493
         ],
-        "Material": "Neon",
+        "Material": "SmoothPlastic",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "matte_rubber"
       }
     },
     {
-      "Name": "SideBrace",
+      "Name": "GlowKnee",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -207,22 +281,55 @@
         "CastShadow": true,
         "Size": [
           0.25,
-          1.5,
-          0.6
+          0.25,
+          0.2
         ],
         "Position": [
-          -0.55,
-          0.1,
-          0
+          -0.4,
+          -1.15,
+          0.75
         ],
         "Color": [
-          0.3333333333333333,
-          0.35,
-          0.3666666666666667
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "PistonRod",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.3,
+          1.1,
+          0.3
+        ],
+        "Position": [
+          0,
+          -1.5,
+          0.2
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"

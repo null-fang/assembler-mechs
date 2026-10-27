@@ -63,11 +63,11 @@
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "matte_rubber"
+        "TextureRole": "carbon_dark"
       }
     },
     {
-      "Name": "AccentDie",
+      "Name": "GlowDie",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -86,16 +86,16 @@
           0
         ],
         "Color": [
-          0.5470588235294118,
-          0.6843137254901961,
-          0.7392156862745098
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -118,9 +118,9 @@
           0.05
         ],
         "Color": [
-          0.2647058823529412,
-          0.411764705882353,
-          0.47058823529411764
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -140,30 +140,30 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.1925,
-          0.041999999999999996,
-          0.041999999999999996
+          0.175,
+          0.034999999999999996,
+          0.034999999999999996
         ],
         "Position": [
           0.12249999999999998,
-          0.0875,
-          0.13999999999999999
+          0.105,
+          0.1575
         ],
         "Color": [
-          0.611764705882353,
-          0.7294117647058824,
-          0.7764705882352941
+          0.5147058823529411,
+          0.661764705882353,
+          0.7205882352941176
         ],
-        "Material": "Neon",
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "metal_plate"
       }
     },
     {
-      "Name": "AccentTrimB",
+      "Name": "GlowPip",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -172,26 +172,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.041999999999999996,
-          0.1925,
+          0.077,
+          0.077,
           0.041999999999999996
         ],
         "Position": [
-          -0.13999999999999999,
-          0.034999999999999996,
-          0.12249999999999998
+          0,
+          0.13999999999999999,
+          0.175
         ],
         "Color": [
-          0.611764705882353,
-          0.7294117647058824,
-          0.7764705882352941
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -204,26 +204,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.06999999999999999,
-          0.06999999999999999,
-          0.06999999999999999
+          0.063,
+          0.063,
+          0.063
         ],
         "Position": [
-          0.175,
-          -0.06999999999999999,
-          0.0875
+          0.1575,
+          -0.0525,
+          0.105
         ],
         "Color": [
-          0.24705882352941178,
-          0.3843137254901961,
-          0.43921568627450974
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
-        "Material": "Metal",
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "scratched_steel"
       }
     },
     {
@@ -236,26 +236,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.06999999999999999,
-          0.06999999999999999,
-          0.06999999999999999
+          0.063,
+          0.063,
+          0.063
         ],
         "Position": [
-          -0.175,
-          -0.06999999999999999,
-          0.0875
+          -0.1575,
+          -0.0525,
+          0.105
         ],
         "Color": [
-          0.24705882352941178,
-          0.3843137254901961,
-          0.43921568627450974
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
-        "Material": "Metal",
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "scratched_steel"
       }
     }
   ]

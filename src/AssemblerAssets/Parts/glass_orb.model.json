@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.95,
-          0.95
+          0.9,
+          0.9,
+          0.9
         ],
         "Position": [
           0,
@@ -69,7 +69,7 @@
       }
     },
     {
-      "Name": "Core",
+      "Name": "GlowCore",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -88,17 +88,16 @@
           0
         ],
         "Color": [
-          0.6558823529411765,
-          0.7578431372549019,
-          0.8343137254901961
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth",
-        "Shape": "Ball"
+        "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -111,9 +110,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
+          1.1,
           0.12,
-          1.15
+          1.1
         ],
         "Position": [
           0,
@@ -121,13 +120,14 @@
           0
         ],
         "Color": [
-          0.3764705882352941,
-          0.5019607843137255,
-          0.596078431372549
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
@@ -143,26 +143,58 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.385,
-          0.08399999999999999,
-          0.08399999999999999
+          0.35,
+          0.06999999999999999,
+          0.06999999999999999
         ],
         "Position": [
           0.24499999999999997,
-          0.175,
-          0.27999999999999997
+          0.21,
+          0.315
         ],
         "Color": [
-          0.6823529411764706,
-          0.7764705882352941,
-          0.8470588235294118
+          0.6029411764705882,
+          0.7205882352941176,
+          0.8088235294117647
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "GlowPip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.154,
+          0.154,
+          0.08399999999999999
+        ],
+        "Position": [
+          0,
+          0.27999999999999997,
+          0.35
+        ],
+        "Color": [
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     }
   ]

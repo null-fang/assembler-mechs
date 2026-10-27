@@ -35,6 +35,38 @@
       }
     },
     {
+      "Name": "Pack",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.5,
+          0.95,
+          0.7
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          0.17647058823529413,
+          0.35294117647058826,
+          0.39215686274509803
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
       "Name": "Drum",
       "ClassName": "Part",
       "Properties": {
@@ -44,9 +76,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.3,
-          1.3,
-          0.9
+          1.15,
+          1.15,
+          0.8
         ],
         "Position": [
           0,
@@ -68,7 +100,7 @@
       }
     },
     {
-      "Name": "AccentBand",
+      "Name": "GlowBand",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -77,9 +109,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.4,
-          0.2,
-          1.0
+          1.25,
+          0.18,
+          0.9
         ],
         "Position": [
           0,
@@ -87,48 +119,16 @@
           0
         ],
         "Color": [
-          0.5058823529411764,
-          0.611764705882353,
-          0.6352941176470588
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
-      }
-    },
-    {
-      "Name": "Lid",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          1.1,
-          0.2,
-          0.75
-        ],
-        "Position": [
-          0,
-          0.7,
-          0
-        ],
-        "Color": [
-          0.14117647058823532,
-          0.28235294117647064,
-          0.3137254901960784
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -141,26 +141,58 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.385,
-          0.08399999999999999,
-          0.08399999999999999
+          0.35,
+          0.06999999999999999,
+          0.06999999999999999
         ],
         "Position": [
           0.24499999999999997,
-          0.175,
-          0.27999999999999997
+          0.21,
+          0.315
         ],
         "Color": [
-          0.5058823529411764,
-          0.611764705882353,
-          0.6352941176470588
+          0.38235294117647056,
+          0.5147058823529411,
+          0.5441176470588236
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "GlowPip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.154,
+          0.154,
+          0.08399999999999999
+        ],
+        "Position": [
+          0,
+          0.27999999999999997,
+          0.35
+        ],
+        "Color": [
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     }
   ]

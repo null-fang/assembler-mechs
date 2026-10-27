@@ -44,23 +44,24 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
           0.7,
+          0.55,
           0.7
         ],
         "Position": [
           0,
           0,
-          -0.9
+          -0.85
         ],
         "Color": [
-          0.3764705882352941,
-          0.3701960784313726,
-          0.3450980392156863
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
@@ -76,19 +77,147 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.85,
-          0.7,
-          1.4
+          0.9,
+          0.75,
+          1.25
         ],
         "Position": [
           0,
           0,
-          -0.1
+          -0.05
         ],
         "Color": [
           0.47058823529411764,
           0.4627450980392157,
           0.43137254901960786
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ForearmRimT",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.02,
+          0.06,
+          0.06
+        ],
+        "Position": [
+          0,
+          0.375,
+          0.605
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ForearmRimB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.02,
+          0.06,
+          0.06
+        ],
+        "Position": [
+          0,
+          -0.375,
+          0.605
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ForearmRimL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.06,
+          0.75,
+          0.06
+        ],
+        "Position": [
+          -0.48,
+          0,
+          0.605
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ForearmRimR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.06,
+          0.75,
+          0.06
+        ],
+        "Position": [
+          0.48,
+          0,
+          0.605
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -108,19 +237,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.1,
-          0.95,
-          0.9
+          1.2,
+          1.05,
+          1.0
         ],
         "Position": [
           0,
           0,
-          1.0
+          1.05
         ],
         "Color": [
-          0.3764705882352941,
-          0.3701960784313726,
-          0.3450980392156863
+          0.4235294117647059,
+          0.41647058823529415,
+          0.38823529411764707
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -140,30 +269,30 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
-          0.35,
+          1.25,
+          0.3,
           0.35
         ],
         "Position": [
           0,
-          0.35,
-          1.25
+          0.4,
+          1.35
         ],
         "Color": [
-          0.6558823529411765,
-          0.6507843137254902,
-          0.6303921568627451
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
-        "Material": "Neon",
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "emissive_strip"
+        "TextureRole": "metal_plate"
       }
     },
     {
-      "Name": "Thumb",
+      "Name": "GlowKnuckle",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -172,26 +301,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.35,
-          0.7
+          0.9,
+          0.15,
+          0.15
         ],
         "Position": [
-          0.55,
-          0.1,
-          0.7
+          0,
+          0.45,
+          1.45
         ],
         "Color": [
-          0.47058823529411764,
-          0.4627450980392157,
-          0.43137254901960786
+          1.0,
+          0.5490196078431373,
+          0.1568627450980392
         ],
-        "Material": "Metal",
+        "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "emissive_strip"
       }
     }
   ]

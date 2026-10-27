@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "contract": "Assembler TextureIds — shared by generate_part_models.py and Shared.Assembler.TextureIds",
+  "contract": "Assembler TextureIds \u2014 shared by generate_part_models.py and Shared.Assembler.TextureIds",
   "sizePreferred": 256,
   "runtimeEmbedSize": 128,
   "pngDir": "assets/textures",
@@ -50,9 +50,8 @@
       "file": "assets/textures/emissive_strip.png",
       "role": "emissive",
       "studsPerTile": 2.0,
-      "transparency": 0.15,
-      "minRarity": "Epic",
-      "description": "Cyan emissive strip for Epic+ glow"
+      "transparency": 0.12,
+      "description": "Visor / muzzle / reactor emissive (always on — not rarity-gated)"
     }
   },
   "materialHints": {
@@ -65,18 +64,38 @@
     "Fabric": "matte_rubber",
     "Foil": "carbon_dark",
     "Glass": "carbon_dark",
-    "ForceField": "emissive_strip"
+    "ForceField": "emissive_strip",
+    "Concrete": "scratched_steel"
   },
   "nameHints": {
-    "Accent": "hazard_stripe",
+    "Visor": "emissive_strip",
     "Glow": "emissive_strip",
-    "Trim": "hazard_stripe",
+    "Lens": "emissive_strip",
+    "Muzzle": "emissive_strip",
+    "Eye": "emissive_strip",
+    "Accent": "metal_plate",
+    "Trim": "scratched_steel",
+    "Joint": "scratched_steel",
+    "Barrel": "scratched_steel",
+    "Tube": "scratched_steel",
+    "Hazard": "hazard_stripe",
     "Pad": "matte_rubber",
     "Grip": "matte_rubber",
     "Rubber": "matte_rubber",
+    "Boot": "matte_rubber",
+    "Sole": "matte_rubber",
+    "Foot": "matte_rubber",
+    "Wheel": "matte_rubber",
     "Chip": "carbon_dark",
     "Carbon": "carbon_dark",
     "Cpu": "carbon_dark",
-    "Core": "metal_plate"
+    "Board": "carbon_dark",
+    "Card": "carbon_dark",
+    "Core": "metal_plate",
+    "Rim": "metal_plate",
+    "Inset": "metal_plate",
+    "Hull": "metal_plate",
+    "Plate": "metal_plate",
+    "Exhaust": "scratched_steel"
   }
 }

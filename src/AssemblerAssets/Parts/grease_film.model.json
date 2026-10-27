@@ -63,11 +63,11 @@
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "matte_rubber"
+        "TextureRole": "carbon_dark"
       }
     },
     {
-      "Name": "AccentDie",
+      "Name": "GlowDie",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -86,16 +86,16 @@
           0
         ],
         "Color": [
-          0.6843137254901961,
-          0.6568627450980392,
-          0.46470588235294114
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     },
     {

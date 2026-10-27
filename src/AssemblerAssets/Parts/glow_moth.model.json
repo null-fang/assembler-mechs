@@ -46,7 +46,7 @@
         "Size": [
           0.5,
           0.4,
-          0.9
+          0.85
         ],
         "Position": [
           0,
@@ -76,9 +76,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
+          0.85,
           0.1,
-          0.6
+          0.55
         ],
         "Position": [
           -0.55,
@@ -109,9 +109,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
+          0.85,
           0.1,
-          0.6
+          0.55
         ],
         "Position": [
           0.55,
@@ -133,7 +133,7 @@
       }
     },
     {
-      "Name": "AccentSpark",
+      "Name": "GlowSpark",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -152,48 +152,16 @@
           0.4
         ],
         "Color": [
-          0.8598039215686274,
-          0.8088235294117647,
-          0.5029411764705882
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
-      }
-    },
-    {
-      "Name": "Tail",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.2,
-          0.2,
-          0.5
-        ],
-        "Position": [
-          0,
-          0,
-          -0.6
-        ],
-        "Color": [
-          0.6274509803921569,
-          0.5647058823529413,
-          0.18823529411764706
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "emissive_strip"
       }
     }
   ]

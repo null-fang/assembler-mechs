@@ -1,5 +1,5 @@
 -- Attach sockets relative to torso center (local space, studs).
--- Readable biped silhouette at combat distance.
+-- SuperMechs-inspired combat stance: crouched biped, weapons ready — not a T-pose.
 
 export type SocketName =
 	"Torso"
@@ -25,63 +25,70 @@ export type SocketDef = {
 
 local Sockets = {}
 
--- Torso origin sits ~4.5 studs above ground so feet touch pads.
-Sockets.TORSO_HEIGHT = 4.5
+-- Chibi torso sits a bit lower; short thick legs reach the pad.
+Sockets.TORSO_HEIGHT = 3.85
 
 Sockets.defs = {
 	Torso = {
 		name = "Torso",
 		offset = Vector3.new(0, 0, 0),
-		defaultSize = Vector3.new(4.0, 3.0, 2.5),
+		-- Slight forward lean baked via rotation so the whole stack reads aggressive.
+		defaultSize = Vector3.new(3.6, 2.8, 2.4),
+		rotationDeg = Vector3.new(8, 0, 0),
 	},
+	-- Hips tucked under the belly; pitch = knee-forward combat crouch (kit Root = hip pivot).
 	LeftHip = {
 		name = "LeftHip",
-		offset = Vector3.new(-1.15, -2.6, 0),
-		defaultSize = Vector3.new(1.3, 2.6, 1.5),
+		offset = Vector3.new(-1.05, -1.85, 0.15),
+		defaultSize = Vector3.new(1.35, 2.2, 1.45),
+		rotationDeg = Vector3.new(18, 6, 10),
 	},
 	RightHip = {
 		name = "RightHip",
-		offset = Vector3.new(1.15, -2.6, 0),
-		defaultSize = Vector3.new(1.3, 2.6, 1.5),
+		offset = Vector3.new(1.05, -1.85, 0.15),
+		defaultSize = Vector3.new(1.35, 2.2, 1.45),
+		rotationDeg = Vector3.new(18, -6, -10),
 	},
+	-- Lower weapons = forearm guns/blades: forward + slightly down, elbows in — not wing T-pose.
 	LowerLeft = {
 		name = "LowerLeft",
-		offset = Vector3.new(-2.7, -0.2, 0.3),
-		defaultSize = Vector3.new(1.1, 0.9, 2.3),
-		rotationDeg = Vector3.new(0, 12, -8),
+		offset = Vector3.new(-2.15, -0.35, 0.95),
+		defaultSize = Vector3.new(1.0, 0.85, 2.4),
+		rotationDeg = Vector3.new(12, 28, -22),
 	},
 	LowerRight = {
 		name = "LowerRight",
-		offset = Vector3.new(2.7, -0.2, 0.3),
-		defaultSize = Vector3.new(1.1, 0.9, 2.3),
-		rotationDeg = Vector3.new(0, -12, 8),
+		offset = Vector3.new(2.15, -0.35, 0.95),
+		defaultSize = Vector3.new(1.0, 0.85, 2.4),
+		rotationDeg = Vector3.new(12, -28, 22),
 	},
+	-- Shoulder pods/cannons sit high and aim forward over the cockpit.
 	ShoulderLeft = {
 		name = "ShoulderLeft",
-		offset = Vector3.new(-2.1, 1.55, -0.1),
-		defaultSize = Vector3.new(1.5, 1.0, 2.6),
-		rotationDeg = Vector3.new(-6, 8, 0),
+		offset = Vector3.new(-1.75, 1.55, -0.35),
+		defaultSize = Vector3.new(1.55, 1.15, 2.4),
+		rotationDeg = Vector3.new(-18, 18, 6),
 	},
 	ShoulderRight = {
 		name = "ShoulderRight",
-		offset = Vector3.new(2.1, 1.55, -0.1),
-		defaultSize = Vector3.new(1.5, 1.0, 2.6),
-		rotationDeg = Vector3.new(-6, -8, 0),
+		offset = Vector3.new(1.75, 1.55, -0.35),
+		defaultSize = Vector3.new(1.55, 1.15, 2.4),
+		rotationDeg = Vector3.new(-18, -18, -6),
 	},
 	Battery = {
 		name = "Battery",
-		offset = Vector3.new(0, 0.2, -1.55),
-		defaultSize = Vector3.new(1.6, 1.0, 0.7),
+		offset = Vector3.new(0, 0.15, -1.45),
+		defaultSize = Vector3.new(1.5, 0.95, 0.65),
 	},
 	CPU = {
 		name = "CPU",
-		offset = Vector3.new(0, 1.35, 0.2),
+		offset = Vector3.new(0, 1.15, 0.35),
 		defaultSize = Vector3.new(0.7, 0.35, 0.7),
 	},
 	Drone = {
 		name = "Drone",
-		offset = Vector3.new(0.4, 2.4, -1.2),
-		defaultSize = Vector3.new(1.0, 0.6, 1.2),
+		offset = Vector3.new(0.35, 2.15, -1.05),
+		defaultSize = Vector3.new(1.0, 0.55, 1.1),
 	},
 } :: { [string]: SocketDef }
 

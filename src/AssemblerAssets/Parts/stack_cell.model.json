@@ -35,7 +35,7 @@
       }
     },
     {
-      "Name": "Layer1",
+      "Name": "Pack",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -45,12 +45,12 @@
         "CastShadow": true,
         "Size": [
           1.5,
-          0.35,
+          0.95,
           0.7
         ],
         "Position": [
           0,
-          -0.4,
+          0,
           0
         ],
         "Color": [
@@ -76,9 +76,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.35,
-          0.7
+          1.4,
+          0.3,
+          0.65
         ],
         "Position": [
           0,
@@ -86,9 +86,9 @@
           0
         ],
         "Color": [
-          0.14117647058823532,
-          0.18823529411764706,
-          0.21960784313725493
+          0.15,
+          0.19999999999999998,
+          0.23333333333333334
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -108,13 +108,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.35,
-          0.7
+          1.4,
+          0.3,
+          0.65
         ],
         "Position": [
           0,
-          0.4,
+          0.35,
           0
         ],
         "Color": [
@@ -131,7 +131,7 @@
       }
     },
     {
-      "Name": "AccentStripe",
+      "Name": "GlowStripe",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -140,26 +140,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.15,
-          1.1,
-          0.15
+          0.14,
+          1.0,
+          0.14
         ],
         "Position": [
-          0.7,
+          0.65,
           0,
           0.3
         ],
         "Color": [
-          0.5058823529411764,
-          0.5411764705882354,
-          0.5647058823529412
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     }
   ]

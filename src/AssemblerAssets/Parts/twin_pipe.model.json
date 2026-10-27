@@ -44,19 +44,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          0.55,
-          1.0
+          1.15,
+          0.5,
+          0.95
         ],
         "Position": [
           0,
-          -0.15,
-          -0.7
+          -0.1,
+          -0.65
         ],
         "Color": [
-          0.33647058823529413,
-          0.351764705882353,
-          0.36705882352941177
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -76,19 +76,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.6,
-          1.2
+          1.45,
+          0.55,
+          1.15
         ],
         "Position": [
           0,
-          0,
+          0.05,
           0
         ],
         "Color": [
-          0.33647058823529413,
-          0.351764705882353,
-          0.36705882352941177
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -108,14 +108,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
-          0.4,
-          2.2
+          0.38,
+          0.38,
+          2.15
         ],
         "Position": [
           -0.4,
-          0.25,
-          0.7
+          0.35,
+          0.75
         ],
         "Color": [
           0.43137254901960786,
@@ -124,7 +124,8 @@
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
@@ -140,14 +141,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
-          0.4,
-          2.2
+          0.38,
+          0.38,
+          2.15
         ],
         "Position": [
           0.4,
-          0.25,
-          0.7
+          0.35,
+          0.75
         ],
         "Color": [
           0.43137254901960786,
@@ -156,14 +157,15 @@
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
       }
     },
     {
-      "Name": "AccentBridge",
+      "Name": "GlowBridge",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -172,26 +174,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.0,
-          0.2,
-          0.2
+          0.9,
+          0.16,
+          0.16
         ],
         "Position": [
           0,
-          0.5,
-          0.3
+          0.6,
+          0.35
         ],
         "Color": [
-          0.6133333333333333,
-          0.6266666666666667,
-          0.64
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     }
   ]

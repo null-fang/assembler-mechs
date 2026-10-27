@@ -44,19 +44,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          0.55,
-          1.0
+          1.15,
+          0.5,
+          0.95
         ],
         "Position": [
           0,
-          -0.15,
-          -0.7
+          -0.1,
+          -0.65
         ],
         "Color": [
-          0.17129411764705882,
-          0.4282352941176471,
-          0.599529411764706
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -76,14 +76,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.1,
+          1.0,
           0.7,
-          2.2
+          2.0
         ],
         "Position": [
           0,
-          0.1,
-          0.4
+          0.2,
+          0.45
         ],
         "Color": [
           0.2196078431372549,
@@ -99,7 +99,7 @@
       }
     },
     {
-      "Name": "RailGlow",
+      "Name": "RailRimT",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -108,19 +108,147 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.25,
-          2.4
+          1.12,
+          0.06,
+          0.06
         ],
         "Position": [
           0,
-          0.35,
-          0.5
+          0.55,
+          1.48
         ],
         "Color": [
-          0.4693333333333333,
-          0.6933333333333334,
-          0.8426666666666667
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "RailRimB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.12,
+          0.06,
+          0.06
+        ],
+        "Position": [
+          0,
+          -0.14999999999999997,
+          1.48
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "RailRimL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.06,
+          0.7,
+          0.06
+        ],
+        "Position": [
+          -0.53,
+          0.2,
+          1.48
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "RailRimR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.06,
+          0.7,
+          0.06
+        ],
+        "Position": [
+          0.53,
+          0.2,
+          1.48
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "GlowRail",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          2.2
+        ],
+        "Position": [
+          0,
+          0.45,
+          0.55
+        ],
+        "Color": [
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -140,23 +268,24 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.55,
-          0.55
+          0.3,
+          0.5,
+          0.5
         ],
         "Position": [
           -0.5,
-          0.15,
-          0.2
+          0.2,
+          0.15
         ],
         "Color": [
-          0.17129411764705882,
-          0.4282352941176471,
-          0.599529411764706
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
@@ -172,30 +301,31 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.55,
-          0.55
+          0.3,
+          0.5,
+          0.5
         ],
         "Position": [
           0.5,
-          0.15,
-          0.2
+          0.2,
+          0.15
         ],
         "Color": [
-          0.17129411764705882,
-          0.4282352941176471,
-          0.599529411764706
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
       }
     },
     {
-      "Name": "Emitter",
+      "Name": "GlowEmitter",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -204,19 +334,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.5,
-          0.5,
-          0.4
+          0.45,
+          0.45,
+          0.35
         ],
         "Position": [
           0,
-          0.15,
-          1.7
+          0.25,
+          1.75
         ],
         "Color": [
-          0.10980392156862745,
-          0.11764705882352941,
-          0.13333333333333333
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",

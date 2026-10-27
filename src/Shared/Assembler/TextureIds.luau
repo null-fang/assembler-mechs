@@ -71,8 +71,7 @@ TextureIds.textures = {
 		rbxassetid = "",
 		role = "emissive",
 		studsPerTile = 2.0,
-		transparency = 0.15,
-		minRarity = "Epic",
+		transparency = 0.12,
 		file = "assets/textures/emissive_strip.png",
 	},
 } :: { [string]: TextureDef }
@@ -88,19 +87,40 @@ TextureIds.materialHints = {
 	Foil = "carbon_dark",
 	Glass = "carbon_dark",
 	ForceField = "emissive_strip",
+	Concrete = "scratched_steel",
 }
 
+-- Longer / rarity prefixes preferred via resolveRole length sort.
 TextureIds.nameHints = {
-	Accent = "hazard_stripe",
+	Visor = "emissive_strip",
 	Glow = "emissive_strip",
-	Trim = "hazard_stripe",
+	Lens = "emissive_strip",
+	Muzzle = "emissive_strip",
+	Eye = "emissive_strip",
+	Accent = "metal_plate",
+	Trim = "scratched_steel",
+	Joint = "scratched_steel",
+	Barrel = "scratched_steel",
+	Tube = "scratched_steel",
+	Hazard = "hazard_stripe",
 	Pad = "matte_rubber",
 	Grip = "matte_rubber",
 	Rubber = "matte_rubber",
+	Boot = "matte_rubber",
+	Sole = "matte_rubber",
+	Foot = "matte_rubber",
+	Wheel = "matte_rubber",
 	Chip = "carbon_dark",
 	Carbon = "carbon_dark",
 	Cpu = "carbon_dark",
+	Board = "carbon_dark",
+	Card = "carbon_dark",
 	Core = "metal_plate",
+	Rim = "metal_plate",
+	Inset = "metal_plate",
+	Hull = "metal_plate",
+	Plate = "metal_plate",
+	Exhaust = "scratched_steel",
 }
 
 function TextureIds.contentUri(def: TextureDef): string?
@@ -115,10 +135,18 @@ function TextureIds.contentUri(def: TextureDef): string?
 end
 
 function TextureIds.resolveRole(partName: string, materialName: string): string
+	local bestPrefix: string? = nil
+	local bestKey: string? = nil
 	for prefix, key in TextureIds.nameHints do
 		if string.sub(partName, 1, #prefix) == prefix or string.find(partName, prefix, 1, true) then
-			return key
+			if bestPrefix == nil or #prefix > #bestPrefix then
+				bestPrefix = prefix
+				bestKey = key
+			end
 		end
+	end
+	if bestKey then
+		return bestKey
 	end
 	local fromMat = TextureIds.materialHints[materialName]
 	if fromMat then

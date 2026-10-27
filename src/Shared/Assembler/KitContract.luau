@@ -1,5 +1,5 @@
 -- Stable contract for AssemblerAssets.Parts/<catalogPartId> kits.
--- Textured kit pipeline + Studio texture pack must honor this; Integrator keeps it green.
+-- SuperMechs-inspired 3D: chibi proportions, readable weapons, combat pose — not T-pose boxes.
 
 local KitContract = {}
 
@@ -7,22 +7,20 @@ local KitContract = {}
 --   Model named by catalog PartId (Rojo file stem)
 --   Child BasePart "Root" at local origin (socket attach). Assembler sets PrimaryPart + Transparency=1.
 --   Multi-Part silhouette (never a lone cube). Assembler PivotTo's the Model at Sockets.defs[socket].
+--   Silhouette language: bold paint hull + gunmetal joints + Glow*/Visor emissives.
+--   Guns read as guns (barrels/tubes), pods as tube grids, blades as blades, legs as legs.
 --
--- Optional rarity language (color kits):
---   Accent* / Glow* Parts — Assembler may neon-tint by rarity.
+-- Pose (Shared.Assembler.Sockets):
+--   Combat crouch — knees forward, arms/weapons ready, shoulder pods aim forward. Not a T-pose.
+--   TORSO_HEIGHT ≈ 3.85 studs above pad.
 --
--- Optional textured language (quality kits):
---   SurfaceAppearance / Texture / Decal under hull Parts, OR Attribute AssemblerTextured=true
---   Assembler will NOT mutate Color/Material on those Parts (team tint skipped).
---   Accent*/Glow* may still neon if they are NOT marked textured.
--- Texture pack contract (tools/texture_ids.json + Shared.Assembler.TextureIds):
+-- Rarity language:
+--   Accent* / Glow* Parts — Assembler neon-tints Color3 by rarity (Texture maps left alone).
+--
+-- Texture pack (tools/texture_ids.json + Shared.Assembler.TextureIds / TextureApply):
 --   Keys: metal_plate, scratched_steel, hazard_stripe, matte_rubber, carbon_dark, emissive_strip
---   Parts may carry Attribute TextureRole=<key>; TextureApply stamps from AssemblerAssets.Textures
---   or embeds (TexturePixels) until rbxassetid is filled after Studio upload.
---
--- Sockets (Shared.Assembler.Sockets): Torso, LeftHip, RightHip, LowerLeft, LowerRight,
--- ShoulderLeft, ShoulderRight, Battery, CPU, Drone. Local +Y up; feet toward -Y from torso.
--- TORSO_HEIGHT = 4.5 studs above pad surface.
+--   Parts stamp Attribute TextureRole=<key>; TextureApply bakes TexturePixels when rbxassetid empty.
+--   Hull Color3 stays paint; do not team-tint textured body parts.
 
 KitContract.ROOT_NAME = "Root"
 KitContract.TEXTURED_ATTR = "AssemblerTextured"

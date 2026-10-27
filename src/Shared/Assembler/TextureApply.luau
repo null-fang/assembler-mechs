@@ -167,23 +167,19 @@ function TextureApply.applyPart(part: BasePart, rarity: string?)
 	if not def then
 		return
 	end
-	if def.minRarity then
+	-- Visors / muzzles always keep emissive; optional minRarity only gates non-emissive keys.
+	if def.minRarity and key ~= "emissive_strip" then
 		local need = RARITY_RANK[def.minRarity] or 0
 		local have = RARITY_RANK[rarity or "Common"] or 0
-		if have < need and key == "emissive_strip" then
-			-- Epic+ only for emissive; remap Neon accents below Epic to hazard
-			key = "hazard_stripe"
-			def = TextureIds.textures[key]
-			if not def then
-				return
-			end
+		if have < need then
+			return
 		end
 	end
 	clearOldTextures(part)
 	-- Front + Top cover most kit silhouettes without 6x overdraw
 	stampTexture(part, key, def, Enum.NormalId.Front)
 	stampTexture(part, key, def, Enum.NormalId.Top)
-	if key == "hazard_stripe" or key == "emissive_strip" then
+	if key == "emissive_strip" then
 		stampTexture(part, key, def, Enum.NormalId.Right)
 	end
 	-- KitContract: Assembler polish skips Color/Material once textured.

@@ -54,20 +54,20 @@
           0
         ],
         "Color": [
-          0.21568627450980393,
-          0.47058823529411764,
-          0.35294117647058826
+          0.17254901960784316,
+          0.3764705882352941,
+          0.28235294117647064
         ],
         "Material": "Plastic",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "matte_rubber"
+        "TextureRole": "carbon_dark"
       }
     },
     {
-      "Name": "Heatsink",
+      "Name": "Die",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -76,19 +76,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          0.35,
-          0.7
+          0.45,
+          0.22,
+          0.45
         ],
         "Position": [
           0,
-          0.25,
+          0.18,
           0
         ],
         "Color": [
-          0.16176470588235295,
-          0.3529411764705882,
-          0.2647058823529412
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -99,7 +99,7 @@
       }
     },
     {
-      "Name": "AccentLED",
+      "Name": "GlowLED",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -118,20 +118,20 @@
           0.35
         ],
         "Color": [
-          0.49019607843137253,
-          0.6558823529411765,
-          0.5794117647058823
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "hazard_stripe"
+        "TextureRole": "emissive_strip"
       }
     },
     {
-      "Name": "Cap",
+      "Name": "Heatsink",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -140,26 +140,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.15,
-          0.25,
-          0.15
+          0.7,
+          0.35,
+          0.7
         ],
         "Position": [
-          -0.35,
-          0.2,
-          0.3
+          0,
+          0.3,
+          0
         ],
         "Color": [
-          0.1568627450980392,
-          0.3137254901960784,
-          0.19607843137254902
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
         ],
-        "Material": "SmoothPlastic",
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "matte_rubber"
+        "TextureRole": "metal_plate"
       }
     }
   ]
