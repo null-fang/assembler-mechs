@@ -139,6 +139,9 @@ def kit_visor_torso() -> list[dict]:
         part("ChestPlateB", [2.05, 0.95, 0.28], [0, 0.35, 1.4], color=darken(OLIVE, 0.1), material="Metal"),
         part("ChestPlateC", [1.5, 0.55, 0.22], [0, 0.4, 1.55], color=CHAR, material="Metal", role="carbon_dark"),
         part("BreastLower", [2.3, 0.7, 0.3], [0, -0.45, 1.25], color=OLIVE_DARK, material="Metal"),
+        part("VentF", [0.9, 0.35, 0.16], [0, -0.15, 1.5], color=CHAR, material="Metal", role="carbon_dark"),
+        part("VentFL", [0.18, 0.55, 0.14], [-0.55, -0.15, 1.48], color=darken(CHAR, 0.1), material="Metal"),
+        part("VentFR", [0.18, 0.55, 0.14], [0.55, -0.15, 1.48], color=darken(CHAR, 0.1), material="Metal"),
         part("AccentHazard", [1.9, 0.16, 0.14], [0, -0.85, 1.4], color=ORANGE, material="Neon", role="hazard_stripe"),
         # Head / visor cluster — clear front face
         part("HeadDome", [1.9, 1.15, 1.6], [0, 1.55, 0.2], color=OLIVE_LIGHT, material="Metal", role="metal_plate"),
