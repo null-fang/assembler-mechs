@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.65,
-          0.2,
-          0.65
+          0.7,
+          0.18,
+          0.7
         ],
         "Position": [
           0,
@@ -67,6 +67,38 @@
       }
     },
     {
+      "Name": "BoardEdge",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.75,
+          0.08,
+          0.75
+        ],
+        "Position": [
+          0,
+          -0.05,
+          0
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.33725490196078434
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
       "Name": "Die",
       "ClassName": "Part",
       "Properties": {
@@ -77,7 +109,7 @@
         "CastShadow": true,
         "Size": [
           0.35,
-          0.25,
+          0.22,
           0.35
         ],
         "Position": [
@@ -108,19 +140,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.15,
-          0.15,
-          0.15
+          0.14,
+          0.14,
+          0.14
         ],
         "Position": [
-          0.2,
-          0.15,
-          0.2
+          0.22,
+          0.18,
+          0.22
         ],
         "Color": [
           0.1568627450980392,
           0.8627450980392157,
           1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "GlowPin2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          -0.22,
+          0.16,
+          -0.18
+        ],
+        "Color": [
+          1.0,
+          0.5490196078431373,
+          0.18823529411764706
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -140,13 +204,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.5,
-          0.2,
+          0.55,
+          0.22,
           0.2
         ],
         "Position": [
           0,
-          0.35,
+          0.38,
           -0.15
         ],
         "Color": [
@@ -160,6 +224,102 @@
       },
       "Attributes": {
         "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HeatFinA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.28,
+          0.08
+        ],
+        "Position": [
+          0,
+          0.42,
+          -0.28
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.33725490196078434
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HeatFinB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.28,
+          0.08
+        ],
+        "Position": [
+          0,
+          0.42,
+          -0.05
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.33725490196078434
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Trace",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.45,
+          0.05,
+          0.08
+        ],
+        "Position": [
+          -0.05,
+          0.12,
+          0.28
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.8627450980392157,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
       }
     }
   ]

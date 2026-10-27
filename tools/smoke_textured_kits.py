@@ -76,12 +76,12 @@ def main() -> int:
     else:
         hero_data = json.loads(hero.read_text(encoding="utf-8"))
         n = len([c for c in (hero_data.get("Children") or []) if c.get("ClassName") == "Part"])
-        if n < 40:
-            fail(f"HeroStarterMech too few parts ({n})")
+        if n < 160:
+            fail(f"HeroStarterMech too sparse ({n} parts; want dense panels/vents/joints)")
         else:
             print(f"OK HeroStarterMech: {n} parts")
         names = " ".join(c.get("Name", "") for c in (hero_data.get("Children") or []))
-        for token in ("GlowVisor", "KneeDisk", "Barrel", "ShowcasePad"):
+        for token in ("GlowVisor", "KneeDisk", "Barrel", "VentF", "ShowcasePad"):
             if token not in names:
                 fail(f"HeroStarterMech missing {token}")
 

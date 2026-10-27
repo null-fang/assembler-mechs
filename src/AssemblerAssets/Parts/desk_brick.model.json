@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.9,
-          0.65
+          1.55,
+          0.95,
+          0.7
         ],
         "Position": [
           0,
@@ -67,7 +67,7 @@
       }
     },
     {
-      "Name": "Terminal",
+      "Name": "CellBand",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -76,14 +76,46 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.35,
-          0.25
+          1.6,
+          0.15,
+          0.75
+        ],
+        "Position": [
+          0,
+          0.15,
+          0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "TerminalP",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.32,
+          0.32,
+          0.22
         ],
         "Position": [
           0.45,
-          0.35,
-          0.35
+          0.4,
+          0.38
         ],
         "Color": [
           1.0,
@@ -99,6 +131,38 @@
       }
     },
     {
+      "Name": "TerminalN",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.32,
+          0.32,
+          0.22
+        ],
+        "Position": [
+          -0.45,
+          0.4,
+          0.38
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
       "Name": "Stripe",
       "ClassName": "Part",
       "Properties": {
@@ -108,14 +172,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          0.15,
+          1.25,
+          0.12,
           0.12
         ],
         "Position": [
           0,
-          0.15,
-          0.35
+          0.2,
+          0.38
         ],
         "Color": [
           0.1568627450980392,
@@ -141,11 +205,11 @@
         "CastShadow": true,
         "Size": [
           0.2,
-          0.7,
-          0.5
+          0.75,
+          0.55
         ],
         "Position": [
-          -0.75,
+          -0.8,
           0,
           0
         ],
@@ -173,11 +237,11 @@
         "CastShadow": true,
         "Size": [
           0.2,
-          0.7,
-          0.5
+          0.75,
+          0.55
         ],
         "Position": [
-          0.75,
+          0.8,
           0,
           0
         ],
@@ -192,6 +256,70 @@
       },
       "Attributes": {
         "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "VentSlot",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.35,
+          0.12
+        ],
+        "Position": [
+          0,
+          -0.2,
+          0.38
+        ],
+        "Color": [
+          0.22745098039215686,
+          0.24313725490196078,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "WarningPip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.15,
+          0.15,
+          0.12
+        ],
+        "Position": [
+          0.65,
+          -0.25,
+          0.38
+        ],
+        "Color": [
+          1.0,
+          0.5490196078431373,
+          0.18823529411764706
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
       }
     }
   ]
