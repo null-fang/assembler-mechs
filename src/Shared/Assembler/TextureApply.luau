@@ -186,6 +186,9 @@ function TextureApply.applyPart(part: BasePart, rarity: string?)
 	if key == "hazard_stripe" or key == "emissive_strip" then
 		stampTexture(part, key, def, Enum.NormalId.Right)
 	end
+	-- KitContract: Assembler polish skips Color/Material once textured.
+	part:SetAttribute("AssemblerTextured", true)
+	part:SetAttribute("TextureRole", key)
 end
 
 function TextureApply.applyModel(model: Model, rarity: string?)

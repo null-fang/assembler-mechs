@@ -112,8 +112,11 @@ def main() -> None:
             "AssemblerTextured",
             "SurfaceAppearance",
         ],
-        "src/Shared/Assembler/KitContract.luau": ["ROOT_NAME", "TEXTURED_ATTR", "Sockets"],
+        "src/Shared/Assembler/KitContract.luau": ["ROOT_NAME", "TEXTURED_ATTR", "TextureRole", "TextureIds"],
         "src/Shared/Assembler/Sockets.luau": ["TORSO_HEIGHT", "LeftHip", "ShoulderRight"],
+        "src/Shared/Assembler/TextureApply.luau": ["applyModel", "preloadEmbeds", "TextureIds"],
+        "src/Shared/Assembler/TextureIds.luau": ["metal_plate", "scratched_steel", "emissive_strip"],
+        "tools/smoke_textured_kits.py": ["TextureRole", "rusty_cage"],
     }
     for rel, needles in must_exist.items():
         text = (ROOT / rel).read_text()
