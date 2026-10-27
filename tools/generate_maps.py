@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Generate Rojo .model.json maps for Assembler lobby + arenas."""
+"""Generate Rojo .model.json maps for Assembler lobby + arenas.
+
+Invented mech-bay hub / arena dressing — neon accents and readable landmarks
+inspired by modern Roblox hub energy, without copying any third-party IP.
+
+Stable script hooks (do not rename):
+  Lobby: SpawnLocation, GaragePedestal, CampaignTerminal, CampaignTerminalScreen
+  Arenas: PadA, PadB, ArenaOrigin
+"""
 
 from __future__ import annotations
 
@@ -46,29 +54,6 @@ def part(
     return {"Name": name, "ClassName": "Part", "Properties": props}
 
 
-def wedge(
-    name: str,
-    size: list[float],
-    cframe: list[float],
-    *,
-    color: list[float],
-    material: str = "SmoothPlastic",
-) -> dict:
-    return {
-        "Name": name,
-        "ClassName": "WedgePart",
-        "Properties": {
-            "Anchored": True,
-            "Size": size,
-            "CFrame": cframe,
-            "Color": color,
-            "Material": material,
-            "TopSurface": "Smooth",
-            "BottomSurface": "Smooth",
-        },
-    }
-
-
 def attachment(name: str, pos: list[float]) -> dict:
     return {
         "Name": name,
@@ -112,14 +97,21 @@ def spot_light(
     }
 
 
-def surface_gui_label(name: str, text: str, *, face: str = "Top") -> dict:
+def surface_gui_label(
+    name: str,
+    text: str,
+    *,
+    face: str = "Top",
+    text_color: list[float] | None = None,
+    stroke: float = 0.35,
+) -> dict:
     return {
         "Name": name,
         "ClassName": "SurfaceGui",
         "Properties": {
             "Face": face,
-            "LightInfluence": 0.2,
-            "PixelsPerStud": 20,
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22,
         },
         "Children": [
             {
@@ -130,18 +122,60 @@ def surface_gui_label(name: str, text: str, *, face: str = "Top") -> dict:
                     "BackgroundTransparency": 1.0,
                     "Text": text,
                     "TextScaled": True,
-                    "Font": "SourceSansBold",
-                    "TextColor3": [1.0, 1.0, 1.0],
-                    "TextStrokeTransparency": 0.4,
+                    "Font": "GothamBold",
+                    "TextColor3": text_color or [1.0, 1.0, 1.0],
+                    "TextStrokeTransparency": stroke,
                 },
             }
         ],
     }
 
 
+def particle_emitter(
+    name: str,
+    *,
+    rate: float,
+    lifetime: list[float],
+    speed: list[float],
+    size_start: float,
+    size_end: float,
+    color: list[float],
+    light_emission: float = 0.4,
+    drag: float = 2.0,
+    texture: str = "rbxasset://textures/particles/smoke_main.dds",
+    spread: list[float] | None = None,
+) -> dict:
+    """Subtle ParticleEmitter — Rojo serializes NumberRange/NumberSequence as arrays."""
+    return {
+        "Name": name,
+        "ClassName": "ParticleEmitter",
+        "Properties": {
+            "Texture": texture,
+            "Rate": rate,
+            "Lifetime": lifetime,
+            "Speed": speed,
+            "SpreadAngle": spread or [25.0, 25.0],
+            "Drag": drag,
+            "LightEmission": light_emission,
+            "LightInfluence": 0.2,
+            "Size": [
+                {"time": 0.0, "value": size_start},
+                {"time": 1.0, "value": size_end},
+            ],
+            "Transparency": [
+                {"time": 0.0, "value": 0.35},
+                {"time": 0.7, "value": 0.55},
+                {"time": 1.0, "value": 1.0},
+            ],
+            "Color": [{"time": 0.0, "value": color}, {"time": 1.0, "value": color}],
+            "Enabled": True,
+            "LockedToPart": False,
+        },
+    }
+
+
 def model(name: str, children: list[dict], *, primary: str | None = None) -> dict:
     node: dict = {"Name": name, "ClassName": "Model", "Children": children}
-    # PrimaryPart is a Ref — not settable in model.json; scripts can Resolve later.
     _ = primary
     return node
 
@@ -151,17 +185,102 @@ def crate(name: str, pos: list[float], size: list[float] | None = None) -> dict:
     return part(name, s, [pos[0], pos[1] + s[1] / 2, pos[2]], color=rgb(120, 88, 52), material="Wood")
 
 
-def railing_segment(name: str, x: float, z: float, length: float, along_x: bool) -> list[dict]:
+def barrel(name: str, pos: list[float], color: list[float] | None = None) -> dict:
+    return part(
+        name,
+        [2.2, 3.2, 2.2],
+        [pos[0], pos[1] + 1.6, pos[2]],
+        color=color or rgb(70, 78, 55),
+        material="Metal",
+        shape="Cylinder",
+        orientation=[0, 0, 90],
+    )
+
+
+def cable_spool(name: str, pos: list[float]) -> dict:
+    return part(
+        name,
+        [5, 4, 5],
+        [pos[0], pos[1] + 2, pos[2]],
+        color=rgb(95, 78, 48),
+        material="Wood",
+        shape="Cylinder",
+        orientation=[0, 0, 90],
+    )
+
+
+def neon_strip(
+    name: str,
+    size: list[float],
+    pos: list[float],
+    color: list[float],
+    *,
+    orientation: list[float] | None = None,
+) -> dict:
+    return part(
+        name,
+        size,
+        pos,
+        color=color,
+        material="Neon",
+        can_collide=False,
+        orientation=orientation,
+    )
+
+
+def sign_board(
+    name: str,
+    text: str,
+    pos: list[float],
+    *,
+    size: list[float] | None = None,
+    board_color: list[float] | None = None,
+    neon_color: list[float] | None = None,
+    face: str = "Front",
+) -> list[dict]:
+    """Backed metal sign + optional neon underglow strip."""
+    s = size or [10, 3.5, 0.5]
+    board = part(
+        name,
+        s,
+        pos,
+        color=board_color or rgb(28, 32, 40),
+        material="Metal",
+    )
+    board["Children"] = [
+        surface_gui_label("T", text, face=face, text_color=neon_color or rgb(120, 220, 255)),
+    ]
+    glow = neon_strip(
+        f"{name}_Glow",
+        [s[0] * 0.92, 0.18, 0.2],
+        [pos[0], pos[1] - s[1] / 2 - 0.15, pos[2] - 0.15],
+        neon_color or rgb(40, 180, 220),
+    )
+    return [board, glow]
+
+
+def railing_segment(
+    name: str,
+    x: float,
+    z: float,
+    length: float,
+    along_x: bool,
+    *,
+    y: float = 0.0,
+    height: float = 3.0,
+    color: list[float] | None = None,
+) -> list[dict]:
     """Low railing: posts + top rail."""
     kids: list[dict] = []
-    height = 3.0
+    rail_c = color or rgb(70, 74, 80)
+    post_c = rgb(55, 58, 64)
     if along_x:
         kids.append(
             part(
                 f"{name}_Rail",
                 [length, 0.4, 0.4],
-                [x, height, z],
-                color=rgb(70, 74, 80),
+                [x, y + height, z],
+                color=rail_c,
                 material="Metal",
             )
         )
@@ -170,8 +289,8 @@ def railing_segment(name: str, x: float, z: float, length: float, along_x: bool)
                 part(
                     f"{name}_Post{i}",
                     [0.35, height, 0.35],
-                    [x + ox, height / 2, z],
-                    color=rgb(55, 58, 64),
+                    [x + ox, y + height / 2, z],
+                    color=post_c,
                     material="Metal",
                 )
             )
@@ -180,8 +299,8 @@ def railing_segment(name: str, x: float, z: float, length: float, along_x: bool)
             part(
                 f"{name}_Rail",
                 [0.4, 0.4, length],
-                [x, height, z],
-                color=rgb(70, 74, 80),
+                [x, y + height, z],
+                color=rail_c,
                 material="Metal",
             )
         )
@@ -190,12 +309,23 @@ def railing_segment(name: str, x: float, z: float, length: float, along_x: bool)
                 part(
                     f"{name}_Post{i}",
                     [0.35, height, 0.35],
-                    [x, height / 2, z + oz],
-                    color=rgb(55, 58, 64),
+                    [x, y + height / 2, z + oz],
+                    color=post_c,
                     material="Metal",
                 )
             )
     return kids
+
+
+def pad_ring(name: str, pos: list[float], color: list[float], *, y_off: float = 0.15) -> dict:
+    return part(
+        name,
+        [16.5, 0.25, 16.5],
+        [pos[0], pos[1] + y_off, pos[2]],
+        color=color,
+        material="Neon",
+        can_collide=False,
+    )
 
 
 def pad(name: str, pos: list[float], color: list[float], label: str) -> dict:
@@ -238,8 +368,53 @@ def arena_origin(pos: list[float]) -> dict:
     }
 
 
+def kill_volume(name: str, size: list[float], pos: list[float]) -> dict:
+    """Invisible deep kill brick — CanTouch for future scripts; no collide."""
+    p = part(
+        name,
+        size,
+        pos,
+        color=rgb(20, 8, 8),
+        material="SmoothPlastic",
+        transparency=1.0,
+        can_collide=False,
+    )
+    p["Properties"]["CanTouch"] = True
+    p["Properties"]["CanQuery"] = True
+    return p
+
+
+def lamp_post(
+    name: str,
+    pos: list[float],
+    *,
+    height: float = 14.0,
+    light_color: list[float] | None = None,
+    brightness: float = 1.6,
+    range_: float = 42.0,
+) -> list[dict]:
+    lc = light_color or rgb(255, 230, 190)
+    pole = part(
+        f"{name}_Pole",
+        [1.2, height, 1.2],
+        [pos[0], pos[1] + height / 2, pos[2]],
+        color=rgb(42, 46, 52),
+        material="Metal",
+    )
+    head = part(
+        f"{name}_Head",
+        [3.2, 1.0, 3.2],
+        [pos[0], pos[1] + height + 0.4, pos[2]],
+        color=rgb(30, 32, 38),
+        material="Metal",
+        can_collide=False,
+    )
+    head["Children"] = [spot_light("Spot", brightness, range_, 65, lc, face="Bottom")]
+    return [pole, head]
+
+
 # ---------------------------------------------------------------------------
-# Lobby — Mech Bay Hub at world origin
+# Palette
 # ---------------------------------------------------------------------------
 
 STEEL = rgb(78, 84, 92)
@@ -248,63 +423,176 @@ FLOOR = rgb(92, 96, 102)
 ACCENT = rgb(210, 140, 40)
 WALL = rgb(64, 70, 78)
 WARN = rgb(220, 160, 30)
+NEON_CYAN = rgb(40, 200, 230)
+NEON_AMBER = rgb(255, 170, 50)
+NEON_MAGENTA = rgb(210, 70, 180)
+NEON_LIME = rgb(120, 230, 90)
+
+
+# ---------------------------------------------------------------------------
+# Lobby — Mech Bay Hub at world origin
+# ---------------------------------------------------------------------------
 
 
 def build_lobby() -> dict:
     kids: list[dict] = []
 
-    # Main hangar floor
+    # --- Shell / seal voids -------------------------------------------------
     kids.append(part("Floor", [160, 2, 120], [0, -1, 0], color=FLOOR, material="Concrete"))
-    # Slightly raised center strip
     kids.append(part("CenterBay", [40, 0.4, 36], [0, 0.2, 0], color=rgb(70, 74, 82), material="Metal"))
+    # Inner diamond-plate walk lanes
+    kids.append(
+        part("WalkLaneX", [120, 0.12, 10], [0, 0.08, -28], color=rgb(100, 104, 112), material="DiamondPlate")
+    )
+    kids.append(
+        part("WalkLaneZ", [10, 0.12, 70], [35, 0.08, -5], color=rgb(100, 104, 112), material="DiamondPlate")
+    )
 
-    # Hangar shell — closed back/sides + front wall with door opening (no void)
     kids.append(part("WallBack", [160, 28, 2], [0, 13, 59], color=WALL, material="Concrete"))
     kids.append(part("WallLeft", [2, 28, 120], [-79, 13, 0], color=WALL, material="Concrete"))
     kids.append(part("WallRight", [2, 28, 120], [79, 13, 0], color=WALL, material="Concrete"))
-    # Front wall: solid wings + header; center bay door stays walkable
     kids.append(part("WallFrontLeft", [52, 28, 2], [-54, 13, -59], color=WALL, material="Concrete"))
     kids.append(part("WallFrontRight", [52, 28, 2], [54, 13, -59], color=WALL, material="Concrete"))
     kids.append(part("WallFrontHeader", [56, 8, 2], [0, 23, -59], color=STEEL_DARK, material="Metal"))
     kids.append(part("FrontLeftPillar", [6, 28, 4], [-28, 13, -58], color=STEEL, material="Metal"))
     kids.append(part("FrontRightPillar", [6, 28, 4], [28, 13, -58], color=STEEL, material="Metal"))
     kids.append(part("FrontLintels", [56, 3, 4], [0, 19, -58], color=STEEL, material="Metal"))
-    # Exterior apron so the door doesn't open into empty void
+    # Corner seals (no sky leaks at wall joints)
+    for name, pos in (
+        ("CornerSealBL", [-78, 13, 58]),
+        ("CornerSealBR", [78, 13, 58]),
+        ("CornerSealFL", [-78, 13, -58]),
+        ("CornerSealFR", [78, 13, -58]),
+    ):
+        kids.append(part(name, [4, 28, 4], list(pos), color=STEEL_DARK, material="Metal"))
+
     kids.append(
         part("ExteriorApron", [160, 2, 48], [0, -1, -84], color=rgb(70, 74, 80), material="Asphalt")
     )
     kids.append(part("ExteriorLip", [160, 1, 2], [0, -0.4, -60], color=STEEL_DARK, material="Metal"))
-    # Side returns outside the door so sky void is framed
     kids.append(part("ExteriorWingL", [2, 18, 40], [-79, 8, -80], color=WALL, material="Concrete"))
     kids.append(part("ExteriorWingR", [2, 18, 40], [79, 8, -80], color=WALL, material="Concrete"))
+    # Apron side walls + rear fascia so doorframe is fully boxed
+    kids.append(part("ApronEndWall", [160, 10, 2], [0, 4, -107], color=STEEL_DARK, material="Concrete"))
+    kids.append(part("ApronRoofEdge", [160, 1.5, 6], [0, 27, -61], color=STEEL, material="Metal"))
 
-    # Roof beams (open hangar feel)
     for i, x in enumerate((-50, -25, 0, 25, 50)):
-        kids.append(
-            part(f"RoofBeam{i}", [3, 2, 118], [x, 27, 0], color=STEEL_DARK, material="Metal")
-        )
+        kids.append(part(f"RoofBeam{i}", [3, 2, 118], [x, 27, 0], color=STEEL_DARK, material="Metal"))
     kids.append(part("RoofSlab", [160, 1, 120], [0, 28.5, 0], color=rgb(55, 58, 65), material="Metal"))
+    # Cross truss + neon accent rails on ceiling (hub energy)
+    for i, z in enumerate((-30, 0, 30)):
+        kids.append(part(f"CrossTruss{i}", [156, 1.2, 1.5], [0, 26.5, z], color=STEEL, material="Metal"))
+        kids.append(neon_strip(f"CeilingNeon{i}", [140, 0.25, 0.35], [0, 25.8, z], NEON_CYAN))
 
-    # Columns along sides
     for i, z in enumerate((-40, -15, 15, 40)):
         kids.append(part(f"ColL{i}", [4, 26, 4], [-70, 12, z], color=STEEL, material="Metal"))
         kids.append(part(f"ColR{i}", [4, 26, 4], [70, 12, z], color=STEEL, material="Metal"))
+        # Column wraps with amber tip lights
+        tip = part(
+            f"ColTipL{i}",
+            [4.4, 0.5, 4.4],
+            [-70, 24.5, z],
+            color=NEON_AMBER,
+            material="Neon",
+            can_collide=False,
+        )
+        tip["Children"] = [point_light("Tip", 0.6, 18, NEON_AMBER)]
+        kids.append(tip)
+        tip_r = part(
+            f"ColTipR{i}",
+            [4.4, 0.5, 4.4],
+            [70, 24.5, z],
+            color=NEON_CYAN,
+            material="Neon",
+            can_collide=False,
+        )
+        tip_r["Children"] = [point_light("Tip", 0.55, 18, NEON_CYAN)]
+        kids.append(tip_r)
+
+    # Mezzanine balcony (spectator / ops overlook)
+    kids.append(
+        part("MezzFloor", [50, 1.2, 14], [-45, 12, 48], color=STEEL, material="DiamondPlate")
+    )
+    kids.extend(railing_segment("MezzRail", -45, 41.5, 46, True, y=12.0, height=2.8))
+    kids.append(part("MezzStairs", [8, 1, 18], [-18, 6, 48], color=STEEL_DARK, material="Metal"))
+    kids.extend(
+        sign_board(
+            "SignOpsDeck",
+            "OPS DECK",
+            [-45, 15.5, 42],
+            size=[12, 2.5, 0.4],
+            neon_color=NEON_AMBER,
+        )
+    )
 
     # Railings around center bay
     kids.extend(railing_segment("RailN", 0, -20, 36, True))
     kids.extend(railing_segment("RailS", 0, 20, 36, True))
     kids.extend(railing_segment("RailW", -22, 0, 36, False))
     kids.extend(railing_segment("RailE", 22, 0, 36, False))
-
-    # Crates / props
-    for i, (x, z) in enumerate(
-        [(-60, -35), (-55, -40), (-62, -42), (58, -38), (62, -42), (55, 40), (-58, 42)]
+    # Gate gaps marked with neon stubs at bay entrances
+    for name, pos in (
+        ("BayGateN", [0, 0.3, -20]),
+        ("BayGateS", [0, 0.3, 20]),
     ):
+        kids.append(neon_strip(name, [8, 0.2, 0.35], list(pos), NEON_AMBER))
+
+    # --- Dense props --------------------------------------------------------
+    crate_spots = [
+        (-60, -35),
+        (-55, -40),
+        (-62, -42),
+        (-58, -30),
+        (58, -38),
+        (62, -42),
+        (55, 40),
+        (-58, 42),
+        (50, 35),
+        (-48, 38),
+        (65, 10),
+        (-65, 12),
+        (48, -10),
+        (-52, -8),
+    ]
+    for i, (x, z) in enumerate(crate_spots):
         kids.append(crate(f"Crate{i}", [x, 0, z], [3 + (i % 2), 2.5 + (i % 3) * 0.4, 3]))
 
-    # Tool benches
+    for i, (x, z) in enumerate([(-45, -45), (45, -48), (-40, 48), (42, 45), (68, -20), (-68, 22)]):
+        kids.append(barrel(f"Barrel{i}", [x, 0, z], rgb(80, 90, 50) if i % 2 == 0 else rgb(90, 55, 40)))
+
+    for i, (x, z) in enumerate([(-62, 30), (60, 28), (-30, 45)]):
+        kids.append(cable_spool(f"Spool{i}", [x, 0, z]))
+
+    # Tool benches + racks
     kids.append(part("WorkbenchL", [12, 3, 4], [-40, 1.5, 30], color=rgb(95, 70, 45), material="Wood"))
     kids.append(part("WorkbenchR", [12, 3, 4], [40, 1.5, 30], color=rgb(95, 70, 45), material="Wood"))
+    kids.append(part("ToolRackL", [1, 8, 10], [-46, 5, 30], color=STEEL_DARK, material="Metal"))
+    kids.append(part("ToolRackR", [1, 8, 10], [46, 5, 30], color=STEEL_DARK, material="Metal"))
+    kids.append(neon_strip("BenchGlowL", [10, 0.15, 0.2], [-40, 3.2, 28], NEON_AMBER))
+    kids.append(neon_strip("BenchGlowR", [10, 0.15, 0.2], [40, 3.2, 28], NEON_CYAN))
+
+    # Wall tech panels
+    for i, z in enumerate((-25, 0, 25)):
+        panel = part(
+            f"WallPanelL{i}",
+            [0.6, 10, 12],
+            [-78.2, 10, z],
+            color=rgb(35, 40, 48),
+            material="Metal",
+        )
+        panel["Children"] = [point_light("Panel", 0.4, 14, NEON_CYAN)]
+        kids.append(panel)
+        kids.append(neon_strip(f"WallNeonL{i}", [0.2, 8, 0.25], [-77.7, 10, z - 5], NEON_CYAN))
+        kids.append(
+            part(
+                f"WallPanelR{i}",
+                [0.6, 10, 12],
+                [78.2, 10, z],
+                color=rgb(35, 40, 48),
+                material="Metal",
+            )
+        )
+        kids.append(neon_strip(f"WallNeonR{i}", [0.2, 8, 0.25], [77.7, 10, z + 5], NEON_AMBER))
 
     # Warning stripes near entrance
     for i, x in enumerate(range(-48, 49, 8)):
@@ -318,8 +606,111 @@ def build_lobby() -> dict:
             )
         )
 
-    # Lighting fixtures (hanging)
-    for i, (x, z) in enumerate([(-30, -20), (30, -20), (-30, 20), (30, 20), (0, 0)]):
+    # --- Floor path: Spawn → Campaign terminal (readable landmark) ----------
+    # Dashed chevrons along diamond-plate lane toward terminal at (35, *, -20)
+    path_points = [
+        (0, -20),
+        (8, -20),
+        (16, -20),
+        (24, -20),
+        (32, -20),
+        (35, -16),
+        (35, -12),
+        (35, -8),
+    ]
+    for i, (x, z) in enumerate(path_points):
+        kids.append(
+            neon_strip(
+                f"PathMark{i}",
+                [2.2, 0.12, 1.1],
+                [x, 0.18, z],
+                NEON_CYAN if i % 2 == 0 else rgb(80, 200, 180),
+            )
+        )
+    # Arrow heads near terminal
+    kids.append(neon_strip("PathArrow", [3.5, 0.14, 2.0], [35, 0.2, -24], NEON_CYAN))
+    kids.extend(
+        sign_board(
+            "SignFloorCampaign",
+            "→ CAMPAIGN",
+            [22, 0.4, -20],
+            size=[8, 0.15, 3],
+            board_color=rgb(20, 28, 36),
+            neon_color=NEON_CYAN,
+            face="Top",
+        )
+    )
+
+    # Hazard ring around garage bay
+    for i, ang_off in enumerate((-10, -5, 5, 10)):
+        kids.append(
+            part(
+                f"HazardRing{i}",
+                [3.5, 0.12, 1.2],
+                [ang_off * 1.4, 0.15, 8 + (i - 1.5) * 3],
+                color=WARN if i % 2 == 0 else STEEL_DARK,
+                material="SmoothPlastic",
+            )
+        )
+
+    # --- Signage (BAY 01, CAMPAIGN, hub identity) ----------------------------
+    kids.extend(
+        sign_board(
+            "SignBay01",
+            "BAY 01",
+            [-30, 18, -57.2],
+            size=[14, 4, 0.5],
+            neon_color=NEON_AMBER,
+        )
+    )
+    kids.extend(
+        sign_board(
+            "SignBay02",
+            "BAY 02",
+            [30, 18, -57.2],
+            size=[14, 4, 0.5],
+            neon_color=NEON_CYAN,
+        )
+    )
+    kids.extend(
+        sign_board(
+            "SignAssembler",
+            "ASSEMBLER",
+            [0, 21.5, -57.2],
+            size=[22, 3.2, 0.5],
+            neon_color=rgb(255, 220, 140),
+        )
+    )
+    kids.extend(
+        sign_board(
+            "SignCampaignWall",
+            "CAMPAIGN",
+            [35, 10, -22.5],
+            size=[10, 2.2, 0.4],
+            neon_color=NEON_CYAN,
+        )
+    )
+    kids.extend(
+        sign_board(
+            "SignGarage",
+            "GARAGE DISPLAY",
+            [0, 8, 18],
+            size=[16, 2.4, 0.4],
+            neon_color=NEON_AMBER,
+        )
+    )
+    kids.extend(
+        sign_board(
+            "SignExit",
+            "APRON / YARD",
+            [0, 14, -57.2],
+            size=[12, 2, 0.4],
+            neon_color=rgb(180, 200, 210),
+        )
+    )
+
+    # Hanging lamps
+    for i, (x, z) in enumerate([(-30, -20), (30, -20), (-30, 20), (30, 20), (0, 0), (35, -20), (-50, 0)]):
         lamp = part(
             f"LampHousing{i}",
             [6, 1, 6],
@@ -328,12 +719,12 @@ def build_lobby() -> dict:
             material="Metal",
             can_collide=False,
         )
+        bright = 2.8 if i == 4 else 1.9
         lamp["Children"] = [
-            spot_light("Spot", 2.5 if i == 4 else 1.8, 60, 70, rgb(255, 235, 200), face="Bottom")
+            spot_light("Spot", bright, 62, 70, rgb(255, 235, 200), face="Bottom")
         ]
         kids.append(lamp)
 
-    # Ambient fill light in bay
     fill = part(
         "BayFillLight",
         [2, 2, 2],
@@ -343,10 +734,10 @@ def build_lobby() -> dict:
         transparency=0.6,
         can_collide=False,
     )
-    fill["Children"] = [point_light("Fill", 1.2, 80, rgb(255, 230, 190))]
+    fill["Children"] = [point_light("Fill", 1.35, 85, rgb(255, 230, 190))]
     kids.append(fill)
 
-    # Spawn — inside bay, facing +Z toward garage (not out the door into sky)
+    # Spawn
     kids.append(
         {
             "Name": "SpawnLocation",
@@ -366,8 +757,9 @@ def build_lobby() -> dict:
             "Children": [surface_gui_label("SpawnLabel", "SPAWN", face="Top")],
         }
     )
+    kids.append(pad_ring("SpawnRing", [0, 0, -28], NEON_CYAN, y_off=0.12))
 
-    # Garage pedestal — view assembled mech
+    # Garage pedestal + bay lighting
     pedestal = part(
         "GaragePedestal",
         [16, 2, 16],
@@ -378,6 +770,7 @@ def build_lobby() -> dict:
     pedestal["Children"] = [
         attachment("MechRoot", [0, 4, 0]),
         surface_gui_label("GarageLabel", "GARAGE", face="Top"),
+        point_light("PedestalUnder", 1.1, 22, NEON_AMBER),
     ]
     kids.append(pedestal)
     kids.append(
@@ -390,8 +783,55 @@ def build_lobby() -> dict:
             can_collide=False,
         )
     )
+    kids.append(
+        part(
+            "GaragePedestalRingOuter",
+            [20.5, 0.2, 20.5],
+            [0, 0.12, 8],
+            color=NEON_CYAN,
+            material="Neon",
+            can_collide=False,
+            transparency=0.25,
+        )
+    )
+    # Overhead garage bay spots aimed at pedestal
+    for i, (x, z) in enumerate([(-8, 8), (8, 8), (0, 0), (0, 16)]):
+        bay_lamp = part(
+            f"GarageBayLamp{i}",
+            [3, 0.8, 3],
+            [x, 22, z],
+            color=rgb(35, 38, 44),
+            material="Metal",
+            can_collide=False,
+        )
+        bay_lamp["Children"] = [
+            spot_light("BaySpot", 2.6, 38, 48, rgb(255, 245, 220), face="Bottom")
+        ]
+        kids.append(bay_lamp)
+    # Pedestal corner beacons
+    for i, (x, z) in enumerate([(-9, -1), (9, -1), (-9, 17), (9, 17)]):
+        beacon = part(
+            f"PedestalBeacon{i}",
+            [0.8, 3.5, 0.8],
+            [x, 2.5, z],
+            color=STEEL_DARK,
+            material="Metal",
+        )
+        tip = part(
+            f"PedestalBeaconTip{i}",
+            [1.0, 0.4, 1.0],
+            [x, 4.4, z],
+            color=NEON_AMBER if i % 2 == 0 else NEON_CYAN,
+            material="Neon",
+            can_collide=False,
+        )
+        tip["Children"] = [
+            point_light("Glow", 0.9, 12, NEON_AMBER if i % 2 == 0 else NEON_CYAN)
+        ]
+        kids.append(beacon)
+        kids.append(tip)
 
-    # Campaign terminal (screen as sibling so world Position is unambiguous)
+    # Campaign terminal
     terminal = part(
         "CampaignTerminal",
         [8, 6, 4],
@@ -401,21 +841,29 @@ def build_lobby() -> dict:
     )
     terminal["Children"] = [
         attachment("Interact", [0, 0, -2.5]),
-        point_light("TerminalGlow", 1.5, 24, rgb(40, 180, 220)),
+        point_light("TerminalGlow", 1.7, 28, NEON_CYAN),
     ]
     kids.append(terminal)
     screen = part(
         "CampaignTerminalScreen",
         [6, 4, 0.4],
         [35, 5, -22.2],
-        color=rgb(40, 180, 220),
+        color=NEON_CYAN,
         material="Neon",
         can_collide=False,
     )
     screen["Children"] = [surface_gui_label("CampaignLabel", "CAMPAIGN", face="Front")]
     kids.append(screen)
+    # Terminal kiosk frame + floor pad
+    kids.append(
+        part("TerminalBase", [10, 0.5, 8], [35, 0.25, -20], color=STEEL_DARK, material="Metal")
+    )
+    kids.append(neon_strip("TerminalHalo", [11, 0.15, 9], [35, 0.4, -20], NEON_CYAN))
+    kids.append(
+        part("TerminalCanopy", [10, 0.6, 5], [35, 7.5, -20], color=STEEL, material="Metal")
+    )
 
-    # Arena directory signs (props pointing at far arenas)
+    # Arena directory signs
     kids.append(
         part("SignScrapPit", [10, 4, 0.6], [-50, 6, -55], color=rgb(160, 90, 50), material="Metal")
     )
@@ -429,6 +877,79 @@ def build_lobby() -> dict:
     )
     kids[-1]["Children"] = [surface_gui_label("T", "NIGHT YARD →", face="Front")]
 
+    # Subtle steam / spark FX
+    steam_a = part(
+        "SteamVentA",
+        [2, 1, 2],
+        [-70, 1, -40],
+        color=STEEL,
+        material="Metal",
+        can_collide=False,
+        transparency=0.4,
+    )
+    steam_a["Children"] = [
+        particle_emitter(
+            "Steam",
+            rate=6,
+            lifetime=[1.2, 2.4],
+            speed=[1.5, 3.5],
+            size_start=1.2,
+            size_end=3.5,
+            color=rgb(180, 190, 200),
+            light_emission=0.05,
+            drag=3.0,
+        )
+    ]
+    kids.append(steam_a)
+    steam_b = part(
+        "SteamVentB",
+        [2, 1, 2],
+        [68, 1, 35],
+        color=STEEL,
+        material="Metal",
+        can_collide=False,
+        transparency=0.4,
+    )
+    steam_b["Children"] = [
+        particle_emitter(
+            "Steam",
+            rate=5,
+            lifetime=[1.0, 2.2],
+            speed=[1.2, 3.0],
+            size_start=1.0,
+            size_end=3.0,
+            color=rgb(170, 180, 190),
+            light_emission=0.05,
+            drag=3.2,
+        )
+    ]
+    kids.append(steam_b)
+    sparks = part(
+        "WelderSparks",
+        [1.5, 1.5, 1.5],
+        [-40, 4, 30],
+        color=NEON_AMBER,
+        material="Neon",
+        transparency=0.7,
+        can_collide=False,
+    )
+    sparks["Children"] = [
+        particle_emitter(
+            "Sparks",
+            rate=10,
+            lifetime=[0.25, 0.7],
+            speed=[4, 10],
+            size_start=0.15,
+            size_end=0.05,
+            color=rgb(255, 200, 80),
+            light_emission=0.8,
+            drag=1.0,
+            texture="rbxasset://textures/particles/sparkles_main.dds",
+            spread=[40.0, 40.0],
+        )
+    ]
+    kids.append(sparks)
+
     return model("Lobby", kids)
 
 
@@ -438,219 +959,506 @@ def build_lobby() -> dict:
 
 
 def build_scrap_pit(origin: list[float]) -> dict:
-    """Circular scrapyard bowl — rust tones, debris piles, open pit feel."""
+    """Warm rust scrapyard bowl — amber lamps, slag heaps, center kill pit."""
     ox, oy, oz = origin
     kids: list[dict] = []
-    floor_c = rgb(110, 75, 55)
-    wall_c = rgb(90, 60, 45)
+    floor_c = rgb(118, 78, 52)
+    wall_c = rgb(95, 58, 40)
+    ember = rgb(255, 140, 60)
 
-    kids.append(part("Floor", [90, 2, 90], [ox, oy - 1, oz], color=floor_c, material="Ground"))
-    # Inner pit depression ring
+    kids.append(part("Floor", [96, 2, 96], [ox, oy - 1, oz], color=floor_c, material="Ground"))
     kids.append(
-        part("PitRing", [50, 1, 50], [ox, oy + 0.1, oz], color=rgb(85, 55, 40), material="Slate")
+        part("PitRing", [52, 1, 52], [ox, oy + 0.1, oz], color=rgb(85, 55, 40), material="Slate")
     )
+    # Deeper kill pit in center (fits scrap-bowl fantasy)
+    kids.append(
+        part(
+            "PitMouth",
+            [22, 1.5, 22],
+            [ox, oy - 2.2, oz],
+            color=rgb(40, 22, 16),
+            material="Slate",
+        )
+    )
+    kids.append(
+        part(
+            "PitDepth",
+            [18, 18, 18],
+            [ox, oy - 12, oz],
+            color=rgb(25, 12, 10),
+            material="Rock",
+        )
+    )
+    kids.append(kill_volume("KillPit", [16, 6, 16], [ox, oy - 20, oz]))
+    kids.append(neon_strip("PitRimNeon", [24, 0.2, 24], [ox, oy + 0.25, oz], ember))
 
-    # Low perimeter walls (broken scrap barriers)
     for i, (dx, dz, sx, sz) in enumerate(
-        [
-            (0, -44, 80, 4),
-            (0, 44, 80, 4),
-            (-44, 0, 4, 72),
-            (44, 0, 4, 72),
-        ]
+        [(0, -46, 88, 5), (0, 46, 88, 5), (-46, 0, 5, 80), (46, 0, 5, 80)]
     ):
         kids.append(
-            part(f"Barrier{i}", [sx, 6, sz], [ox + dx, oy + 3, oz + dz], color=wall_c, material="CorrodedMetal")
+            part(
+                f"Barrier{i}",
+                [sx, 7, sz],
+                [ox + dx, oy + 3.5, oz + dz],
+                color=wall_c,
+                material="CorrodedMetal",
+            )
         )
 
-    # Corner scrap piles
-    for i, (dx, dz) in enumerate([(-30, -30), (28, -28), (-28, 30), (30, 28)]):
-        kids.append(crate(f"ScrapPile{i}", [ox + dx, oy, oz + dz], [8, 5, 7]))
+    # Spectator scrap rail on north barrier
+    kids.extend(
+        railing_segment(
+            "SpecRail",
+            ox,
+            oz - 43,
+            60,
+            True,
+            y=oy + 6.5,
+            height=2.6,
+            color=rgb(120, 80, 45),
+        )
+    )
+    kids.append(
+        part(
+            "SpecWalk",
+            [50, 1, 6],
+            [ox, oy + 6.8, oz - 43],
+            color=rgb(90, 65, 45),
+            material="DiamondPlate",
+        )
+    )
+
+    for i, (dx, dz) in enumerate(
+        [(-32, -32), (30, -30), (-30, 32), (32, 30), (-38, 0), (38, 5), (0, 38)]
+    ):
+        kids.append(crate(f"ScrapPile{i}", [ox + dx, oy, oz + dz], [7 + i % 3, 4 + (i % 2), 6]))
         kids.append(
             part(
                 f"ScrapChunk{i}",
-                [5, 3, 4],
-                [ox + dx + 4, oy + 1.5, oz + dz - 3],
+                [4.5, 2.8, 3.5],
+                [ox + dx + 3, oy + 1.4, oz + dz - 2],
                 color=rgb(100, 70, 50),
                 material="CorrodedMetal",
             )
         )
 
-    # Crane boom silhouette
-    kids.append(
-        part("CraneTower", [4, 28, 4], [ox + 38, oy + 14, oz - 38], color=STEEL, material="Metal")
-    )
-    kids.append(
-        part("CraneArm", [36, 2, 3], [ox + 20, oy + 26, oz - 38], color=rgb(200, 140, 40), material="Metal")
-    )
+    for i, (dx, dz) in enumerate([(-20, -38), (22, 36), (-36, 18)]):
+        kids.append(barrel(f"SlagDrum{i}", [ox + dx, oy, oz + dz], rgb(110, 70, 40)))
 
-    kids.append(pad("PadA", [ox - 22, oy, oz], rgb(180, 90, 50), "P1"))
-    kids.append(pad("PadB", [ox + 22, oy, oz], rgb(80, 120, 160), "P2"))
+    kids.append(
+        part("CraneTower", [4, 30, 4], [ox + 40, oy + 15, oz - 40], color=STEEL, material="Metal")
+    )
+    kids.append(
+        part(
+            "CraneArm",
+            [40, 2, 3],
+            [ox + 20, oy + 28, oz - 40],
+            color=rgb(200, 140, 40),
+            material="Metal",
+        )
+    )
+    kids.append(neon_strip("CraneNeon", [36, 0.25, 0.35], [ox + 20, oy + 27, oz - 40], ember))
+
+    # Warm mood lamps
+    for i, (dx, dz) in enumerate([(-28, -28), (28, -28), (-28, 28), (28, 28), (0, -40)]):
+        kids.extend(
+            lamp_post(
+                f"RustLamp{i}",
+                [ox + dx, oy, oz + dz],
+                height=16,
+                light_color=rgb(255, 170, 100),
+                brightness=1.8,
+                range_=48,
+            )
+        )
+
+    kids.append(pad("PadA", [ox - 24, oy, oz], rgb(180, 90, 50), "P1"))
+    kids.append(pad("PadB", [ox + 24, oy, oz], rgb(80, 120, 160), "P2"))
+    kids.append(pad_ring("PadARing", [ox - 24, oy, oz], ember, y_off=1.35))
+    kids.append(pad_ring("PadBRing", [ox + 24, oy, oz], rgb(80, 160, 200), y_off=1.35))
+    # Pad approach chevrons
+    for i, x in enumerate(range(-18, 19, 6)):
+        kids.append(
+            neon_strip(
+                f"LaneMark{i}",
+                [2, 0.12, 1],
+                [ox + x, oy + 0.2, oz],
+                rgb(200, 120, 50) if abs(x) > 6 else STEEL_DARK,
+            )
+        )
     kids.append(arena_origin([ox, oy, oz]))
 
     lamp = part(
         "ArenaLamp",
-        [4, 1, 4],
-        [ox, oy + 22, oz],
+        [5, 1.2, 5],
+        [ox, oy + 24, oz],
         color=rgb(40, 40, 40),
         material="Metal",
         can_collide=False,
     )
-    lamp["Children"] = [point_light("Light", 2.0, 70, rgb(255, 200, 140))]
+    lamp["Children"] = [point_light("Light", 2.3, 75, rgb(255, 190, 120))]
     kids.append(lamp)
+
+    # Ember particles over pit rim
+    ember_fx = part(
+        "EmberFx",
+        [2, 2, 2],
+        [ox, oy + 2, oz - 8],
+        color=ember,
+        material="Neon",
+        transparency=0.8,
+        can_collide=False,
+    )
+    ember_fx["Children"] = [
+        particle_emitter(
+            "Embers",
+            rate=7,
+            lifetime=[0.8, 1.8],
+            speed=[1, 3],
+            size_start=0.2,
+            size_end=0.05,
+            color=rgb(255, 150, 50),
+            light_emission=0.7,
+            texture="rbxasset://textures/particles/sparkles_main.dds",
+            spread=[50.0, 50.0],
+        )
+    ]
+    kids.append(ember_fx)
+
+    # Warm haze volume (local fog stand-in)
+    kids.append(
+        part(
+            "WarmHaze",
+            [90, 40, 90],
+            [ox, oy + 18, oz],
+            color=rgb(180, 110, 60),
+            material="ForceField",
+            transparency=0.92,
+            can_collide=False,
+        )
+    )
 
     return model("ScrapPit", kids)
 
 
 def build_dry_dock(origin: list[float]) -> dict:
-    """Rectangular shipyard dock — concrete piers, water channel between pads."""
+    """Cool cyan shipyard — wet channel kill, pier lamps, mist."""
     ox, oy, oz = origin
     kids: list[dict] = []
+    cool = rgb(120, 190, 220)
+    deep = rgb(20, 50, 70)
 
     kids.append(
-        part("Floor", [100, 2, 70], [ox, oy - 1, oz], color=rgb(130, 132, 138), material="Concrete")
+        part("Floor", [108, 2, 76], [ox, oy - 1, oz], color=rgb(128, 132, 140), material="Concrete")
     )
-    # Water channel down the middle
+    # Deep water channel + kill volume
     kids.append(
         part(
             "Channel",
-            [18, 1.5, 70],
-            [ox, oy - 0.4, oz],
-            color=rgb(40, 90, 120),
+            [18, 8, 72],
+            [ox, oy - 4, oz],
+            color=rgb(30, 80, 110),
             material="Glass",
-            transparency=0.25,
+            transparency=0.3,
         )
-    )
-    # Dock piers
-    kids.append(
-        part("PierWest", [36, 2.5, 60], [ox - 28, oy + 0.5, oz], color=rgb(110, 112, 118), material="Concrete")
-    )
-    kids.append(
-        part("PierEast", [36, 2.5, 60], [ox + 28, oy + 0.5, oz], color=rgb(110, 112, 118), material="Concrete")
-    )
-
-    # Mooring posts
-    for i, x in enumerate((-40, -20, 20, 40)):
-        for j, z in enumerate((-28, 28)):
-            kids.append(
-                part(
-                    f"Bollard{i}_{j}",
-                    [2, 4, 2],
-                    [ox + x, oy + 3.5, oz + z],
-                    color=rgb(60, 65, 70),
-                    material="Metal",
-                )
-            )
-
-    # Side warehouses
-    kids.append(
-        part("ShedLeft", [8, 16, 40], [ox - 48, oy + 8, oz], color=rgb(70, 90, 105), material="Metal")
-    )
-    kids.append(
-        part("ShedRight", [8, 16, 40], [ox + 48, oy + 8, oz], color=rgb(70, 90, 105), material="Metal")
-    )
-
-    # Catwalk over channel + raised rail
-    kids.append(
-        part("Catwalk", [20, 0.6, 6], [ox, oy + 8, oz], color=STEEL, material="DiamondPlate")
     )
     kids.append(
         part(
-            "CatRail",
-            [18, 0.4, 0.4],
-            [ox, oy + 10, oz - 3.2],
-            color=rgb(70, 74, 80),
-            material="Metal",
+            "ChannelSurface",
+            [17, 0.4, 70],
+            [ox, oy - 0.1, oz],
+            color=cool,
+            material="Glass",
+            transparency=0.45,
+            can_collide=False,
         )
     )
-    for i, ox_off in enumerate((-7.0, 0.0, 7.0)):
-        kids.append(
-            part(
-                f"CatPost{i}",
-                [0.35, 2.2, 0.35],
-                [ox + ox_off, oy + 9.1, oz - 3.2],
-                color=rgb(55, 58, 64),
-                material="Metal",
-            )
-        )
+    kids.append(kill_volume("KillChannel", [14, 4, 66], [ox, oy - 10, oz]))
+    kids.append(neon_strip("ChannelEdgeW", [0.3, 0.2, 68], [ox - 9.2, oy + 0.3, oz], cool))
+    kids.append(neon_strip("ChannelEdgeE", [0.3, 0.2, 68], [ox + 9.2, oy + 0.3, oz], cool))
 
-    kids.append(pad("PadA", [ox - 28, oy + 1.5, oz], rgb(70, 140, 170), "P1"))
-    kids.append(pad("PadB", [ox + 28, oy + 1.5, oz], rgb(170, 100, 60), "P2"))
+    kids.append(
+        part(
+            "PierWest",
+            [38, 2.5, 64],
+            [ox - 30, oy + 0.5, oz],
+            color=rgb(108, 112, 120),
+            material="Concrete",
+        )
+    )
+    kids.append(
+        part(
+            "PierEast",
+            [38, 2.5, 64],
+            [ox + 30, oy + 0.5, oz],
+            color=rgb(108, 112, 120),
+            material="Concrete",
+        )
+    )
+
+    for i, x in enumerate((-42, -22, 22, 42)):
+        for j, z in enumerate((-30, 0, 30)):
+            kids.append(
+                part(
+                    f"Bollard{i}_{j}",
+                    [2, 4.5, 2],
+                    [ox + x, oy + 3.8, oz + z],
+                    color=rgb(55, 62, 70),
+                    material="Metal",
+                )
+            )
+            kids.append(
+                neon_strip(
+                    f"BollardCap{i}_{j}",
+                    [2.2, 0.25, 2.2],
+                    [ox + x, oy + 6.2, oz + z],
+                    cool if (i + j) % 2 == 0 else rgb(200, 220, 255),
+                )
+            )
+
+    kids.append(
+        part("ShedLeft", [9, 18, 44], [ox - 50, oy + 9, oz], color=rgb(55, 85, 100), material="Metal")
+    )
+    kids.append(
+        part("ShedRight", [9, 18, 44], [ox + 50, oy + 9, oz], color=rgb(55, 85, 100), material="Metal")
+    )
+    kids.extend(
+        sign_board(
+            "SignDryBay",
+            "DRY DOCK",
+            [ox, oy + 16, oz - 36],
+            size=[18, 3.5, 0.5],
+            neon_color=cool,
+        )
+    )
+    kids.extend(
+        sign_board(
+            "SignPierA",
+            "PIER A",
+            [ox - 30, oy + 8, oz - 34],
+            size=[10, 2.2, 0.4],
+            neon_color=cool,
+        )
+    )
+    kids.extend(
+        sign_board(
+            "SignPierB",
+            "PIER B",
+            [ox + 30, oy + 8, oz - 34],
+            size=[10, 2.2, 0.4],
+            neon_color=rgb(255, 160, 90),
+        )
+    )
+
+    # Catwalk + full spectator rails both sides
+    kids.append(
+        part("Catwalk", [22, 0.6, 7], [ox, oy + 9, oz], color=STEEL, material="DiamondPlate")
+    )
+    kids.extend(railing_segment("CatRailN", ox, oz - 3.6, 20, True, y=oy + 9, height=2.4))
+    kids.extend(railing_segment("CatRailS", ox, oz + 3.6, 20, True, y=oy + 9, height=2.4))
+    # Approach bridges from each pier
+    kids.append(
+        part("BridgeW", [12, 0.5, 5], [ox - 16, oy + 2.2, oz], color=STEEL, material="DiamondPlate")
+    )
+    kids.append(
+        part("BridgeE", [12, 0.5, 5], [ox + 16, oy + 2.2, oz], color=STEEL, material="DiamondPlate")
+    )
+
+    # Cargo on piers
+    for i, (dx, dz) in enumerate([(-38, -18), (-36, 16), (36, -20), (38, 14)]):
+        kids.append(crate(f"DockCrate{i}", [ox + dx, oy + 1.5, oz + dz], [5, 3.5, 4]))
+    for i, (dx, dz) in enumerate([(-40, 0), (40, 5)]):
+        kids.append(cable_spool(f"DockSpool{i}", [ox + dx, oy + 1.5, oz + dz]))
+
+    # Gantry crane
+    kids.append(
+        part("GantryLegs", [3, 22, 3], [ox - 8, oy + 12, oz - 28], color=STEEL, material="Metal")
+    )
+    kids.append(
+        part("GantryBeam", [50, 2, 2.5], [ox, oy + 22, oz - 28], color=rgb(70, 120, 140), material="Metal")
+    )
+    kids.append(neon_strip("GantryNeon", [46, 0.2, 0.3], [ox, oy + 21.2, oz - 28], cool))
+
+    kids.append(pad("PadA", [ox - 30, oy + 1.5, oz], rgb(70, 140, 170), "P1"))
+    kids.append(pad("PadB", [ox + 30, oy + 1.5, oz], rgb(170, 100, 60), "P2"))
+    kids.append(pad_ring("PadARing", [ox - 30, oy + 1.5, oz], cool, y_off=1.4))
+    kids.append(pad_ring("PadBRing", [ox + 30, oy + 1.5, oz], rgb(255, 150, 80), y_off=1.4))
     kids.append(arena_origin([ox, oy + 1.5, oz]))
 
-    for i, (x, z) in enumerate([(-28, -20), (28, -20), (-28, 20), (28, 20)]):
+    for i, (x, z) in enumerate([(-30, -22), (30, -22), (-30, 22), (30, 22), (0, -34), (0, 34)]):
         lamp = part(
             f"DockLamp{i}",
-            [2, 8, 2],
-            [ox + x, oy + 6, oz + z],
+            [2, 10, 2],
+            [ox + x, oy + 7, oz + z],
             color=STEEL,
             material="Metal",
             can_collide=False,
         )
-        lamp["Children"] = [point_light("Light", 1.4, 40, rgb(200, 220, 255))]
+        lamp["Children"] = [point_light("Light", 1.55, 44, rgb(180, 220, 255))]
         kids.append(lamp)
+
+    mist = part(
+        "ChannelMist",
+        [10, 2, 40],
+        [ox, oy + 1.5, oz],
+        color=cool,
+        material="ForceField",
+        transparency=0.85,
+        can_collide=False,
+    )
+    mist["Children"] = [
+        particle_emitter(
+            "Mist",
+            rate=8,
+            lifetime=[1.5, 3.0],
+            speed=[0.5, 1.8],
+            size_start=1.5,
+            size_end=4.0,
+            color=rgb(160, 200, 220),
+            light_emission=0.1,
+            drag=4.0,
+        )
+    ]
+    kids.append(mist)
+
+    kids.append(
+        part(
+            "CoolHaze",
+            [100, 36, 70],
+            [ox, oy + 16, oz],
+            color=rgb(80, 140, 180),
+            material="ForceField",
+            transparency=0.93,
+            can_collide=False,
+        )
+    )
 
     return model("DryDock", kids)
 
 
 def build_night_yard(origin: list[float]) -> dict:
-    """Night outdoor yard — dark asphalt, floodlights, fence, cargo containers."""
+    """Night cargo yard — indigo asphalt, magenta/cyan neon, flood lamps."""
     ox, oy, oz = origin
     kids: list[dict] = []
+    asphalt = rgb(28, 30, 38)
+    violet = rgb(90, 70, 180)
 
-    kids.append(
-        part("Floor", [100, 2, 100], [ox, oy - 1, oz], color=rgb(35, 38, 45), material="Asphalt")
-    )
-    # Center painted mark
+    kids.append(part("Floor", [108, 2, 108], [ox, oy - 1, oz], color=asphalt, material="Asphalt"))
     kids.append(
         part(
             "CenterMark",
-            [28, 0.2, 28],
-            [ox, oy + 0.1, oz],
-            color=rgb(55, 60, 80),
+            [30, 0.18, 30],
+            [ox, oy + 0.12, oz],
+            color=rgb(45, 50, 75),
             material="SmoothPlastic",
         )
     )
+    # Neon lane cross
+    kids.append(neon_strip("LaneNS", [2.5, 0.14, 80], [ox, oy + 0.2, oz], NEON_MAGENTA))
+    kids.append(neon_strip("LaneEW", [80, 0.14, 2.5], [ox, oy + 0.2, oz], NEON_CYAN))
+    kids.append(neon_strip("LaneRing", [36, 0.14, 36], [ox, oy + 0.22, oz], violet))
 
-    # Chain-link style fence (solid low-poly stand-in)
     for i, (dx, dz, sx, sz) in enumerate(
-        [(0, -48, 96, 1), (0, 48, 96, 1), (-48, 0, 1, 96), (48, 0, 1, 96)]
+        [(0, -50, 100, 1.2), (0, 50, 100, 1.2), (-50, 0, 1.2, 100), (50, 0, 1.2, 100)]
     ):
         kids.append(
             part(
                 f"Fence{i}",
-                [sx, 10, sz],
-                [ox + dx, oy + 5, oz + dz],
-                color=rgb(50, 55, 65),
+                [sx, 11, sz],
+                [ox + dx, oy + 5.5, oz + dz],
+                color=rgb(45, 48, 60),
                 material="Metal",
-                transparency=0.35,
+                transparency=0.32,
             )
         )
+        # Fence top neon cord
+        if sx > sz:
+            kids.append(
+                neon_strip(
+                    f"FenceNeon{i}",
+                    [sx * 0.96, 0.2, 0.25],
+                    [ox + dx, oy + 11.2, oz + dz],
+                    NEON_MAGENTA if i % 2 == 0 else NEON_CYAN,
+                )
+            )
+        else:
+            kids.append(
+                neon_strip(
+                    f"FenceNeon{i}",
+                    [0.25, 0.2, sz * 0.96],
+                    [ox + dx, oy + 11.2, oz + dz],
+                    NEON_CYAN if i % 2 == 0 else NEON_MAGENTA,
+                )
+            )
 
-    # Cargo containers as cover
+    # Kill pits just outside fence corners (fall-off)
+    for i, (dx, dz) in enumerate([(-58, -58), (58, -58), (-58, 58), (58, 58)]):
+        kids.append(
+            part(
+                f"OuterVoid{i}",
+                [16, 2, 16],
+                [ox + dx, oy - 8, oz + dz],
+                color=rgb(10, 10, 16),
+                material="SmoothPlastic",
+            )
+        )
+        kids.append(kill_volume(f"KillCorner{i}", [14, 5, 14], [ox + dx, oy - 14, oz + dz]))
+
     containers = [
-        (-35, -25, 0),
-        (-35, 20, 90),
-        (32, -22, 0),
-        (30, 25, 45),
+        (-36, -26, rgb(35, 100, 80)),
+        (-34, 22, rgb(100, 45, 50)),
+        (34, -24, rgb(40, 55, 110)),
+        (32, 26, rgb(90, 50, 100)),
+        (-20, -40, rgb(50, 70, 55)),
+        (18, 40, rgb(70, 40, 55)),
     ]
-    for i, (dx, dz, _rot) in enumerate(containers):
+    for i, (dx, dz, col) in enumerate(containers):
         kids.append(
             part(
                 f"Container{i}",
-                [20, 8, 8],
+                [18, 8, 8],
                 [ox + dx, oy + 4, oz + dz],
-                color=rgb(40, 90, 70) if i % 2 == 0 else rgb(90, 50, 45),
+                color=col,
                 material="Metal",
             )
         )
+        kids.append(
+            neon_strip(
+                f"ContainerEdge{i}",
+                [18.2, 0.2, 0.25],
+                [ox + dx, oy + 8.2, oz + dz - 4.1],
+                NEON_CYAN if i % 2 == 0 else NEON_MAGENTA,
+            )
+        )
 
-    # Floodlight poles
-    for i, (dx, dz) in enumerate([(-40, -40), (40, -40), (-40, 40), (40, 40)]):
+    # Spectator rail along west fence interior
+    kids.extend(
+        railing_segment(
+            "NightSpec",
+            ox - 44,
+            oz,
+            70,
+            False,
+            y=oy,
+            height=3.2,
+            color=rgb(80, 70, 120),
+        )
+    )
+    kids.append(
+        part(
+            "SpecPlatform",
+            [6, 1, 50],
+            [ox - 44, oy + 0.5, oz],
+            color=rgb(40, 42, 55),
+            material="DiamondPlate",
+        )
+    )
+
+    for i, (dx, dz) in enumerate([(-42, -42), (42, -42), (-42, 42), (42, 42)]):
         pole = part(
             f"FloodPole{i}",
-            [1.5, 22, 1.5],
-            [ox + dx, oy + 11, oz + dz],
+            [1.5, 24, 1.5],
+            [ox + dx, oy + 12, oz + dz],
             color=STEEL_DARK,
             material="Metal",
         )
@@ -659,42 +1467,116 @@ def build_night_yard(origin: list[float]) -> dict:
             "ClassName": "Part",
             "Properties": {
                 "Anchored": True,
-                "Size": [4, 1.5, 3],
-                "Position": [ox + dx, oy + 22, oz + dz],
-                "Color": rgb(30, 30, 35),
+                "Size": [4.5, 1.5, 3.5],
+                "Position": [ox + dx, oy + 24, oz + dz],
+                "Color": rgb(28, 28, 35),
                 "Material": "Metal",
                 "CanCollide": False,
                 "TopSurface": "Smooth",
                 "BottomSurface": "Smooth",
             },
             "Children": [
-                spot_light("Flood", 3.0, 80, 55, rgb(220, 230, 255), face="Bottom"),
+                spot_light("Flood", 3.2, 85, 52, rgb(200, 210, 255), face="Bottom"),
             ],
         }
         kids.append(pole)
         kids.append(head)
+        kids.append(
+            neon_strip(
+                f"FloodNeon{i}",
+                [1.8, 0.3, 1.8],
+                [ox + dx, oy + 22.5, oz + dz],
+                NEON_MAGENTA if i % 2 == 0 else NEON_CYAN,
+            )
+        )
 
-    kids.append(pad("PadA", [ox, oy, oz - 26], rgb(90, 100, 180), "P1"))
-    kids.append(pad("PadB", [ox, oy, oz + 26], rgb(180, 90, 100), "P2"))
+    # Mid-field lamp posts
+    for i, (dx, dz) in enumerate([(0, -40), (0, 40), (-40, 0), (40, 0)]):
+        kids.extend(
+            lamp_post(
+                f"YardLamp{i}",
+                [ox + dx, oy, oz + dz],
+                height=12,
+                light_color=rgb(180, 160, 255) if i % 2 == 0 else rgb(140, 220, 255),
+                brightness=1.5,
+                range_=40,
+            )
+        )
+
+    kids.extend(
+        sign_board(
+            "SignNight",
+            "NIGHT YARD",
+            [ox, oy + 14, oz - 48],
+            size=[20, 3.5, 0.5],
+            board_color=rgb(20, 18, 35),
+            neon_color=NEON_MAGENTA,
+        )
+    )
+    kids.extend(
+        sign_board(
+            "SignGate",
+            "GATE 3",
+            [ox + 48, oy + 8, oz],
+            size=[8, 2.5, 0.4],
+            neon_color=NEON_CYAN,
+        )
+    )
+
+    kids.append(pad("PadA", [ox, oy, oz - 28], rgb(90, 100, 180), "P1"))
+    kids.append(pad("PadB", [ox, oy, oz + 28], rgb(180, 90, 100), "P2"))
+    kids.append(pad_ring("PadARing", [ox, oy, oz - 28], NEON_CYAN, y_off=1.35))
+    kids.append(pad_ring("PadBRing", [ox, oy, oz + 28], NEON_MAGENTA, y_off=1.35))
     kids.append(arena_origin([ox, oy, oz]))
+
+    # Ground fog wisps
+    fog = part(
+        "NightFog",
+        [40, 2, 40],
+        [ox, oy + 1.2, oz],
+        color=violet,
+        material="ForceField",
+        transparency=0.88,
+        can_collide=False,
+    )
+    fog["Children"] = [
+        particle_emitter(
+            "Fog",
+            rate=5,
+            lifetime=[2.0, 4.0],
+            speed=[0.3, 1.2],
+            size_start=2.0,
+            size_end=5.0,
+            color=rgb(100, 80, 160),
+            light_emission=0.15,
+            drag=5.0,
+        )
+    ]
+    kids.append(fog)
+
+    kids.append(
+        part(
+            "NightHaze",
+            [100, 45, 100],
+            [ox, oy + 20, oz],
+            color=rgb(40, 30, 80),
+            material="ForceField",
+            transparency=0.94,
+            can_collide=False,
+        )
+    )
 
     return model("NightYard", kids)
 
 
-def wrap_root(name: str, children: list[dict]) -> dict:
-    return {"ClassName": "Model", "Children": children}
-
-
 def write_model(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    # model.json root uses ClassName/Children; Name comes from filename
     payload = {"ClassName": data.get("ClassName", "Model"), "Children": data.get("Children", [])}
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {path.relative_to(ROOT)} ({len(payload['Children'])} children)")
 
 
 def main() -> None:
-    # Clean previous generated maps (keep folder)
     if OUT.exists():
         for p in OUT.rglob("*.model.json"):
             p.unlink()
@@ -704,8 +1586,6 @@ def main() -> None:
     write_model(arenas / "ScrapPit.model.json", build_scrap_pit([0, 0, 400]))
     write_model(arenas / "DryDock.model.json", build_dry_dock([400, 0, 0]))
     write_model(arenas / "NightYard.model.json", build_night_yard([-400, 0, 0]))
-
-    # Folder marker for Arenas via init.meta not needed — directory = Folder
     print("done")
 
 
