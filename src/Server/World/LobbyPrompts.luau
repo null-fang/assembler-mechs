@@ -4,6 +4,7 @@
 local CollectionService = game:GetService("CollectionService")
 
 local ArenaService = require(script.Parent.ArenaService)
+local WorldBootstrap = require(script.Parent.WorldBootstrap)
 local Maid = require(game.ReplicatedStorage.Shared.Util.Maid)
 local Tags = require(game.ReplicatedStorage.Shared.World.Tags)
 

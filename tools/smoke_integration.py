@@ -85,7 +85,8 @@ def main() -> None:
         ok(f"{arena} pads")
 
     must_exist = {
-        "src/Shared/World/Tags.luau": ["AssemblerGaragePedestal", "AssemblerPadA"],
+        "src/Shared/World/Tags.luau": ["AssemblerGaragePedestal", "AssemblerPadA", "AssemblerStarterCrate"],
+        "src/Server/Remotes.luau": ["OpenCrate", "GetCrate", "PickCrate", "CompleteOnboarding"],
         "src/Shared/Session/Phase.luau": ["AssemblerPhase", "Lobby", "Combat"],
         "src/Shared/Util/Maid.luau": ["DoCleaning", "Connect"],
         "src/Server/World/WorldBootstrap.luau": ["tagWorld", "tagMech", "CollectionService"],

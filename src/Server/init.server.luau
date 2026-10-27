@@ -69,7 +69,9 @@ Players.PlayerAdded:Connect(function(player)
 end)
 
 for _, player in Players:GetPlayers() do
+	PlayerSession.toLobby(player)
 	InventoryService.grantStarter(player.UserId)
+	OnboardingService.get(player.UserId)
 	CrateService.ensureStarter(player.UserId)
 	task.defer(function()
 		refreshPreview(player)
