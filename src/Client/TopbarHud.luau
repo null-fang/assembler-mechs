@@ -15,7 +15,7 @@ local LobbyCamera = require(script.Parent:WaitForChild("LobbyCamera"))
 local TopbarHud = {}
 
 local remotesFolder = ReplicatedStorage:WaitForChild("AssemblerRemotes")
-local WalletUpdated = remotesFolder:FindFirstChild("WalletUpdated")
+-- Wait in mount — Remotes.init may land a frame after client require.
 
 local root: Frame
 local commonLabel: TextLabel
@@ -230,13 +230,16 @@ function TopbarHud.mount(parent: ScreenGui, opts: { openCrate: (() -> ())? }?)
 		ModalMouse.pop("topSettings")
 	end)
 
-	if WalletUpdated and WalletUpdated:IsA("RemoteEvent") then
-		WalletUpdated.OnClientEvent:Connect(function(payload)
-			if payload then
-				TopbarHud.apply(payload.wallet, payload.progress)
-			end
-		end)
-	end
+	task.spawn(function()
+		local walletUpdated = remotesFolder:WaitForChild("WalletUpdated", 10)
+		if walletUpdated and walletUpdated:IsA("RemoteEvent") then
+			walletUpdated.OnClientEvent:Connect(function(payload)
+				if payload then
+					TopbarHud.apply(payload.wallet, payload.progress)
+				end
+			end)
+		end
+	end)
 
 	TopbarHud.apply({ common = 0, rare = 0 }, { xp = 0 })
 end
