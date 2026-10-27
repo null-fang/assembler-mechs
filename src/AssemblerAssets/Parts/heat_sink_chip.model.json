@@ -35,7 +35,7 @@
       }
     },
     {
-      "Name": "Card",
+      "Name": "Plate",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
+          0.45,
           0.12,
-          0.4
+          0.35
         ],
         "Position": [
           0,
@@ -54,20 +54,20 @@
           0
         ],
         "Color": [
-          0.35294117647058826,
           0.43137254901960786,
-          0.5490196078431373
+          0.4627450980392157,
+          0.5019607843137255
         ],
-        "Material": "Plastic",
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "carbon_dark"
+        "TextureRole": "metal_plate"
       }
     },
     {
-      "Name": "GlowDie",
+      "Name": "GlowDot",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -76,19 +76,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.22,
-          0.1,
-          0.22
+          0.12,
+          0.08,
+          0.12
         ],
         "Position": [
-          0,
+          0.12,
           0.1,
-          0
+          0.08
         ],
         "Color": [
-          0.2196078431372549,
-          0.7686274509803922,
-          1.0
+          1.0,
+          0.5490196078431373,
+          0.18823529411764706
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -99,7 +99,7 @@
       }
     },
     {
-      "Name": "Fin",
+      "Name": "Pin",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -108,19 +108,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.45,
-          0.2,
-          0.15
+          0.08,
+          0.08,
+          0.2
         ],
         "Position": [
-          0,
-          0.2,
-          0.05
+          -0.12,
+          -0.02,
+          0
         ],
         "Color": [
-          0.20392156862745098,
-          0.2196078431372549,
-          0.24313725490196078
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",

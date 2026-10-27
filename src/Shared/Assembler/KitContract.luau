@@ -1,4 +1,4 @@
--- Stable contract for AssemblerAssets.Parts/<catalogPartId> kits.
+﻿-- Stable contract for AssemblerAssets.Parts/<catalogPartId> kits.
 -- SuperMechs-inspired 3D: chibi proportions, readable weapons, combat pose — not T-pose boxes.
 
 local KitContract = {}
@@ -13,6 +13,9 @@ local KitContract = {}
 -- Pose (Shared.Assembler.Sockets):
 --   Combat crouch — knees forward, arms/weapons ready, shoulder pods aim forward. Not a T-pose.
 --   TORSO_HEIGHT ≈ 3.85 studs above pad.
+--
+-- Quality bar:
+--   AssemblerAssets/Showcase/HeroStarterMech + starter kits from tools/author_hero_mech.py.
 --
 -- Rarity language:
 --   Accent* / Glow* Parts — Assembler neon-tints Color3 by rarity (Texture maps left alone).

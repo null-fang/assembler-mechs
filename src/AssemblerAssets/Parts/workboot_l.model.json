@@ -35,7 +35,7 @@
       }
     },
     {
-      "Name": "HipJoint",
+      "Name": "HipBall",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -44,24 +44,24 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.85,
-          0.55,
-          0.85
+          1.0,
+          0.75,
+          1.0
         ],
         "Position": [
-          0,
-          0,
-          0
+          -0.05,
+          1.05,
+          0.05
         ],
         "Color": [
-          0.20392156862745098,
-          0.2196078431372549,
-          0.24313725490196078
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth",
-        "Shape": "Cylinder"
+        "Shape": "Ball"
       },
       "Attributes": {
         "TextureRole": "scratched_steel"
@@ -77,19 +77,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
+          1.25,
           1.15,
-          1.05,
-          1.2
+          1.35
         ],
         "Position": [
-          -0.08,
-          -0.65,
+          -0.12,
+          0.4,
           0.2
         ],
         "Color": [
-          0.3058823529411765,
-          0.24313725490196078,
-          0.18823529411764706
+          0.33725490196078434,
+          0.48627450980392156,
+          0.25098039215686274
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -100,7 +100,7 @@
       }
     },
     {
-      "Name": "ThighRimT",
+      "Name": "ThighPlate",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -109,147 +109,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.29,
-          0.07,
-          0.07
-        ],
-        "Position": [
-          -0.08,
-          -0.125,
-          0.8350000000000001
-        ],
-        "Color": [
-          0.2994509803921569,
-          0.3132549019607843,
-          0.3339607843137255
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
-      }
-    },
-    {
-      "Name": "ThighRimB",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          1.29,
-          0.07,
-          0.07
-        ],
-        "Position": [
-          -0.08,
-          -1.175,
-          0.8350000000000001
-        ],
-        "Color": [
-          0.2994509803921569,
-          0.3132549019607843,
-          0.3339607843137255
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
-      }
-    },
-    {
-      "Name": "ThighRimL",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.07,
-          1.05,
-          0.07
-        ],
-        "Position": [
-          -0.69,
-          -0.65,
-          0.8350000000000001
-        ],
-        "Color": [
-          0.2994509803921569,
-          0.3132549019607843,
-          0.3339607843137255
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
-      }
-    },
-    {
-      "Name": "ThighRimR",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.07,
-          1.05,
-          0.07
-        ],
-        "Position": [
-          0.5299999999999999,
-          -0.65,
-          0.8350000000000001
-        ],
-        "Color": [
-          0.2994509803921569,
-          0.3132549019607843,
-          0.3339607843137255
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
-      }
-    },
-    {
-      "Name": "Knee",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
+          0.3,
           0.95,
-          0.4,
-          0.95
+          1.1
         ],
         "Position": [
-          -0.1,
-          -1.25,
+          -0.75,
+          0.4,
           0.25
         ],
         "Color": [
-          0.20392156862745098,
-          0.2196078431372549,
-          0.24313725490196078
+          0.2866666666666667,
+          0.41333333333333333,
+          0.21333333333333332
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "KneeDisk",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.15,
+          0.4,
+          1.15
+        ],
+        "Position": [
+          -0.15,
+          -0.3,
+          0.55
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -257,7 +161,39 @@
         "Shape": "Cylinder"
       },
       "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "KneePin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.28,
+          0.7,
+          0.28
+        ],
+        "Position": [
+          -0.7,
+          -0.3,
+          0.55
+        ],
+        "Color": [
+          1.0,
+          0.5490196078431373,
+          0.18823529411764706
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -270,18 +206,50 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
-          0.95,
-          1.1
+          1.1,
+          1.25,
+          1.2
         ],
         "Position": [
-          -0.05,
-          -1.85,
-          0.05
+          -0.1,
+          -1.05,
+          0.3
         ],
         "Color": [
-          0.3058823529411765,
-          0.24313725490196078,
+          0.33725490196078434,
+          0.48627450980392156,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ShinBrace",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          1.0,
+          0.55
+        ],
+        "Position": [
+          -0.65,
+          -1.0,
+          0.35
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
           0.18823529411764706
         ],
         "Material": "Metal",
@@ -293,7 +261,7 @@
       }
     },
     {
-      "Name": "ShinInset",
+      "Name": "Ankle",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -302,21 +270,21 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.6900000000000001,
-          0.59,
-          0.12
+          1.2,
+          0.4,
+          1.15
         ],
         "Position": [
           -0.05,
-          -1.85,
-          0.6600000000000001
+          -1.6,
+          0.4
         ],
         "Color": [
-          0.24225882352941178,
-          0.19256470588235294,
-          0.14908235294117647
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
         ],
-        "Material": "DiamondPlate",
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
@@ -325,7 +293,7 @@
       }
     },
     {
-      "Name": "Foot",
+      "Name": "Boot",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -334,19 +302,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.45,
-          0.4,
-          1.7
+          1.55,
+          0.45,
+          1.85
         ],
         "Position": [
-          0,
-          -2.4,
-          0.35
+          -0.05,
+          -1.95,
+          0.55
         ],
         "Color": [
-          0.1411764705882353,
-          0.13333333333333333,
-          0.12549019607843137
+          0.10980392156862745,
+          0.10980392156862745,
+          0.11764705882352941
         ],
         "Material": "SmoothPlastic",
         "TopSurface": "Smooth",
@@ -366,19 +334,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.25,
+          1.35,
           0.28,
-          0.4
+          0.45
         ],
         "Position": [
-          0,
-          -2.25,
-          1.05
+          -0.05,
+          -1.8,
+          1.35
         ],
         "Color": [
-          0.20392156862745098,
-          0.2196078431372549,
-          0.24313725490196078
+          0.2698039215686275,
+          0.38901960784313727,
+          0.20078431372549022
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -389,7 +357,7 @@
       }
     },
     {
-      "Name": "GlowAnkle",
+      "Name": "AccentShin",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -398,19 +366,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
           0.2,
-          0.2
+          0.7,
+          0.15
         ],
         "Position": [
-          -0.35,
-          -2.05,
-          0.55
+          -0.55,
+          -1.1,
+          0.85
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.1568627450980392
+          0.1568627450980392,
+          0.8627450980392157,
+          1.0
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",

@@ -35,7 +35,7 @@
       }
     },
     {
-      "Name": "Pack",
+      "Name": "Cell",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -45,8 +45,8 @@
         "CastShadow": true,
         "Size": [
           1.5,
-          0.95,
-          0.7
+          0.9,
+          0.65
         ],
         "Position": [
           0,
@@ -54,20 +54,20 @@
           0
         ],
         "Color": [
-          0.18823529411764706,
-          0.20392156862745098,
-          0.22745098039215686
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "carbon_dark"
       }
     },
     {
-      "Name": "GlowTerminal",
+      "Name": "Terminal",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -76,19 +76,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.25,
-          0.18
+          0.35,
+          0.35,
+          0.25
         ],
         "Position": [
-          -0.4,
-          0.5,
-          0
+          0.45,
+          0.35,
+          0.35
         ],
         "Color": [
           1.0,
-          0.27450980392156865,
-          0.21568627450980393
+          0.5490196078431373,
+          0.18823529411764706
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -99,7 +99,7 @@
       }
     },
     {
-      "Name": "Terminal-",
+      "Name": "Stripe",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -108,19 +108,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.25,
-          0.18
+          1.2,
+          0.15,
+          0.12
         ],
         "Position": [
-          0.4,
-          0.5,
+          0,
+          0.15,
+          0.35
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.8627450980392157,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "ClampL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.7,
+          0.5
+        ],
+        "Position": [
+          -0.75,
+          0,
           0
         ],
         "Color": [
-          0.20392156862745098,
-          0.2196078431372549,
-          0.24313725490196078
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -131,7 +163,7 @@
       }
     },
     {
-      "Name": "AccentLabel",
+      "Name": "ClampR",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -140,21 +172,21 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.85,
-          0.3,
-          0.1
+          0.2,
+          0.7,
+          0.5
         ],
         "Position": [
+          0.75,
           0,
-          0.1,
-          0.4
+          0
         ],
         "Color": [
-          0.2196078431372549,
-          0.7686274509803922,
-          1.0
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
         ],
-        "Material": "Neon",
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },

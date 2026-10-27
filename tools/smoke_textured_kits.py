@@ -70,6 +70,21 @@ def main() -> int:
         else:
             print(f"OK {pid}: {roles} textured parts")
 
+    hero = ROOT / "src" / "AssemblerAssets" / "Showcase" / "HeroStarterMech.model.json"
+    if not hero.exists():
+        fail("Showcase/HeroStarterMech.model.json missing — run tools/author_hero_mech.py")
+    else:
+        hero_data = json.loads(hero.read_text(encoding="utf-8"))
+        n = len([c for c in (hero_data.get("Children") or []) if c.get("ClassName") == "Part"])
+        if n < 40:
+            fail(f"HeroStarterMech too few parts ({n})")
+        else:
+            print(f"OK HeroStarterMech: {n} parts")
+        names = " ".join(c.get("Name", "") for c in (hero_data.get("Children") or []))
+        for token in ("GlowVisor", "KneeDisk", "Barrel", "ShowcasePad"):
+            if token not in names:
+                fail(f"HeroStarterMech missing {token}")
+
     luau = (ROOT / "src/Shared/Assembler/TextureIds.luau").read_text(encoding="utf-8")
     for k in expected:
         if k not in luau:

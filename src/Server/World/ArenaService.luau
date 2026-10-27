@@ -1,6 +1,7 @@
 -- Mount assembled mechs on lobby GaragePedestal and arena PadA/PadB.
 -- Maps come from Rojo Workspace (Lobby + Arenas/*); no void fallback pads.
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
 local Assembler = require(game.ReplicatedStorage.Shared.Assembler.Assembler)
 local SoftSlots = require(game.ReplicatedStorage.Shared.Parts.Slots)
@@ -15,6 +16,7 @@ ArenaService.ARENA_ORDER = { "ScrapPit", "DryDock", "NightYard" } :: { ArenaId }
 local activeArenaId: ArenaId? = nil
 local MECHS_NAME = "LiveMechs"
 local GARAGE_MECH_NAME = "GaragePreviewMech"
+local HERO_SHOWCASE_NAME = "HeroStarterShowcase"
 
 local function waitChild(parent: Instance, name: string, timeout: number?): Instance?
 	local existing = parent:FindFirstChild(name)
@@ -296,6 +298,49 @@ function ArenaService.clearGaragePreview()
 	end
 end
 
+-- Hand-authored SM-like hero (AssemblerAssets.Showcase) — art bar beside the garage.
+local function ensureHeroShowcase(lobby: Instance, pedestal: BasePart, facing: Vector3)
+	local existing = lobby:FindFirstChild(HERO_SHOWCASE_NAME)
+	if existing then
+		return
+	end
+	local assets = ReplicatedStorage:FindFirstChild("AssemblerAssets")
+	local folder = if assets then assets:FindFirstChild("Showcase") else nil
+	local template = if folder then folder:FindFirstChild("HeroStarterMech") else nil
+	if not (template and template:IsA("Model")) then
+		return
+	end
+	local clone = template:Clone()
+	clone.Name = HERO_SHOWCASE_NAME
+	local root = clone:FindFirstChild("Root")
+	if root and root:IsA("BasePart") then
+		clone.PrimaryPart = root
+		root.Transparency = 1
+	end
+	for _, d in clone:GetDescendants() do
+		if d:IsA("BasePart") then
+			d.Anchored = true
+			d.CanCollide = false
+			d.CanQuery = false
+			d.CanTouch = false
+			d.Massless = true
+		end
+	end
+	local side = Vector3.new(-facing.Z, 0, facing.X)
+	if side.Magnitude < 0.05 then
+		side = Vector3.new(1, 0, 0)
+	else
+		side = side.Unit
+	end
+	local mount = mountPoint(pedestal, "MechRoot") + side * 10
+	clone:PivotTo(Assembler.worldCFrameAt(mount, facing))
+	clone:SetAttribute("Preview", true)
+	clone:SetAttribute("ArtBar", true)
+	clone.Parent = lobby
+	addNameplate(clone, "Hero art bar")
+	WorldBootstrap.tagMech(clone, true)
+end
+
 function ArenaService.spawnGaragePreview(loadout: SoftSlots.EquippedLoadout, displayName: string)
 	ArenaService.ensureWorld()
 	-- Don't overwrite while a fight is active.
@@ -330,6 +375,7 @@ function ArenaService.spawnGaragePreview(loadout: SoftSlots.EquippedLoadout, dis
 		{ Preview = true }
 	)
 	model.Name = GARAGE_MECH_NAME
+	ensureHeroShowcase(lobby, pedestal, facing)
 end
 
 function ArenaService.teleportPlayerToLobby(player: Player)

@@ -31,6 +31,7 @@ Build a mech from modular parts. Fight turn-based 1v1 in 3D arenas — PvE campa
 ```
 src/Workspace/     Lobby + Arenas (Rojo maps)
 src/AssemblerAssets/Parts   205 multi-Part kits (clone-by-PartId)
+src/AssemblerAssets/Showcase HeroStarterMech combat-ready art bar (SM-like 3D)
 src/AssemblerAssets/Textures Industrial pack templates (TextureIds contract)
 assets/textures/            Source PNGs (metal/steel/hazard/rubber/carbon/emissive)
 src/Shared/        Combat, Assembler, Parts, Modes, Economy, World/Tags, Session/Phase

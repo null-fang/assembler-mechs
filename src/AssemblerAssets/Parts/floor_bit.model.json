@@ -35,7 +35,7 @@
       }
     },
     {
-      "Name": "Chassis",
+      "Name": "Body",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
-          0.4,
-          1.15
+          0.95,
+          0.45,
+          1.05
         ],
         "Position": [
           0,
@@ -54,9 +54,9 @@
           0
         ],
         "Color": [
-          0.39215686274509803,
-          0.35294117647058826,
-          0.27450980392156865
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -67,73 +67,7 @@
       }
     },
     {
-      "Name": "WheelL",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.32,
-          0.5,
-          0.5
-        ],
-        "Position": [
-          -0.55,
-          -0.15,
-          0.3
-        ],
-        "Color": [
-          0.20392156862745098,
-          0.2196078431372549,
-          0.24313725490196078
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth",
-        "Shape": "Cylinder"
-      },
-      "Attributes": {
-        "TextureRole": "matte_rubber"
-      }
-    },
-    {
-      "Name": "WheelR",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.32,
-          0.5,
-          0.5
-        ],
-        "Position": [
-          0.55,
-          -0.15,
-          0.3
-        ],
-        "Color": [
-          0.20392156862745098,
-          0.2196078431372549,
-          0.24313725490196078
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth",
-        "Shape": "Cylinder"
-      },
-      "Attributes": {
-        "TextureRole": "matte_rubber"
-      }
-    },
-    {
-      "Name": "GlowEye",
+      "Name": "Eye",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -143,17 +77,17 @@
         "CastShadow": true,
         "Size": [
           0.35,
-          0.25,
+          0.2,
           0.2
         ],
         "Position": [
           0,
-          0.25,
-          0.55
+          0.15,
+          0.5
         ],
         "Color": [
-          0.2196078431372549,
-          0.7686274509803922,
+          0.1568627450980392,
+          0.8627450980392157,
           1.0
         ],
         "Material": "Neon",
@@ -162,6 +96,102 @@
       },
       "Attributes": {
         "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "Rotor",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
+          0.12,
+          0.7
+        ],
+        "Position": [
+          0,
+          0.35,
+          -0.15
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "SkidL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.15,
+          0.2,
+          0.7
+        ],
+        "Position": [
+          -0.4,
+          -0.3,
+          0
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.10980392156862745,
+          0.11764705882352941
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
+      }
+    },
+    {
+      "Name": "SkidR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.15,
+          0.2,
+          0.7
+        ],
+        "Position": [
+          0.4,
+          -0.3,
+          0
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.10980392156862745,
+          0.11764705882352941
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
       }
     }
   ]

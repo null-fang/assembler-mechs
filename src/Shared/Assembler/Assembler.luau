@@ -271,25 +271,34 @@ local function attachPart(
 	end
 	makeBlock(model, socketName .. "_" .. partDef.id, size, partCF, color, partDef.rarity, anchored, shape)
 
-	-- Extra articulation so limbs/weapons read less like loose cubes.
+	-- Fallback articulation mirrors combat-ready sockets (crouch foot + forward barrel).
 	if socketName == "LeftHip" or socketName == "RightHip" then
-		local foot = makeBlock(
+		makeBlock(
+			model,
+			socketName .. "_Knee",
+			Vector3.new(size.Z * 0.7, size.Z * 0.45, size.Z * 0.7),
+			cf * CFrame.new(0, -size.X * 0.15, 0.35),
+			color:Lerp(Color3.new(0, 0, 0), 0.25),
+			partDef.rarity,
+			anchored,
+			Enum.PartType.Cylinder
+		)
+		makeBlock(
 			model,
 			socketName .. "_Foot",
-			Vector3.new(size.Z * 0.9, 0.45, size.Y * 1.15),
-			cf * CFrame.new(0, -size.X * 0.55, 0.15),
+			Vector3.new(size.Z * 1.05, 0.4, size.Y * 1.25),
+			cf * CFrame.new(0, -size.X * 0.55, 0.35),
 			color:Lerp(Color3.new(0, 0, 0), 0.2),
 			partDef.rarity,
 			anchored,
 			nil
 		)
-		local _ = foot
 	elseif socketName == "LowerLeft" or socketName == "LowerRight" or socketName == "ShoulderLeft" or socketName == "ShoulderRight" then
 		makeBlock(
 			model,
 			socketName .. "_Barrel",
-			Vector3.new(size.X * 0.55, size.Y * 0.55, size.Z * 0.55),
-			cf * CFrame.new(0, 0, -size.Z * 0.55),
+			Vector3.new(size.X * 0.5, size.Y * 0.5, size.Z * 0.7),
+			cf * CFrame.new(0, 0, size.Z * 0.45),
 			color:Lerp(Color3.new(1, 1, 1), 0.12),
 			partDef.rarity,
 			anchored,

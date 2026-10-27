@@ -66,6 +66,19 @@ def main() -> None:
         fail(f"starter kits missing: {miss}")
     ok("starter kits present")
 
+    hero = ROOT / "src/AssemblerAssets/Showcase/HeroStarterMech.model.json"
+    if not hero.exists():
+        fail("HeroStarterMech showcase missing")
+    else:
+        ok("HeroStarterMech showcase")
+
+    sockets = (ROOT / "src/Shared/Assembler/Sockets.luau").read_text(encoding="utf-8")
+    if "TORSO_HEIGHT = 3.85" not in sockets:
+        fail("Sockets TORSO_HEIGHT combat crouch")
+    if "T-pose" not in sockets and "not a T-pose" not in sockets:
+        fail("Sockets missing combat-ready / no T-pose note")
+    ok("Sockets combat-ready pose")
+
     lobby = json.loads((ROOT / "src/Workspace/Lobby.model.json").read_text())
     if not find_named(lobby, "GaragePedestal"):
         fail("GaragePedestal")
@@ -125,7 +138,7 @@ def main() -> None:
                 fail(f"{rel} missing {n}")
     ok("integrator + flow modules")
 
-    print("SMOKE PASS — lobby→arena→return hooks green")
+    print("SMOKE PASS - lobby->arena->return hooks green")
 
 
 if __name__ == "__main__":
