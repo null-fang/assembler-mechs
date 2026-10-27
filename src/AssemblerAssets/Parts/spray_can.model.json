@@ -44,14 +44,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          0.55,
-          0.7
+          0.65,
+          0.5,
+          0.65
         ],
         "Position": [
           0,
           0,
-          -0.85
+          -0.9
         ],
         "Color": [
           0.20392156862745098,
@@ -68,6 +68,38 @@
       }
     },
     {
+      "Name": "MountCollar",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.85,
+          0.22,
+          0.85
+        ],
+        "Position": [
+          0,
+          0,
+          -0.55
+        ],
+        "Color": [
+          0.6211764705882353,
+          0.31058823529411766,
+          0.17254901960784313
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
       "Name": "Tank",
       "ClassName": "Part",
       "Properties": {
@@ -77,14 +109,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.95,
-          1.15
+          0.9,
+          0.9,
+          1.1
         ],
         "Position": [
           0,
           0.1,
-          -0.15
+          -0.2
         ],
         "Color": [
           0.7058823529411765,
@@ -92,6 +124,70 @@
           0.19607843137254902
         ],
         "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "TankFacePlate0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.33999999999999997,
+          0.29000000000000004,
+          0.12
+        ],
+        "Position": [
+          0,
+          0.15,
+          0.455
+        ],
+        "Color": [
+          0.5714823529411766,
+          0.2857411764705883,
+          0.1587450980392157
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "TankFacePlate1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.25,
+          0.25,
+          0.12
+        ],
+        "Position": [
+          0,
+          0.09999999999999999,
+          0.535
+        ],
+        "Color": [
+          0.5217882352941177,
+          0.26089411764705883,
+          0.14494117647058824
+        ],
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
@@ -109,19 +205,52 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
-          0.4,
-          1.05
+          0.35,
+          0.35,
+          1.0
         ],
         "Position": [
           0,
           0.15,
-          1.05
+          1.1
         ],
         "Color": [
           0.20392156862745098,
           0.2196078431372549,
           0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "NozzleTip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.45,
+          0.2,
+          0.45
+        ],
+        "Position": [
+          0,
+          0.15,
+          1.6
+        ],
+        "Color": [
+          0.6211764705882353,
+          0.31058823529411766,
+          0.17254901960784313
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -142,9 +271,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.35,
-          0.3
+          0.3,
+          0.3,
+          0.25
         ],
         "Position": [
           0.4,
@@ -174,9 +303,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.2,
-          0.75
+          0.16,
+          0.16,
+          0.7
         ],
         "Position": [
           0.5,
@@ -194,6 +323,70 @@
       },
       "Attributes": {
         "TextureRole": "matte_rubber"
+      }
+    },
+    {
+      "Name": "SprayBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          -0.35,
+          0.4,
+          0.3
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "SprayBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          0.35,
+          -0.2,
+          0.3
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
       }
     }
   ]

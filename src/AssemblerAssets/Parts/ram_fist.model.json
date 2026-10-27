@@ -44,14 +44,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          0.55,
-          0.7
+          0.65,
+          0.5,
+          0.65
         ],
         "Position": [
           0,
           0,
-          -0.85
+          -0.9
         ],
         "Color": [
           0.20392156862745098,
@@ -68,6 +68,38 @@
       }
     },
     {
+      "Name": "MountCollar",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.85,
+          0.22,
+          0.85
+        ],
+        "Position": [
+          0,
+          0,
+          -0.55
+        ],
+        "Color": [
+          0.34509803921568627,
+          0.327843137254902,
+          0.31058823529411766
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
       "Name": "Forearm",
       "ClassName": "Part",
       "Properties": {
@@ -77,9 +109,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.75,
-          1.25
+          0.85,
+          0.7,
+          1.2
         ],
         "Position": [
           0,
@@ -109,14 +141,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.02,
-          0.06,
-          0.06
+          0.95,
+          0.05,
+          0.05
         ],
         "Position": [
           0,
-          0.375,
-          0.605
+          0.35,
+          0.575
         ],
         "Color": [
           0.2994509803921569,
@@ -141,14 +173,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.02,
-          0.06,
-          0.06
+          0.95,
+          0.05,
+          0.05
         ],
         "Position": [
           0,
-          -0.375,
-          0.605
+          -0.35,
+          0.575
         ],
         "Color": [
           0.2994509803921569,
@@ -173,14 +205,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.06,
-          0.75,
-          0.06
+          0.05,
+          0.7,
+          0.05
         ],
         "Position": [
-          -0.48,
+          -0.45,
           0,
-          0.605
+          0.575
         ],
         "Color": [
           0.2994509803921569,
@@ -205,14 +237,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.06,
-          0.75,
-          0.06
+          0.05,
+          0.7,
+          0.05
         ],
         "Position": [
-          0.48,
+          0.45,
           0,
-          0.605
+          0.575
         ],
         "Color": [
           0.2994509803921569,
@@ -220,6 +252,70 @@
           0.3339607843137255
         ],
         "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ArmPlatePlate0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.49999999999999994,
+          0.3,
+          0.12
+        ],
+        "Position": [
+          0,
+          0.1,
+          0.605
+        ],
+        "Color": [
+          0.3174901960784314,
+          0.30161568627450985,
+          0.2857411764705883
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ArmPlatePlate1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.29999999999999993,
+          0.25,
+          0.12
+        ],
+        "Position": [
+          0,
+          0.05,
+          0.685
+        ],
+        "Color": [
+          0.2898823529411765,
+          0.27538823529411766,
+          0.26089411764705883
+        ],
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
@@ -237,14 +333,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          1.05,
-          1.0
+          1.15,
+          1.0,
+          0.95
         ],
         "Position": [
           0,
           0,
-          1.05
+          1.1
         ],
         "Color": [
           0.35294117647058826,
@@ -269,14 +365,46 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.25,
-          0.3,
-          0.35
+          1.2,
+          0.28,
+          0.3
         ],
         "Position": [
           0,
           0.4,
-          1.35
+          1.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Knuckle2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.1,
+          0.2,
+          0.22
+        ],
+        "Position": [
+          0,
+          0.15,
+          1.5
         ],
         "Color": [
           0.20392156862745098,
@@ -301,14 +429,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.15,
-          0.15
+          0.85,
+          0.12,
+          0.12
         ],
         "Position": [
           0,
           0.45,
-          1.45
+          1.5
         ],
         "Color": [
           1.0,
@@ -321,6 +449,198 @@
       },
       "Attributes": {
         "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "SnapBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          -0.35,
+          0.25,
+          0.5
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "SnapBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          0.35,
+          0.25,
+          0.5
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "SnapBolt2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          0,
+          -0.3,
+          1.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FistVent0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.45,
+          0.1
+        ],
+        "Position": [
+          -0.28,
+          0.15,
+          1.55
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FistVent1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.45,
+          0.1
+        ],
+        "Position": [
+          0.0,
+          0.15,
+          1.55
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FistVent2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.45,
+          0.1
+        ],
+        "Position": [
+          0.28,
+          0.15,
+          1.55
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
       }
     },
     {

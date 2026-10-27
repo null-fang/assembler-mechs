@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.75,
-          0.75
+          0.85,
+          0.65,
+          0.65
         ],
         "Position": [
           0,
@@ -67,7 +67,7 @@
       }
     },
     {
-      "Name": "MountBolt",
+      "Name": "MountCollar",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -76,14 +76,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.3,
-          0.3,
-          0.3
+          0.95,
+          0.2,
+          0.95
         ],
         "Position": [
           0,
-          0.35,
-          -0.95
+          0,
+          -0.6
         ],
         "Color": [
           0.43137254901960786,
@@ -92,7 +92,8 @@
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
       },
       "Attributes": {
         "TextureRole": "metal_plate"
@@ -108,14 +109,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
-          0.9,
-          1.6
+          0.95,
+          0.8,
+          1.5
         ],
         "Position": [
           0,
-          0.02,
-          0.1
+          0,
+          0.05
         ],
         "Color": [
           0.43137254901960786,
@@ -131,7 +132,7 @@
       }
     },
     {
-      "Name": "ReceiverTop",
+      "Name": "ReceiverPlate",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -140,51 +141,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.22,
-          1.3
+          0.8,
+          0.5,
+          1.0
         ],
         "Position": [
           0,
-          0.5,
-          0.15
-        ],
-        "Color": [
-          0.22745098039215686,
-          0.34509803921568627,
-          0.18823529411764706
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
-      }
-    },
-    {
-      "Name": "ReceiverSide",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.2,
-          0.65,
-          1.2
-        ],
-        "Position": [
-          0.55,
-          0.05,
-          0.15
+          0.3,
+          0.2
         ],
         "Color": [
           0.2823529411764706,
           0.3058823529411765,
-          0.33725490196078434
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "Breech",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.75,
+          0.65,
+          0.55
+        ],
+        "Position": [
+          0,
+          0.05,
+          -0.55
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -211,7 +212,7 @@
         "Position": [
           0,
           0.12,
-          1.5
+          1.55
         ],
         "Color": [
           0.16470588235294117,
@@ -277,7 +278,7 @@
         "Position": [
           0,
           0.12,
-          1.85
+          1.9
         ],
         "Color": [
           0.43137254901960786,
@@ -303,13 +304,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.8,
-          0.5
+          0.5,
+          0.7,
+          0.4
         ],
         "Position": [
           0,
-          -0.65,
+          -0.6,
           0.2
         ],
         "Color": [
@@ -326,7 +327,7 @@
       }
     },
     {
-      "Name": "MagCatch",
+      "Name": "MagLip",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -335,26 +336,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.25,
-          0.25
+          0.55,
+          0.12,
+          0.45
         ],
         "Position": [
-          0.35,
-          -0.35,
+          0,
+          -0.95,
           0.2
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
+          0.24313725490196078,
+          0.3607843137254902,
           0.18823529411764706
         ],
-        "Material": "Neon",
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "emissive_strip"
+        "TextureRole": "metal_plate"
       }
     },
     {
@@ -369,11 +370,11 @@
         "Size": [
           0.16,
           0.4,
-          0.55
+          0.5
         ],
         "Position": [
           0,
-          0.6,
+          0.55,
           0.55
         ],
         "Color": [
@@ -390,7 +391,7 @@
       }
     },
     {
-      "Name": "SightBase",
+      "Name": "Muzzle",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -399,26 +400,26 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.28,
-          0.15,
-          0.45
+          0.48,
+          0.48,
+          0.28
         ],
         "Position": [
           0,
-          0.45,
-          0.5
+          0.12,
+          2.45
         ],
         "Color": [
-          0.22745098039215686,
-          0.24313725490196078,
-          0.27450980392156865
+          1.0,
+          0.5490196078431373,
+          0.18823529411764706
         ],
-        "Material": "Metal",
+        "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "metal_plate"
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -431,9 +432,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
+          0.32,
           0.18,
-          1.1
+          1.0
         ],
         "Position": [
           0,
@@ -454,7 +455,7 @@
       }
     },
     {
-      "Name": "Muzzle",
+      "Name": "Grip",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -463,14 +464,46 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.48,
-          0.48,
-          0.32
+          0.3,
+          0.45,
+          0.3
         ],
         "Position": [
           0,
+          -0.55,
+          -0.25
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.10980392156862745,
+          0.11764705882352941
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
+      }
+    },
+    {
+      "Name": "AccentHazard",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
           0.12,
-          2.35
+          0.12
+        ],
+        "Position": [
+          0,
+          -0.35,
+          0.4
         ],
         "Color": [
           1.0,
@@ -482,11 +515,11 @@
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "emissive_strip"
+        "TextureRole": "hazard_stripe"
       }
     },
     {
-      "Name": "MuzzleCollar",
+      "Name": "RecvVent0",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -495,51 +528,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.6,
-          0.2,
-          0.6
+          0.55,
+          0.1,
+          0.1
         ],
         "Position": [
           0,
-          0.12,
-          2.15
+          0.5,
+          0.0
         ],
         "Color": [
-          0.2823529411764706,
-          0.3058823529411765,
-          0.33725490196078434
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
-      }
-    },
-    {
-      "Name": "EjectPort",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.35,
-          0.25,
-          0.35
-        ],
-        "Position": [
-          0.45,
-          0.25,
-          0.55
-        ],
-        "Color": [
-          0.16470588235294117,
-          0.17254901960784313,
-          0.18823529411764706
+          0.14823529411764705,
+          0.15529411764705883,
+          0.16941176470588235
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -550,7 +551,7 @@
       }
     },
     {
-      "Name": "RecvRivet0",
+      "Name": "RecvVent1",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -559,21 +560,85 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          0.14
+          0.55,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          0,
+          0.5,
+          0.35
+        ],
+        "Color": [
+          0.14823529411764705,
+          0.15529411764705883,
+          0.16941176470588235
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "RecvVent2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          0,
+          0.5,
+          0.7
+        ],
+        "Color": [
+          0.14823529411764705,
+          0.15529411764705883,
+          0.16941176470588235
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "RivetBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
         ],
         "Position": [
           -0.4,
-          0.35,
-          0.7
+          0.3,
+          0.4
         ],
         "Color": [
-          0.43137254901960786,
-          0.4627450980392157,
-          0.5019607843137255
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
         ],
-        "Material": "Metal",
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
@@ -582,7 +647,7 @@
       }
     },
     {
-      "Name": "RecvRivet1",
+      "Name": "RivetBolt1",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -591,53 +656,53 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          0.14
-        ],
-        "Position": [
-          0.0,
-          0.35,
-          0.7
-        ],
-        "Color": [
-          0.43137254901960786,
-          0.4627450980392157,
-          0.5019607843137255
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "scratched_steel"
-      }
-    },
-    {
-      "Name": "RecvRivet2",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.14,
-          0.14,
-          0.14
+          0.11,
+          0.11,
+          0.11
         ],
         "Position": [
           0.4,
-          0.35,
-          0.7
+          0.3,
+          0.4
         ],
         "Color": [
-          0.43137254901960786,
-          0.4627450980392157,
-          0.5019607843137255
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
         ],
-        "Material": "Metal",
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "RivetBolt2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          0,
+          -0.2,
+          1.3
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },

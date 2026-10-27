@@ -44,14 +44,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          0.55,
-          0.7
+          0.65,
+          0.5,
+          0.65
         ],
         "Position": [
           0,
           0,
-          -0.85
+          -0.9
         ],
         "Color": [
           0.20392156862745098,
@@ -68,7 +68,7 @@
       }
     },
     {
-      "Name": "Housing",
+      "Name": "MountCollar",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -78,8 +78,40 @@
         "CastShadow": true,
         "Size": [
           0.85,
-          0.75,
-          1.15
+          0.22,
+          0.85
+        ],
+        "Position": [
+          0,
+          0,
+          -0.55
+        ],
+        "Color": [
+          0.24156862745098043,
+          0.552156862745098,
+          0.6901960784313725
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Housing",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.8,
+          0.7,
+          1.1
         ],
         "Position": [
           0,
@@ -100,6 +132,134 @@
       }
     },
     {
+      "Name": "HousingRimT",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.05,
+          0.05
+        ],
+        "Position": [
+          0,
+          0.44999999999999996,
+          0.5750000000000001
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HousingRimB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.05,
+          0.05
+        ],
+        "Position": [
+          0,
+          -0.24999999999999997,
+          0.5750000000000001
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HousingRimL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.05,
+          0.7,
+          0.05
+        ],
+        "Position": [
+          -0.42500000000000004,
+          0.1,
+          0.5750000000000001
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HousingRimR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.05,
+          0.7,
+          0.05
+        ],
+        "Position": [
+          0.42500000000000004,
+          0.1,
+          0.5750000000000001
+        ],
+        "Color": [
+          0.2994509803921569,
+          0.3132549019607843,
+          0.3339607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
       "Name": "Crystal",
       "ClassName": "Part",
       "Properties": {
@@ -109,14 +269,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.45,
-          0.45,
-          0.65
+          0.4,
+          0.4,
+          0.6
         ],
         "Position": [
           0,
           0.15,
-          0.75
+          0.8
         ],
         "Color": [
           0.2196078431372549,
@@ -142,9 +302,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.35,
-          1.0
+          0.32,
+          0.32,
+          1.05
         ],
         "Position": [
           0,
@@ -175,14 +335,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          1.5
+          0.12,
+          0.12,
+          1.4
         ],
         "Position": [
           0,
           0.15,
-          1.35
+          1.4
         ],
         "Color": [
           0.2196078431372549,
@@ -207,14 +367,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          0.14,
-          0.7
+          0.65,
+          0.12,
+          0.65
         ],
         "Position": [
           0,
           0.15,
-          0.4
+          0.45
         ],
         "Color": [
           0.20392156862745098,
@@ -225,6 +385,231 @@
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth",
         "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FocusRing2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.1,
+          0.55
+        ],
+        "Position": [
+          0,
+          0.15,
+          1.0
+        ],
+        "Color": [
+          0.2835294117647059,
+          0.29764705882352943,
+          0.31882352941176473
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BeamVent0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          -0.22,
+          0.5,
+          0.2
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BeamVent1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          0.0,
+          0.5,
+          0.2
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BeamVent2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          0.22,
+          0.5,
+          0.2
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BatteryPack",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.45,
+          0.55,
+          0.4
+        ],
+        "Position": [
+          0.5,
+          -0.15,
+          -0.1
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BeamBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          -0.3,
+          0.35,
+          0.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BeamBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          0.3,
+          0.35,
+          0.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
       },
       "Attributes": {
         "TextureRole": "metal_plate"

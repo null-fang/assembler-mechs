@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.55,
-          0.95,
-          0.7
+          1.45,
+          0.85,
+          0.6
         ],
         "Position": [
           0,
@@ -67,7 +67,7 @@
       }
     },
     {
-      "Name": "CellBand",
+      "Name": "CellCap",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -76,19 +76,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.6,
-          0.15,
-          0.75
+          1.3,
+          0.18,
+          0.5
         ],
         "Position": [
           0,
-          0.15,
+          0.5,
           0
         ],
         "Color": [
-          0.43137254901960786,
-          0.4627450980392157,
-          0.5019607843137255
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -99,7 +99,7 @@
       }
     },
     {
-      "Name": "TerminalP",
+      "Name": "Terminal",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -108,14 +108,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.32,
-          0.32,
+          0.3,
+          0.3,
           0.22
         ],
         "Position": [
           0.45,
           0.4,
-          0.38
+          0.35
         ],
         "Color": [
           1.0,
@@ -131,7 +131,7 @@
       }
     },
     {
-      "Name": "TerminalN",
+      "Name": "TerminalNeg",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -140,14 +140,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.32,
-          0.32,
+          0.3,
+          0.3,
           0.22
         ],
         "Position": [
           -0.45,
           0.4,
-          0.38
+          0.35
         ],
         "Color": [
           0.43137254901960786,
@@ -172,14 +172,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.25,
+          1.15,
           0.12,
-          0.12
+          0.1
         ],
         "Position": [
           0,
-          0.2,
-          0.38
+          0.15,
+          0.35
         ],
         "Color": [
           0.1568627450980392,
@@ -204,12 +204,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.75,
-          0.55
+          0.18,
+          0.65,
+          0.45
         ],
         "Position": [
-          -0.8,
+          -0.75,
           0,
           0
         ],
@@ -236,12 +236,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.75,
-          0.55
+          0.18,
+          0.65,
+          0.45
         ],
         "Position": [
-          0.8,
+          0.75,
           0,
           0
         ],
@@ -259,7 +259,7 @@
       }
     },
     {
-      "Name": "VentSlot",
+      "Name": "BatVent0",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -268,19 +268,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.35,
-          0.12
+          0.12,
+          0.4,
+          0.08
         ],
         "Position": [
-          0,
-          -0.2,
-          0.38
+          -0.35,
+          -0.15,
+          0.35
         ],
         "Color": [
-          0.22745098039215686,
-          0.24313725490196078,
-          0.27450980392156865
+          0.14823529411764705,
+          0.15529411764705883,
+          0.16941176470588235
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -291,7 +291,7 @@
       }
     },
     {
-      "Name": "WarningPip",
+      "Name": "BatVent1",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -300,26 +300,122 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.15,
-          0.15,
-          0.12
+          0.12,
+          0.4,
+          0.08
         ],
         "Position": [
-          0.65,
-          -0.25,
-          0.38
+          0.0,
+          -0.15,
+          0.35
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.14823529411764705,
+          0.15529411764705883,
+          0.16941176470588235
         ],
-        "Material": "Neon",
+        "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
       "Attributes": {
-        "TextureRole": "emissive_strip"
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BatVent2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.4,
+          0.08
+        ],
+        "Position": [
+          0.35,
+          -0.15,
+          0.35
+        ],
+        "Color": [
+          0.14823529411764705,
+          0.15529411764705883,
+          0.16941176470588235
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BatBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -0.5,
+          0.3,
+          0.3
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "BatBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          0.5,
+          0.3,
+          0.3
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
       }
     }
   ]

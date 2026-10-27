@@ -45,7 +45,7 @@
         "CastShadow": true,
         "Size": [
           1.0,
-          0.12,
+          0.1,
           1.0
         ],
         "Position": [
@@ -76,13 +76,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.45,
-          0.22,
-          0.45
+          0.42,
+          0.2,
+          0.42
         ],
         "Position": [
           0,
-          0.18,
+          0.16,
           0
         ],
         "Color": [
@@ -108,13 +108,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.1,
-          0.2
+          0.16,
+          0.08,
+          0.16
         ],
         "Position": [
           0.35,
-          0.15,
+          0.12,
           0.35
         ],
         "Color": [
@@ -131,6 +131,166 @@
       }
     },
     {
+      "Name": "TraceA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.04,
+          0.06
+        ],
+        "Position": [
+          -0.2,
+          0.08,
+          0.3
+        ],
+        "Color": [
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "TraceB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.06,
+          0.04,
+          0.4
+        ],
+        "Position": [
+          0.3,
+          0.08,
+          -0.1
+        ],
+        "Color": [
+          0.2196078431372549,
+          0.7686274509803922,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "CPUBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.07,
+          0.07,
+          0.07
+        ],
+        "Position": [
+          -0.4,
+          0.08,
+          -0.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "CPUBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.07,
+          0.07,
+          0.07
+        ],
+        "Position": [
+          0.4,
+          0.08,
+          -0.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "CPUBolt2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.07,
+          0.07,
+          0.07
+        ],
+        "Position": [
+          -0.4,
+          0.08,
+          0.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
       "Name": "Crystal",
       "ClassName": "Part",
       "Properties": {
@@ -140,9 +300,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
+          0.4,
           0.45,
-          0.5,
-          0.45
+          0.4
         ],
         "Position": [
           0,

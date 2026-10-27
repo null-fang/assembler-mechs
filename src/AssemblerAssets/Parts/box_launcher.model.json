@@ -44,14 +44,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
-          0.5,
-          0.95
+          1.1,
+          0.45,
+          0.9
         ],
         "Position": [
           0,
-          -0.1,
-          -0.65
+          -0.15,
+          -0.7
         ],
         "Color": [
           0.20392156862745098,
@@ -59,6 +59,102 @@
           0.24313725490196078
         ],
         "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "MountBrace",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.9,
+          0.25,
+          0.7
+        ],
+        "Position": [
+          0,
+          0.15,
+          -0.55
+        ],
+        "Color": [
+          0.327843137254902,
+          0.34509803921568627,
+          0.31058823529411766
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "MountBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          -0.4,
+          -0.15,
+          -0.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "MountBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          0.4,
+          -0.15,
+          -0.4
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
@@ -76,14 +172,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.55,
-          1.15,
-          1.5
+          1.45,
+          1.05,
+          1.4
         ],
         "Position": [
           0,
           0.45,
-          0.25
+          0.3
         ],
         "Color": [
           0.37254901960784315,
@@ -108,14 +204,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.71,
-          0.08,
-          0.08
+          1.5899999999999999,
+          0.07,
+          0.07
         ],
         "Position": [
           0,
-          1.025,
-          1.04
+          0.9750000000000001,
+          1.035
         ],
         "Color": [
           0.2994509803921569,
@@ -140,14 +236,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.71,
-          0.08,
-          0.08
+          1.5899999999999999,
+          0.07,
+          0.07
         ],
         "Position": [
           0,
-          -0.12499999999999994,
-          1.04
+          -0.07500000000000001,
+          1.035
         ],
         "Color": [
           0.2994509803921569,
@@ -172,14 +268,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.08,
-          1.15,
-          0.08
+          0.07,
+          1.05,
+          0.07
         ],
         "Position": [
-          -0.8150000000000001,
+          -0.76,
           0.45,
-          1.04
+          1.035
         ],
         "Color": [
           0.2994509803921569,
@@ -204,14 +300,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.08,
-          1.15,
-          0.08
+          0.07,
+          1.05,
+          0.07
         ],
         "Position": [
-          0.8150000000000001,
+          0.76,
           0.45,
-          1.04
+          1.035
         ],
         "Color": [
           0.2994509803921569,
@@ -219,6 +315,70 @@
           0.3339607843137255
         ],
         "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PodFacePlate0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.96,
+          0.61,
+          0.12
+        ],
+        "Position": [
+          0,
+          0.5,
+          1.08
+        ],
+        "Color": [
+          0.30161568627450985,
+          0.3174901960784314,
+          0.2857411764705883
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PodFacePlate1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.72,
+          0.37,
+          0.12
+        ],
+        "Position": [
+          0,
+          0.45,
+          1.16
+        ],
+        "Color": [
+          0.27538823529411766,
+          0.2898823529411765,
+          0.26089411764705883
+        ],
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },
@@ -236,14 +396,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
-          0.4,
-          1.35
+          0.36,
+          0.36,
+          1.25
         ],
         "Position": [
           -0.35,
           0.7,
-          0.85
+          0.9
         ],
         "Color": [
           0.20392156862745098,
@@ -269,14 +429,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
-          0.4,
-          1.35
+          0.36,
+          0.36,
+          1.25
         ],
         "Position": [
           0.35,
           0.7,
-          0.85
+          0.9
         ],
         "Color": [
           0.20392156862745098,
@@ -302,14 +462,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
-          0.4,
-          1.35
+          0.36,
+          0.36,
+          1.25
         ],
         "Position": [
           -0.35,
           0.25,
-          0.85
+          0.9
         ],
         "Color": [
           0.20392156862745098,
@@ -335,14 +495,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
-          0.4,
-          1.35
+          0.36,
+          0.36,
+          1.25
         ],
         "Position": [
           0.35,
           0.25,
-          0.85
+          0.9
         ],
         "Color": [
           0.20392156862745098,
@@ -368,9 +528,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.28,
-          0.28,
-          0.12
+          0.24,
+          0.24,
+          0.1
         ],
         "Position": [
           -0.35,
@@ -400,9 +560,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.28,
-          0.28,
-          0.12
+          0.24,
+          0.24,
+          0.1
         ],
         "Position": [
           0.35,
@@ -432,9 +592,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.28,
-          0.28,
-          0.12
+          0.24,
+          0.24,
+          0.1
         ],
         "Position": [
           -0.35,
@@ -464,9 +624,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.28,
-          0.28,
-          0.12
+          0.24,
+          0.24,
+          0.1
         ],
         "Position": [
           0.35,
@@ -496,14 +656,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          0.15,
-          0.9
+          1.15,
+          0.14,
+          0.85
         ],
         "Position": [
           0,
-          1.1,
-          0.1
+          1.05,
+          0.15
         ],
         "Color": [
           0.20392156862745098,
@@ -511,6 +671,166 @@
           0.24313725490196078
         ],
         "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PodSideVent0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.35,
+          0.5
+        ],
+        "Position": [
+          -0.8,
+          0.2,
+          0.3
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PodSideVent1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.35,
+          0.5
+        ],
+        "Position": [
+          -0.8,
+          0.45,
+          0.3
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PodSideVent2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.35,
+          0.5
+        ],
+        "Position": [
+          -0.8,
+          0.7,
+          0.3
+        ],
+        "Color": [
+          0.1631372549019608,
+          0.17568627450980392,
+          0.19450980392156864
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PodBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          -0.55,
+          0.9,
+          0.9
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PodBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.12,
+          0.12
+        ],
+        "Position": [
+          0.55,
+          0.9,
+          0.9
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       },

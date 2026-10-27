@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.85,
-          0.65,
-          0.85
+          0.8,
+          0.6,
+          0.8
         ],
         "Position": [
           0,
@@ -77,9 +77,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.22,
-          0.95
+          0.9,
+          0.18,
+          0.9
         ],
         "Position": [
           0,
@@ -109,9 +109,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.65,
-          0.12,
-          0.12
+          0.6,
+          0.1,
+          0.1
         ],
         "Position": [
           0,
@@ -129,6 +129,70 @@
       },
       "Attributes": {
         "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "BeepBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.07,
+          0.07,
+          0.07
+        ],
+        "Position": [
+          -0.3,
+          -0.2,
+          0.3
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BeepBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.07,
+          0.07,
+          0.07
+        ],
+        "Position": [
+          0.3,
+          -0.2,
+          0.3
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
       }
     },
     {

@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.5,
-          0.4,
-          0.85
+          0.45,
+          0.35,
+          0.8
         ],
         "Position": [
           0,
@@ -76,9 +76,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.85,
-          0.1,
-          0.55
+          0.8,
+          0.08,
+          0.5
         ],
         "Position": [
           -0.55,
@@ -109,9 +109,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.85,
-          0.1,
-          0.55
+          0.8,
+          0.08,
+          0.5
         ],
         "Position": [
           0.55,
@@ -142,9 +142,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.25,
-          0.25
+          0.2,
+          0.2,
+          0.2
         ],
         "Position": [
           0,
@@ -162,6 +162,70 @@
       },
       "Attributes": {
         "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "AntennaL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.06,
+          0.35,
+          0.06
+        ],
+        "Position": [
+          -0.15,
+          0.35,
+          0.3
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "AntennaR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.06,
+          0.35,
+          0.06
+        ],
+        "Position": [
+          0.15,
+          0.35,
+          0.3
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
       }
     }
   ]

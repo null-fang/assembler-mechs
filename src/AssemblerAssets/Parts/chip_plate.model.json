@@ -45,7 +45,7 @@
         "CastShadow": true,
         "Size": [
           0.55,
-          0.12,
+          0.1,
           0.4
         ],
         "Position": [
@@ -76,9 +76,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.22,
-          0.1,
-          0.22
+          0.2,
+          0.08,
+          0.2
         ],
         "Position": [
           0,
@@ -99,6 +99,70 @@
       }
     },
     {
+      "Name": "PadL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.06,
+          0.12
+        ],
+        "Position": [
+          -0.2,
+          0.06,
+          0.12
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
+      }
+    },
+    {
+      "Name": "PadR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.1,
+          0.06,
+          0.12
+        ],
+        "Position": [
+          0.2,
+          0.06,
+          0.12
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
+      }
+    },
+    {
       "Name": "Shield",
       "ClassName": "Part",
       "Properties": {
@@ -108,13 +172,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.25,
-          0.1
+          0.32,
+          0.22,
+          0.08
         ],
         "Position": [
           0,
-          0.18,
+          0.16,
           0.05
         ],
         "Color": [

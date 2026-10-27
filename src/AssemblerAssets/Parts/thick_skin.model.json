@@ -45,8 +45,8 @@
         "CastShadow": true,
         "Size": [
           0.48,
-          0.12,
-          0.38
+          0.1,
+          0.35
         ],
         "Position": [
           0,
@@ -57,38 +57,6 @@
           0.33725490196078434,
           0.48627450980392156,
           0.25098039215686274
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
-      }
-    },
-    {
-      "Name": "Frame",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.52,
-          0.06,
-          0.42
-        ],
-        "Position": [
-          0,
-          -0.02,
-          0
-        ],
-        "Color": [
-          0.2823529411764706,
-          0.3058823529411765,
-          0.33725490196078434
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -113,7 +81,7 @@
           0.12
         ],
         "Position": [
-          0.14,
+          0.12,
           0.1,
           0.08
         ],
@@ -131,7 +99,7 @@
       }
     },
     {
-      "Name": "PinA",
+      "Name": "Pin",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -140,14 +108,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.07,
-          0.07,
-          0.18
+          0.08,
+          0.08,
+          0.2
         ],
         "Position": [
-          -0.14,
+          -0.12,
           -0.02,
-          0.05
+          0
         ],
         "Color": [
           0.43137254901960786,
@@ -163,39 +131,7 @@
       }
     },
     {
-      "Name": "PinB",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "CanCollide": false,
-        "CanQuery": false,
-        "CanTouch": false,
-        "CastShadow": true,
-        "Size": [
-          0.07,
-          0.07,
-          0.18
-        ],
-        "Position": [
-          -0.14,
-          -0.02,
-          -0.1
-        ],
-        "Color": [
-          0.43137254901960786,
-          0.4627450980392157,
-          0.5019607843137255
-        ],
-        "Material": "Metal",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      },
-      "Attributes": {
-        "TextureRole": "metal_plate"
-      }
-    },
-    {
-      "Name": "Cap",
+      "Name": "Pad",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -205,18 +141,18 @@
         "CastShadow": true,
         "Size": [
           0.1,
-          0.1,
+          0.06,
           0.1
         ],
         "Position": [
-          0.05,
-          0.1,
+          0.15,
+          0.06,
           -0.1
         ],
         "Color": [
-          0.16470588235294117,
-          0.17254901960784313,
-          0.18823529411764706
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",

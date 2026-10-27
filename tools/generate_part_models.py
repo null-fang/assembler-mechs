@@ -606,7 +606,11 @@ def main() -> None:
     rarities: dict[str, str] = {}
     for pid, (kind, color, kwargs) in sorted(PART_RECIPES.items()):
         children = build_children(kind, color, kwargs)
-        assert len(children) >= 3, f"{pid} too few parts ({len(children)})"
+        # Dense kit bar: torsos/legs/weapons must read as layered mech parts, not slabs.
+        min_parts = {"torso": 28, "leg": 16, "lower": 10, "shoulder": 10, "battery": 5, "cpu": 5, "drone": 5}.get(
+            kind, 3
+        )
+        assert len(children) >= min_parts, f"{pid} too few parts ({len(children)} < {min_parts})"
         write_model(OUT / f"{pid}.model.json", pack_model(children))
         counts[kind] = counts.get(kind, 0) + 1
         rarities[pid] = kwargs.get("rarity", "Common")

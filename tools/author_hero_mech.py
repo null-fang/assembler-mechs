@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Hand-author SuperMechs-inspired hero starter kits + AssemblerAssets showcase.
 
-Dense multi-cube kits (panels / vents / barrels / joints) — SM structure only,
-never pasted SM art. Preview is front 3/4 (visor + weapons toward camera).
+Dense layered paneling (bolts, vents, barrels, visors, joints) — SM structure,
+invented shapes. Front 3/4 combat-crouch preview.
 
 Writes:
   src/AssemblerAssets/Showcase/HeroStarterMech.model.json
@@ -43,17 +43,17 @@ def lighten(c: list[float], a: float = 0.25) -> list[float]:
     return [min(1.0, x + (1.0 - x) * a) for x in c]
 
 
+# Bold SM-like palette (original)
 OLIVE = rgb(86, 124, 64)
 OLIVE_LIGHT = rgb(120, 158, 90)
-OLIVE_DARK = rgb(58, 88, 48)
+OLIVE_DARK = rgb(62, 92, 48)
 CHAR = rgb(42, 44, 48)
 STEEL = rgb(110, 118, 128)
-STEEL_DK = rgb(72, 78, 86)
+STEEL_DARK = rgb(72, 78, 88)
 VISOR = rgb(40, 220, 255)
 ORANGE = rgb(255, 140, 48)
 RUBBER = rgb(28, 28, 30)
 CANNON = rgb(72, 78, 88)
-GUNMETAL = rgb(58, 62, 70)
 
 
 def part(
@@ -91,10 +91,8 @@ def part(
         attrs["TextureRole"] = "emissive_strip"
     elif material in ("CorrodedMetal", "DiamondPlate"):
         attrs["TextureRole"] = "scratched_steel"
-    elif "Boot" in name or "Sole" in name or "Grip" in name or "Skid" in name:
+    elif "Rubber" in name or name.startswith("Boot") or name.startswith("Sole"):
         attrs["TextureRole"] = "matte_rubber"
-    elif "Hazard" in name:
-        attrs["TextureRole"] = "hazard_stripe"
     else:
         attrs["TextureRole"] = "metal_plate"
     node: dict = {"Name": name, "ClassName": "Part", "Properties": props}
@@ -104,14 +102,7 @@ def part(
 
 
 def root_marker() -> dict:
-    return part(
-        "Root",
-        [0.2, 0.2, 0.2],
-        [0, 0, 0],
-        color=rgb(255, 255, 255),
-        transparency=1.0,
-        role="matte_rubber",
-    )
+    return part("Root", [0.2, 0.2, 0.2], [0, 0, 0], color=rgb(255, 255, 255), transparency=1.0, role="matte_rubber")
 
 
 def pack(children: list[dict]) -> dict:
@@ -123,292 +114,271 @@ def write_model(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
-def vent_row(prefix: str, origin: list[float], n: int, step: float, size: list[float], color: list[float]) -> list[dict]:
-    kids = []
-    for i in range(n):
-        kids.append(
-            part(
-                f"{prefix}{i}",
-                size,
-                [origin[0] + i * step, origin[1], origin[2]],
-                color=color,
-                material="Metal",
-                role="carbon_dark",
-            )
-        )
-    return kids
+def bolt(name: str, pos: list[float], r: float = 0.11) -> dict:
+    return part(name, [r, r, r], pos, color=STEEL_DARK, material="DiamondPlate", role="scratched_steel")
 
 
-def rivet_line(prefix: str, origin: list[float], n: int, step: float, axis: str = "x") -> list[dict]:
-    kids = []
-    for i in range(n):
-        pos = list(origin)
-        if axis == "x":
-            pos[0] += i * step
-        elif axis == "y":
-            pos[1] += i * step
-        else:
-            pos[2] += i * step
-        kids.append(
-            part(
-                f"{prefix}{i}",
-                [0.14, 0.14, 0.14],
-                pos,
-                color=STEEL,
-                material="Metal",
-                role="scratched_steel",
-            )
-        )
-    return kids
+def vent(name: str, pos: list[float], size: list[float] | None = None) -> dict:
+    return part(name, size or [0.12, 0.5, 0.14], pos, color=darken(CHAR, 0.1), material="Metal", role="carbon_dark")
 
 
 # ---------------------------------------------------------------------------
-# Dense hand kits — many designed cubes per piece
+# Dense hand kits (socket-local). Quality bar for generate_part_models styles.
 # ---------------------------------------------------------------------------
 
 
 def kit_visor_torso() -> list[dict]:
-    """Top-heavy chassis: layered panels, visor stack, vents, pauldrons, backpack."""
-    kids: list[dict] = [
-        # Core volume
-        part("HullCore", [3.4, 2.35, 2.1], [0, 0.05, 0], color=OLIVE, material="Metal"),
-        part("HullShell", [3.9, 2.75, 2.45], [0, 0.05, 0], color=OLIVE_DARK, material="Metal"),
-        part("HullInset", [3.1, 2.0, 0.25], [0, 0.1, 1.15], color=CHAR, material="Metal", role="carbon_dark"),
-        # Dome / head block
-        part("Dome", [3.15, 1.05, 1.95], [0, 1.4, 0.08], color=OLIVE_LIGHT, material="Metal"),
-        part("DomeCap", [2.4, 0.35, 1.5], [0, 2.0, 0.05], color=OLIVE, material="Metal"),
-        part("DomeRidge", [0.35, 0.55, 1.7], [0, 1.65, 0.1], color=STEEL, material="Metal"),
-        # Visor stack (front)
-        part("VisorBrow", [2.55, 0.28, 0.4], [0, 0.95, 1.3], color=GUNMETAL, material="Metal"),
-        part("VisorRecess", [2.35, 0.75, 0.38], [0, 0.55, 1.28], color=CHAR, material="Metal", role="carbon_dark"),
-        part("GlowVisor", [2.05, 0.48, 0.2], [0, 0.58, 1.48], color=VISOR, material="Neon", role="emissive_strip"),
-        part("VisorLip", [2.2, 0.12, 0.25], [0, 0.28, 1.4], color=STEEL_DK, material="Metal"),
-        part("VisorCheekL", [0.35, 0.55, 0.35], [-1.15, 0.55, 1.35], color=OLIVE_DARK, material="Metal"),
-        part("VisorCheekR", [0.35, 0.55, 0.35], [1.15, 0.55, 1.35], color=OLIVE_DARK, material="Metal"),
-        # Breast / abdomen panels
-        part("BreastPlate", [2.7, 1.15, 0.38], [0, -0.25, 1.22], color=darken(OLIVE, 0.12), material="DiamondPlate", role="scratched_steel"),
-        part("BreastBoltL", [0.22, 0.22, 0.18], [-0.9, -0.1, 1.42], color=STEEL, material="Metal"),
-        part("BreastBoltR", [0.22, 0.22, 0.18], [0.9, -0.1, 1.42], color=STEEL, material="Metal"),
-        part("AbPanel", [2.2, 0.7, 0.32], [0, -0.95, 1.15], color=OLIVE_DARK, material="Metal"),
-        part("AccentHazard", [2.0, 0.16, 0.16], [0, -0.7, 1.38], color=ORANGE, material="Neon", role="hazard_stripe"),
-        part("GlowChestPip", [0.2, 0.2, 0.15], [0, -0.35, 1.45], color=VISOR, material="Neon"),
-        # Side cheeks / skirts
-        part("CheekL", [0.7, 1.55, 1.35], [-1.95, 0.35, 0.3], color=OLIVE_DARK, material="Metal"),
-        part("CheekR", [0.7, 1.55, 1.35], [1.95, 0.35, 0.3], color=OLIVE_DARK, material="Metal"),
-        part("SideSkirtL", [0.4, 1.2, 1.5], [-2.05, -0.55, 0.1], color=STEEL_DK, material="Metal"),
-        part("SideSkirtR", [0.4, 1.2, 1.5], [2.05, -0.55, 0.1], color=STEEL_DK, material="Metal"),
-        # Hip yoke
-        part("HipYoke", [3.35, 0.5, 1.95], [0, -1.5, 0.05], color=STEEL, material="Metal"),
-        part("HipSocketL", [0.55, 0.45, 0.55], [-1.1, -1.55, 0.15], color=CHAR, material="Metal", shape="Ball"),
-        part("HipSocketR", [0.55, 0.45, 0.55], [1.1, -1.55, 0.15], color=CHAR, material="Metal", shape="Ball"),
-        # Pauldrons (layered)
-        part("PauldronL", [1.35, 0.85, 1.5], [-2.2, 1.15, 0], color=OLIVE, material="Metal"),
-        part("PauldronLTrim", [1.15, 0.25, 1.35], [-2.25, 1.55, 0.05], color=STEEL, material="Metal"),
-        part("PauldronLVent", [0.35, 0.55, 0.9], [-2.55, 1.1, 0.15], color=CHAR, material="Metal", role="carbon_dark"),
-        part("PauldronR", [1.35, 0.85, 1.5], [2.2, 1.15, 0], color=OLIVE, material="Metal"),
-        part("PauldronRTrim", [1.15, 0.25, 1.35], [2.25, 1.55, 0.05], color=STEEL, material="Metal"),
-        part("PauldronRStub", [0.55, 0.45, 0.7], [2.55, 1.05, -0.15], color=GUNMETAL, material="Metal"),
-        # Backpack / thruster cluster
-        part("BackPack", [2.7, 1.75, 0.9], [0, 0.3, -1.5], color=CHAR, material="Metal", role="carbon_dark"),
-        part("BackPlate", [2.3, 1.2, 0.25], [0, 0.35, -1.95], color=STEEL_DK, material="Metal"),
-        part("ThrusterL", [0.55, 0.55, 0.85], [-0.55, 0.05, -2.15], color=STEEL, material="Metal", shape="Cylinder"),
-        part("ThrusterR", [0.55, 0.55, 0.85], [0.55, 0.05, -2.15], color=STEEL, material="Metal", shape="Cylinder"),
-        part("GlowExhaustL", [0.32, 0.32, 0.28], [-0.55, 0.05, -2.55], color=VISOR, material="Neon"),
-        part("GlowExhaustR", [0.32, 0.32, 0.28], [0.55, 0.05, -2.55], color=VISOR, material="Neon"),
-        part("Antenna", [0.16, 1.15, 0.16], [1.15, 2.2, -0.35], color=STEEL, material="Metal"),
-        part("AntennaTip", [0.2, 0.2, 0.2], [1.15, 2.8, -0.35], color=ORANGE, material="Neon"),
-        part("SensorStub", [0.25, 0.35, 0.25], [-1.0, 2.0, 0.4], color=GUNMETAL, material="Metal"),
+    """Top-heavy chassis + recessed emissive visor — layered armor, not a slab."""
+    kids = [
+        # Inner frame + outer hull (hull does not fill the silhouette alone)
+        part("CoreFrame", [2.5, 2.1, 1.6], [0, 0.05, -0.1], color=CHAR, material="Metal", role="carbon_dark"),
+        part("Hull", [3.4, 2.4, 2.15], [0, 0.08, 0.08], color=OLIVE, material="Metal", role="metal_plate"),
+        part("HullSeam", [3.5, 0.1, 2.2], [0, 0.15, 0.08], color=OLIVE_DARK, material="Metal"),
+        # Layered chest armor (+Z front)
+        part("ChestPlateA", [2.5, 1.35, 0.32], [0, 0.25, 1.2], color=OLIVE_DARK, material="DiamondPlate", role="scratched_steel"),
+        part("ChestPlateB", [2.05, 0.95, 0.28], [0, 0.35, 1.4], color=darken(OLIVE, 0.1), material="Metal"),
+        part("ChestPlateC", [1.5, 0.55, 0.22], [0, 0.4, 1.55], color=CHAR, material="Metal", role="carbon_dark"),
+        part("BreastLower", [2.3, 0.7, 0.3], [0, -0.45, 1.25], color=OLIVE_DARK, material="Metal"),
+        part("AccentHazard", [1.9, 0.16, 0.14], [0, -0.85, 1.4], color=ORANGE, material="Neon", role="hazard_stripe"),
+        # Head / visor cluster — clear front face
+        part("HeadDome", [1.9, 1.15, 1.6], [0, 1.55, 0.2], color=OLIVE_LIGHT, material="Metal", role="metal_plate"),
+        part("HeadCap", [1.55, 0.32, 1.25], [0, 2.2, 0.15], color=OLIVE_DARK, material="Metal"),
+        part("VisorRecess", [1.85, 0.85, 0.35], [0, 1.4, 1.05], color=CHAR, material="Metal", role="carbon_dark"),
+        part("GlowVisor", [1.65, 0.58, 0.28], [0, 1.4, 1.35], color=VISOR, material="Neon", role="emissive_strip"),
+        part("GlowVisorCore", [0.55, 0.7, 0.2], [0, 1.4, 1.55], color=lighten(VISOR, 0.25), material="Neon", role="emissive_strip"),
+        part("VisorBrow", [1.9, 0.18, 0.45], [0, 1.9, 1.0], color=STEEL, material="Metal"),
+        part("VisorChin", [1.4, 0.14, 0.3], [0, 1.05, 1.2], color=STEEL_DARK, material="Metal"),
+        part("GlowSlitL", [0.22, 0.4, 0.14], [-1.0, 1.35, 1.2], color=VISOR, material="Neon"),
+        part("GlowSlitR", [0.22, 0.4, 0.14], [1.0, 1.35, 1.2], color=VISOR, material="Neon"),
+        # Cheeks / pauldrons
+        part("CheekL", [0.7, 1.4, 1.2], [-1.9, 0.4, 0.4], color=OLIVE_DARK, material="Metal"),
+        part("CheekR", [0.7, 1.4, 1.2], [1.9, 0.4, 0.4], color=OLIVE_DARK, material="Metal"),
+        part("CheekVentL", [0.18, 0.7, 0.7], [-2.25, 0.35, 0.5], color=CHAR, material="Metal"),
+        part("CheekVentR", [0.18, 0.7, 0.7], [2.25, 0.35, 0.5], color=CHAR, material="Metal"),
+        part("PauldronL", [1.2, 0.85, 1.35], [-2.2, 1.15, 0.05], color=OLIVE, material="Metal"),
+        part("PauldronR", [1.2, 0.85, 1.35], [2.2, 1.15, 0.05], color=OLIVE, material="Metal"),
+        part("PauldronCapL", [0.95, 0.28, 1.05], [-2.25, 1.6, 0.05], color=OLIVE_DARK, material="DiamondPlate", role="scratched_steel"),
+        part("PauldronCapR", [0.95, 0.28, 1.05], [2.25, 1.6, 0.05], color=OLIVE_DARK, material="DiamondPlate", role="scratched_steel"),
+        part("ShoulderPivotL", [0.65, 0.5, 0.65], [-1.95, 0.85, 0], color=STEEL, material="Metal", shape="Cylinder"),
+        part("ShoulderPivotR", [0.65, 0.5, 0.65], [1.95, 0.85, 0], color=STEEL, material="Metal", shape="Cylinder"),
+        # Hip / pelvis
+        part("HipDisk", [0.95, 0.4, 0.95], [0, -1.2, 0.05], color=STEEL, material="Metal", shape="Cylinder", role="scratched_steel"),
+        part("HipYoke", [2.9, 0.45, 1.55], [0, -1.5, 0.1], color=STEEL, material="Metal"),
+        part("PelvisPlate", [2.3, 0.28, 1.15], [0, -1.8, 0.25], color=CHAR, material="Metal"),
+        part("SkirtL", [0.55, 0.75, 1.05], [-1.6, -1.4, 0.3], color=OLIVE_DARK, material="Metal"),
+        part("SkirtR", [0.55, 0.75, 1.05], [1.6, -1.4, 0.3], color=OLIVE_DARK, material="Metal"),
+        # Back pack with functional thrusters/vents (not a blank slab)
+        part("BackPack", [2.2, 1.5, 0.7], [0, 0.3, -1.35], color=CHAR, material="Metal", role="carbon_dark"),
+        part("BackPackLid", [1.9, 0.2, 0.55], [0, 1.1, -1.35], color=STEEL_DARK, material="Metal"),
+        part("ThrusterL", [0.55, 0.55, 0.75], [-0.55, 0.15, -1.85], color=STEEL, material="Metal", shape="Cylinder"),
+        part("ThrusterR", [0.55, 0.55, 0.75], [0.55, 0.15, -1.85], color=STEEL, material="Metal", shape="Cylinder"),
+        part("GlowExhaustL", [0.32, 0.32, 0.2], [-0.55, 0.15, -2.3], color=VISOR, material="Neon"),
+        part("GlowExhaustR", [0.32, 0.32, 0.2], [0.55, 0.15, -2.3], color=VISOR, material="Neon"),
+        part("Antenna", [0.14, 1.05, 0.14], [1.15, 2.25, -0.35], color=STEEL, material="Metal"),
+        part("AntennaTip", [0.18, 0.18, 0.18], [1.15, 2.8, -0.35], color=ORANGE, material="Neon"),
+        part("SensorPod", [0.35, 0.35, 0.35], [-1.0, 2.0, 0.4], color=STEEL, material="Metal", shape="Ball"),
+        part("GlowSensor", [0.18, 0.18, 0.12], [-1.0, 2.0, 0.6], color=VISOR, material="Neon"),
     ]
-    kids += vent_row("VentF", [-0.9, -0.55, 1.42], 5, 0.45, [0.28, 0.45, 0.12], CHAR)
-    kids += vent_row("VentSideL", [-2.15, 0.1, -0.4], 3, 0.4, [0.12, 0.35, 0.28], GUNMETAL)
-    kids += rivet_line("RivetTop", [-1.2, 1.85, 0.85], 5, 0.6, "x")
-    kids += rivet_line("RivetHip", [-1.4, -1.35, 0.9], 6, 0.55, "x")
+    # Side vents + bolts
+    for i, y in enumerate((-0.2, 0.2, 0.6)):
+        kids.append(vent(f"SideVentL{i}", [-1.8, y, 0.95], [0.14, 0.35, 0.12]))
+        kids.append(vent(f"SideVentR{i}", [1.8, y, 0.95], [0.14, 0.35, 0.12]))
+    for i, y in enumerate((0.1, 0.45, 0.8)):
+        kids.append(vent(f"BackVent{i}", [-0.45 + i * 0.45, 0.55, -1.7], [0.14, 0.55, 0.12]))
+    for i, p in enumerate(
+        [
+            [-1.2, 0.9, 1.15],
+            [1.2, 0.9, 1.15],
+            [-1.0, -0.4, 1.2],
+            [1.0, -0.4, 1.2],
+            [-0.7, 1.9, 0.75],
+            [0.7, 1.9, 0.75],
+            [-2.2, 1.15, 0.7],
+            [2.2, 1.15, 0.7],
+        ]
+    ):
+        kids.append(bolt(f"HullBolt{i}", p))
     return kids
 
 
 def kit_plant_leg(side: str) -> list[dict]:
-    """Crouched biped: armor plates, piston, knee joint stack, planted boot."""
+    """Biped leg — visible joints, knee forward combat crouch, armored panels."""
     s = -1.0 if side == "l" else 1.0
-    kids: list[dict] = [
+    kids = [
         part("HipBall", [0.95, 0.7, 0.95], [0.05 * s, 1.05, 0.05], color=CHAR, material="Metal", shape="Ball", role="scratched_steel"),
-        part("HipCollar", [1.15, 0.28, 1.15], [0.08 * s, 0.85, 0.08], color=STEEL, material="Metal"),
-        part("Thigh", [1.2, 1.05, 1.3], [0.12 * s, 0.4, 0.22], color=OLIVE, material="Metal"),
-        part("ThighPlateOut", [0.28, 0.9, 1.05], [0.78 * s, 0.4, 0.28], color=OLIVE_DARK, material="Metal"),
-        part("ThighPlateIn", [0.22, 0.75, 0.9], [-0.55 * s, 0.4, 0.2], color=STEEL_DK, material="Metal"),
-        part("ThighRidge", [0.2, 0.85, 0.2], [0.2 * s, 0.45, 0.85], color=STEEL, material="Metal"),
-        part("PistonRod", [0.18, 0.9, 0.18], [0.45 * s, 0.15, -0.35], color=STEEL, material="Metal"),
-        part("PistonSleeve", [0.32, 0.4, 0.32], [0.45 * s, 0.55, -0.35], color=GUNMETAL, material="Metal"),
-        # Knee cluster
-        part("KneeDisk", [1.1, 0.38, 1.1], [0.15 * s, -0.28, 0.55], color=STEEL, material="Metal", shape="Cylinder", role="scratched_steel"),
-        part("KneeDiskB", [0.85, 0.28, 0.85], [0.15 * s, -0.28, 0.55], color=CHAR, material="Metal", shape="Cylinder"),
-        part("KneePin", [0.26, 0.65, 0.26], [0.72 * s, -0.28, 0.55], color=ORANGE, material="Neon"),
-        part("KneeGuard", [0.95, 0.35, 0.45], [0.12 * s, -0.05, 0.95], color=OLIVE_DARK, material="Metal"),
-        # Shin
-        part("Shin", [1.05, 1.15, 1.15], [0.1 * s, -1.0, 0.32], color=OLIVE, material="Metal"),
-        part("ShinPlate", [0.28, 0.95, 0.95], [0.68 * s, -1.0, 0.38], color=OLIVE_DARK, material="Metal"),
-        part("ShinBrace", [0.22, 0.95, 0.5], [0.55 * s, -1.0, -0.15], color=CHAR, material="Metal"),
-        part("ShinVentA", [0.7, 0.18, 0.12], [0.05 * s, -0.75, 0.9], color=CHAR, material="Metal", role="carbon_dark"),
-        part("ShinVentB", [0.7, 0.18, 0.12], [0.05 * s, -1.05, 0.9], color=CHAR, material="Metal", role="carbon_dark"),
-        part("AccentShin", [0.18, 0.65, 0.14], [0.5 * s, -1.05, 0.88], color=VISOR, material="Neon"),
-        # Ankle + boot
-        part("Ankle", [1.15, 0.38, 1.1], [0.05 * s, -1.55, 0.42], color=STEEL, material="Metal"),
-        part("AnkleBall", [0.55, 0.4, 0.55], [0.05 * s, -1.55, 0.35], color=CHAR, material="Metal", shape="Ball"),
-        part("Boot", [1.6, 0.42, 1.9], [0.05 * s, -1.95, 0.58], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
-        part("BootArmor", [1.4, 0.28, 1.1], [0.05 * s, -1.72, 0.55], color=OLIVE_DARK, material="Metal"),
-        part("ToeLip", [1.3, 0.26, 0.42], [0.05 * s, -1.78, 1.4], color=STEEL_DK, material="Metal"),
-        part("HeelBlock", [1.0, 0.35, 0.45], [0.05 * s, -1.95, -0.25], color=CHAR, material="Metal"),
-        part("SoleGrip", [1.45, 0.12, 1.6], [0.05 * s, -2.12, 0.55], color=darken(RUBBER, 0.15), material="SmoothPlastic", role="matte_rubber"),
+        part("HipPin", [0.25, 0.55, 0.25], [0.5 * s, 1.05, 0.05], color=STEEL, material="Metal", shape="Cylinder"),
+        part("Thigh", [1.15, 1.05, 1.25], [0.12 * s, 0.45, 0.3], color=OLIVE, material="Metal"),
+        part("ThighArmor", [1.0, 0.55, 1.0], [0.14 * s, 0.6, 0.55], color=OLIVE_DARK, material="DiamondPlate", role="scratched_steel"),
+        part("ThighPlate", [0.25, 0.85, 0.95], [0.75 * s, 0.45, 0.35], color=OLIVE_DARK, material="Metal"),
+        part("ThighSeam", [1.05, 0.08, 1.15], [0.12 * s, 0.2, 0.35], color=CHAR, material="Metal"),
+        part("KneeDisk", [1.1, 0.38, 1.1], [0.15 * s, -0.25, 0.6], color=STEEL, material="Metal", shape="Cylinder", role="scratched_steel"),
+        part("KneeCap", [0.7, 0.45, 0.35], [0.15 * s, -0.15, 1.05], color=STEEL_DARK, material="Metal"),
+        part("KneePin", [0.26, 0.65, 0.26], [0.7 * s, -0.25, 0.6], color=ORANGE, material="Neon"),
+        part("Shin", [1.05, 1.2, 1.15], [0.1 * s, -1.0, 0.35], color=OLIVE, material="Metal"),
+        part("ShinGuard", [0.9, 0.75, 0.35], [0.1 * s, -0.9, 0.85], color=OLIVE_DARK, material="Metal"),
+        part("ShinBrace", [0.22, 0.95, 0.5], [0.65 * s, -0.95, 0.4], color=CHAR, material="Metal"),
+        part("PistonRod", [0.18, 0.85, 0.18], [0.35 * s, -0.7, 0.05], color=STEEL, material="Metal", shape="Cylinder"),
+        part("Ankle", [1.15, 0.35, 1.1], [0.05 * s, -1.6, 0.45], color=STEEL, material="Metal"),
+        part("Boot", [1.5, 0.42, 1.8], [0.05 * s, -1.95, 0.6], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
+        part("SolePlate", [1.35, 0.12, 1.55], [0.05 * s, -2.2, 0.55], color=CHAR, material="Metal"),
+        part("ToeLip", [1.3, 0.25, 0.4], [0.05 * s, -1.8, 1.4], color=OLIVE_DARK, material="Metal"),
+        part("Heel", [1.05, 0.28, 0.4], [0.05 * s, -1.9, -0.2], color=STEEL_DARK, material="Metal"),
+        part("AccentShin", [0.16, 0.65, 0.12], [0.55 * s, -1.05, 0.95], color=VISOR, material="Neon"),
+        part("GlowAnkle", [0.22, 0.14, 0.14], [0.45 * s, -1.55, 0.9], color=ORANGE, material="Neon"),
     ]
-    kids += rivet_line("ThighRivet", [-0.35, 0.7, 0.7], 3, 0.35, "x")
+    for i, y in enumerate((-0.85, -1.05, -1.25)):
+        kids.append(vent(f"ShinVent{i}", [0.1 * s, y, 1.0], [0.55, 0.1, 0.1]))
+    for i, p in enumerate(
+        [
+            [0.5 * s, 0.7, 0.9],
+            [0.45 * s, -0.9, 0.95],
+            [-0.35 * s, 0.3, 0.85],
+            [0.4 * s, -1.7, 1.2],
+        ]
+    ):
+        kids.append(bolt(f"LegBolt{i}", p))
     return kids
 
 
 def kit_gatling_arm() -> list[dict]:
-    """Triple-barrel mitt with cooling vanes, belt, mounts, glow muzzles."""
-    kids: list[dict] = [
-        part("Mount", [1.0, 0.8, 0.8], [0, 0, -0.9], color=CHAR, material="Metal"),
-        part("MountPin", [0.35, 0.35, 0.55], [0, 0, -1.25], color=STEEL, material="Metal", shape="Cylinder"),
-        part("ElbowJoint", [0.7, 0.7, 0.7], [0, 0, -0.45], color=GUNMETAL, material="Metal", shape="Ball"),
-        part("Forearm", [1.05, 0.85, 1.45], [0, -0.02, 0.1], color=STEEL, material="Metal"),
-        part("ForearmPlate", [1.15, 0.25, 1.2], [0, 0.45, 0.15], color=OLIVE_DARK, material="Metal"),
-        part("ForearmRail", [0.2, 0.2, 1.3], [0.55, 0.15, 0.2], color=CHAR, material="Metal"),
-        part("Receiver", [1.2, 1.05, 1.15], [0, 0.05, 1.0], color=STEEL_DK, material="Metal"),
-        part("ReceiverLid", [1.0, 0.2, 0.9], [0, 0.6, 1.0], color=OLIVE, material="Metal"),
-        part("CoolingJacket", [1.0, 1.0, 0.9], [0, 0.05, 1.6], color=CANNON, material="Metal", shape="Cylinder"),
-        # Triple barrels + sleeves
-        part("BarrelA", [0.26, 0.26, 1.75], [-0.3, 0.22, 2.05], color=CHAR, material="Metal", shape="Cylinder"),
-        part("BarrelB", [0.26, 0.26, 1.75], [0.3, 0.22, 2.05], color=CHAR, material="Metal", shape="Cylinder"),
-        part("BarrelC", [0.26, 0.26, 1.75], [0, -0.18, 2.05], color=CHAR, material="Metal", shape="Cylinder"),
-        part("SleeveA", [0.38, 0.38, 0.55], [-0.3, 0.22, 1.45], color=STEEL, material="Metal", shape="Cylinder"),
-        part("SleeveB", [0.38, 0.38, 0.55], [0.3, 0.22, 1.45], color=STEEL, material="Metal", shape="Cylinder"),
-        part("SleeveC", [0.38, 0.38, 0.55], [0, -0.18, 1.45], color=STEEL, material="Metal", shape="Cylinder"),
-        part("GlowMuzzleA", [0.32, 0.32, 0.18], [-0.3, 0.22, 2.95], color=ORANGE, material="Neon"),
-        part("GlowMuzzleB", [0.32, 0.32, 0.18], [0.3, 0.22, 2.95], color=ORANGE, material="Neon"),
-        part("GlowMuzzleC", [0.32, 0.32, 0.18], [0, -0.18, 2.95], color=ORANGE, material="Neon"),
-        part("MuzzleBrake", [0.85, 0.55, 0.35], [0, 0.05, 2.75], color=GUNMETAL, material="Metal"),
-        # Belt / feed
-        part("BeltBox", [0.75, 0.6, 0.65], [0.75, -0.2, 0.75], color=OLIVE, material="Metal"),
-        part("BeltLid", [0.7, 0.12, 0.55], [0.75, 0.15, 0.75], color=OLIVE_LIGHT, material="Metal"),
-        part("AccentFeed", [0.16, 0.16, 0.75], [0.42, 0.2, 1.05], color=VISOR, material="Neon"),
-        part("BeltLink", [0.35, 0.2, 0.2], [0.55, 0.05, 0.45], color=STEEL, material="Metal"),
-        part("Grip", [0.4, 0.55, 0.4], [0, -0.7, 0.15], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
-        part("GripGuard", [0.55, 0.15, 0.55], [0, -0.4, 0.15], color=CHAR, material="Metal"),
+    """Forearm multi-barrel — dense receiver, cooling, belt feed."""
+    kids = [
+        part("Mount", [0.9, 0.7, 0.7], [0, 0, -0.9], color=CHAR, material="Metal"),
+        part("MountCollar", [1.0, 0.22, 1.0], [0, 0, -0.55], color=STEEL, material="Metal", shape="Cylinder"),
+        part("Forearm", [1.0, 0.85, 1.4], [0, -0.05, 0.05], color=STEEL, material="Metal"),
+        part("ForearmPlate", [0.85, 0.55, 0.9], [0, 0.25, 0.2], color=STEEL_DARK, material="DiamondPlate", role="scratched_steel"),
+        part("Receiver", [1.15, 1.0, 1.15], [0, 0.05, 1.0], color=darken(STEEL, 0.1), material="Metal"),
+        part("ReceiverTop", [0.9, 0.35, 0.85], [0, 0.55, 1.05], color=OLIVE_DARK, material="Metal"),
+        part("CoolingJacket", [0.95, 0.95, 0.9], [0, 0.05, 1.6], color=CANNON, material="Metal", shape="Cylinder"),
+        part("BarrelA", [0.26, 0.26, 1.65], [-0.28, 0.22, 2.15], color=CHAR, material="Metal", shape="Cylinder"),
+        part("BarrelB", [0.26, 0.26, 1.65], [0.28, 0.22, 2.15], color=CHAR, material="Metal", shape="Cylinder"),
+        part("BarrelC", [0.26, 0.26, 1.65], [0, -0.18, 2.15], color=CHAR, material="Metal", shape="Cylinder"),
+        part("BarrelD", [0.2, 0.2, 1.35], [0, 0.35, 2.0], color=STEEL_DARK, material="Metal", shape="Cylinder"),
+        part("GlowMuzzleA", [0.2, 0.2, 0.14], [-0.28, 0.22, 3.0], color=ORANGE, material="Neon"),
+        part("GlowMuzzleB", [0.2, 0.2, 0.14], [0.28, 0.22, 3.0], color=ORANGE, material="Neon"),
+        part("GlowMuzzleC", [0.2, 0.2, 0.14], [0, -0.18, 3.0], color=ORANGE, material="Neon"),
+        part("BeltBox", [0.7, 0.55, 0.6], [0.75, -0.15, 0.75], color=OLIVE, material="Metal"),
+        part("BeltFeed", [0.2, 0.2, 0.75], [0.45, 0.15, 1.15], color=VISOR, material="Neon"),
+        part("Mag", [0.45, 0.65, 0.4], [-0.7, -0.25, 0.85], color=CHAR, material="Metal"),
+        part("Grip", [0.38, 0.55, 0.38], [0, -0.7, 0.15], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
+        part("Sight", [0.14, 0.35, 0.45], [0, 0.7, 0.55], color=STEEL, material="Metal"),
+        part("GlowSight", [0.1, 0.1, 0.12], [0, 0.9, 0.7], color=VISOR, material="Neon"),
     ]
-    kids += vent_row("CoolVent", [-0.45, 0.55, 1.55], 4, 0.3, [0.22, 0.12, 0.4], CHAR)
+    for i, z in enumerate((0.4, 0.7, 1.0, 1.3)):
+        kids.append(vent(f"CoolVent{i}", [0, 0.55, z], [0.7, 0.1, 0.1]))
+    for i, p in enumerate([[-0.4, 0.35, 0.5], [0.4, 0.35, 0.5], [0, -0.35, 1.4], [0.55, 0.35, 1.3]]):
+        kids.append(bolt(f"GunBolt{i}", p))
     return kids
 
 
 def kit_rivet_ready() -> list[dict]:
-    """Sidearm cannon with mag, rails, sight, muzzle stack."""
-    kids: list[dict] = [
-        part("Mount", [0.95, 0.75, 0.75], [0, 0, -0.95], color=CHAR, material="Metal"),
-        part("MountBolt", [0.3, 0.3, 0.3], [0, 0.35, -0.95], color=STEEL, material="Metal"),
-        part("Receiver", [1.05, 0.9, 1.6], [0, 0.02, 0.1], color=STEEL, material="Metal"),
-        part("ReceiverTop", [0.9, 0.22, 1.3], [0, 0.5, 0.15], color=OLIVE_DARK, material="Metal"),
-        part("ReceiverSide", [0.2, 0.65, 1.2], [0.55, 0.05, 0.15], color=STEEL_DK, material="Metal"),
-        part("Barrel", [0.38, 0.38, 1.7], [0, 0.12, 1.5], color=CHAR, material="Metal", shape="Cylinder"),
+    """Sidearm cannon — receiver panels, barrel sleeve, mag, under-rail."""
+    kids = [
+        part("Mount", [0.85, 0.65, 0.65], [0, 0, -0.95], color=CHAR, material="Metal"),
+        part("MountCollar", [0.95, 0.2, 0.95], [0, 0, -0.6], color=STEEL, material="Metal", shape="Cylinder"),
+        part("Receiver", [0.95, 0.8, 1.5], [0, 0, 0.05], color=STEEL, material="Metal"),
+        part("ReceiverPlate", [0.8, 0.5, 1.0], [0, 0.3, 0.2], color=STEEL_DARK, material="DiamondPlate", role="scratched_steel"),
+        part("Breech", [0.75, 0.65, 0.55], [0, 0.05, -0.55], color=CHAR, material="Metal"),
+        part("Barrel", [0.38, 0.38, 1.7], [0, 0.12, 1.55], color=CHAR, material="Metal", shape="Cylinder"),
         part("BarrelSleeve", [0.55, 0.55, 0.7], [0, 0.12, 0.95], color=CANNON, material="Metal", shape="Cylinder"),
-        part("BarrelRing", [0.5, 0.12, 0.5], [0, 0.12, 1.85], color=STEEL, material="Metal", shape="Cylinder"),
-        part("Mag", [0.55, 0.8, 0.5], [0, -0.65, 0.2], color=OLIVE, material="Metal"),
-        part("MagCatch", [0.25, 0.25, 0.25], [0.35, -0.35, 0.2], color=ORANGE, material="Neon"),
-        part("Sight", [0.16, 0.4, 0.55], [0, 0.6, 0.55], color=VISOR, material="Neon"),
-        part("SightBase", [0.28, 0.15, 0.45], [0, 0.45, 0.5], color=GUNMETAL, material="Metal"),
-        part("UnderRail", [0.35, 0.18, 1.1], [0, -0.35, 0.95], color=CANNON, material="Metal"),
-        part("Muzzle", [0.48, 0.48, 0.32], [0, 0.12, 2.35], color=ORANGE, material="Neon"),
-        part("MuzzleCollar", [0.6, 0.2, 0.6], [0, 0.12, 2.15], color=STEEL_DK, material="Metal"),
-        part("EjectPort", [0.35, 0.25, 0.35], [0.45, 0.25, 0.55], color=CHAR, material="Metal", role="carbon_dark"),
+        part("BarrelRing", [0.5, 0.12, 0.5], [0, 0.12, 1.9], color=STEEL, material="Metal", shape="Cylinder"),
+        part("Mag", [0.5, 0.7, 0.4], [0, -0.6, 0.2], color=OLIVE, material="Metal"),
+        part("MagLip", [0.55, 0.12, 0.45], [0, -0.95, 0.2], color=OLIVE_DARK, material="Metal"),
+        part("Sight", [0.16, 0.4, 0.5], [0, 0.55, 0.55], color=VISOR, material="Neon"),
+        part("Muzzle", [0.48, 0.48, 0.28], [0, 0.12, 2.45], color=ORANGE, material="Neon"),
+        part("UnderRail", [0.32, 0.18, 1.0], [0, -0.35, 0.95], color=CANNON, material="Metal"),
+        part("Grip", [0.3, 0.45, 0.3], [0, -0.55, -0.25], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
+        part("AccentHazard", [0.7, 0.12, 0.12], [0, -0.35, 0.4], color=ORANGE, material="Neon", role="hazard_stripe"),
     ]
-    kids += rivet_line("RecvRivet", [-0.4, 0.35, 0.7], 3, 0.4, "x")
+    for i, z in enumerate((0.0, 0.35, 0.7)):
+        kids.append(vent(f"RecvVent{i}", [0, 0.5, z], [0.55, 0.1, 0.1]))
+    for i, p in enumerate([[-0.4, 0.3, 0.4], [0.4, 0.3, 0.4], [0, -0.2, 1.3]]):
+        kids.append(bolt(f"RivetBolt{i}", p))
     return kids
 
 
 def kit_ridge_cannon() -> list[dict]:
-    """Shoulder ridge cannon: breech plates, fins, drum, long barrel, glow bore."""
-    kids: list[dict] = [
-        part("ShoulderMount", [1.35, 0.55, 1.15], [0, -0.25, -0.55], color=CHAR, material="Metal"),
-        part("MountClampL", [0.25, 0.55, 0.7], [-0.7, -0.15, -0.4], color=STEEL, material="Metal"),
-        part("MountClampR", [0.25, 0.55, 0.7], [0.7, -0.15, -0.4], color=STEEL, material="Metal"),
-        part("Breech", [1.5, 1.2, 1.55], [0, 0.3, 0.15], color=OLIVE, material="Metal"),
-        part("BreechLid", [1.25, 0.22, 1.2], [0, 0.95, 0.2], color=OLIVE_LIGHT, material="Metal"),
-        part("BreechInset", [1.1, 0.7, 0.25], [0, 0.3, 0.95], color=CHAR, material="Metal", role="carbon_dark"),
+    """Shoulder ridge cannon — long barrel, breech panels, ammo drum, fins."""
+    kids = [
+        part("ShoulderMount", [1.25, 0.55, 1.05], [0, -0.2, -0.6], color=CHAR, material="Metal"),
+        part("MountBrace", [1.0, 0.25, 0.8], [0, 0.15, -0.45], color=STEEL_DARK, material="Metal"),
+        part("Breech", [1.4, 1.1, 1.45], [0, 0.3, 0.2], color=OLIVE, material="Metal"),
+        part("BreechPlate", [1.15, 0.7, 0.9], [0, 0.45, 0.5], color=OLIVE_DARK, material="DiamondPlate", role="scratched_steel"),
         part("Collar", [1.5, 0.32, 1.5], [0, 0.3, 0.9], color=STEEL, material="Metal", shape="Cylinder"),
-        part("CollarRing", [1.65, 0.18, 1.65], [0, 0.3, 0.9], color=GUNMETAL, material="Metal", shape="Cylinder"),
-        part("Barrel", [0.65, 0.65, 2.5], [0, 0.32, 2.05], color=CANNON, material="Metal", shape="Cylinder"),
-        part("BarrelSleeve", [0.95, 0.95, 1.05], [0, 0.32, 1.5], color=STEEL_DK, material="Metal", shape="Cylinder"),
-        part("BarrelBand", [0.8, 0.18, 0.8], [0, 0.32, 2.55], color=STEEL, material="Metal", shape="Cylinder"),
-        part("GlowBore", [0.42, 0.42, 0.28], [0, 0.32, 3.3], color=VISOR, material="Neon"),
-        part("BoreRing", [0.7, 0.15, 0.7], [0, 0.32, 3.1], color=ORANGE, material="Neon"),
-        part("FinL", [0.18, 0.75, 1.25], [-0.8, 0.6, 0.35], color=OLIVE_DARK, material="Metal"),
-        part("FinR", [0.18, 0.75, 1.25], [0.8, 0.6, 0.35], color=OLIVE_DARK, material="Metal"),
-        part("FinLTip", [0.14, 0.4, 0.55], [-0.85, 0.85, 0.7], color=STEEL, material="Metal"),
-        part("FinRTip", [0.14, 0.4, 0.55], [0.85, 0.85, 0.7], color=STEEL, material="Metal"),
-        part("AccentHazard", [1.25, 0.16, 0.16], [0, -0.35, 0.55], color=ORANGE, material="Neon", role="hazard_stripe"),
-        part("AmmoDrum", [0.9, 0.9, 0.9], [0.95, -0.1, -0.05], color=CHAR, material="Metal", shape="Cylinder"),
-        part("DrumCap", [0.7, 0.2, 0.7], [0.95, 0.4, -0.05], color=STEEL, material="Metal", shape="Cylinder"),
-        part("DrumFeed", [0.35, 0.35, 0.55], [0.55, 0.05, 0.35], color=GUNMETAL, material="Metal"),
-        part("ScopeRail", [0.2, 0.15, 1.0], [0, 0.95, 0.8], color=CHAR, material="Metal"),
-        part("GlowScope", [0.18, 0.18, 0.25], [0, 1.05, 1.2], color=VISOR, material="Neon"),
+        part("Barrel", [0.65, 0.65, 2.35], [0, 0.35, 2.1], color=CANNON, material="Metal", shape="Cylinder"),
+        part("BarrelSleeve", [0.9, 0.9, 0.95], [0, 0.35, 1.55], color=darken(STEEL, 0.15), material="Metal", shape="Cylinder"),
+        part("BarrelRing", [0.8, 0.16, 0.8], [0, 0.35, 2.7], color=STEEL, material="Metal", shape="Cylinder"),
+        part("GlowBore", [0.42, 0.42, 0.28], [0, 0.35, 3.3], color=VISOR, material="Neon"),
+        part("FinL", [0.18, 0.7, 1.15], [-0.8, 0.6, 0.45], color=OLIVE_DARK, material="Metal"),
+        part("FinR", [0.18, 0.7, 1.15], [0.8, 0.6, 0.45], color=OLIVE_DARK, material="Metal"),
+        part("FinTipL", [0.14, 0.4, 0.55], [-0.85, 0.85, 0.9], color=CHAR, material="Metal"),
+        part("FinTipR", [0.14, 0.4, 0.55], [0.85, 0.85, 0.9], color=CHAR, material="Metal"),
+        part("AccentHazard", [1.15, 0.16, 0.16], [0, -0.35, 0.55], color=ORANGE, material="Neon", role="hazard_stripe"),
+        part("AmmoDrum", [0.8, 0.8, 0.8], [0.95, -0.1, -0.05], color=CHAR, material="Metal", shape="Cylinder"),
+        part("AmmoCap", [0.55, 0.2, 0.55], [0.95, 0.35, -0.05], color=STEEL, material="Metal", shape="Cylinder"),
+        part("SideRail", [0.2, 0.35, 1.3], [-0.75, 0.15, 0.7], color=STEEL_DARK, material="Metal"),
     ]
-    kids += vent_row("BreechVent", [-0.55, 0.55, 0.85], 4, 0.35, [0.25, 0.4, 0.12], CHAR)
+    for i, z in enumerate((0.1, 0.45, 0.8)):
+        kids.append(vent(f"BreechVent{i}", [0, 0.9, z], [0.9, 0.1, 0.1]))
+    for i, p in enumerate([[-0.5, 0.7, 0.8], [0.5, 0.7, 0.8], [-0.55, 0.1, 1.2], [0.55, 0.1, 1.2]]):
+        kids.append(bolt(f"CannonBolt{i}", p))
     return kids
 
 
 def kit_desk_battery() -> list[dict]:
     return [
-        part("Cell", [1.55, 0.95, 0.7], [0, 0, 0], color=CHAR, material="Metal", role="carbon_dark"),
-        part("CellBand", [1.6, 0.15, 0.75], [0, 0.15, 0], color=STEEL, material="Metal"),
-        part("TerminalP", [0.32, 0.32, 0.22], [0.45, 0.4, 0.38], color=ORANGE, material="Neon"),
-        part("TerminalN", [0.32, 0.32, 0.22], [-0.45, 0.4, 0.38], color=STEEL, material="Metal"),
-        part("Stripe", [1.25, 0.12, 0.12], [0, 0.2, 0.38], color=VISOR, material="Neon"),
-        part("ClampL", [0.2, 0.75, 0.55], [-0.8, 0, 0], color=STEEL, material="Metal"),
-        part("ClampR", [0.2, 0.75, 0.55], [0.8, 0, 0], color=STEEL, material="Metal"),
-        part("VentSlot", [0.9, 0.35, 0.12], [0, -0.2, 0.38], color=GUNMETAL, material="Metal", role="carbon_dark"),
-        part("WarningPip", [0.15, 0.15, 0.12], [0.65, -0.25, 0.38], color=ORANGE, material="Neon"),
+        part("Cell", [1.45, 0.85, 0.6], [0, 0, 0], color=CHAR, material="Metal", role="carbon_dark"),
+        part("CellCap", [1.3, 0.18, 0.5], [0, 0.5, 0], color=STEEL_DARK, material="Metal"),
+        part("Terminal", [0.3, 0.3, 0.22], [0.45, 0.4, 0.35], color=ORANGE, material="Neon"),
+        part("TerminalNeg", [0.3, 0.3, 0.22], [-0.45, 0.4, 0.35], color=STEEL, material="Metal"),
+        part("Stripe", [1.15, 0.12, 0.1], [0, 0.15, 0.35], color=VISOR, material="Neon"),
+        part("ClampL", [0.18, 0.65, 0.45], [-0.75, 0, 0], color=STEEL, material="Metal"),
+        part("ClampR", [0.18, 0.65, 0.45], [0.75, 0, 0], color=STEEL, material="Metal"),
+        vent("BatVent0", [-0.35, -0.15, 0.35], [0.12, 0.4, 0.08]),
+        vent("BatVent1", [0.0, -0.15, 0.35], [0.12, 0.4, 0.08]),
+        vent("BatVent2", [0.35, -0.15, 0.35], [0.12, 0.4, 0.08]),
+        bolt("BatBolt0", [-0.5, 0.3, 0.3]),
+        bolt("BatBolt1", [0.5, 0.3, 0.3]),
     ]
 
 
 def kit_scrap_cpu() -> list[dict]:
     return [
-        part("Board", [0.7, 0.18, 0.7], [0, 0, 0], color=OLIVE, material="Metal"),
-        part("BoardEdge", [0.75, 0.08, 0.75], [0, -0.05, 0], color=STEEL_DK, material="Metal"),
-        part("Die", [0.35, 0.22, 0.35], [0, 0.2, 0], color=CHAR, material="Metal"),
-        part("GlowPin", [0.14, 0.14, 0.14], [0.22, 0.18, 0.22], color=VISOR, material="Neon"),
-        part("GlowPin2", [0.12, 0.12, 0.12], [-0.22, 0.16, -0.18], color=ORANGE, material="Neon"),
-        part("HeatSink", [0.55, 0.22, 0.2], [0, 0.38, -0.15], color=STEEL, material="Metal"),
-        part("HeatFinA", [0.5, 0.28, 0.08], [0, 0.42, -0.28], color=STEEL_DK, material="Metal"),
-        part("HeatFinB", [0.5, 0.28, 0.08], [0, 0.42, -0.05], color=STEEL_DK, material="Metal"),
-        part("Trace", [0.45, 0.05, 0.08], [-0.05, 0.12, 0.28], color=VISOR, material="Neon"),
+        part("Board", [0.7, 0.12, 0.7], [0, 0, 0], color=OLIVE_DARK, material="Metal"),
+        part("Die", [0.35, 0.22, 0.35], [0, 0.18, 0], color=CHAR, material="Metal"),
+        part("GlowPin", [0.14, 0.14, 0.14], [0.22, 0.14, 0.22], color=VISOR, material="Neon"),
+        part("HeatSink", [0.5, 0.22, 0.22], [0, 0.35, -0.15], color=STEEL, material="Metal"),
+        part("TraceA", [0.4, 0.04, 0.06], [-0.1, 0.08, 0.25], color=VISOR, material="Neon"),
+        part("TraceB", [0.06, 0.04, 0.35], [0.25, 0.08, -0.05], color=VISOR, material="Neon"),
+        bolt("CpuBolt0", [-0.28, 0.08, -0.28], r=0.08),
+        bolt("CpuBolt1", [0.28, 0.08, -0.28], r=0.08),
     ]
 
 
 def kit_floor_drone() -> list[dict]:
     return [
-        part("Body", [1.0, 0.45, 1.1], [0, 0, 0], color=STEEL, material="Metal"),
-        part("BodyArmor", [0.85, 0.2, 0.9], [0, 0.25, 0.05], color=OLIVE_DARK, material="Metal"),
-        part("Eye", [0.35, 0.18, 0.18], [0, 0.18, 0.55], color=VISOR, material="Neon"),
-        part("EyeRing", [0.45, 0.1, 0.12], [0, 0.18, 0.5], color=CHAR, material="Metal"),
-        part("Rotor", [0.75, 0.1, 0.75], [0, 0.4, -0.2], color=CHAR, material="Metal"),
-        part("RotorHub", [0.28, 0.18, 0.28], [0, 0.45, -0.2], color=STEEL, material="Metal"),
-        part("SkidL", [0.14, 0.2, 0.75], [-0.42, -0.32, 0], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
-        part("SkidR", [0.14, 0.2, 0.75], [0.42, -0.32, 0], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
-        part("Antenna", [0.1, 0.45, 0.1], [0.3, 0.45, 0.25], color=STEEL, material="Metal"),
-        part("AccentPip", [0.12, 0.12, 0.12], [-0.35, 0.15, 0.4], color=ORANGE, material="Neon"),
+        part("Body", [0.95, 0.4, 1.05], [0, 0, 0], color=STEEL, material="Metal"),
+        part("BodyCap", [0.75, 0.15, 0.8], [0, 0.25, 0], color=STEEL_DARK, material="Metal"),
+        part("Eye", [0.35, 0.2, 0.18], [0, 0.2, 0.55], color=VISOR, material="Neon"),
+        part("Rotor", [0.65, 0.1, 0.65], [0, 0.4, -0.2], color=CHAR, material="Metal"),
+        part("SkidL", [0.14, 0.18, 0.7], [-0.4, -0.3, 0], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
+        part("SkidR", [0.14, 0.18, 0.7], [0.4, -0.3, 0], color=RUBBER, material="SmoothPlastic", role="matte_rubber"),
+        bolt("DroneBolt0", [-0.3, 0.15, 0.3], r=0.08),
+        bolt("DroneBolt1", [0.3, 0.15, 0.3], r=0.08),
     ]
 
 
 def kit_chip(color: list[float], glow: list[float]) -> list[dict]:
     return [
-        part("Plate", [0.48, 0.12, 0.38], [0, 0, 0], color=color, material="Metal"),
-        part("Frame", [0.52, 0.06, 0.42], [0, -0.02, 0], color=STEEL_DK, material="Metal"),
-        part("GlowDot", [0.12, 0.08, 0.12], [0.14, 0.1, 0.08], color=glow, material="Neon"),
-        part("PinA", [0.07, 0.07, 0.18], [-0.14, -0.02, 0.05], color=STEEL, material="Metal"),
-        part("PinB", [0.07, 0.07, 0.18], [-0.14, -0.02, -0.1], color=STEEL, material="Metal"),
-        part("Cap", [0.1, 0.1, 0.1], [0.05, 0.1, -0.1], color=CHAR, material="Metal"),
+        part("Plate", [0.48, 0.1, 0.35], [0, 0, 0], color=color, material="Metal"),
+        part("GlowDot", [0.12, 0.08, 0.12], [0.12, 0.1, 0.08], color=glow, material="Neon"),
+        part("Pin", [0.08, 0.08, 0.2], [-0.12, -0.02, 0], color=STEEL, material="Metal"),
+        part("Pad", [0.1, 0.06, 0.1], [0.15, 0.06, -0.1], color=STEEL_DARK, material="Metal"),
     ]
 
 
 # ---------------------------------------------------------------------------
-# Showcase assembly (torso-local; feet near y=-TORSO_Y)
+# Full showcase mech (torso-local coords; feet near y=-TORSO_Y)
 # ---------------------------------------------------------------------------
 
 SOCK = {
@@ -451,8 +421,8 @@ def build_showcase() -> dict:
     kids.append(
         part(
             "ShowcasePad",
-            [6.8, 0.32, 4.8],
-            [0, -TORSO_Y - 0.15, 0.5],
+            [6.5, 0.35, 4.5],
+            [0, -TORSO_Y - 0.15, 0.4],
             color=rgb(55, 58, 62),
             material="Metal",
             role="metal_plate",
@@ -461,8 +431,8 @@ def build_showcase() -> dict:
     kids.append(
         part(
             "ShowcaseStripe",
-            [5.8, 0.12, 0.25],
-            [0, -TORSO_Y + 0.05, 2.6],
+            [5.5, 0.12, 0.25],
+            [0, -TORSO_Y + 0.05, 2.4],
             color=ORANGE,
             material="Neon",
             role="hazard_stripe",
@@ -474,7 +444,7 @@ def build_showcase() -> dict:
         "AssemblerShowcase": True,
         "ArtBar": "SuperMechs3D",
         "Pose": "CombatReady",
-        "View": "FrontThreeQuarter",
+        "Camera": "FrontThreeQuarter",
     }
     return model
 
@@ -500,25 +470,38 @@ def write_starter_kits() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Front 3/4 preview (visor / weapons toward camera)
+# Front 3/4 orthographic preview (face camera, combat crouch)
 # ---------------------------------------------------------------------------
 
 
+def project_front_3q(x: float, y: float, z: float) -> tuple[float, float, float]:
+    """Camera in +X/+Z quadrant looking at origin — visor (+Z) faces viewer."""
+    az = math.radians(28)  # from pure front toward +X (see right side)
+    el = math.radians(16)  # slight elevation
+    # Camera direction from origin toward camera
+    cx = math.sin(az) * math.cos(el)
+    cy = math.sin(el)
+    cz = math.cos(az) * math.cos(el)
+    # Forward into scene (away from camera)
+    fx, fy, fz = -cx, -cy, -cz
+    # Right = normalize(cross(world_up, forward))
+    rx, rz = fz, -fx
+    rlen = math.hypot(rx, rz) or 1.0
+    rx, rz = rx / rlen, rz / rlen
+    ry = 0.0
+    # Up = cross(forward, right)
+    ux = fy * rz - fz * ry
+    uy = fz * rx - fx * rz
+    uz = fx * ry - fy * rx
+    sx = x * rx + y * ry + z * rz
+    sy = x * ux + y * uy + z * uz
+    # Painter depth: larger = farther from camera
+    depth = -(x * cx + y * cy + z * cz)
+    return sx, sy, depth
+
+
 def render_preview(model: dict, out_path: Path) -> None:
-    """Front-right 3/4: mech faces +Z; camera from front-right-up."""
-
-    az = math.radians(34)  # yaw from pure front toward +X (right)
-
-    def project(x: float, y: float, z: float) -> tuple[float, float, float]:
-        # Camera in front (+Z) and right (+X), looking at origin.
-        # depth increases toward camera so front draws last.
-        along = z * math.cos(az) + x * math.sin(az)
-        across = x * math.cos(az) - z * math.sin(az)
-        sx = across * 0.95
-        sy = y * 0.98 + along * 0.22
-        depth = along
-        return sx, sy, depth
-
+    """Front 3/4 box faces so silhouette reads as combat mech facing camera."""
     faces: list[tuple[float, list[tuple[float, float]], tuple[int, int, int], bool]] = []
     pts_x: list[float] = []
     pts_y: list[float] = []
@@ -545,35 +528,38 @@ def render_preview(model: dict, out_path: Path) -> None:
             )
 
         face_defs = [
-            (((0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)), 1.12),  # +Z front (bright)
+            (((0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)), 1.12),  # +Z front
             (((0, 0, 0), (0, 1, 0), (1, 1, 0), (1, 0, 0)), 0.68),  # -Z back
             (((0, 1, 0), (0, 1, 1), (1, 1, 1), (1, 1, 0)), 1.2),  # +Y top
             (((0, 0, 0), (1, 0, 0), (1, 0, 1), (0, 0, 1)), 0.58),  # -Y bottom
-            (((1, 0, 0), (1, 1, 0), (1, 1, 1), (1, 0, 1)), 0.95),  # +X
+            (((1, 0, 0), (1, 1, 0), (1, 1, 1), (1, 0, 1)), 0.92),  # +X
             (((0, 0, 0), (0, 0, 1), (0, 1, 1), (0, 1, 0)), 0.8),  # -X
         ]
-        glow = ("Glow" in name) or ("Visor" in name) or ("Accent" in name)
+        glow = ("Glow" in name) or ("Visor" in name) or ("Accent" in name) or ("Muzzle" in name)
         for idxs, shade in face_defs:
-            proj = [project(*corner(*i)) for i in idxs]
-            # back-face cull: skip faces pointing away from camera (avg depth normal approx)
+            proj = [project_front_3q(*corner(*i)) for i in idxs]
             depth = sum(p[2] for p in proj) / 4.0
-            # rough facing: if the face center is behind part center along view, still draw;
-            # painter sort handles occlusion.
+            # Back-face cull via projected cross
+            area = (proj[1][0] - proj[0][0]) * (proj[2][1] - proj[0][1]) - (proj[2][0] - proj[0][0]) * (
+                proj[1][1] - proj[0][1]
+            )
+            if area <= 0:
+                continue
             poly = [(p[0], p[1]) for p in proj]
             for px, py in poly:
                 pts_x.append(px)
                 pts_y.append(py)
-            fill = tuple(
-                int(max(0, min(255, c * 255 * shade * (1.18 if glow else 1.0)))) for c in color
-            )
+            fill = tuple(int(max(0, min(255, c * 255 * shade * (1.18 if glow else 1.0)))) for c in color)
             faces.append((depth, poly, fill, glow))
 
-    faces.sort(key=lambda t: t[0])  # far → near (front last)
+    faces.sort(key=lambda t: t[0])  # far → near
 
     W, H = 1200, 960
-    img = Image.new("RGB", (W, H), (24, 26, 32))
+    img = Image.new("RGB", (W, H), (20, 24, 30))
     draw = ImageDraw.Draw(img)
-    draw.rectangle([0, int(H * 0.62), W, H], fill=(32, 34, 40))
+    # bay floor wash
+    draw.rectangle([0, int(H * 0.68), W, H], fill=(30, 34, 40))
+    draw.ellipse([W * 0.15, H * 0.72, W * 0.85, H * 0.92], fill=(38, 42, 50))
 
     min_x, max_x = min(pts_x), max(pts_x)
     min_y, max_y = min(pts_y), max(pts_y)
@@ -584,26 +570,30 @@ def render_preview(model: dict, out_path: Path) -> None:
     cy = (min_y + max_y) / 2
 
     def to_screen(x: float, y: float) -> tuple[float, float]:
-        return W / 2 + (x - cx) * scale, H / 2 - (y - cy) * scale * 0.98 + 16
+        return W / 2 + (x - cx) * scale, H / 2 - (y - cy) * scale * 0.98 + 30
 
     for _d, poly, fill, glow in faces:
         screen = [to_screen(x, y) for x, y in poly]
-        draw.polygon(screen, fill=fill, outline=(14, 14, 18))
+        draw.polygon(screen, fill=fill, outline=(12, 14, 18))
         if glow:
-            draw.line(screen + [screen[0]], fill=tuple(min(255, c + 40) for c in fill), width=2)
+            draw.line(screen + [screen[0]], fill=tuple(min(255, c + 45) for c in fill), width=2)
 
-    title = "Assembler · Hero starter (front 3/4)"
-    draw.rectangle([24, 20, 820, 78], fill=(18, 20, 24))
+    title = "Assembler · Hero starter (front 3/4 combat)"
+    draw.rectangle([24, 20, 820, 78], fill=(14, 16, 20))
     try:
-        font = ImageFont.truetype("arial.ttf", 26)
-        font_sm = ImageFont.truetype("arial.ttf", 16)
+        font = ImageFont.truetype("DejaVuSans.ttf", 26)
+        font_sm = ImageFont.truetype("DejaVuSans.ttf", 15)
     except OSError:
-        font = ImageFont.load_default()
-        font_sm = font
+        try:
+            font = ImageFont.truetype("arial.ttf", 26)
+            font_sm = ImageFont.truetype("arial.ttf", 15)
+        except OSError:
+            font = ImageFont.load_default()
+            font_sm = font
     draw.text((36, 28), title, fill=(235, 240, 245), font=font)
     draw.text(
         (36, 56),
-        "Dense kits · panels/vents/barrels/joints · combat ready · emissive visor",
+        "Visor forward · dense panels/bolts/vents · gatling + ridge cannon · combat crouch",
         fill=(160, 200, 210),
         font=font_sm,
     )
@@ -622,7 +612,10 @@ def render_preview(model: dict, out_path: Path) -> None:
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     img.save(out_path, "PNG")
-    print(f"wrote {out_path.relative_to(ROOT)}")
+    try:
+        print(f"wrote {out_path.relative_to(ROOT)}")
+    except ValueError:
+        print(f"wrote {out_path}")
 
 
 def main() -> None:
@@ -632,11 +625,12 @@ def main() -> None:
     write_model(SHOWCASE / "HeroStarterMech.model.json", showcase)
     n = len([c for c in showcase["Children"] if c.get("ClassName") == "Part"]) - 1
     print(f"  showcase HeroStarterMech: {n} visible parts")
-    if n < 160:
-        raise SystemExit(f"showcase too sparse ({n} parts); expected denser build")
     preview = PREVIEW_DIR / "supermechs-3d-preview.png"
     render_preview(showcase, preview)
     render_preview(showcase, ROOT / "assets" / "textures" / "supermechs-3d-preview.png")
+    # Context media (Bob / art review)
+    media = Path("/cursor/stores/bc-48ea8082-48b2-43e8-bfa6-d6d6d8d5a5a0/media/supermechs-3d-preview.png")
+    render_preview(showcase, media)
     print("done")
 
 

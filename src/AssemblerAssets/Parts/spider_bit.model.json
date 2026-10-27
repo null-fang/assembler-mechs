@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.75,
-          0.4,
-          0.85
+          0.7,
+          0.35,
+          0.8
         ],
         "Position": [
           0,
@@ -76,12 +76,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          0.65
+          0.12,
+          0.12,
+          0.6
         ],
         "Position": [
-          -0.45,
+          -0.4,
           -0.1,
           0.35
         ],
@@ -108,12 +108,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          0.65
+          0.12,
+          0.12,
+          0.6
         ],
         "Position": [
-          0.45,
+          0.4,
           -0.1,
           0.35
         ],
@@ -140,12 +140,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          0.65
+          0.12,
+          0.12,
+          0.6
         ],
         "Position": [
-          -0.45,
+          -0.4,
           -0.1,
           -0.35
         ],
@@ -172,12 +172,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          0.65
+          0.12,
+          0.12,
+          0.6
         ],
         "Position": [
-          0.45,
+          0.4,
           -0.1,
           -0.35
         ],
@@ -204,9 +204,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.3,
-          0.2,
-          0.15
+          0.28,
+          0.18,
+          0.12
         ],
         "Position": [
           0,
@@ -224,6 +224,70 @@
       },
       "Attributes": {
         "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "SpiderBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.07,
+          0.07,
+          0.07
+        ],
+        "Position": [
+          0,
+          0.2,
+          0
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "SpiderBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.07,
+          0.07,
+          0.07
+        ],
+        "Position": [
+          0.25,
+          0.15,
+          -0.2
+        ],
+        "Color": [
+          0.20392156862745098,
+          0.2196078431372549,
+          0.24313725490196078
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
       }
     }
   ]
