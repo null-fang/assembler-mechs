@@ -158,6 +158,28 @@ function InventoryService.grantPart(userId: number, partId: string)
 	return bagClone(inv, partId)
 end
 
+function InventoryService.findOwned(userId: number, uid: string): OwnedPart?
+	return findOwned(InventoryService.get(userId), uid)
+end
+
+function InventoryService.removePart(userId: number, uid: string): (boolean, string?)
+	local inv = InventoryService.get(userId)
+	local owned = findOwned(inv, uid)
+	if not owned then
+		return false, "Not owned"
+	end
+	if owned.equippedOn then
+		return false, "Unequip first"
+	end
+	for i, p in inv.parts do
+		if p.uid == uid then
+			table.remove(inv.parts, i)
+			return true, nil
+		end
+	end
+	return false, "Not found"
+end
+
 function InventoryService.grantStarter(userId: number)
 	local inv = InventoryService.get(userId)
 	if inv.starterGranted then

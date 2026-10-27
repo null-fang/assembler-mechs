@@ -28,6 +28,7 @@ local settingsRest: UDim2
 local callbacks: {
 	openCampaign: () -> (),
 	openGarage: () -> (),
+	openCrate: (() -> ())?,
 	isBusy: () -> boolean,
 }?
 
@@ -150,9 +151,9 @@ function JoinHud.refresh()
 		JoinHud.setWallet("Assembler")
 		return
 	end
-	JoinHud.setWallet(("Common %d · XP %d · Cleared %d/%d"):format(
+	JoinHud.setWallet(("Common %d · Rare %d · Cleared %d/%d"):format(
 		boot.wallet.common,
-		boot.progress.xp,
+		boot.wallet.rare or 0,
 		boot.progress.highestCleared,
 		boot.ladderCount
 	))
@@ -161,7 +162,7 @@ function JoinHud.refresh()
 	end
 	local lo = boot.loadout
 	if not callbacks or not callbacks.isBusy() then
-		JoinHud.setStatus(("Primary ready · %s — V look · Campaign / Garage"):format(lo.torso or "mech"))
+		JoinHud.setStatus(("Primary ready · %s — Campaign / Garage / Crate"):format(lo.torso or "mech"))
 	end
 end
 
@@ -172,8 +173,8 @@ function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 
 	bar = Instance.new("Frame")
 	bar.Name = "JoinBar"
-	bar.Size = UDim2.new(0, 680, 0, 78)
-	bar.Position = UDim2.new(0.5, -340, 1, -98)
+	bar.Size = UDim2.new(0, 780, 0, 78)
+	bar.Position = UDim2.new(0.5, -390, 1, -98)
 	bar.BackgroundColor3 = Theme.colors.bgDeep
 	bar.BackgroundTransparency = Theme.transparency.bar
 	bar.BorderSizePixel = 0
@@ -199,12 +200,13 @@ function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 	local actions = {
 		{ id = "campaign", text = "Campaign", variant = "cyan" :: any, tip = "Fight ladder" },
 		{ id = "garage", text = "Garage", variant = "garage" :: any, tip = "Swap parts" },
+		{ id = "crate", text = "Crate", variant = "primary" :: any, tip = "Pick-3 pending crate" },
 		{ id = "mechs", text = "Mechs", variant = "secondary" :: any, tip = "Bay slots" },
 		{ id = "settings", text = "Settings", variant = "secondary" :: any, tip = "Camera look" },
 	}
 	local btnW, btnH, gap = 92, 38, 8
 	local totalW = #actions * btnW + (#actions - 1) * gap
-	local startX = 680 - totalW - 18
+	local startX = 780 - totalW - 18
 	for i, a in actions do
 		local x = startX + (i - 1) * (btnW + gap)
 		local btn = Button.create(bar, a.text, UDim2.new(0, btnW, 0, btnH), UDim2.new(0, x, 0, 20), a.variant, {
@@ -222,6 +224,11 @@ function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 			elseif a.id == "garage" then
 				hideSidePanels()
 				callbacks.openGarage()
+			elseif a.id == "crate" then
+				hideSidePanels()
+				if callbacks.openCrate then
+					callbacks.openCrate()
+				end
 			elseif a.id == "mechs" then
 				local open = not mechsPanel.Visible
 				if settingsPanel.Visible then

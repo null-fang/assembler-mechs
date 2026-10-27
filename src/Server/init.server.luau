@@ -14,8 +14,19 @@ local OnboardingService = require(script.Onboarding.OnboardingService)
 local ArenaService = require(script.World.ArenaService)
 local LobbyPrompts = require(script.World.LobbyPrompts)
 local PlayerSession = require(script.Session.PlayerSession)
+local AccountLevel = require(game.ReplicatedStorage.Shared.Progress.AccountLevel)
+local Catalog = require(game.ReplicatedStorage.Shared.Parts.Catalog)
 
 Remotes.init()
+
+local function fireWallet(player: Player)
+	local progress = CampaignService.getProgress(player.UserId)
+	Remotes.WalletUpdated:FireClient(player, {
+		wallet = EconomyService.getWallet(player.UserId),
+		progress = progress,
+		level = AccountLevel.fromXp(progress.xp),
+	})
+end
 
 -- Soft rate limit for turn submits (modern remote hygiene).
 local lastSubmitAt: { [number]: number } = {}
@@ -41,7 +52,13 @@ end
 Players.PlayerAdded:Connect(function(player)
 	PlayerSession.toLobby(player)
 	InventoryService.grantStarter(player.UserId)
-	EconomyService.getWallet(player.UserId)
+	local wallet = EconomyService.getWallet(player.UserId)
+	if wallet.common == 0 then
+		EconomyService.addCommon(player.UserId, 120)
+	end
+	if wallet.rare == 0 then
+		EconomyService.addRare(player.UserId, 2)
+	end
 	CampaignService.getProgress(player.UserId)
 	OnboardingService.get(player.UserId)
 	CrateService.ensureStarter(player.UserId)
@@ -79,15 +96,46 @@ for _, player in Players:GetPlayers() do
 end
 
 Remotes.GetBootstrap.OnServerInvoke = function(player)
+	local progress = CampaignService.getProgress(player.UserId)
 	return {
 		wallet = EconomyService.getWallet(player.UserId),
-		progress = CampaignService.getProgress(player.UserId),
+		progress = progress,
+		level = AccountLevel.fromXp(progress.xp),
 		loadout = InventoryService.loadoutSummary(player.UserId),
 		inventory = InventoryService.clientSnapshot(player.UserId),
 		ladderCount = Ladder.FIRST_SLICE_COUNT,
 		activeArena = ArenaService.getActiveArenaId(),
 		onboarding = OnboardingService.clientSnapshot(player.UserId),
 		crate = CrateService.clientSnapshot(player.UserId),
+	}
+end
+
+Remotes.SellPart.OnServerInvoke = function(player, uid)
+	if typeof(uid) ~= "string" then
+		return { ok = false, error = "Bad args" }
+	end
+	local owned = InventoryService.findOwned(player.UserId, uid)
+	if not owned then
+		return { ok = false, error = "Not owned" }
+	end
+	if owned.equippedOn then
+		return { ok = false, error = "Unequip first" }
+	end
+	local part = Catalog.require(owned.partId)
+	local removed, remErr = InventoryService.removePart(player.UserId, uid)
+	if not removed then
+		return { ok = false, error = remErr or "Could not sell" }
+	end
+	local sold = EconomyService.sellDuplicate(player.UserId, part)
+	local snap = InventoryService.clientSnapshot(player.UserId)
+	Remotes.InventoryUpdated:FireClient(player, snap)
+	fireWallet(player)
+	return {
+		ok = true,
+		commonGained = sold.commonGained,
+		wallet = sold.wallet,
+		inventory = snap,
+		partName = part.name,
 	}
 end
 
@@ -223,6 +271,7 @@ Remotes.SubmitAction.OnServerInvoke = function(player, action)
 	if settled then
 		PlayerSession.toLobby(player)
 		Remotes.FightSettled:FireClient(player, settled)
+		fireWallet(player)
 		-- Longer hold so banner + reward sheet can land before lobby return.
 		task.delay(3.4, function()
 			if player.Parent then

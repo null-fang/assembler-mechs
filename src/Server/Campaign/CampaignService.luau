@@ -34,16 +34,25 @@ function CampaignService.listFights(userId)
 	local list = {}
 	for _, fight in ladderCache do
 		local arenaId = ArenaService.pickArenaForFight(fight.index)
+		local reward = Rewards.forCampaignFight(fight.index, true)
+		local lo = fight.opponent.loadout
 		table.insert(list, {
 			index = fight.index,
 			name = fight.opponent.displayName,
 			blurb = fight.blurb,
 			taunt = fight.taunt,
-			rewardCommon = fight.rewardCommonWin,
+			rewardCommon = fight.rewardCommonWin or reward.common,
+			rewardXp = reward.xp,
 			crateChanceWin = Rewards.crateChance(fight.index, true),
 			unlocked = fight.index <= progress.highestCleared + 1,
 			cleared = fight.index <= progress.highestCleared,
+			locked = fight.index > progress.highestCleared + 1,
 			arenaId = arenaId,
+			silhouette = {
+				torso = if lo and lo.torso then lo.torso.id else "rusty_cage",
+				hasShoulder = lo ~= nil and (lo.shoulderLeft ~= nil or lo.shoulderRight ~= nil),
+				hasDrone = lo ~= nil and lo.drone ~= nil,
+			},
 		})
 	end
 	return list
@@ -116,21 +125,29 @@ function CampaignService.settleIfFinished(userId, live)
 	if won and fightIndex > progress.highestCleared then
 		progress.highestCleared = fightIndex
 	end
+	local rareGain = 0
+	if won and fightIndex % 3 == 0 then
+		rareGain = 1
+		EconomyService.addRare(userId, rareGain)
+	end
 
 	local crateOffer = nil
 	if reward.crateDrop then
 		crateOffer = CrateService.grantFightDrop(userId, fightIndex)
 	end
 
+	local wallet = EconomyService.getWallet(userId)
 	local result = {
 		won = won,
 		common = reward.common,
+		rare = rareGain,
 		xp = reward.xp,
 		crateChance = reward.crateChance,
 		crateDrop = reward.crateDrop and crateOffer ~= nil,
 		highestCleared = progress.highestCleared,
 		totalXp = progress.xp,
-		walletCommon = EconomyService.getWallet(userId).common,
+		walletCommon = wallet.common,
+		walletRare = wallet.rare,
 		arenaId = (live :: any).arenaId,
 		npcName = (live :: any).npcName,
 		taunt = (live :: any).taunt,

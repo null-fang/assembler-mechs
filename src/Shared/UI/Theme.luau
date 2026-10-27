@@ -1,5 +1,5 @@
 -- Assembler UI theme — steel bay + amber/cyan terminals.
--- Shared by Join HUD, Campaign, Garage, Combat. Extend here; don't hardcode.
+-- Shared by Topbar, Join, Campaign, Garage, Crates, Combat. Extend here; don't hardcode.
 
 local Theme = {}
 
@@ -10,6 +10,8 @@ Theme.colors = {
 	bgInset = Color3.fromRGB(12, 18, 26),
 	bgHover = Color3.fromRGB(34, 48, 68),
 	bgPress = Color3.fromRGB(18, 26, 38),
+	bgTopbar = Color3.fromRGB(10, 14, 22),
+	bgOverlay = Color3.fromRGB(4, 6, 10),
 
 	stroke = Color3.fromRGB(48, 64, 82),
 	strokeBright = Color3.fromRGB(72, 98, 128),
@@ -28,6 +30,15 @@ Theme.colors = {
 	danger = Color3.fromRGB(196, 72, 64),
 	ok = Color3.fromRGB(88, 176, 112),
 	locked = Color3.fromRGB(56, 62, 72),
+	warning = Color3.fromRGB(224, 148, 48),
+
+	commonCoin = Color3.fromRGB(210, 186, 120),
+	rareCoin = Color3.fromRGB(120, 168, 232),
+	premiumCoin = Color3.fromRGB(196, 120, 220),
+
+	xpFill = Color3.fromRGB(88, 176, 112),
+	xpTrack = Color3.fromRGB(18, 36, 28),
+	levelBadge = Color3.fromRGB(40, 56, 72),
 
 	integrity = Color3.fromRGB(88, 176, 112),
 	integrityTrack = Color3.fromRGB(18, 42, 30),
@@ -36,10 +47,18 @@ Theme.colors = {
 	battery = Color3.fromRGB(72, 148, 204),
 	batteryTrack = Color3.fromRGB(16, 32, 52),
 
+	silhouette = Color3.fromRGB(18, 24, 34),
+	silhouetteStroke = Color3.fromRGB(64, 84, 108),
+
 	rarity = {
 		Common = Color3.fromRGB(168, 176, 188),
 		Uncommon = Color3.fromRGB(95, 191, 122),
-		Rare = Color3.fromRGB(232, 184, 72),
+		Rare = Color3.fromRGB(72, 148, 232),
+		Epic = Color3.fromRGB(168, 96, 220),
+		Legendary = Color3.fromRGB(232, 168, 56),
+		Mythic = Color3.fromRGB(232, 96, 128),
+		Blessed = Color3.fromRGB(240, 220, 160),
+		Relic = Color3.fromRGB(196, 120, 88),
 	},
 }
 
@@ -56,12 +75,14 @@ Theme.radii = {
 	md = 8,
 	lg = 12,
 	bar = 4,
+	pill = 999,
 }
 
 Theme.transparency = {
 	panel = 0.06,
 	bar = 0.04,
 	overlay = 0.35,
+	topbar = 0.08,
 }
 
 Theme.tween = {
@@ -70,6 +91,11 @@ Theme.tween = {
 	hover = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 	press = TweenInfo.new(0.05, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 	bar = TweenInfo.new(0.28, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+	pop = TweenInfo.new(0.28, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+	pulse = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
+	banner = TweenInfo.new(0.32, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+	float = TweenInfo.new(0.85, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+	glow = TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
 }
 
 function Theme.rarityColor(rarity: string): Color3
@@ -113,6 +139,12 @@ function Theme.accentStrip(parent: Instance, color: Color3?)
 	end
 	strip.Parent = parent
 	return strip
+end
+
+function Theme.glowStroke(parent: Instance, color: Color3, thickness: number?): UIStroke
+	local s = Theme.stroke(parent, color, thickness or 2)
+	s.Transparency = 0.15
+	return s
 end
 
 function Theme.label(

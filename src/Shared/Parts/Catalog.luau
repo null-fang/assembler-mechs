@@ -1964,12 +1964,16 @@ end
 -- Compact client-safe summary of a part.
 function Catalog.summary(part: CatalogPart): { [string]: any }
 	local weapon = part.weaponStats
+	local torso = part.torsoStats
+	local chip = part.chipStats
+	local battery = part.batteryStats
 	return {
 		id = part.id,
 		name = part.name,
 		slot = part.slot,
 		rarity = part.rarity,
 		weight = part.weight,
+		sellWorth = part.sellWorth,
 		tooltip = part.tooltip,
 		mountClass = part.mountClass,
 		legType = part.legType,
@@ -1978,6 +1982,10 @@ function Catalog.summary(part: CatalogPart): { [string]: any }
 		damage = if weapon then weapon.damage else nil,
 		rangeMin = if weapon then weapon.rangeMin else nil,
 		rangeMax = if weapon then weapon.rangeMax else nil,
+		apCost = if weapon then weapon.apCost else nil,
+		integrity = if torso then torso.integrity else (if chip then chip.integrityBonus else nil),
+		cooling = if torso then torso.cooling else (if chip then chip.coolingBonus else nil),
+		batteryMax = if torso then torso.batteryMax else (if battery then battery.batteryMaxBonus else nil),
 	}
 end
 

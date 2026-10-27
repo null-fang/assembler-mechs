@@ -9,9 +9,11 @@ local BattleCamera = require(script.Parent:WaitForChild("BattleCamera"))
 local LobbyCamera = require(script.Parent:WaitForChild("LobbyCamera"))
 local ModalMouse = require(script.Parent:WaitForChild("ModalMouse"))
 local JoinHud = require(script.Parent:WaitForChild("JoinHud"))
+local TopbarHud = require(script.Parent:WaitForChild("TopbarHud"))
 local SessionBridge = require(script.Parent:WaitForChild("SessionBridge"))
 local Button = require(script.Parent:WaitForChild("UI"):WaitForChild("Button"))
 local TweenUtil = require(script.Parent:WaitForChild("UI"):WaitForChild("TweenUtil"))
+local Motions = require(script.Parent:WaitForChild("UI"):WaitForChild("Motions"))
 local ResourceBar = require(script.Parent:WaitForChild("UI"):WaitForChild("ResourceBar"))
 local Tooltip = require(script.Parent:WaitForChild("UI"):WaitForChild("Tooltip"))
 local CombatJuice = require(script.Parent:WaitForChild("CombatJuice"))
@@ -51,6 +53,9 @@ local headerMeta: TextLabel
 local actionFolder
 local youBlock
 local foeBlock
+local apPips: Frame?
+local turnHint: TextLabel?
+local lastPlayerTurn: boolean? = nil
 local inBattle = false
 
 local function setStatus(text)
@@ -58,6 +63,115 @@ local function setStatus(text)
 		statusSink.Text = text
 	end
 	JoinHud.setStatus(text)
+end
+
+local function renderApPips(remaining: number, maxAp: number)
+	if not apPips then
+		return
+	end
+	for _, child in apPips:GetChildren() do
+		if child:IsA("GuiObject") then
+			child:Destroy()
+		end
+	end
+	local n = math.max(1, maxAp or 2)
+	for i = 1, n do
+		local pip = Instance.new("Frame")
+		pip.Size = UDim2.new(0, 14, 0, 14)
+		pip.BackgroundColor3 = if i <= remaining then Theme.colors.accent else Theme.colors.bgInset
+		pip.BorderSizePixel = 0
+		pip.LayoutOrder = i
+		pip.Parent = apPips
+		Theme.corner(pip, 7)
+		Theme.stroke(pip, if i <= remaining then Theme.colors.accentSoft else Theme.colors.stroke, 1)
+	end
+end
+
+local function makeSilhouette(parent: Instance, silhouette: any?, cleared: boolean)
+	local host = Instance.new("Frame")
+	host.Size = UDim2.new(0, 44, 0, 52)
+	host.Position = UDim2.new(0, 8, 0.5, -26)
+	host.BackgroundColor3 = Theme.colors.silhouette
+	host.BorderSizePixel = 0
+	host.Parent = parent
+	Theme.corner(host, Theme.radii.sm)
+	Theme.stroke(host, if cleared then Theme.colors.cyanDeep else Theme.colors.silhouetteStroke, 1)
+	local torso = Instance.new("Frame")
+	torso.Size = UDim2.new(0, 18, 0, 20)
+	torso.Position = UDim2.new(0.5, -9, 0, 10)
+	torso.BackgroundColor3 = Theme.colors.strokeBright
+	torso.BackgroundTransparency = 0.25
+	torso.BorderSizePixel = 0
+	torso.Parent = host
+	Theme.corner(torso, 2)
+	local head = Instance.new("Frame")
+	head.Size = UDim2.new(0, 10, 0, 8)
+	head.Position = UDim2.new(0.5, -5, 0, 3)
+	head.BackgroundColor3 = Theme.colors.strokeBright
+	head.BackgroundTransparency = 0.2
+	head.BorderSizePixel = 0
+	head.Parent = host
+	local legL = Instance.new("Frame")
+	legL.Size = UDim2.new(0, 6, 0, 12)
+	legL.Position = UDim2.new(0.5, -10, 0, 32)
+	legL.BackgroundColor3 = Theme.colors.stroke
+	legL.BorderSizePixel = 0
+	legL.Parent = host
+	local legR = Instance.new("Frame")
+	legR.Size = UDim2.new(0, 6, 0, 12)
+	legR.Position = UDim2.new(0.5, 4, 0, 32)
+	legR.BackgroundColor3 = Theme.colors.stroke
+	legR.BorderSizePixel = 0
+	legR.Parent = host
+	if silhouette and silhouette.hasShoulder then
+		local shoulder = Instance.new("Frame")
+		shoulder.Size = UDim2.new(0, 8, 0, 6)
+		shoulder.Position = UDim2.new(0.5, 6, 0, 12)
+		shoulder.BackgroundColor3 = Theme.colors.accentSoft
+		shoulder.BackgroundTransparency = 0.3
+		shoulder.BorderSizePixel = 0
+		shoulder.Parent = host
+	end
+	if silhouette and silhouette.hasDrone then
+		local drone = Instance.new("Frame")
+		drone.Size = UDim2.new(0, 7, 0, 7)
+		drone.Position = UDim2.new(0, 4, 0, 6)
+		drone.BackgroundColor3 = Theme.colors.cyan
+		drone.BackgroundTransparency = 0.35
+		drone.BorderSizePixel = 0
+		drone.Parent = host
+		Theme.corner(drone, 3)
+	end
+	if cleared then
+		local check = Instance.new("TextLabel")
+		check.Size = UDim2.new(1, 0, 0, 14)
+		check.Position = UDim2.new(0, 0, 1, -14)
+		check.BackgroundTransparency = 1
+		check.Font = Theme.fonts.mono
+		check.TextSize = 10
+		check.TextColor3 = Theme.colors.cyan
+		check.Text = "OK"
+		check.Parent = host
+	end
+end
+
+local function rewardChip(parent: Instance, text: string, color: Color3, x: number, y: number)
+	local f = Instance.new("Frame")
+	f.Size = UDim2.new(0, 58, 0, 18)
+	f.Position = UDim2.new(1, x, 0, y)
+	f.BackgroundColor3 = Theme.colors.bgInset
+	f.BorderSizePixel = 0
+	f.Parent = parent
+	Theme.corner(f, Theme.radii.sm)
+	Theme.stroke(f, color, 1)
+	local l = Instance.new("TextLabel")
+	l.Size = UDim2.new(1, 0, 1, 0)
+	l.BackgroundTransparency = 1
+	l.Font = Theme.fonts.mono
+	l.TextSize = 10
+	l.TextColor3 = color
+	l.Text = text
+	l.Parent = f
 end
 
 local function clearFightRows()
@@ -76,15 +190,16 @@ local function refreshBootstrap()
 		JoinHud.setWallet("Assembler Bay")
 		return
 	end
-	JoinHud.setWallet(("Common %d · XP %d · Cleared %d/%d"):format(
+	TopbarHud.apply(boot.wallet, boot.progress)
+	JoinHud.setWallet(("Common %d · Rare %d · Cleared %d/%d"):format(
 		boot.wallet.common,
-		boot.progress.xp,
+		boot.wallet.rare or 0,
 		boot.progress.highestCleared,
 		boot.ladderCount
 	))
 	if not inBattle then
 		local lo = boot.loadout
-		setStatus(("Primary ready: %s · V for look · Campaign / Garage"):format(lo.torso or "mech"))
+		setStatus(("Primary ready: %s · Campaign / Garage / Crate"):format(lo.torso or "mech"))
 	end
 	if GarageHud and boot.inventory then
 		GarageHud.applySnapshot(boot.inventory)
@@ -142,62 +257,60 @@ function CombatHud.openCampaign()
 	OnboardingHud.notifyOpened("campaign")
 	clearFightRows()
 	local fights = ListCampaign:InvokeServer()
-	local lockedShown = false
 	local order = 0
 	for _, fight in fights do
 		order += 1
-		if fight.unlocked then
-			local card = Instance.new("Frame")
-			card.Name = "Fight_" .. tostring(fight.index)
-			card.Size = UDim2.new(1, -6, 0, 72)
-			card.BackgroundColor3 = Theme.colors.bgRaised
-			card.BorderSizePixel = 0
-			card.LayoutOrder = order
-			card.Parent = fightList
-			Theme.corner(card, Theme.radii.sm)
-			Theme.stroke(card, if fight.cleared then Theme.colors.cyanDeep else Theme.colors.stroke, 1)
+		local card = Instance.new("Frame")
+		card.Name = "Fight_" .. tostring(fight.index)
+		card.Size = UDim2.new(1, -6, 0, 78)
+		card.BackgroundColor3 = if fight.unlocked then Theme.colors.bgRaised else Theme.colors.locked
+		card.BorderSizePixel = 0
+		card.LayoutOrder = order
+		card.Parent = fightList
+		Theme.corner(card, Theme.radii.sm)
+		local strokeColor = Theme.colors.stroke
+		if fight.cleared then
+			strokeColor = Theme.colors.cyanDeep
+		elseif fight.unlocked then
+			strokeColor = Theme.colors.strokeBright
+		end
+		Theme.stroke(card, strokeColor, if fight.unlocked and not fight.cleared then 1.5 else 1)
 
-			local idx = Instance.new("TextLabel")
-			idx.Size = UDim2.new(0, 36, 0, 36)
-			idx.Position = UDim2.new(0, 10, 0.5, -18)
-			idx.BackgroundColor3 = if fight.cleared then Theme.colors.cyanDeep else Theme.colors.bgInset
-			idx.BorderSizePixel = 0
-			idx.Font = Theme.fonts.title
-			idx.TextSize = 18
-			idx.TextColor3 = if fight.cleared then Theme.colors.text else Theme.colors.cyan
-			idx.Text = tostring(fight.index)
-			idx.Parent = card
-			Theme.corner(idx, Theme.radii.sm)
+		makeSilhouette(card, fight.silhouette, fight.cleared == true)
 
-			Theme.label(card, fight.name, UDim2.new(1, -170, 0, 20), UDim2.new(0, 56, 0, 8), 14, {
+		Theme.label(
+			card,
+			("%d. %s"):format(fight.index, fight.name),
+			UDim2.new(1, -200, 0, 20),
+			UDim2.new(0, 60, 0, 8),
+			14,
+			{
 				font = Theme.fonts.button,
-			})
-			local bits = {}
-			if fight.taunt and fight.taunt ~= "" then
-				table.insert(bits, '"' .. fight.taunt .. '"')
-			end
-			if fight.arenaId then
-				table.insert(bits, fight.arenaId)
-			end
-			if fight.cleared then
-				table.insert(bits, "cleared")
-			end
-			Theme.label(card, table.concat(bits, " · "), UDim2.new(1, -170, 0, 32), UDim2.new(0, 56, 0, 30), 11, {
-				color = Theme.colors.textDim,
-			})
+				color = if fight.unlocked then Theme.colors.text else Theme.colors.textMuted,
+			}
+		)
+		local bits = {}
+		if fight.taunt and fight.taunt ~= "" then
+			table.insert(bits, '"' .. fight.taunt .. '"')
+		elseif fight.blurb then
+			table.insert(bits, fight.blurb)
+		end
+		if fight.arenaId then
+			table.insert(bits, fight.arenaId)
+		end
+		if fight.cleared then
+			table.insert(bits, "cleared")
+		elseif not fight.unlocked then
+			table.insert(bits, "locked")
+		end
+		Theme.label(card, table.concat(bits, " · "), UDim2.new(1, -200, 0, 36), UDim2.new(0, 60, 0, 30), 11, {
+			color = Theme.colors.textDim,
+		})
 
-			local reward = Instance.new("TextLabel")
-			reward.Size = UDim2.new(0, 70, 0, 22)
-			reward.Position = UDim2.new(1, -82, 0, 10)
-			reward.BackgroundColor3 = Theme.colors.bgInset
-			reward.BorderSizePixel = 0
-			reward.Font = Theme.fonts.mono
-			reward.TextSize = 11
-			reward.TextColor3 = Theme.colors.accent
-			reward.Text = ("+%d"):format(fight.rewardCommon or 0)
-			reward.Parent = card
-			Theme.corner(reward, Theme.radii.sm)
+		rewardChip(card, ("+%d"):format(fight.rewardCommon or 0), Theme.colors.commonCoin, -140, 8)
+		rewardChip(card, ("+%d XP"):format(fight.rewardXp or 0), Theme.colors.xpFill, -76, 8)
 
+		if fight.unlocked then
 			local deploy = Button.create(
 				card,
 				if fight.cleared then "Replay" else "Fight",
@@ -214,21 +327,15 @@ function CombatHud.openCampaign()
 			card.MouseEnter:Connect(function()
 				setStatus(blurb)
 			end)
-		elseif not lockedShown then
-			lockedShown = true
-			local hint = Theme.label(
-				fightList,
-				("Next: %d. %s — clear an open fight first."):format(fight.index, fight.name),
-				UDim2.new(1, -6, 0, 32),
-				UDim2.new(0, 0, 0, 0),
-				12,
-				{ color = Theme.colors.textMuted }
-			)
-			hint.Name = "NextLocked"
-			hint.LayoutOrder = order
+		else
+			Theme.label(card, "LOCKED", UDim2.new(0, 70, 0, 18), UDim2.new(1, -82, 1, -32), 11, {
+				font = Theme.fonts.mono,
+				color = Theme.colors.textMuted,
+				align = Enum.TextXAlignment.Center,
+			})
 		end
 	end
-	setStatus("Starter mech ready. Pick a fight.")
+	setStatus("Pick a fight. Cleared stays open for replays.")
 	campaignRoot.BackgroundTransparency = Theme.transparency.panel
 	TweenUtil.openFrom(
 		campaignRoot,
@@ -236,6 +343,7 @@ function CombatHud.openCampaign()
 		campaignRest,
 		Theme.transparency.panel
 	)
+	Motions.popIn(campaignRoot, 0.94)
 end
 
 function CombatHud.openCrate()
@@ -351,6 +459,7 @@ function CombatHud.renderBattle(battle)
 		ModalMouse.pop("campaign")
 	end
 	JoinHud.setVisible(false)
+	TopbarHud.setVisible(false)
 	JoinHud.closePanels()
 	if CrateHud.isOpen() then
 		CrateHud.setOpen(false)
@@ -377,13 +486,24 @@ function CombatHud.renderBattle(battle)
 	local you = if battle.playerSide == "A" then battle.sideA else battle.sideB
 	local foe = if battle.playerSide == "A" then battle.sideB else battle.sideA
 
-	headerMeta.Text = ("%s · Turn %d · AP %d/%d · Range %d"):format(
+	headerMeta.Text = ("%s · Turn %d · Range %d"):format(
 		battle.arenaId or "Arena",
 		battle.turnIndex,
-		battle.apRemaining,
-		battle.apMax,
 		battle.distance
 	)
+	renderApPips(battle.apRemaining or 0, battle.apMax or 2)
+	local yourTurn = battle.activeSide == battle.playerSide and battle.outcome == "Ongoing"
+	if turnHint then
+		turnHint.Text = if yourTurn then "YOUR TURN" else "ENEMY"
+		turnHint.TextColor3 = if yourTurn then Theme.colors.accent else Theme.colors.danger
+		turnHint.Visible = true
+	end
+	if lastPlayerTurn ~= yourTurn then
+		lastPlayerTurn = yourTurn
+		if turnHint then
+			Motions.pulse(turnHint, 1.08)
+		end
+	end
 	if tauntLabel then
 		if battle.taunt and battle.npcName then
 			tauntLabel.Text = ('%s: "%s"'):format(battle.npcName, battle.taunt)
@@ -495,9 +615,11 @@ end
 
 function CombatHud.onReturnLobby(settled)
 	inBattle = false
+	lastPlayerTurn = nil
 	battleRoot.Visible = false
 	battleRoot.Position = battleRest
 	JoinHud.setVisible(true)
+	TopbarHud.setVisible(true)
 	ModalMouse.setCombatClickMode(false)
 	BattleCamera.stop()
 	LobbyCamera.start()
@@ -507,7 +629,8 @@ function CombatHud.onReturnLobby(settled)
 	end
 	if settled then
 		local verb = if settled.won then "Win" else "Loss"
-		setStatus(("%s recorded. +%d common · +%d XP"):format(verb, settled.common, settled.xp))
+		local rareBit = if (settled.rare or 0) > 0 then (" · +%d rare"):format(settled.rare) else ""
+		setStatus(("%s recorded. +%d common%s · +%d XP"):format(verb, settled.common, rareBit, settled.xp))
 	end
 	refreshBootstrap()
 end
@@ -527,6 +650,12 @@ function CombatHud.mount(garageModule)
 	ModalMouse.onStateChanged(function(menuOpen, combat)
 		LobbyCamera.setMenuBlocking(menuOpen or combat)
 	end)
+
+	TopbarHud.mount(screen, {
+		openCrate = function()
+			CombatHud.openCrate()
+		end,
+	})
 
 	CombatJuice.mount(screen)
 	RewardSheet.mount(screen)
@@ -558,6 +687,9 @@ function CombatHud.mount(garageModule)
 		GarageHud.onOpened(function()
 			OnboardingHud.notifyOpened("garage")
 		end)
+		GarageHud.onWallet(function()
+			refreshBootstrap()
+		end)
 	end
 
 	JoinHud.mount(screen, {
@@ -568,6 +700,9 @@ function CombatHud.mount(garageModule)
 			if GarageHud then
 				GarageHud.setOpen(true)
 			end
+		end,
+		openCrate = function()
+			CombatHud.openCrate()
 		end,
 		isBusy = function()
 			return inBattle
@@ -582,8 +717,7 @@ function CombatHud.mount(garageModule)
 	statusSink.Text = ""
 	statusSink.Parent = screen
 
-	-- Campaign panel — fight cards, unlocked only + one next hint
-	campaignRoot = Theme.panel(screen, "CampaignPanel", UDim2.new(0, 400, 0, 460), campaignRest, Theme.colors.cyan)
+	campaignRoot = Theme.panel(screen, "CampaignPanel", UDim2.new(0, 440, 0, 520), campaignRest, Theme.colors.cyan)
 	campaignRoot.Visible = false
 
 	Theme.label(campaignRoot, "CAMPAIGN", UDim2.new(1, -100, 0, 24), UDim2.new(0, 16, 0, 12), 18, {
@@ -592,7 +726,7 @@ function CombatHud.mount(garageModule)
 	})
 	Theme.label(
 		campaignRoot,
-		"Open fights only. Starter mech is already yours.",
+		"Silhouette shows the foe. Rewards on the right.",
 		UDim2.new(1, -28, 0, 32),
 		UDim2.new(0, 16, 0, 40),
 		12,
@@ -629,10 +763,30 @@ function CombatHud.mount(garageModule)
 		font = Theme.fonts.display,
 		color = Theme.colors.danger,
 	})
-	headerMeta = Theme.label(battleRoot, "", UDim2.new(1, -28, 0, 16), UDim2.new(0, 16, 0, 34), 11, {
+	headerMeta = Theme.label(battleRoot, "", UDim2.new(1, -160, 0, 16), UDim2.new(0, 16, 0, 34), 11, {
 		font = Theme.fonts.mono,
 		color = Theme.colors.cyan,
 	})
+	turnHint = Theme.label(battleRoot, "", UDim2.new(0, 90, 0, 16), UDim2.new(1, -100, 0, 12), 12, {
+		font = Theme.fonts.display,
+		color = Theme.colors.accent,
+		align = Enum.TextXAlignment.Right,
+	})
+	turnHint.Visible = false
+	Theme.label(battleRoot, "AP", UDim2.new(0, 24, 0, 14), UDim2.new(1, -110, 0, 34), 11, {
+		font = Theme.fonts.mono,
+		color = Theme.colors.textMuted,
+	})
+	apPips = Instance.new("Frame")
+	apPips.Name = "ApPips"
+	apPips.Size = UDim2.new(0, 80, 0, 16)
+	apPips.Position = UDim2.new(1, -86, 0, 34)
+	apPips.BackgroundTransparency = 1
+	apPips.Parent = battleRoot
+	local pipLayout = Instance.new("UIListLayout")
+	pipLayout.FillDirection = Enum.FillDirection.Horizontal
+	pipLayout.Padding = UDim.new(0, 6)
+	pipLayout.Parent = apPips
 
 	youBlock = ResourceBar.sideBlock(battleRoot, "You", UDim2.new(0.5, -16, 0, 90), UDim2.new(0, 12, 0, 56))
 	foeBlock = ResourceBar.sideBlock(battleRoot, "Foe", UDim2.new(0.5, -16, 0, 90), UDim2.new(0.5, 4, 0, 56))
@@ -710,7 +864,7 @@ function CombatHud.mount(garageModule)
 		end
 	end)
 	refreshBootstrap()
-	print("[Assembler] Combat juice — onboarding, FX, rewards, crate, world prompts")
+	print("[Assembler] Modern UI — topbar + crate polish + garage sell/compare (juice surface)")
 end
 
 return CombatHud

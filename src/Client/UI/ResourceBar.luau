@@ -1,5 +1,6 @@
--- Integrity / Temp / Battery bars with track + fill + mono values.
+-- Integrity / Temp / Battery bars with track + fill + mono values + danger glow.
 
+local TweenService = game:GetService("TweenService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Theme = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("UI"):WaitForChild("Theme"))
@@ -49,7 +50,7 @@ function ResourceBar.create(parent: Instance, kind: Kind, size: UDim2, position:
 	track.BorderSizePixel = 0
 	track.Parent = root
 	Theme.corner(track, Theme.radii.bar)
-	Theme.stroke(track, c.stroke, 1)
+	local trackStroke = Theme.stroke(track, c.stroke, 1)
 
 	local fill = Instance.new("Frame")
 	fill.Name = "Fill"
@@ -71,17 +72,42 @@ function ResourceBar.create(parent: Instance, kind: Kind, size: UDim2, position:
 	value.Text = "0/0"
 	value.Parent = root
 
+	local glowTween: Tween? = nil
+
+	local function setDanger(on: boolean, glowColor: Color3)
+		if glowTween then
+			glowTween:Cancel()
+			glowTween = nil
+		end
+		if on then
+			trackStroke.Color = glowColor
+			trackStroke.Thickness = 2
+			glowTween = TweenService:Create(trackStroke, Theme.tween.glow, { Transparency = 0.55 })
+			glowTween:Play()
+		else
+			trackStroke.Color = c.stroke
+			trackStroke.Thickness = 1
+			trackStroke.Transparency = 0
+		end
+	end
+
 	local function set(current: number, max: number)
 		local m = math.max(1, max)
 		local ratio = math.clamp(current / m, 0, 1)
 		TweenUtil.barFill(fill, ratio)
 		value.Text = ("%d/%d"):format(math.floor(current + 0.5), math.floor(max + 0.5))
-		if kind == "temperature" and ratio >= 0.85 then
+		if kind == "temperature" and ratio >= 0.8 then
 			fill.BackgroundColor3 = c.danger
-		elseif kind == "battery" and ratio <= 0.2 then
-			fill.BackgroundColor3 = c.accent
+			setDanger(true, c.danger)
+		elseif kind == "battery" and ratio <= 0.22 then
+			fill.BackgroundColor3 = c.warning
+			setDanger(true, c.warning)
+		elseif kind == "integrity" and ratio <= 0.28 then
+			fill.BackgroundColor3 = c.danger
+			setDanger(true, c.danger)
 		else
 			fill.BackgroundColor3 = c[meta.fill]
+			setDanger(false, c.stroke)
 		end
 	end
 

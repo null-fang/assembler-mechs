@@ -27,7 +27,7 @@ local callbacks: {
 }?
 local beacon: Part?
 local conn: RBXScriptConnection?
-local rest = UDim2.new(0.5, -200, 0, 18)
+local rest = UDim2.new(0.5, -200, 0, 66) -- sit under Topbar
 
 local function destroyBeacon()
 	if beacon then

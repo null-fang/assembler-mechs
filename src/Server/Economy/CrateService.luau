@@ -34,11 +34,7 @@ local POOL = {
 	"cleaver_arm",
 	"drill_punch",
 	"spray_can",
-	"pipe_club",
-	"torch_palm",
-	"slag_glove",
 	"nail_rack",
-	"twin_pipe",
 	"box_launcher",
 	"wire_wrap",
 	"grease_film",
@@ -50,6 +46,15 @@ local POOL = {
 	"spark_moth",
 	"brick_shoulder",
 	"arc_rail",
+	"plate_box",
+	"long_bite",
+	"deep_cell",
+	"heal_beep",
+	"chatter_gun",
+	"mace_arm",
+	"scout_mite",
+	"gale_mg",
+	"pulse_moth",
 } :: { string }
 
 local function pickThree(seed: number): { string }
