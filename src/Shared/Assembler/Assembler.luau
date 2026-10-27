@@ -92,6 +92,20 @@ local function resolvePrimary(model: Model): BasePart?
 	return nil
 end
 
+local function isTexturedBasePart(part: BasePart): boolean
+	-- Textured kit pipeline / Studio pack: leave Color+Material alone.
+	if part:GetAttribute("AssemblerTextured") == true then
+		return true
+	end
+	if part:FindFirstChildWhichIsA("SurfaceAppearance", true) then
+		return true
+	end
+	if part:FindFirstChildWhichIsA("Texture", true) or part:FindFirstChildWhichIsA("Decal", true) then
+		return true
+	end
+	return false
+end
+
 local function polishAuthoredModel(
 	asset: Model,
 	rarity: Slots.PartRarity,
@@ -108,6 +122,9 @@ local function polishAuthoredModel(
 			d.Massless = true
 			if d.Name == "Root" then
 				d.Transparency = 1
+			elseif isTexturedBasePart(d) then
+				-- Socket/Assembler contract: do not recolor authored textures.
+				continue
 			elseif isAccentOrGlow(d.Name) then
 				local edge = rarityEdge(rarity)
 				local rank = rarityRank(rarity)

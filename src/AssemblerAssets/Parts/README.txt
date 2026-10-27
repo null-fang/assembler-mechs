@@ -6,5 +6,9 @@ Regen multi-Part kits:
   python tools/emit_catalog_bay.py
   python tools/verify_part_coverage.py
 
-Each kit is a Model with Root + multiple Parts (panels/barrels/joints/feet).
-Accent* Parts get rarity tint at assemble time. Never ship single-cube parts.
+Contract (Shared/Assembler/KitContract.luau + Sockets.luau):
+- Model with Root at socket origin (PrimaryPart). Never ship single-cube parts.
+- Accent* / Glow* = rarity neon language (color kits).
+- Textured kits: SurfaceAppearance/Texture/Decal OR Attribute AssemblerTextured=true
+  on hull Parts — Assembler will not recolor those (keeps Studio/cloud textures).
+- Pivot uses Sockets.defs offsets; do not bake world pad transforms into kits.

@@ -105,7 +105,15 @@ def main() -> None:
         "src/Server/Economy/CrateService.luau": ["ensureStarter", "grantFightDrop", "pick"],
         "src/Server/Onboarding/OnboardingService.luau": ["complete", "clientSnapshot"],
         "src/Server/Campaign/Ladder.luau": ["Tin Rook", "Gate Weld", "taunt"],
-        "src/Shared/Assembler/Assembler.luau": ["tryAssetClone", "not torsoFromKit"],
+        "src/Shared/Assembler/Assembler.luau": [
+            "tryAssetClone",
+            "not torsoFromKit",
+            "isTexturedBasePart",
+            "AssemblerTextured",
+            "SurfaceAppearance",
+        ],
+        "src/Shared/Assembler/KitContract.luau": ["ROOT_NAME", "TEXTURED_ATTR", "Sockets"],
+        "src/Shared/Assembler/Sockets.luau": ["TORSO_HEIGHT", "LeftHip", "ShoulderRight"],
     }
     for rel, needles in must_exist.items():
         text = (ROOT / rel).read_text()

@@ -228,6 +228,9 @@ function LobbyPrompts.wire(remotes)
 		end
 	end)
 
+	-- Re-tag after runtime StarterCrate spawn so GetTagged matches pads/terminals.
+	WorldBootstrap.tagWorld(lobby, ArenaService.getArenasFolder())
+
 	print("[Assembler] Lobby prompts wired (Campaign + Garage + Crate, tagged)")
 end
 
