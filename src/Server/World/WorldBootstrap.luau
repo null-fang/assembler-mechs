@@ -47,6 +47,10 @@ function WorldBootstrap.tagWorld(lobby: Instance?, arenasFolder: Instance?)
 		if pedestal then
 			tag(pedestal, Tags.GaragePedestal)
 		end
+		local crate = lobby:FindFirstChild("StarterCrate", true)
+		if crate then
+			tag(crate, Tags.StarterCrate)
+		end
 	end
 
 	if arenasFolder then

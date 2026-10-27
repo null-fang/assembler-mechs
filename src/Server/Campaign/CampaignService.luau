@@ -3,6 +3,7 @@
 local Ladder = require(script.Parent.Ladder)
 local CombatHost = require(script.Parent.Parent.Combat.CombatHost)
 local EconomyService = require(script.Parent.Parent.Economy.EconomyService)
+local CrateService = require(script.Parent.Parent.Economy.CrateService)
 local InventoryService = require(script.Parent.Parent.Parts.InventoryService)
 local ArenaService = require(script.Parent.Parent.World.ArenaService)
 local BattleMode = require(game.ReplicatedStorage.Shared.Modes.BattleMode)
@@ -37,7 +38,9 @@ function CampaignService.listFights(userId)
 			index = fight.index,
 			name = fight.opponent.displayName,
 			blurb = fight.blurb,
+			taunt = fight.taunt,
 			rewardCommon = fight.rewardCommonWin,
+			crateChanceWin = Rewards.crateChance(fight.index, true),
 			unlocked = fight.index <= progress.highestCleared + 1,
 			cleared = fight.index <= progress.highestCleared,
 			arenaId = arenaId,
@@ -91,6 +94,8 @@ function CampaignService.startFight(userId, displayName, fightIndex)
 		)
 		;(live :: any).arenaId = arenaId
 	end
+	;(live :: any).taunt = fight.taunt
+	;(live :: any).npcName = fight.opponent.displayName
 	return live, nil
 end
 
@@ -102,7 +107,8 @@ function CampaignService.settleIfFinished(userId, live)
 
 	local won = battle.outcome == "SideAWins"
 	local fightIndex = live.fightIndex or 1
-	local reward = Rewards.forCampaignFight(fightIndex, won)
+	local seed = userId * 19 + fightIndex * 41 + (if won then 7 else 2)
+	local reward = Rewards.forCampaignFight(fightIndex, won, seed)
 	EconomyService.addCommon(userId, reward.common)
 
 	local progress = CampaignService.getProgress(userId)
@@ -111,14 +117,23 @@ function CampaignService.settleIfFinished(userId, live)
 		progress.highestCleared = fightIndex
 	end
 
+	local crateOffer = nil
+	if reward.crateDrop then
+		crateOffer = CrateService.grantFightDrop(userId, fightIndex)
+	end
+
 	local result = {
 		won = won,
 		common = reward.common,
 		xp = reward.xp,
+		crateChance = reward.crateChance,
+		crateDrop = reward.crateDrop and crateOffer ~= nil,
 		highestCleared = progress.highestCleared,
 		totalXp = progress.xp,
 		walletCommon = EconomyService.getWallet(userId).common,
 		arenaId = (live :: any).arenaId,
+		npcName = (live :: any).npcName,
+		taunt = (live :: any).taunt,
 	}
 	CombatHost.release(live.battleId)
 	ArenaService.clearLiveMechs()

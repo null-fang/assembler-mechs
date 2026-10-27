@@ -5,6 +5,7 @@ local Tags = {
 	Lobby = "AssemblerLobby",
 	CampaignTerminal = "AssemblerCampaignTerminal",
 	GaragePedestal = "AssemblerGaragePedestal",
+	StarterCrate = "AssemblerStarterCrate",
 	Arena = "AssemblerArena",
 	PadA = "AssemblerPadA",
 	PadB = "AssemblerPadB",

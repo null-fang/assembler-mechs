@@ -96,7 +96,14 @@ def main() -> None:
         "src/Server/World/LobbyPrompts.luau": ["Maid", "Tags"],
         "src/Server/init.server.luau": ["PlayerSession", "SUBMIT_MIN_GAP"],
         "src/Client/init.client.luau": ["KitPreload", "SessionBridge", "CombatHud"],
-        "src/Client/CombatHud.luau": ["JoinHud.mount", "ModalMouse", "ReturnLobby"],
+        "src/Client/CombatHud.luau": ["JoinHud.mount", "ModalMouse", "ReturnLobby", "CombatJuice", "OnboardingHud", "RewardSheet"],
+        "src/Client/CombatJuice.luau": ["leanMech", "showBanner", "setOverheat", "setBatteryDim"],
+        "src/Client/OnboardingHud.luau": ["Skip", "notifyOpened", "campaign"],
+        "src/Client/RewardSheet.luau": ["WIN PAYOUT", "Crate chance"],
+        "src/Client/CrateHud.luau": ["PickCrate", "Keep"],
+        "src/Server/Economy/CrateService.luau": ["ensureStarter", "grantFightDrop", "pick"],
+        "src/Server/Onboarding/OnboardingService.luau": ["complete", "clientSnapshot"],
+        "src/Server/Campaign/Ladder.luau": ["Tin Rook", "Gate Weld", "taunt"],
         "src/Shared/Assembler/Assembler.luau": ["tryAssetClone", "not torsoFromKit"],
     }
     for rel, needles in must_exist.items():

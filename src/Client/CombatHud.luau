@@ -14,6 +14,10 @@ local Button = require(script.Parent:WaitForChild("UI"):WaitForChild("Button"))
 local TweenUtil = require(script.Parent:WaitForChild("UI"):WaitForChild("TweenUtil"))
 local ResourceBar = require(script.Parent:WaitForChild("UI"):WaitForChild("ResourceBar"))
 local Tooltip = require(script.Parent:WaitForChild("UI"):WaitForChild("Tooltip"))
+local CombatJuice = require(script.Parent:WaitForChild("CombatJuice"))
+local RewardSheet = require(script.Parent:WaitForChild("RewardSheet"))
+local CrateHud = require(script.Parent:WaitForChild("CrateHud"))
+local OnboardingHud = require(script.Parent:WaitForChild("OnboardingHud"))
 
 local CombatHud = {}
 
@@ -29,9 +33,11 @@ local BattleUpdated = remotesFolder:WaitForChild("BattleUpdated")
 local FightSettled = remotesFolder:WaitForChild("FightSettled")
 local OpenCampaign = remotesFolder:WaitForChild("OpenCampaign")
 local OpenGarage = remotesFolder:WaitForChild("OpenGarage")
+local OpenCrate = remotesFolder:WaitForChild("OpenCrate")
 local ReturnLobby = remotesFolder:WaitForChild("ReturnLobby")
 
 local GarageHud
+local tauntLabel: TextLabel?
 
 local screen
 local campaignRoot
@@ -83,6 +89,9 @@ local function refreshBootstrap()
 	if GarageHud and boot.inventory then
 		GarageHud.applySnapshot(boot.inventory)
 	end
+	if boot.onboarding then
+		OnboardingHud.apply(boot.onboarding)
+	end
 	JoinHud.refresh()
 end
 
@@ -125,8 +134,12 @@ function CombatHud.openCampaign()
 	if GarageHud and GarageHud.isOpen() then
 		GarageHud.setOpen(false)
 	end
+	if CrateHud.isOpen() then
+		CrateHud.setOpen(false)
+	end
 	JoinHud.closePanels()
 	ModalMouse.push("campaign")
+	OnboardingHud.notifyOpened("campaign")
 	clearFightRows()
 	local fights = ListCampaign:InvokeServer()
 	local lockedShown = false
@@ -136,7 +149,7 @@ function CombatHud.openCampaign()
 		if fight.unlocked then
 			local card = Instance.new("Frame")
 			card.Name = "Fight_" .. tostring(fight.index)
-			card.Size = UDim2.new(1, -6, 0, 66)
+			card.Size = UDim2.new(1, -6, 0, 72)
 			card.BackgroundColor3 = Theme.colors.bgRaised
 			card.BorderSizePixel = 0
 			card.LayoutOrder = order
@@ -156,17 +169,20 @@ function CombatHud.openCampaign()
 			idx.Parent = card
 			Theme.corner(idx, Theme.radii.sm)
 
-			Theme.label(card, fight.name, UDim2.new(1, -170, 0, 22), UDim2.new(0, 56, 0, 10), 14, {
+			Theme.label(card, fight.name, UDim2.new(1, -170, 0, 20), UDim2.new(0, 56, 0, 8), 14, {
 				font = Theme.fonts.button,
 			})
 			local bits = {}
+			if fight.taunt and fight.taunt ~= "" then
+				table.insert(bits, '"' .. fight.taunt .. '"')
+			end
 			if fight.arenaId then
 				table.insert(bits, fight.arenaId)
 			end
 			if fight.cleared then
 				table.insert(bits, "cleared")
 			end
-			Theme.label(card, table.concat(bits, " · "), UDim2.new(1, -170, 0, 18), UDim2.new(0, 56, 0, 34), 11, {
+			Theme.label(card, table.concat(bits, " · "), UDim2.new(1, -170, 0, 32), UDim2.new(0, 56, 0, 30), 11, {
 				color = Theme.colors.textDim,
 			})
 
@@ -220,6 +236,18 @@ function CombatHud.openCampaign()
 		campaignRest,
 		Theme.transparency.panel
 	)
+end
+
+function CombatHud.openCrate()
+	if inBattle then
+		return
+	end
+	if GarageHud and GarageHud.isOpen() then
+		GarageHud.setOpen(false)
+	end
+	hideCampaign()
+	JoinHud.closePanels()
+	CrateHud.setOpen(true)
 end
 
 local function renderLog(log)
@@ -324,6 +352,9 @@ function CombatHud.renderBattle(battle)
 	end
 	JoinHud.setVisible(false)
 	JoinHud.closePanels()
+	if CrateHud.isOpen() then
+		CrateHud.setOpen(false)
+	end
 	if not battleRoot.Visible then
 		TweenUtil.openFrom(
 			battleRoot,
@@ -353,9 +384,21 @@ function CombatHud.renderBattle(battle)
 		battle.apMax,
 		battle.distance
 	)
+	if tauntLabel then
+		if battle.taunt and battle.npcName then
+			tauntLabel.Text = ('%s: "%s"'):format(battle.npcName, battle.taunt)
+			tauntLabel.Visible = true
+		elseif battle.taunt then
+			tauntLabel.Text = '"' .. battle.taunt .. '"'
+			tauntLabel.Visible = true
+		else
+			tauntLabel.Visible = false
+		end
+	end
 	youBlock.setFromSide(you)
 	foeBlock.setFromSide(foe)
 	renderLog(battle.log or {})
+	CombatJuice.onBattle(battle)
 
 	if you.batteryRechargeMoves and you.batteryRechargeMoves > 0 then
 		setStatus(("Energy guns dark — %d moves on charge"):format(you.batteryRechargeMoves))
@@ -443,7 +486,11 @@ end
 
 function CombatHud.onSettled(settled)
 	local verb = if settled.won then "Win" else "Loss"
-	setStatus(("%s · +%d common · +%d XP — returning to bay…"):format(verb, settled.common, settled.xp))
+	setStatus(("%s · +%d common · +%d XP — payout…"):format(verb, settled.common, settled.xp))
+	CombatJuice.showBanner(settled.won == true, if settled.crateDrop then "Crate dropped." else "Bay pays out.")
+	task.delay(0.75, function()
+		RewardSheet.show(settled)
+	end)
 end
 
 function CombatHud.onReturnLobby(settled)
@@ -454,6 +501,10 @@ function CombatHud.onReturnLobby(settled)
 	ModalMouse.setCombatClickMode(false)
 	BattleCamera.stop()
 	LobbyCamera.start()
+	CombatJuice.clear()
+	if settled and not RewardSheet.isOpen() then
+		RewardSheet.show(settled)
+	end
 	if settled then
 		local verb = if settled.won then "Win" else "Loss"
 		setStatus(("%s recorded. +%d common · +%d XP"):format(verb, settled.common, settled.xp))
@@ -477,8 +528,36 @@ function CombatHud.mount(garageModule)
 		LobbyCamera.setMenuBlocking(menuOpen or combat)
 	end)
 
+	CombatJuice.mount(screen)
+	RewardSheet.mount(screen)
+	CrateHud.mount(screen, {
+		onPicked = function(result)
+			OnboardingHud.notifyOpened("crate")
+			if result and result.onboarding then
+				OnboardingHud.apply(result.onboarding)
+			end
+			refreshBootstrap()
+		end,
+	})
+	OnboardingHud.mount(screen, {
+		openCampaign = function()
+			CombatHud.openCampaign()
+		end,
+		openGarage = function()
+			if GarageHud then
+				GarageHud.setOpen(true)
+			end
+		end,
+		openCrate = function()
+			CombatHud.openCrate()
+		end,
+	})
+
 	if GarageHud then
 		GarageHud.mount(screen)
+		GarageHud.onOpened(function()
+			OnboardingHud.notifyOpened("garage")
+		end)
 	end
 
 	JoinHud.mount(screen, {
@@ -557,11 +636,19 @@ function CombatHud.mount(garageModule)
 
 	youBlock = ResourceBar.sideBlock(battleRoot, "You", UDim2.new(0.5, -16, 0, 90), UDim2.new(0, 12, 0, 56))
 	foeBlock = ResourceBar.sideBlock(battleRoot, "Foe", UDim2.new(0.5, -16, 0, 90), UDim2.new(0.5, 4, 0, 56))
+	CombatJuice.bindSideBlocks(youBlock, foeBlock)
+
+	tauntLabel = Theme.label(battleRoot, "", UDim2.new(1, -28, 0, 16), UDim2.new(0, 16, 0, 148), 11, {
+		font = Theme.fonts.body,
+		color = Theme.colors.accentSoft,
+	})
+	tauntLabel.Visible = false
+	tauntLabel.TextTruncate = Enum.TextTruncate.AtEnd
 
 	logLabel = Instance.new("TextLabel")
 	logLabel.Name = "Log"
-	logLabel.Size = UDim2.new(1, -24, 0, 70)
-	logLabel.Position = UDim2.new(0, 12, 0, 154)
+	logLabel.Size = UDim2.new(1, -24, 0, 58)
+	logLabel.Position = UDim2.new(0, 12, 0, 166)
 	logLabel.BackgroundColor3 = Theme.colors.bgInset
 	logLabel.BackgroundTransparency = 0.15
 	logLabel.BorderSizePixel = 0
@@ -583,7 +670,7 @@ function CombatHud.mount(garageModule)
 	actionFolder = Instance.new("Frame")
 	actionFolder.Name = "Actions"
 	actionFolder.Size = UDim2.new(1, -20, 0, 100)
-	actionFolder.Position = UDim2.new(0, 10, 0, 232)
+	actionFolder.Position = UDim2.new(0, 10, 0, 232) -- move cards stay bottom-anchored
 	actionFolder.BackgroundTransparency = 1
 	actionFolder.Parent = battleRoot
 	local grid = Instance.new("UIGridLayout")
@@ -599,6 +686,9 @@ function CombatHud.mount(garageModule)
 		if GarageHud then
 			GarageHud.setOpen(true)
 		end
+	end)
+	OpenCrate.OnClientEvent:Connect(function()
+		CombatHud.openCrate()
 	end)
 	BattleUpdated.OnClientEvent:Connect(function(battle)
 		CombatHud.renderBattle(battle)
@@ -620,7 +710,7 @@ function CombatHud.mount(garageModule)
 		end
 	end)
 	refreshBootstrap()
-	print("[Assembler] UI redesign — Theme panels, rarity, bars, ModalMouse intact")
+	print("[Assembler] Combat juice — onboarding, FX, rewards, crate, world prompts")
 end
 
 return CombatHud

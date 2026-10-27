@@ -8,7 +8,9 @@ local Matchmaking = require(script.PvP.Matchmaking)
 local CampaignService = require(script.Campaign.CampaignService)
 local CombatHost = require(script.Combat.CombatHost)
 local EconomyService = require(script.Economy.EconomyService)
+local CrateService = require(script.Economy.CrateService)
 local InventoryService = require(script.Parts.InventoryService)
+local OnboardingService = require(script.Onboarding.OnboardingService)
 local ArenaService = require(script.World.ArenaService)
 local LobbyPrompts = require(script.World.LobbyPrompts)
 local PlayerSession = require(script.Session.PlayerSession)
@@ -41,6 +43,8 @@ Players.PlayerAdded:Connect(function(player)
 	InventoryService.grantStarter(player.UserId)
 	EconomyService.getWallet(player.UserId)
 	CampaignService.getProgress(player.UserId)
+	OnboardingService.get(player.UserId)
+	CrateService.ensureStarter(player.UserId)
 	CampaignService.rememberDisplayName(player.UserId, player.DisplayName)
 	task.defer(function()
 		refreshPreview(player)
@@ -66,6 +70,7 @@ end)
 
 for _, player in Players:GetPlayers() do
 	InventoryService.grantStarter(player.UserId)
+	CrateService.ensureStarter(player.UserId)
 	task.defer(function()
 		refreshPreview(player)
 	end)
@@ -79,6 +84,42 @@ Remotes.GetBootstrap.OnServerInvoke = function(player)
 		inventory = InventoryService.clientSnapshot(player.UserId),
 		ladderCount = Ladder.FIRST_SLICE_COUNT,
 		activeArena = ArenaService.getActiveArenaId(),
+		onboarding = OnboardingService.clientSnapshot(player.UserId),
+		crate = CrateService.clientSnapshot(player.UserId),
+	}
+end
+
+Remotes.CompleteOnboarding.OnServerInvoke = function(player, stepId)
+	if typeof(stepId) ~= "string" then
+		return OnboardingService.clientSnapshot(player.UserId)
+	end
+	OnboardingService.complete(player.UserId, stepId)
+	return OnboardingService.clientSnapshot(player.UserId)
+end
+
+Remotes.GetCrate.OnServerInvoke = function(player)
+	CrateService.ensureStarter(player.UserId)
+	return CrateService.clientSnapshot(player.UserId)
+end
+
+Remotes.PickCrate.OnServerInvoke = function(player, choiceIndex)
+	if typeof(choiceIndex) ~= "number" then
+		return { ok = false, error = "Bad pick" }
+	end
+	local ok, err, payload = CrateService.pick(player.UserId, math.floor(choiceIndex))
+	if not ok then
+		return { ok = false, error = err or "Pick failed" }
+	end
+	OnboardingService.complete(player.UserId, "crate")
+	if payload and payload.inventory then
+		Remotes.InventoryUpdated:FireClient(player, payload.inventory)
+	end
+	refreshPreview(player)
+	return {
+		ok = true,
+		chosen = payload and payload.chosen,
+		inventory = payload and payload.inventory,
+		onboarding = OnboardingService.clientSnapshot(player.UserId),
 	}
 end
 
@@ -133,6 +174,8 @@ Remotes.StartFight.OnServerInvoke = function(player, fightIndex)
 	end
 	local snap = CombatHost.snapshot(live)
 	snap.arenaId = arenaId
+	snap.taunt = (live :: any).taunt
+	snap.npcName = (live :: any).npcName
 	Remotes.BattleUpdated:FireClient(player, snap)
 	return { ok = true, battle = snap, arenaId = arenaId }
 end
@@ -142,7 +185,10 @@ Remotes.GetBattle.OnServerInvoke = function(player)
 	if not live then
 		return { ok = false, error = "No active fight" }
 	end
-	return { ok = true, battle = CombatHost.snapshot(live) }
+	local snap = CombatHost.snapshot(live)
+	snap.taunt = (live :: any).taunt
+	snap.npcName = (live :: any).npcName
+	return { ok = true, battle = snap }
 end
 
 Remotes.SubmitAction.OnServerInvoke = function(player, action)
@@ -167,13 +213,16 @@ Remotes.SubmitAction.OnServerInvoke = function(player, action)
 	end
 
 	local snap = CombatHost.snapshot(live)
+	snap.taunt = (live :: any).taunt
+	snap.npcName = (live :: any).npcName
 	Remotes.BattleUpdated:FireClient(player, snap)
 
 	local settled = CampaignService.settleIfFinished(player.UserId, live)
 	if settled then
 		PlayerSession.toLobby(player)
 		Remotes.FightSettled:FireClient(player, settled)
-		task.delay(1.35, function()
+		-- Longer hold so banner + reward sheet can land before lobby return.
+		task.delay(3.4, function()
 			if player.Parent then
 				ArenaService.teleportPlayerToLobby(player)
 				Remotes.ReturnLobby:FireClient(player, settled)
@@ -187,4 +236,4 @@ end
 
 local _ = Matchmaking
 
-print("[Assembler] Server ready — walk Campaign terminal / Garage pedestal")
+print("[Assembler] Server ready — walk Campaign / Garage / Starter crate")

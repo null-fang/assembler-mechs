@@ -46,12 +46,16 @@ function Remotes.init()
 	Remotes.GetInventory = remoteFunction("GetInventory")
 	Remotes.EquipPart = remoteFunction("EquipPart")
 	Remotes.UnequipPart = remoteFunction("UnequipPart")
+	Remotes.CompleteOnboarding = remoteFunction("CompleteOnboarding")
+	Remotes.GetCrate = remoteFunction("GetCrate")
+	Remotes.PickCrate = remoteFunction("PickCrate")
 
 	Remotes.BattleUpdated = remoteEvent("BattleUpdated")
 	Remotes.FightSettled = remoteEvent("FightSettled")
 	Remotes.InventoryUpdated = remoteEvent("InventoryUpdated")
 	Remotes.OpenCampaign = remoteEvent("OpenCampaign")
 	Remotes.OpenGarage = remoteEvent("OpenGarage")
+	Remotes.OpenCrate = remoteEvent("OpenCrate")
 	Remotes.ReturnLobby = remoteEvent("ReturnLobby")
 end
 

@@ -151,6 +151,13 @@ local function unequipField(inv: PlayerInventory, bay: MechBay, field: string)
 	(bay.loadout :: any)[field] = nil
 end
 
+-- Grant a loose bag part (crate picks, rewards). Returns OwnedPart.
+function InventoryService.grantPart(userId: number, partId: string)
+	local inv = InventoryService.get(userId)
+	Catalog.require(partId)
+	return bagClone(inv, partId)
+end
+
 function InventoryService.grantStarter(userId: number)
 	local inv = InventoryService.get(userId)
 	if inv.starterGranted then

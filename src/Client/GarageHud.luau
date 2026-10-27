@@ -26,6 +26,7 @@ local open = false
 local snapshot
 local selectedSlot: string? = nil
 local restPos = UDim2.new(1, -548, 0, 24)
+local openedListeners: { () -> () } = {}
 
 local SLOT_ROWS = {
 	{ field = "torso", label = "Torso" },
@@ -243,6 +244,10 @@ function GarageHud.applySnapshot(snap)
 	GarageHud.render()
 end
 
+function GarageHud.onOpened(cb: () -> ())
+	table.insert(openedListeners, cb)
+end
+
 function GarageHud.setOpen(isOpen: boolean)
 	if isOpen == open and isOpen then
 		snapshot = GetInventory:InvokeServer()
@@ -261,6 +266,9 @@ function GarageHud.setOpen(isOpen: boolean)
 			Theme.transparency.panel
 		)
 		GarageHud.render()
+		for _, cb in openedListeners do
+			cb()
+		end
 	else
 		TweenUtil.closeTo(root, UDim2.new(1, restPos.X.Offset + 24, 0, restPos.Y.Offset), restPos, function()
 			root.BackgroundTransparency = Theme.transparency.panel

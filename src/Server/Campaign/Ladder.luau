@@ -1,5 +1,5 @@
--- Campaign ladder: ~10 NPC fights, escalating, no bosses.
--- No daily fuel gate — Battery Life is the combat energy resource.
+-- Campaign ladder: 10 NPC fights, escalating, no bosses.
+-- Distinct names, short taunts, loadout variety. No daily fuel gate.
 
 local BattleOpponent = require(game.ReplicatedStorage.Shared.Modes.BattleOpponent)
 local Catalog = require(game.ReplicatedStorage.Shared.Parts.Catalog)
@@ -11,11 +11,10 @@ export type LadderFight = {
 	opponent: BattleOpponent.BattleOpponent,
 	rewardCommonWin: number,
 	blurb: string,
+	taunt: string,
 }
 
 local Ladder = {}
-
-type SoftLoadout = Slots.EquippedLoadout
 
 Ladder.FIRST_SLICE_COUNT = 10
 
@@ -31,7 +30,7 @@ local function loadout(parts: {
 	battery: string?,
 	cpu: string?,
 	drone: string?,
-}): SoftLoadout
+}): Slots.EquippedLoadout
 	local chips: { Slots.PartDef } = {}
 	local chipIds = parts.chips or {}
 	for _, id in chipIds do
@@ -54,21 +53,22 @@ local function loadout(parts: {
 	}
 end
 
-
--- Scripted loadouts; a few fights swap one part from a small pool for light variety.
-local function maybeSwapWeapon(baseId: string, pool: { string }, fightIndex: number): string
-	if fightIndex % 3 ~= 0 then
+-- Light deterministic swap keeps fights from feeling identical on replay.
+local function maybeSwap(baseId: string, pool: { string }, fightIndex: number, every: number?): string
+	local n = every or 2
+	if fightIndex % n ~= 0 then
 		return baseId
 	end
-	local pick = pool[((fightIndex - 1) % #pool) + 1]
-	return pick
+	return pool[((fightIndex - 1) % #pool) + 1]
 end
 
 function Ladder.buildFirstSlice(): { LadderFight }
+	-- Invented bay scrap — short names, human taunts, distinct kits.
 	local defs = {
 		{
-			name = "Bay Rookie",
+			name = "Tin Rook",
 			blurb = "First day. Barely bolted.",
+			taunt = "Don't dent me.",
 			parts = {
 				torso = "rusty_cage",
 				leftLeg = "workboot_l",
@@ -79,139 +79,150 @@ function Ladder.buildFirstSlice(): { LadderFight }
 			},
 		},
 		{
-			name = "Scrap Runner",
+			name = "Scrap Mouse",
 			blurb = "Runs light. Hits soft.",
+			taunt = "Too slow.",
 			parts = {
-				torso = "rusty_cage",
-				leftLeg = "workboot_l",
-				rightLeg = "workboot_r",
-				lowerLeft = "snap_arm",
+				torso = "tin_can",
+				leftLeg = "digit_l",
+				rightLeg = "digit_r",
+				lowerLeft = "needle_jab",
 				lowerRight = "rivet_gun",
 				battery = "desk_brick",
 				cpu = "scrap_cpu",
 				chips = { "thick_skin" },
+				drone = "floor_bit",
 			},
 		},
 		{
 			name = "Hot Rivet",
-			blurb = "Likes the smell of warm metal.",
+			blurb = "Likes warm metal.",
+			taunt = "Smell that?",
 			parts = {
-				torso = "rusty_cage",
+				torso = "hot_box",
 				leftLeg = "workboot_l",
 				rightLeg = "workboot_r",
 				lowerLeft = "ember_fist",
-				lowerRight = "rivet_gun",
+				lowerRight = "torch_palm",
 				battery = "desk_brick",
 				cpu = "scrap_cpu",
 				chips = { "heat_sink_chip" },
 			},
 		},
 		{
-			name = "Cold Welder",
+			name = "Cold Span",
 			blurb = "Keeps range. Doesn't chat.",
+			taunt = "…",
 			parts = {
-				torso = "rusty_cage",
-				leftLeg = "workboot_l",
-				rightLeg = "workboot_r",
-				lowerRight = "rivet_gun",
-				shoulderRight = "brick_shoulder",
+				torso = "mesh_cage",
+				leftLeg = "stump_l",
+				rightLeg = "stump_r",
+				lowerRight = "hook_arm",
+				shoulderRight = "nail_rack",
 				battery = "desk_brick",
 				cpu = "scrap_cpu",
 				drone = "floor_bit",
 			},
 		},
 		{
-			name = "Grid Walker",
+			name = "Peg Runner",
 			blurb = "Longer legs. Still learning.",
+			taunt = "Keep up.",
 			parts = {
-				torso = "rusty_cage",
+				torso = "scrap_weld",
 				leftLeg = "sprint_peg_l",
 				rightLeg = "sprint_peg_r",
-				lowerLeft = "snap_arm",
+				lowerLeft = "cleaver_arm",
 				shoulderRight = "brick_shoulder",
 				battery = "desk_brick",
 				cpu = "scrap_cpu",
-				chips = { "thick_skin" },
-				drone = "floor_bit",
+				chips = { "grease_film" },
+				drone = "spark_moth",
 			},
 		},
 		{
-			name = "Dust Shoulder",
-			blurb = "Arc Rail practice. Pack runs hot.",
+			name = "Dust Arc",
+			blurb = "Arc practice. Pack runs hot.",
+			taunt = "Stand still.",
 			parts = {
-				torso = "rusty_cage",
-				leftLeg = "workboot_l",
-				rightLeg = "workboot_r",
+				torso = "painted_crate",
+				leftLeg = "mud_l",
+				rightLeg = "mud_r",
 				lowerLeft = "snap_arm",
 				shoulderLeft = "arc_rail",
 				battery = "bay_cell",
-				cpu = "scrap_cpu",
+				cpu = "bay_cpu",
 				chips = { "wire_wrap" },
 				drone = "floor_bit",
 			},
 		},
 		{
-			name = "Bolt Hungry",
+			name = "Bolt Maw",
 			blurb = "Two arms and a temper.",
+			taunt = "Come closer.",
 			parts = {
-				torso = "rusty_cage",
-				leftLeg = "workboot_l",
-				rightLeg = "workboot_r",
-				lowerLeft = "ember_fist",
-				lowerRight = "rivet_gun",
-				shoulderRight = "brick_shoulder",
+				torso = "iron_locker",
+				leftLeg = "claw_l",
+				rightLeg = "claw_r",
+				lowerLeft = "drill_punch",
+				lowerRight = "pipe_club",
+				shoulderRight = "twin_pipe",
 				battery = "bay_cell",
 				cpu = "scrap_cpu",
 				chips = { "thick_skin" },
-				drone = "floor_bit",
+				drone = "orb_drone",
 			},
 		},
 		{
-			name = "Lane Closer",
+			name = "Lane Bite",
 			blurb = "Closes fast. Don't give space.",
+			taunt = "No room left.",
 			parts = {
-				torso = "rusty_cage",
+				torso = "plate_box",
 				leftLeg = "sprint_peg_l",
 				rightLeg = "sprint_peg_r",
-				lowerLeft = "ember_fist",
-				lowerRight = "rivet_gun",
-				shoulderRight = "brick_shoulder",
+				lowerLeft = "slag_glove",
+				lowerRight = "ember_fist",
+				shoulderRight = "box_launcher",
 				battery = "bay_cell",
-				cpu = "scrap_cpu",
+				cpu = "bay_cpu",
 				chips = { "heat_sink_chip" },
-				drone = "floor_bit",
+				drone = "glow_moth",
 			},
 		},
 		{
-			name = "Frame Tester",
+			name = "Frame Check",
 			blurb = "Bay QA. Mean on purpose.",
+			taunt = "QA says fail.",
 			parts = {
-				torso = "plate_box",
+				torso = "lattice_frame",
 				leftLeg = "workboot_l",
 				rightLeg = "workboot_r",
-				lowerLeft = "snap_arm",
+				lowerLeft = "cleaver_arm",
 				lowerRight = "rivet_gun",
-				shoulderLeft = "arc_rail",
+				shoulderLeft = "long_bite",
 				battery = "bay_cell",
-				cpu = "scrap_cpu",
-				chips = { "thick_skin" },
-				drone = "floor_bit",
+				cpu = "bay_cpu",
+				chips = { "thick_skin", "wire_wrap" },
+				drone = "heal_beep",
 			},
 		},
 		{
-			name = "Gate Keeper",
-			blurb = "End of the starter ladder. No boss — just better bolts.",
+			name = "Gate Weld",
+			blurb = "End of the starter ladder. Better bolts — not a boss.",
+			taunt = "End of the line.",
 			parts = {
-				torso = "plate_box",
-				leftLeg = "sprint_peg_l",
-				rightLeg = "sprint_peg_r",
-				lowerLeft = "ember_fist",
-				lowerRight = "rivet_gun",
-				shoulderRight = "brick_shoulder",
-				battery = "bay_cell",
-				cpu = "scrap_cpu",
+				torso = "bunker_shell",
+				leftLeg = "needle_leg_l",
+				rightLeg = "needle_leg_r",
+				lowerLeft = "drill_punch",
+				lowerRight = "torch_palm",
+				shoulderLeft = "needle_pike",
+				shoulderRight = "furnace_spit",
+				battery = "deep_cell",
+				cpu = "bay_cpu",
 				chips = { "thick_skin", "heat_sink_chip" },
-				drone = "floor_bit",
+				drone = "spark_moth",
 			},
 		},
 	}
@@ -219,17 +230,20 @@ function Ladder.buildFirstSlice(): { LadderFight }
 	local fights: { LadderFight } = {}
 	for i, def in defs do
 		local p = table.clone(def.parts)
-		-- Light random-ish swap on a few fights (deterministic by index).
 		if p.lowerLeft then
-			p.lowerLeft = maybeSwapWeapon(p.lowerLeft, { "snap_arm", "ember_fist", "rivet_gun" }, i)
+			p.lowerLeft = maybeSwap(p.lowerLeft, { "snap_arm", "ember_fist", "cleaver_arm", "hook_arm" }, i, 3)
+		end
+		if p.lowerRight and i % 4 == 0 then
+			p.lowerRight = maybeSwap(p.lowerRight, { "rivet_gun", "pipe_club", "torch_palm", "drill_punch" }, i, 1)
 		end
 		local built = loadout(p)
-		local reward = Rewards.forCampaignFight(i, true)
+		local reward = Rewards.forCampaignFight(i, true, i * 100)
 		table.insert(fights, {
 			index = i,
 			opponent = BattleOpponent.fromNpc(("npc-%02d"):format(i), def.name, ("mech-%02d"):format(i), built),
 			rewardCommonWin = reward.common,
 			blurb = def.blurb,
+			taunt = def.taunt,
 		})
 	end
 	return fights
