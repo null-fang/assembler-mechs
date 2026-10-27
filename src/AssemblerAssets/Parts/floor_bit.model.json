@@ -29,6 +29,9 @@
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth",
         "Transparency": 1.0
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
       }
     },
     {
@@ -58,6 +61,9 @@
         "Material": "Metal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
       }
     },
     {
@@ -88,6 +94,9 @@
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth",
         "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
       }
     },
     {
@@ -118,6 +127,9 @@
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth",
         "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
       }
     },
     {
@@ -148,6 +160,9 @@
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth",
         "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
       }
     },
     {
@@ -177,6 +192,9 @@
         "Material": "Neon",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "hazard_stripe"
       }
     }
   ]

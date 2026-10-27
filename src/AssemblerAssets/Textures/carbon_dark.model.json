@@ -1,0 +1,19 @@
+{
+  "ClassName": "Texture",
+  "Properties": {
+    "Texture": "",
+    "StudsPerTileU": 1.75,
+    "StudsPerTileV": 1.75,
+    "Face": "Front",
+    "Transparency": 0.3,
+    "Color3": [
+      1,
+      1,
+      1
+    ]
+  },
+  "Attributes": {
+    "TextureRole": "carbon_dark",
+    "AssemblerTextureTemplate": true
+  }
+}

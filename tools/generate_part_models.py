@@ -15,6 +15,55 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "src" / "AssemblerAssets" / "Parts"
+TEXTURE_IDS_PATH = ROOT / "tools" / "texture_ids.json"
+
+
+def load_texture_ids() -> dict:
+    """Shared contract with Shared.Assembler.TextureIds / TextureApply."""
+    if not TEXTURE_IDS_PATH.exists():
+        return {"textures": {}, "materialHints": {}, "nameHints": {}}
+    return json.loads(TEXTURE_IDS_PATH.read_text(encoding="utf-8"))
+
+
+TEXTURE_IDS = load_texture_ids()
+
+
+def texture_role_for(name: str, material: str) -> str:
+    hints = TEXTURE_IDS.get("nameHints") or {}
+    for prefix, key in hints.items():
+        if name.startswith(prefix) or prefix in name:
+            return key
+    mat_hints = TEXTURE_IDS.get("materialHints") or {}
+    return mat_hints.get(material, "metal_plate")
+
+
+def texture_children(role: str) -> list[dict]:
+    """Emit Texture instances when rbxassetid is filled in texture_ids.json."""
+    defn = (TEXTURE_IDS.get("textures") or {}).get(role) or {}
+    rbx = (defn.get("rbxassetid") or "").strip()
+    if not rbx:
+        return []
+    uri = rbx if rbx.startswith("rbxassetid://") else f"rbxassetid://{rbx}"
+    studs = float(defn.get("studsPerTile", 2.0))
+    tr = float(defn.get("transparency", 0.35))
+    kids = []
+    for face in ("Front", "Top"):
+        kids.append(
+            {
+                "Name": f"Tex_{role}_{face}",
+                "ClassName": "Texture",
+                "Properties": {
+                    "Texture": uri,
+                    "Face": face,
+                    "StudsPerTileU": studs,
+                    "StudsPerTileV": studs,
+                    "Transparency": tr,
+                    "Color3": [1.0, 1.0, 1.0],
+                },
+                "Attributes": {"AssemblerTexture": True, "TextureRole": role},
+            }
+        )
+    return kids
 
 
 def rgb(r: int, g: int, b: int) -> list[float]:
@@ -43,6 +92,7 @@ def part(
     transparency: float | None = None,
     shape: str | None = None,
 ) -> dict:
+    role = texture_role_for(name, material)
     props: dict = {
         "Anchored": True,
         "CanCollide": False,
@@ -60,7 +110,16 @@ def part(
         props["Transparency"] = transparency
     if shape is not None:
         props["Shape"] = shape
-    return {"Name": name, "ClassName": "Part", "Properties": props}
+    node: dict = {
+        "Name": name,
+        "ClassName": "Part",
+        "Properties": props,
+        "Attributes": {"TextureRole": role},
+    }
+    kids = texture_children(role)
+    if kids and name != "Root" and (transparency is None or transparency < 0.99):
+        node["Children"] = kids
+    return node
 
 
 def wedge(
@@ -71,7 +130,8 @@ def wedge(
     color: list[float],
     material: str = "SmoothPlastic",
 ) -> dict:
-    return {
+    role = texture_role_for(name, material)
+    node: dict = {
         "Name": name,
         "ClassName": "WedgePart",
         "Properties": {
@@ -87,7 +147,12 @@ def wedge(
             "TopSurface": "Smooth",
             "BottomSurface": "Smooth",
         },
+        "Attributes": {"TextureRole": role},
     }
+    kids = texture_children(role)
+    if kids:
+        node["Children"] = kids
+    return node
 
 
 def cf(pos: list[float], *, look_z: bool = True) -> list[float]:

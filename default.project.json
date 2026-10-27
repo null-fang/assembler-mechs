@@ -107,6 +107,45 @@
       "$properties": {
         "HttpEnabled": true
       }
+    },
+    "MaterialService": {
+      "$className": "MaterialService",
+      "AssemblerMetalPlate": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "Metal"
+        }
+      },
+      "AssemblerScratchedSteel": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "CorrodedMetal"
+        }
+      },
+      "AssemblerHazard": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "SmoothPlastic"
+        }
+      },
+      "AssemblerRubber": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "Fabric"
+        }
+      },
+      "AssemblerCarbon": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "Foil"
+        }
+      },
+      "AssemblerEmissive": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "Neon"
+        }
+      }
     }
   }
 }

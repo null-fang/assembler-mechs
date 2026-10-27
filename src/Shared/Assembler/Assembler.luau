@@ -5,6 +5,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Sockets = require(script.Parent.Sockets)
+local TextureApply = require(script.Parent.TextureApply)
 local Slots = require(script.Parent.Parent.Parts.Slots)
 local Catalog = require(script.Parent.Parent.Parts.Catalog)
 
@@ -113,6 +114,8 @@ local function polishAuthoredModel(
 	anchored: boolean
 )
 	resolvePrimary(asset)
+	-- Stamp industrial textures first so isTexturedBasePart / KitContract skip recolor.
+	TextureApply.applyModel(asset, rarity)
 	for _, d in asset:GetDescendants() do
 		if d:IsA("BasePart") then
 			d.Anchored = anchored

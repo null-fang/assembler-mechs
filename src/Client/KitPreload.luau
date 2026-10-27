@@ -23,6 +23,22 @@ function KitPreload.run()
 		return
 	end
 
+	-- Warm texture templates + embed bake path used by TextureApply.
+	local textures = assets:FindFirstChild("Textures")
+	task.spawn(function()
+		local ok, TextureApply = pcall(function()
+			return require(ReplicatedStorage.Shared.Assembler.TextureApply)
+		end)
+		if ok and TextureApply and TextureApply.preloadEmbeds then
+			pcall(TextureApply.preloadEmbeds)
+		end
+		if textures then
+			pcall(function()
+				ContentProvider:PreloadAsync(textures:GetChildren())
+			end)
+		end
+	end)
+
 	-- Priority: starter loadout ids first, then a bounded batch of the rest.
 	local priority = {
 		"rusty_cage",

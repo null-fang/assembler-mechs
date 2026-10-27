@@ -1,0 +1,19 @@
+{
+  "ClassName": "Texture",
+  "Properties": {
+    "Texture": "",
+    "StudsPerTileU": 1.5,
+    "StudsPerTileV": 1.5,
+    "Face": "Front",
+    "Transparency": 0.25,
+    "Color3": [
+      1,
+      1,
+      1
+    ]
+  },
+  "Attributes": {
+    "TextureRole": "hazard_stripe",
+    "AssemblerTextureTemplate": true
+  }
+}
