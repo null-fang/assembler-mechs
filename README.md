@@ -30,7 +30,7 @@ Build a mech from modular parts. Fight turn-based 1v1 in 3D arenas — PvE campa
 
 ```
 src/Workspace/     Lobby + Arenas (Rojo maps)
-src/AssemblerAssets/Parts   149 multi-Part kits (clone-by-PartId)
+src/AssemblerAssets/Parts   205 multi-Part kits (clone-by-PartId)
 src/Shared/        Combat, Assembler, Parts, Modes, Economy, World/Tags, Session/Phase
 src/Server/World/  ArenaService, LobbyPrompts, WorldBootstrap (CollectionService tags)
 src/Server/Parts/  InventoryService

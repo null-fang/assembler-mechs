@@ -46,8 +46,8 @@ def main() -> None:
         fail("verify_part_coverage")
 
     kits = kit_ids()
-    if len(kits) < 149:
-        fail(f"expected ≥149 kits, got {len(kits)}")
+    if len(kits) < 205:
+        fail(f"expected ≥205 kits, got {len(kits)}")
     ok(f"{len(kits)} kits on disk")
 
     starter = [

@@ -52,7 +52,7 @@ function KitPreload.run()
 		enqueue(parts:FindFirstChild(id))
 	end
 
-	local budget = 48
+	local budget = 72
 	for _, child in parts:GetChildren() do
 		if #queue >= budget then
 			break
