@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "contract": "Assembler TextureIds \u2014 shared by generate_part_models.py and Shared.Assembler.TextureIds",
+  "sizePreferred": 256,
+  "runtimeEmbedSize": 128,
+  "pngDir": "assets/textures",
+  "textures": {
+    "metal_plate": {
+      "rbxassetid": "",
+      "file": "assets/textures/metal_plate.png",
+      "role": "hull",
+      "studsPerTile": 2.5,
+      "transparency": 0.35,
+      "description": "Industrial metal plate with panel seams and rivets"
+    },
+    "scratched_steel": {
+      "rbxassetid": "",
+      "file": "assets/textures/scratched_steel.png",
+      "role": "steel",
+      "studsPerTile": 2.0,
+      "transparency": 0.4,
+      "description": "Scratched brushed steel"
+    },
+    "hazard_stripe": {
+      "rbxassetid": "",
+      "file": "assets/textures/hazard_stripe.png",
+      "role": "hazard",
+      "studsPerTile": 1.5,
+      "transparency": 0.25,
+      "description": "Yellow/black hazard diagonal"
+    },
+    "matte_rubber": {
+      "rbxassetid": "",
+      "file": "assets/textures/matte_rubber.png",
+      "role": "rubber",
+      "studsPerTile": 3.0,
+      "transparency": 0.45,
+      "description": "Matte rubber / grip"
+    },
+    "carbon_dark": {
+      "rbxassetid": "",
+      "file": "assets/textures/carbon_dark.png",
+      "role": "carbon",
+      "studsPerTile": 1.75,
+      "transparency": 0.3,
+      "description": "Dark carbon twill"
+    },
+    "emissive_strip": {
+      "rbxassetid": "",
+      "file": "assets/textures/emissive_strip.png",
+      "role": "emissive",
+      "studsPerTile": 2.0,
+      "transparency": 0.12,
+      "description": "Visor / muzzle / reactor emissive (always on — not rarity-gated)"
+    }
+  },
+  "materialHints": {
+    "Metal": "metal_plate",
+    "CorrodedMetal": "scratched_steel",
+    "DiamondPlate": "metal_plate",
+    "Neon": "emissive_strip",
+    "SmoothPlastic": "matte_rubber",
+    "Plastic": "matte_rubber",
+    "Fabric": "matte_rubber",
+    "Foil": "carbon_dark",
+    "Glass": "carbon_dark",
+    "ForceField": "emissive_strip",
+    "Concrete": "scratched_steel"
+  },
+  "nameHints": {
+    "Visor": "emissive_strip",
+    "Glow": "emissive_strip",
+    "Lens": "emissive_strip",
+    "Muzzle": "emissive_strip",
+    "Eye": "emissive_strip",
+    "Accent": "metal_plate",
+    "Trim": "scratched_steel",
+    "Joint": "scratched_steel",
+    "Barrel": "scratched_steel",
+    "Tube": "scratched_steel",
+    "Hazard": "hazard_stripe",
+    "Pad": "matte_rubber",
+    "Grip": "matte_rubber",
+    "Rubber": "matte_rubber",
+    "Boot": "matte_rubber",
+    "Sole": "matte_rubber",
+    "Foot": "matte_rubber",
+    "Wheel": "matte_rubber",
+    "Chip": "carbon_dark",
+    "Carbon": "carbon_dark",
+    "Cpu": "carbon_dark",
+    "Board": "carbon_dark",
+    "Card": "carbon_dark",
+    "Core": "metal_plate",
+    "Rim": "metal_plate",
+    "Inset": "metal_plate",
+    "Hull": "metal_plate",
+    "Plate": "metal_plate",
+    "Exhaust": "scratched_steel"
+  }
+}

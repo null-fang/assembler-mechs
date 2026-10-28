@@ -4,6 +4,8 @@ sourcemap.json
 *.rbxlx
 *.rbxm
 *.rbxmx
+*.rbxl.lock
+*.rbxlx.lock
 
 # Wally
 Packages/
@@ -17,3 +19,4 @@ Thumbs.db
 
 # Logs
 *.log
+__pycache__/

@@ -1,0 +1,19 @@
+{
+  "ClassName": "Texture",
+  "Properties": {
+    "Texture": "",
+    "StudsPerTileU": 2.0,
+    "StudsPerTileV": 2.0,
+    "Face": "Front",
+    "Transparency": 0.4,
+    "Color3": [
+      1,
+      1,
+      1
+    ]
+  },
+  "Attributes": {
+    "TextureRole": "scratched_steel",
+    "AssemblerTextureTemplate": true
+  }
+}

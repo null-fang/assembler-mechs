@@ -6,6 +6,9 @@
       "$className": "ReplicatedStorage",
       "Shared": {
         "$path": "src/Shared"
+      },
+      "AssemblerAssets": {
+        "$path": "src/AssemblerAssets"
       }
     },
     "ServerScriptService": {
@@ -27,12 +30,121 @@
       "$className": "Workspace",
       "$properties": {
         "FilteringEnabled": true
+      },
+      "$path": "src/Workspace"
+    },
+    "Lighting": {
+      "$className": "Lighting",
+      "$properties": {
+        "Ambient": [
+          0.22,
+          0.24,
+          0.3
+        ],
+        "Brightness": 2.0,
+        "ClockTime": 16.25,
+        "OutdoorAmbient": [
+          0.28,
+          0.3,
+          0.36
+        ],
+        "GlobalShadows": true,
+        "EnvironmentDiffuseScale": 0.45,
+        "EnvironmentSpecularScale": 0.35,
+        "FogColor": [
+          0.55,
+          0.58,
+          0.65
+        ],
+        "FogStart": 280,
+        "FogEnd": 1400
+      },
+      "Atmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.275,
+          "Offset": 0.12,
+          "Color": [
+            0.72,
+            0.76,
+            0.84
+          ],
+          "Decay": [
+            0.5,
+            0.55,
+            0.62
+          ],
+          "Glare": 0.12,
+          "Haze": 1.15
+        }
+      },
+      "Bloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Enabled": true,
+          "Intensity": 0.32,
+          "Size": 22,
+          "Threshold": 0.92
+        }
+      },
+      "ColorCorrection": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Enabled": true,
+          "Brightness": 0.02,
+          "Contrast": 0.08,
+          "Saturation": 0.1,
+          "TintColor": [
+            1.0,
+            0.98,
+            0.95
+          ]
+        }
       }
     },
     "HttpService": {
       "$className": "HttpService",
       "$properties": {
         "HttpEnabled": true
+      }
+    },
+    "MaterialService": {
+      "$className": "MaterialService",
+      "AssemblerMetalPlate": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "Metal"
+        }
+      },
+      "AssemblerScratchedSteel": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "CorrodedMetal"
+        }
+      },
+      "AssemblerHazard": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "SmoothPlastic"
+        }
+      },
+      "AssemblerRubber": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "Fabric"
+        }
+      },
+      "AssemblerCarbon": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "Foil"
+        }
+      },
+      "AssemblerEmissive": {
+        "$className": "MaterialVariant",
+        "$properties": {
+          "BaseMaterial": "Neon"
+        }
       }
     }
   }

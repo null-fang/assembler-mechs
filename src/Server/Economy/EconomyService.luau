@@ -23,6 +23,11 @@ function EconomyService.addCommon(userId: number, amount: number)
 	w.common += math.max(0, amount)
 end
 
+function EconomyService.addRare(userId: number, amount: number)
+	local w = EconomyService.getWallet(userId)
+	w.rare += math.max(0, amount)
+end
+
 function EconomyService.sellDuplicate(userId: number, part: Slots.PartDef): SellDuplicate.SellResult
 	local w = EconomyService.getWallet(userId)
 	return SellDuplicate.sell(part, w)

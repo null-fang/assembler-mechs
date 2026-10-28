@@ -1,0 +1,3703 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Floor",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          108,
+          2,
+          76
+        ],
+        "Position": [
+          400.0,
+          -1.0,
+          0.0
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6470588235294118,
+          0.7058823529411765
+        ],
+        "Material": "Concrete",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "FrostSheet",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          100,
+          0.2,
+          68
+        ],
+        "Position": [
+          400.0,
+          0.15,
+          0.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.35,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Channel",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          8,
+          72
+        ],
+        "Position": [
+          400.0,
+          -4.0,
+          0.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.35294117647058826,
+          0.5098039215686274
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2
+      }
+    },
+    {
+      "Name": "ChannelSurface",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          17,
+          0.5,
+          70
+        ],
+        "Position": [
+          400.0,
+          -0.05,
+          0.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.25,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "KillChannel",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          4,
+          66
+        ],
+        "Position": [
+          400.0,
+          -10.0,
+          0.0
+        ],
+        "Color": [
+          0.0784313725490196,
+          0.03137254901960784,
+          0.03137254901960784
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0,
+        "CanCollide": false,
+        "CanTouch": true,
+        "CanQuery": true
+      }
+    },
+    {
+      "Name": "ChannelEdgeW",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.3,
+          0.2,
+          68
+        ],
+        "Position": [
+          390.8,
+          0.3,
+          0.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ChannelEdgeE",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.3,
+          0.2,
+          68
+        ],
+        "Position": [
+          409.2,
+          0.3,
+          0.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ChannelCenter",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.2,
+          0.12,
+          60
+        ],
+        "Position": [
+          400.0,
+          0.35,
+          0.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "PierWest",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          38,
+          2.5,
+          64
+        ],
+        "Position": [
+          370.0,
+          0.5,
+          0.0
+        ],
+        "Color": [
+          0.5490196078431373,
+          0.6078431372549019,
+          0.6666666666666666
+        ],
+        "Material": "Concrete",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "PierEast",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          38,
+          2.5,
+          64
+        ],
+        "Position": [
+          430.0,
+          0.5,
+          0.0
+        ],
+        "Color": [
+          0.5490196078431373,
+          0.6078431372549019,
+          0.6666666666666666
+        ],
+        "Material": "Concrete",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "Bollard0_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          358.0,
+          3.8,
+          -30.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap0_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          358.0,
+          6.2,
+          -30.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar0_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          358.0,
+          2.0,
+          -30.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard0_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          358.0,
+          3.8,
+          -10.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap0_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          358.0,
+          6.2,
+          -10.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar0_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          358.0,
+          2.0,
+          -10.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard0_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          358.0,
+          3.8,
+          10.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap0_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          358.0,
+          6.2,
+          10.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar0_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          358.0,
+          2.0,
+          10.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard0_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          358.0,
+          3.8,
+          30.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap0_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          358.0,
+          6.2,
+          30.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar0_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          358.0,
+          2.0,
+          30.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard1_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          378.0,
+          3.8,
+          -30.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap1_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          378.0,
+          6.2,
+          -30.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar1_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          378.0,
+          2.0,
+          -30.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard1_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          378.0,
+          3.8,
+          -10.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap1_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          378.0,
+          6.2,
+          -10.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar1_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          378.0,
+          2.0,
+          -10.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard1_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          378.0,
+          3.8,
+          10.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap1_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          378.0,
+          6.2,
+          10.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar1_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          378.0,
+          2.0,
+          10.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard1_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          378.0,
+          3.8,
+          30.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap1_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          378.0,
+          6.2,
+          30.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar1_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          378.0,
+          2.0,
+          30.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard2_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          422.0,
+          3.8,
+          -30.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap2_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          422.0,
+          6.2,
+          -30.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar2_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          422.0,
+          2.0,
+          -30.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard2_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          422.0,
+          3.8,
+          -10.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap2_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          422.0,
+          6.2,
+          -10.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar2_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          422.0,
+          2.0,
+          -10.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard2_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          422.0,
+          3.8,
+          10.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap2_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          422.0,
+          6.2,
+          10.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar2_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          422.0,
+          2.0,
+          10.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard2_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          422.0,
+          3.8,
+          30.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap2_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          422.0,
+          6.2,
+          30.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar2_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          422.0,
+          2.0,
+          30.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard3_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          442.0,
+          3.8,
+          -30.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap3_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          442.0,
+          6.2,
+          -30.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar3_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          442.0,
+          2.0,
+          -30.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard3_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          442.0,
+          3.8,
+          -10.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap3_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          442.0,
+          6.2,
+          -10.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar3_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          442.0,
+          2.0,
+          -10.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard3_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          442.0,
+          3.8,
+          10.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap3_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          442.0,
+          6.2,
+          10.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar3_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          442.0,
+          2.0,
+          10.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Bollard3_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          4.5,
+          2
+        ],
+        "Position": [
+          442.0,
+          3.8,
+          30.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BollardCap3_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          0.25,
+          2.2
+        ],
+        "Position": [
+          442.0,
+          6.2,
+          30.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "IceCollar3_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.8,
+          0.6,
+          2.8
+        ],
+        "Position": [
+          442.0,
+          2.0,
+          30.0
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.8627450980392157,
+          0.9607843137254902
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.2,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShedLeft",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          18,
+          44
+        ],
+        "Position": [
+          350.0,
+          9.0,
+          0.0
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.43137254901960786,
+          0.5490196078431373
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ShedRight",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          18,
+          44
+        ],
+        "Position": [
+          450.0,
+          9.0,
+          0.0
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.43137254901960786,
+          0.5490196078431373
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ShedNeon0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.25,
+          14,
+          36
+        ],
+        "Position": [
+          349.4,
+          10.0,
+          0.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShedNeon1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.25,
+          14,
+          36
+        ],
+        "Position": [
+          450.6,
+          10.0,
+          0.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "SignDryBay",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          3.5,
+          0.5
+        ],
+        "Position": [
+          400.0,
+          16.0,
+          -36.0
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.12549019607843137,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "DRY DOCK",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.47058823529411764,
+                  0.8235294117647058,
+                  0.9607843137254902
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignDryBay_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          16.560000000000002,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          400.0,
+          14.1,
+          -36.15
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "SignRimevault",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          2.6,
+          0.45
+        ],
+        "Position": [
+          400.0,
+          12.0,
+          36.0
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.12549019607843137,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "RIMEVAULT",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.8627450980392157,
+                  0.9215686274509803,
+                  0.9803921568627451
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignRimevault_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12.88,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          400.0,
+          10.549999999999999,
+          35.85
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "SignPierA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          10,
+          2.2,
+          0.4
+        ],
+        "Position": [
+          370.0,
+          8.0,
+          -34.0
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.12549019607843137,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "PIER A",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.47058823529411764,
+                  0.8235294117647058,
+                  0.9607843137254902
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignPierA_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9.200000000000001,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          370.0,
+          6.75,
+          -34.15
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "SignPierB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          10,
+          2.2,
+          0.4
+        ],
+        "Position": [
+          430.0,
+          8.0,
+          -34.0
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.12549019607843137,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "PIER B",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.8627450980392157,
+                  0.9215686274509803,
+                  0.9803921568627451
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignPierB_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9.200000000000001,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          430.0,
+          6.75,
+          -34.15
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Catwalk",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          22,
+          0.6,
+          7
+        ],
+        "Position": [
+          400.0,
+          9.0,
+          0.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRailN_Rail",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          20,
+          0.4,
+          0.4
+        ],
+        "Position": [
+          400.0,
+          11.4,
+          -3.6
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.5490196078431373,
+          0.7058823529411765
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRailN_Post0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.4,
+          0.35
+        ],
+        "Position": [
+          391.0,
+          10.2,
+          -3.6
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRailN_Post1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.4,
+          0.35
+        ],
+        "Position": [
+          400.0,
+          10.2,
+          -3.6
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRailN_Post2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.4,
+          0.35
+        ],
+        "Position": [
+          409.0,
+          10.2,
+          -3.6
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRailS_Rail",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          20,
+          0.4,
+          0.4
+        ],
+        "Position": [
+          400.0,
+          11.4,
+          3.6
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.5490196078431373,
+          0.7058823529411765
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRailS_Post0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.4,
+          0.35
+        ],
+        "Position": [
+          391.0,
+          10.2,
+          3.6
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRailS_Post1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.4,
+          0.35
+        ],
+        "Position": [
+          400.0,
+          10.2,
+          3.6
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CatRailS_Post2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          2.4,
+          0.35
+        ],
+        "Position": [
+          409.0,
+          10.2,
+          3.6
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BridgeW",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          0.5,
+          5
+        ],
+        "Position": [
+          384.0,
+          2.2,
+          0.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BridgeE",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          0.5,
+          5
+        ],
+        "Position": [
+          416.0,
+          2.2,
+          0.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoHeap0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.5,
+          2.2,
+          3.0
+        ],
+        "Position": [
+          362.0,
+          2.6,
+          -18.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.7254901960784313,
+          0.8235294117647058
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoChunk0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          364.2,
+          2.2,
+          -19.5
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.5441176470588235,
+          0.6176470588235294
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoHeap1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.7,
+          2.75,
+          4.4
+        ],
+        "Position": [
+          364.0,
+          2.875,
+          16.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.7254901960784313,
+          0.8235294117647058
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoHeap2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5.9,
+          3.3000000000000003,
+          3.0
+        ],
+        "Position": [
+          436.0,
+          3.1500000000000004,
+          -20.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.7254901960784313,
+          0.8235294117647058
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoChunk2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          438.2,
+          2.2,
+          -21.5
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.5441176470588235,
+          0.6176470588235294
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoHeap3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.5,
+          3.8500000000000005,
+          4.4
+        ],
+        "Position": [
+          438.0,
+          3.4250000000000003,
+          14.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.7254901960784313,
+          0.8235294117647058
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoHeap4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.7,
+          2.2,
+          3.0
+        ],
+        "Position": [
+          366.0,
+          2.6,
+          -4.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.7254901960784313,
+          0.8235294117647058
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoChunk4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          368.2,
+          2.2,
+          -5.5
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.5441176470588235,
+          0.6176470588235294
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoHeap5",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5.9,
+          2.75,
+          4.4
+        ],
+        "Position": [
+          434.0,
+          2.875,
+          6.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.7254901960784313,
+          0.8235294117647058
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoHeap6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.5,
+          3.3000000000000003,
+          3.0
+        ],
+        "Position": [
+          360.0,
+          3.1500000000000004,
+          24.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.7254901960784313,
+          0.8235294117647058
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoChunk6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          362.2,
+          2.2,
+          22.5
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.5441176470588235,
+          0.6176470588235294
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "IceCargoHeap7",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.7,
+          3.8500000000000005,
+          4.4
+        ],
+        "Position": [
+          440.0,
+          3.4250000000000003,
+          -26.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.7254901960784313,
+          0.8235294117647058
+        ],
+        "Material": "Ice",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "DockCrate0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3.5,
+          4
+        ],
+        "Position": [
+          362.0,
+          3.25,
+          -18.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "DockCrate1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3.5,
+          4
+        ],
+        "Position": [
+          364.0,
+          3.25,
+          16.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "DockCrate2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3.5,
+          4
+        ],
+        "Position": [
+          436.0,
+          3.25,
+          -20.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "DockCrate3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3.5,
+          4
+        ],
+        "Position": [
+          438.0,
+          3.25,
+          14.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "DockCrate4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          3.5,
+          4
+        ],
+        "Position": [
+          366.0,
+          3.25,
+          -4.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "DockSpool0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          4,
+          5
+        ],
+        "Position": [
+          360.0,
+          3.5,
+          0.0
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "DockSpool1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          4,
+          5
+        ],
+        "Position": [
+          440.0,
+          3.5,
+          5.0
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "DockSpool2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          4,
+          5
+        ],
+        "Position": [
+          372.0,
+          3.5,
+          28.0
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "DockSpool3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          4,
+          5
+        ],
+        "Position": [
+          428.0,
+          3.5,
+          -28.0
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "GantryLegs",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3,
+          22,
+          3
+        ],
+        "Position": [
+          392.0,
+          12.0,
+          -28.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "GantryBeam",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          50,
+          2,
+          2.5
+        ],
+        "Position": [
+          400.0,
+          22.0,
+          -28.0
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.5882352941176471,
+          0.7058823529411765
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "GantryNeon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          46,
+          0.2,
+          0.3
+        ],
+        "Position": [
+          400.0,
+          21.2,
+          -28.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "GantryLegsB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3,
+          22,
+          3
+        ],
+        "Position": [
+          408.0,
+          12.0,
+          28.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "GantryBeamB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          50,
+          2,
+          2.5
+        ],
+        "Position": [
+          400.0,
+          22.0,
+          28.0
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.5882352941176471,
+          0.7058823529411765
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "GantryNeonB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          46,
+          0.2,
+          0.3
+        ],
+        "Position": [
+          400.0,
+          21.2,
+          28.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "PadA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          1.2,
+          14
+        ],
+        "Position": [
+          370.0,
+          2.1,
+          0.0
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.5490196078431373,
+          0.6666666666666666
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Spawn",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              2.5,
+              0
+            ]
+          }
+        },
+        {
+          "Name": "PadLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "P1",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "PadB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          1.2,
+          14
+        ],
+        "Position": [
+          430.0,
+          2.1,
+          0.0
+        ],
+        "Color": [
+          0.7058823529411765,
+          0.7843137254901961,
+          0.8627450980392157
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Spawn",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              2.5,
+              0
+            ]
+          }
+        },
+        {
+          "Name": "PadLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "P2",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "PadARing",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          16.5,
+          0.25,
+          16.5
+        ],
+        "Position": [
+          370.0,
+          2.9,
+          0.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "PadBRing",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          16.5,
+          0.25,
+          16.5
+        ],
+        "Position": [
+          430.0,
+          2.9,
+          0.0
+        ],
+        "Color": [
+          0.8627450980392157,
+          0.9215686274509803,
+          0.9803921568627451
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ArenaOrigin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          2,
+          2
+        ],
+        "Position": [
+          400.0,
+          2.5,
+          0.0
+        ],
+        "Color": [
+          1.0,
+          0.7843137254901961,
+          0.1568627450980392
+        ],
+        "Material": "Neon",
+        "Transparency": 0.35,
+        "CanCollide": false,
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Center",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          10,
+          2
+        ],
+        "Position": [
+          370.0,
+          7.0,
+          -22.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.65,
+            "Range": 46,
+            "Color": [
+              0.7843137254901961,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          10,
+          2
+        ],
+        "Position": [
+          430.0,
+          7.0,
+          -22.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.65,
+            "Range": 46,
+            "Color": [
+              0.7843137254901961,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          10,
+          2
+        ],
+        "Position": [
+          370.0,
+          7.0,
+          22.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.65,
+            "Range": 46,
+            "Color": [
+              0.7843137254901961,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          10,
+          2
+        ],
+        "Position": [
+          430.0,
+          7.0,
+          22.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.65,
+            "Range": 46,
+            "Color": [
+              0.7843137254901961,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          10,
+          2
+        ],
+        "Position": [
+          400.0,
+          7.0,
+          -34.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.65,
+            "Range": 46,
+            "Color": [
+              0.7843137254901961,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp5",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          10,
+          2
+        ],
+        "Position": [
+          400.0,
+          7.0,
+          34.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.65,
+            "Range": 46,
+            "Color": [
+              0.7843137254901961,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          10,
+          2
+        ],
+        "Position": [
+          356.0,
+          7.0,
+          0.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.65,
+            "Range": 46,
+            "Color": [
+              0.7843137254901961,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "DockLamp7",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          10,
+          2
+        ],
+        "Position": [
+          444.0,
+          7.0,
+          0.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Light",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.65,
+            "Range": 46,
+            "Color": [
+              0.7843137254901961,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ChannelMist",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          10,
+          2,
+          40
+        ],
+        "Position": [
+          400.0,
+          1.5,
+          0.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.8235294117647058,
+          0.9607843137254902
+        ],
+        "Material": "ForceField",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.85,
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Mist",
+          "ClassName": "ParticleEmitter",
+          "Properties": {
+            "Texture": "rbxasset://textures/particles/smoke_main.dds",
+            "Rate": 10,
+            "Lifetime": [
+              1.5,
+              3.0
+            ],
+            "Speed": [
+              0.5,
+              1.8
+            ],
+            "SpreadAngle": [
+              25.0,
+              25.0
+            ],
+            "Drag": 4.0,
+            "LightEmission": 0.12,
+            "LightInfluence": 0.2,
+            "Size": [
+              {
+                "time": 0.0,
+                "value": 1.5
+              },
+              {
+                "time": 1.0,
+                "value": 4.0
+              }
+            ],
+            "Transparency": [
+              {
+                "time": 0.0,
+                "value": 0.35
+              },
+              {
+                "time": 0.7,
+                "value": 0.55
+              },
+              {
+                "time": 1.0,
+                "value": 1.0
+              }
+            ],
+            "Color": [
+              {
+                "time": 0.0,
+                "value": [
+                  0.7058823529411765,
+                  0.8627450980392157,
+                  0.9607843137254902
+                ]
+              },
+              {
+                "time": 1.0,
+                "value": [
+                  0.7058823529411765,
+                  0.8627450980392157,
+                  0.9607843137254902
+                ]
+              }
+            ],
+            "Enabled": true,
+            "LockedToPart": false
+          }
+        }
+      ]
+    },
+    {
+      "Name": "CoolHaze",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          100,
+          36,
+          70
+        ],
+        "Position": [
+          400.0,
+          16.0,
+          0.0
+        ],
+        "Color": [
+          0.5490196078431373,
+          0.7450980392156863,
+          0.9019607843137255
+        ],
+        "Material": "ForceField",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.93,
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "MoodWash",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          100,
+          2,
+          70
+        ],
+        "Position": [
+          400.0,
+          34.0,
+          0.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.8235294117647058,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.95,
+        "CanCollide": false
+      }
+    }
+  ],
+  "Attributes": {
+    "ThemeId": "DryDock",
+    "ThemeLine": "Rimevault",
+    "ArenaId": "DryDock",
+    "Mood": "arctic"
+  },
+  "Tags": [
+    "AssemblerArena",
+    "AssemblerArenaTheme"
+  ]
+}

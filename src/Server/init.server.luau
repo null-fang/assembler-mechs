@@ -1,12 +1,398 @@
--- Assembler server entry (scaffold).
--- Campaign ladder + PvP matchmaking stubs load here; full combat later.
+-- Assembler server entry — lobby world + campaign combat + mech bay.
 
+local Players = game:GetService("Players")
+
+local Remotes = require(script.Remotes)
 local Ladder = require(script.Campaign.Ladder)
 local Matchmaking = require(script.PvP.Matchmaking)
+local CampaignService = require(script.Campaign.CampaignService)
+local CombatHost = require(script.Combat.CombatHost)
+local EconomyService = require(script.Economy.EconomyService)
+local CrateService = require(script.Economy.CrateService)
+local DailyLoginService = require(script.Economy.DailyLoginService)
+local InventoryService = require(script.Parts.InventoryService)
+local OnboardingService = require(script.Onboarding.OnboardingService)
+local ArenaService = require(script.World.ArenaService)
+local LobbyPrompts = require(script.World.LobbyPrompts)
+local PlayerSession = require(script.Session.PlayerSession)
+local AccountLevel = require(game.ReplicatedStorage.Shared.Progress.AccountLevel)
+local Catalog = require(game.ReplicatedStorage.Shared.Parts.Catalog)
+local ThemedStarters = require(game.ReplicatedStorage.Shared.Parts.ThemedStarters)
+local BattleOpponent = require(game.ReplicatedStorage.Shared.Modes.BattleOpponent)
+local SoftStarter = require(game.ReplicatedStorage.Shared.Parts.StarterMech)
+
+Remotes.init()
+
+local function fireWallet(player: Player)
+	local progress = CampaignService.getProgress(player.UserId)
+	Remotes.WalletUpdated:FireClient(player, {
+		wallet = EconomyService.getWallet(player.UserId),
+		progress = progress,
+		level = AccountLevel.fromXp(progress.xp),
+	})
+end
+
+-- Soft rate limit for turn submits (modern remote hygiene).
+local lastSubmitAt: { [number]: number } = {}
+local SUBMIT_MIN_GAP = 0.05
+
+task.spawn(function()
+	if ArenaService.ensureWorld() then
+		print("[Assembler] Lobby + Arenas found — GaragePedestal / PadA / PadB ready")
+		LobbyPrompts.wire(Remotes)
+	end
+end)
 
 local firstSlice = Ladder.buildFirstSlice()
 print(("[Assembler] Campaign ladder ready: %d NPC fights (no bosses)"):format(#firstSlice))
-print("[Assembler] PvP matchmaking stub loaded (not in first shippable slice)")
+print("[Assembler] PvP matchmaking stub loaded (shared combat path intact)")
 
--- Keep refs so require graph stays live for Rojo sync / future wiring.
-local _ = Matchmaking
+local function refreshPreview(player: Player)
+	CampaignService.rememberDisplayName(player.UserId, player.DisplayName)
+	local loadout = InventoryService.activeLoadout(player.UserId)
+	ArenaService.spawnGaragePreview(loadout, player.DisplayName)
+end
+
+Players.PlayerAdded:Connect(function(player)
+	PlayerSession.toLobby(player)
+	InventoryService.grantStarter(player.UserId)
+	local wallet = EconomyService.getWallet(player.UserId)
+	if wallet.common == 0 then
+		EconomyService.addCommon(player.UserId, 120)
+	end
+	if wallet.rare == 0 then
+		EconomyService.addRare(player.UserId, 2)
+	end
+	CampaignService.getProgress(player.UserId)
+	OnboardingService.get(player.UserId)
+	CrateService.ensureStarter(player.UserId)
+	CampaignService.rememberDisplayName(player.UserId, player.DisplayName)
+	task.defer(function()
+		refreshPreview(player)
+	end)
+	player.CharacterAdded:Connect(function()
+		task.wait(0.5)
+		-- Don't yank mid-fight if character respawns during combat.
+		if player:GetAttribute("AssemblerPhase") == "Combat" then
+			local arenaId = player:GetAttribute("AssemblerArena")
+			if typeof(arenaId) == "string" and arenaId ~= "" then
+				ArenaService.teleportPlayerToArena(player, arenaId :: any)
+				return
+			end
+		end
+		ArenaService.teleportPlayerToLobby(player)
+	end)
+	if player.Character then
+		task.defer(function()
+			ArenaService.teleportPlayerToLobby(player)
+		end)
+	end
+end)
+
+for _, player in Players:GetPlayers() do
+	PlayerSession.toLobby(player)
+	InventoryService.grantStarter(player.UserId)
+	OnboardingService.get(player.UserId)
+	CrateService.ensureStarter(player.UserId)
+	task.defer(function()
+		refreshPreview(player)
+	end)
+end
+
+Remotes.GetBootstrap.OnServerInvoke = function(player)
+	local progress = CampaignService.getProgress(player.UserId)
+	return {
+		wallet = EconomyService.getWallet(player.UserId),
+		progress = progress,
+		level = AccountLevel.fromXp(progress.xp),
+		loadout = InventoryService.loadoutSummary(player.UserId),
+		inventory = InventoryService.clientSnapshot(player.UserId),
+		ladderCount = Ladder.FIRST_SLICE_COUNT,
+		activeArena = ArenaService.getActiveArenaId(),
+		onboarding = OnboardingService.clientSnapshot(player.UserId),
+		crate = CrateService.clientSnapshot(player.UserId),
+		daily = DailyLoginService.status(player.UserId),
+		themes = ThemedStarters.clientList(),
+		queue = Matchmaking.status(player.UserId),
+	}
+end
+
+Remotes.SellPart.OnServerInvoke = function(player, uid)
+	if typeof(uid) ~= "string" then
+		return { ok = false, error = "Bad args" }
+	end
+	local owned = InventoryService.findOwned(player.UserId, uid)
+	if not owned then
+		return { ok = false, error = "Not owned" }
+	end
+	if owned.equippedOn then
+		return { ok = false, error = "Unequip first" }
+	end
+	local part = Catalog.require(owned.partId)
+	local removed, remErr = InventoryService.removePart(player.UserId, uid)
+	if not removed then
+		return { ok = false, error = remErr or "Could not sell" }
+	end
+	local sold = EconomyService.sellDuplicate(player.UserId, part)
+	local snap = InventoryService.clientSnapshot(player.UserId)
+	Remotes.InventoryUpdated:FireClient(player, snap)
+	fireWallet(player)
+	return {
+		ok = true,
+		commonGained = sold.commonGained,
+		wallet = sold.wallet,
+		inventory = snap,
+		partName = part.name,
+	}
+end
+
+Remotes.CompleteOnboarding.OnServerInvoke = function(player, stepId)
+	if typeof(stepId) ~= "string" then
+		return OnboardingService.clientSnapshot(player.UserId)
+	end
+	OnboardingService.complete(player.UserId, stepId)
+	return OnboardingService.clientSnapshot(player.UserId)
+end
+
+Remotes.GetCrate.OnServerInvoke = function(player)
+	CrateService.ensureStarter(player.UserId)
+	return CrateService.clientSnapshot(player.UserId)
+end
+
+Remotes.PickCrate.OnServerInvoke = function(player, choiceIndex)
+	if typeof(choiceIndex) ~= "number" then
+		return { ok = false, error = "Bad pick" }
+	end
+	local ok, err, payload = CrateService.pick(player.UserId, math.floor(choiceIndex))
+	if not ok then
+		return { ok = false, error = err or "Pick failed" }
+	end
+	OnboardingService.complete(player.UserId, "crate")
+	if payload and payload.inventory then
+		Remotes.InventoryUpdated:FireClient(player, payload.inventory)
+	end
+	refreshPreview(player)
+	return {
+		ok = true,
+		chosen = payload and payload.chosen,
+		inventory = payload and payload.inventory,
+		onboarding = OnboardingService.clientSnapshot(player.UserId),
+	}
+end
+
+Remotes.GetInventory.OnServerInvoke = function(player)
+	return InventoryService.clientSnapshot(player.UserId)
+end
+
+Remotes.EquipPart.OnServerInvoke = function(player, uid, target)
+	if typeof(uid) ~= "string" or typeof(target) ~= "string" then
+		return { ok = false, error = "Bad args" }
+	end
+	local ok, err = InventoryService.equip(player.UserId, uid, target)
+	if not ok then
+		return { ok = false, error = err or "Equip failed" }
+	end
+	refreshPreview(player)
+	local snap = InventoryService.clientSnapshot(player.UserId)
+	Remotes.InventoryUpdated:FireClient(player, snap)
+	return { ok = true, inventory = snap }
+end
+
+Remotes.UnequipPart.OnServerInvoke = function(player, field)
+	if typeof(field) ~= "string" then
+		return { ok = false, error = "Bad args" }
+	end
+	local ok, err = InventoryService.unequip(player.UserId, field)
+	if not ok then
+		return { ok = false, error = err or "Unequip failed" }
+	end
+	refreshPreview(player)
+	local snap = InventoryService.clientSnapshot(player.UserId)
+	Remotes.InventoryUpdated:FireClient(player, snap)
+	return { ok = true, inventory = snap }
+end
+
+Remotes.ListCampaign.OnServerInvoke = function(player)
+	return CampaignService.listFights(player.UserId)
+end
+
+Remotes.StartFight.OnServerInvoke = function(player, fightIndex)
+	if typeof(fightIndex) ~= "number" then
+		return { ok = false, error = "Bad index" }
+	end
+	local live, err = CampaignService.startFight(player.UserId, player.DisplayName, math.floor(fightIndex))
+	if not live then
+		return { ok = false, error = err or "Could not start" }
+	end
+	local arenaId = (live :: any).arenaId
+	PlayerSession.toCombat(player, arenaId, math.floor(fightIndex))
+	if arenaId then
+		ArenaService.teleportPlayerToArena(player, arenaId)
+	end
+	local snap = CombatHost.snapshot(live)
+	snap.arenaId = arenaId
+	snap.taunt = (live :: any).taunt
+	snap.npcName = (live :: any).npcName
+	Remotes.BattleUpdated:FireClient(player, snap)
+	return { ok = true, battle = snap, arenaId = arenaId }
+end
+
+Remotes.GetBattle.OnServerInvoke = function(player)
+	local live = CombatHost.getForUser(player.UserId)
+	if not live then
+		return { ok = false, error = "No active fight" }
+	end
+	local snap = CombatHost.snapshot(live)
+	snap.taunt = (live :: any).taunt
+	snap.npcName = (live :: any).npcName
+	return { ok = true, battle = snap }
+end
+
+Remotes.SubmitAction.OnServerInvoke = function(player, action)
+	if typeof(action) ~= "table" or typeof(action.kind) ~= "string" then
+		return { ok = false, error = "Bad action" }
+	end
+	local now = os.clock()
+	local prev = lastSubmitAt[player.UserId]
+	if prev and now - prev < SUBMIT_MIN_GAP then
+		return { ok = false, error = "Slow down" }
+	end
+	lastSubmitAt[player.UserId] = now
+
+	local live = CombatHost.getForUser(player.UserId)
+	if not live then
+		return { ok = false, error = "No active fight" }
+	end
+
+	local ok, err = CombatHost.applyPlayerAction(live, action)
+	if not ok then
+		return { ok = false, error = err or "Rejected", battle = CombatHost.snapshot(live) }
+	end
+
+	local snap = CombatHost.snapshot(live)
+	snap.taunt = (live :: any).taunt
+	snap.npcName = (live :: any).npcName
+	Remotes.BattleUpdated:FireClient(player, snap)
+
+	local settled = CampaignService.settleIfFinished(player.UserId, live)
+	if settled then
+		PlayerSession.toLobby(player)
+		Remotes.FightSettled:FireClient(player, settled)
+		fireWallet(player)
+		-- Longer hold so banner + reward sheet can land before lobby return.
+		task.delay(3.4, function()
+			if player.Parent then
+				ArenaService.teleportPlayerToLobby(player)
+				Remotes.ReturnLobby:FireClient(player, settled)
+			end
+		end)
+		return { ok = true, battle = snap, settled = settled }
+	end
+
+	return { ok = true, battle = snap }
+end
+
+Remotes.GetDaily.OnServerInvoke = function(player)
+	return DailyLoginService.status(player.UserId)
+end
+
+Remotes.ClaimDaily.OnServerInvoke = function(player)
+	local ok, err, payload = DailyLoginService.claim(player.UserId)
+	if not ok then
+		return { ok = false, error = err or "Claim failed", status = DailyLoginService.status(player.UserId) }
+	end
+	fireWallet(player)
+	Remotes.DailyClaimed:FireClient(player, payload)
+	return {
+		ok = true,
+		reward = payload,
+		status = DailyLoginService.status(player.UserId),
+		crate = CrateService.clientSnapshot(player.UserId),
+	}
+end
+
+Remotes.ListThemes.OnServerInvoke = function(_player)
+	return ThemedStarters.clientList()
+end
+
+Remotes.GetQueueStatus.OnServerInvoke = function(player)
+	return Matchmaking.status(player.UserId)
+end
+
+Remotes.QueuePvP.OnServerInvoke = function(player)
+	if CombatHost.getForUser(player.UserId) then
+		return { ok = false, error = "Already in a fight", status = Matchmaking.status(player.UserId) }
+	end
+	Matchmaking.enqueue({
+		userId = player.UserId,
+		displayName = player.DisplayName,
+		powerBand = 1,
+		joinedAt = os.clock(),
+	})
+	local status = Matchmaking.status(player.UserId)
+	Remotes.QueueUpdated:FireClient(player, status)
+	-- Thin stub: try pair if a second player is already waiting.
+	local pair = Matchmaking.tryPair()
+	if pair then
+		-- Full PvP duel deferred — both stay notified; no live dual session yet.
+		return {
+			ok = true,
+			status = Matchmaking.status(player.UserId),
+			paired = true,
+			note = "Pair found (stub) — use Ghost Spar to exercise resolver.",
+		}
+	end
+	return { ok = true, status = status, paired = false }
+end
+
+Remotes.LeaveQueue.OnServerInvoke = function(player)
+	Matchmaking.dequeue(player.UserId)
+	local status = Matchmaking.status(player.UserId)
+	Remotes.QueueUpdated:FireClient(player, status)
+	return { ok = true, status = status }
+end
+
+Remotes.StartGhostSpar.OnServerInvoke = function(player)
+	if CombatHost.getForUser(player.UserId) then
+		return { ok = false, error = "Already in a fight" }
+	end
+	Matchmaking.dequeue(player.UserId)
+	local loadout = InventoryService.activeLoadout(player.UserId)
+	if not SoftStarter.isLegal(loadout) then
+		InventoryService.grantStarter(player.UserId)
+		loadout = InventoryService.activeLoadout(player.UserId)
+		if not SoftStarter.isLegal(loadout) then
+			return { ok = false, error = "Mech not legal" }
+		end
+	end
+	local playerOpp = BattleOpponent.fromPlayer(player.UserId, player.DisplayName, "primary", loadout)
+	local ghost = Matchmaking.ghostOpponent("Queue Ghost")
+	local live = CombatHost.beginPvP(playerOpp, ghost, player.UserId)
+	local arenaId = ArenaService.spawnFight(
+		loadout,
+		player.DisplayName,
+		ghost.loadout :: any,
+		ghost.displayName,
+		1
+	)
+	;(live :: any).arenaId = arenaId
+	;(live :: any).taunt = "Queue stub. Same resolver."
+	;(live :: any).npcName = ghost.displayName
+	;(live :: any).isGhostSpar = true
+	PlayerSession.toCombat(player, arenaId, 0)
+	if arenaId then
+		ArenaService.teleportPlayerToArena(player, arenaId)
+	end
+	local snap = CombatHost.snapshot(live)
+	snap.arenaId = arenaId
+	snap.taunt = (live :: any).taunt
+	snap.npcName = (live :: any).npcName
+	snap.mode = "PvP"
+	Remotes.BattleUpdated:FireClient(player, snap)
+	Remotes.QueueUpdated:FireClient(player, Matchmaking.status(player.UserId))
+	return { ok = true, battle = snap, arenaId = arenaId }
+end
+
+-- Ghost spar settles through the same SubmitAction path; treat as soft campaign payout index 1.
+-- settleIfFinished already uses fightIndex — ghost sets nil; patch via CampaignService when index missing.
+print("[Assembler] Server ready — Campaign / Garage / Daily / PvP stub")

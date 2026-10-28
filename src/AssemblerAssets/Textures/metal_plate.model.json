@@ -1,0 +1,19 @@
+{
+  "ClassName": "Texture",
+  "Properties": {
+    "Texture": "",
+    "StudsPerTileU": 2.5,
+    "StudsPerTileV": 2.5,
+    "Face": "Front",
+    "Transparency": 0.35,
+    "Color3": [
+      1,
+      1,
+      1
+    ]
+  },
+  "Attributes": {
+    "TextureRole": "metal_plate",
+    "AssemblerTextureTemplate": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "ClassName": "Texture",
+  "Properties": {
+    "Texture": "",
+    "StudsPerTileU": 3.0,
+    "StudsPerTileV": 3.0,
+    "Face": "Front",
+    "Transparency": 0.45,
+    "Color3": [
+      1,
+      1,
+      1
+    ]
+  },
+  "Attributes": {
+    "TextureRole": "matte_rubber",
+    "AssemblerTextureTemplate": true
+  }
+}
