@@ -71,6 +71,17 @@ def main() -> None:
         fail("HeroStarterMech showcase missing")
     else:
         ok("HeroStarterMech showcase")
+    for theme_show in (
+        "ThemeScrapMech",
+        "ThemeArcticMech",
+        "ThemeDesertMech",
+        "ThemeNeonMech",
+    ):
+        path = ROOT / f"src/AssemblerAssets/Showcase/{theme_show}.model.json"
+        if not path.exists():
+            fail(f"{theme_show} showcase missing")
+        else:
+            ok(f"{theme_show} showcase")
 
     sockets = (ROOT / "src/Shared/Assembler/Sockets.luau").read_text(encoding="utf-8")
     if "TORSO_HEIGHT = 3.85" not in sockets:
