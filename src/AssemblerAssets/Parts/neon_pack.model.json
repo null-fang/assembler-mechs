@@ -1,0 +1,454 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
+      }
+    },
+    {
+      "Name": "Cell",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.5,
+          0.9,
+          0.65
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          0.08627450980392157,
+          0.0784313725490196,
+          0.12549019607843137
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "CellCap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.35,
+          0.2,
+          0.55
+        ],
+        "Position": [
+          0,
+          0.55,
+          0
+        ],
+        "Color": [
+          0.19607843137254902,
+          0.21176470588235294,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Terminal",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.32,
+          0.32,
+          0.24
+        ],
+        "Position": [
+          0.48,
+          0.42,
+          0.38
+        ],
+        "Color": [
+          1.0,
+          0.23529411764705882,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "TerminalNeg",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.32,
+          0.32,
+          0.24
+        ],
+        "Position": [
+          -0.48,
+          0.42,
+          0.38
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.37254901960784315,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Stripe",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.2,
+          0.12,
+          0.1
+        ],
+        "Position": [
+          0,
+          0.15,
+          0.38
+        ],
+        "Color": [
+          0.1568627450980392,
+          1.0,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "ClampL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18,
+          0.7,
+          0.48
+        ],
+        "Position": [
+          -0.78,
+          0,
+          0
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.37254901960784315,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ClampR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18,
+          0.7,
+          0.48
+        ],
+        "Position": [
+          0.78,
+          0,
+          0
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.37254901960784315,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "CellBand",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.55,
+          0.12,
+          0.7
+        ],
+        "Position": [
+          0,
+          -0.2,
+          0
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.1411764705882353,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BatVent0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.42,
+          0.08
+        ],
+        "Position": [
+          -0.4,
+          -0.15,
+          0.38
+        ],
+        "Color": [
+          0.08627450980392157,
+          0.0784313725490196,
+          0.12549019607843137
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BatVent1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.42,
+          0.08
+        ],
+        "Position": [
+          0.0,
+          -0.15,
+          0.38
+        ],
+        "Color": [
+          0.08627450980392157,
+          0.0784313725490196,
+          0.12549019607843137
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BatVent2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          0.42,
+          0.08
+        ],
+        "Position": [
+          0.4,
+          -0.15,
+          0.38
+        ],
+        "Color": [
+          0.08627450980392157,
+          0.0784313725490196,
+          0.12549019607843137
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BatBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -0.52,
+          0.32,
+          0.32
+        ],
+        "Color": [
+          0.19607843137254902,
+          0.21176470588235294,
+          0.27450980392156865
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "BatBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          0.52,
+          0.32,
+          0.32
+        ],
+        "Color": [
+          0.19607843137254902,
+          0.21176470588235294,
+          0.27450980392156865
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    }
+  ]
+}

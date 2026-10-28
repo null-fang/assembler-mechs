@@ -57,15 +57,22 @@ LEG_PREFIXES = (
 )
 
 # Weapon damage / mount flavor for bay emit
-LOWER_ENERGY = {"plasma_dab", "ray_glove", "lens_poke", "pulse_mitt"}
-LOWER_HEAT = {"coal_mitt", "torch_palm"}
-LOWER_SHIELD = {"riot_lid", "plate_guard", "buckler_arm", "aegis_door"}
+LOWER_ENERGY = {
+    "plasma_dab", "ray_glove", "lens_poke", "pulse_mitt",
+    "cryo_jab", "cyan_lance", "volt_mitt",
+}
+LOWER_HEAT = {"coal_mitt", "torch_palm", "sand_blaster"}
+LOWER_SHIELD = {
+    "riot_lid", "plate_guard", "buckler_arm", "aegis_door", "ice_aegis",
+}
 SHOULDER_ENERGY = {
     "coil_spear", "arc_fork", "sun_beam", "prism_mast", "frost_beam",
+    "cryo_rail", "frost_beam_pod", "mag_rail",
 }
 SHOULDER_HEAT = {
     "flare_twin", "heat_lance", "pitch_pot", "crate_mortar",
     "rocket_pod", "tube_swarm", "rack_salvo", "cluster_rack", "hammer_rocket",
+    "dune_mortar", "sun_rack", "night_pod",
 }
 
 NAME_OVERRIDES = {
@@ -162,6 +169,53 @@ NAME_OVERRIDES = {
     "pad": "Pad",
     "spur": "Spur",
     "ski": "Ski",
+    # Themed lines
+    "yardbone": "Yardbone",
+    "slagspine": "Slagspine",
+    "cinder": "Cinder",
+    "rust_spool": "Rust Spool",
+    "scrap_lathe": "Scrap Lathe",
+    "slag_ridge": "Slag Ridge",
+    "cinder_cell": "Cinder Cell",
+    "rust_board": "Rust Board",
+    "slag_mite": "Slag Mite",
+    "chip_slag": "Chip: Slag Seal",
+    "rimevault": "Rimevault",
+    "frost_shell": "Frost Shell",
+    "glacer": "Glacer",
+    "cryo_jab": "Cryo Jab",
+    "ice_aegis": "Ice Aegis",
+    "cryo_rail": "Cryo Rail",
+    "rime_cell": "Rime Cell",
+    "frost_cpu": "Frost CPU",
+    "snow_mite": "Snow Mite",
+    "chip_rime": "Chip: Rime Pad",
+    "ice_spur": "Ice Spur",
+    "frost_beam_pod": "Frost Beam Pod",
+    "duneplate": "Duneplate",
+    "ochre_hold": "Ochre Hold",
+    "sandal": "Sandal",
+    "sand_blaster": "Sand Blaster",
+    "ochre_cleaver": "Ochre Cleaver",
+    "dune_mortar": "Dune Mortar",
+    "dry_cell": "Dry Cell",
+    "dust_cpu": "Dust CPU",
+    "sand_mite": "Sand Mite",
+    "chip_dune": "Chip: Dune Film",
+    "heat_skirt": "Heat Skirt",
+    "sun_rack": "Sun Rack",
+    "voltframe": "Voltframe",
+    "nightspine": "Nightspine",
+    "pulseleg": "Pulseleg",
+    "mag_gaunt": "Mag Gaunt",
+    "cyan_lance": "Cyan Lance",
+    "night_pod": "Night Pod",
+    "neon_pack": "Neon Pack",
+    "mag_cpu": "Mag CPU",
+    "glow_beetle": "Glow Beetle",
+    "chip_neon": "Chip: Neon Trace",
+    "mag_rail": "Mag Rail",
+    "volt_mitt": "Volt Mitt",
 }
 
 
@@ -175,7 +229,12 @@ def humanize(pid: str) -> str:
     return " ".join(w.capitalize() for w in pid.split("_"))
 
 
+KINDS_FROM_MANIFEST: dict[str, str] = {}
+
+
 def classify(pid: str) -> str:
+    if pid in KINDS_FROM_MANIFEST:
+        return KINDS_FROM_MANIFEST[pid]
     if pid in TORSO_STYLES:
         return "torso"
     if pid in LOWER:
@@ -193,7 +252,22 @@ def classify(pid: str) -> str:
     for pref in LEG_PREFIXES:
         if pid.startswith(pref):
             return "leg"
-    raise KeyError(pid)
+    # Theme / invented ids: infer from suffix / tokens
+    if pid.endswith("_l") or pid.endswith("_r"):
+        return "leg"
+    if pid.startswith("chip_"):
+        return "chip"
+    if any(tok in pid for tok in ("_cpu", "board", "cpu_")) or pid.endswith("_cpu"):
+        return "cpu"
+    if any(tok in pid for tok in ("_cell", "_pack", "cell_", "pack_")):
+        return "battery"
+    if any(tok in pid for tok in ("_mite", "_beetle", "_drone", "moth", "beep", "orb")):
+        return "drone"
+    if any(tok in pid for tok in ("_rail", "_pod", "_mortar", "_rack", "_ridge", "_tower", "_beam")):
+        return "shoulder"
+    if any(tok in pid for tok in ("_gun", "_jab", "_aegis", "_gaunt", "_lance", "_cleaver", "_blaster", "_spool", "_lathe", "_mitt")):
+        return "lower"
+    return "torso"
 
 
 def existing_ids() -> set[str]:
@@ -431,9 +505,10 @@ EMITTERS = {
 
 
 def main() -> None:
-    global RARITIES
+    global RARITIES, KINDS_FROM_MANIFEST
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     RARITIES = dict(manifest.get("rarities") or {})
+    KINDS_FROM_MANIFEST = dict(manifest.get("kinds") or {})
     have = existing_ids()
     missing = sorted(pid for pid in manifest["ids"] if pid not in have)
     blocks = []

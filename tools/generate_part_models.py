@@ -552,6 +552,17 @@ reg("chip_glow", "chip", rgb(140, 100, 200), style="wire", rarity="Epic")
 reg("chip_vein", "chip", rgb(90, 140, 160), style="heat", rarity="Rare")
 reg("chip_mirror", "chip", rgb(160, 170, 180), style="shield", rarity="Uncommon")
 
+# --- Themed kit lines (Yardbone / Rimevault / Duneplate / Voltframe) ---
+from theme_palettes import THEMES
+
+for _tid, _theme in THEMES.items():
+    for _pid, (_kind, _style, _rar) in _theme["siblings"].items():
+        _col = _theme["colors"].get(_pid, _theme["paint"])
+        _kw: dict = {"style": _style, "rarity": _rar}
+        if _kind == "leg":
+            _kw["side"] = "l" if _pid.endswith("_l") else "r"
+        reg(_pid, _kind, _col, **_kw)
+
 
 def trim_scale_for(kind: str) -> float:
     if kind == "torso":
@@ -604,6 +615,7 @@ def main() -> None:
 
     counts: dict[str, int] = {}
     rarities: dict[str, str] = {}
+    kinds: dict[str, str] = {}
     for pid, (kind, color, kwargs) in sorted(PART_RECIPES.items()):
         children = build_children(kind, color, kwargs)
         # Dense kit bar: torsos/legs/weapons must read as layered mech parts, not slabs.
@@ -614,6 +626,7 @@ def main() -> None:
         write_model(OUT / f"{pid}.model.json", pack_model(children))
         counts[kind] = counts.get(kind, 0) + 1
         rarities[pid] = kwargs.get("rarity", "Common")
+        kinds[pid] = kind
 
     # Manifest lives outside RS so Rojo does not sync it as an Instance
     manifest = {
@@ -621,6 +634,8 @@ def main() -> None:
         "byKind": counts,
         "ids": sorted(PART_RECIPES.keys()),
         "rarities": rarities,
+        "kinds": kinds,
+        "themes": {tid: {"line": th["line"], "kits": th["kits"], "siblings": list(th["siblings"].keys())} for tid, th in THEMES.items()},
     }
     man_path = ROOT / "tools" / "part_models_manifest.json"
     man_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")

@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.4,
-          1.05
+          1.0,
+          0.42,
+          1.1
         ],
         "Position": [
           0,
@@ -76,13 +76,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.75,
-          0.15,
-          0.8
+          0.8,
+          0.16,
+          0.85
         ],
         "Position": [
           0,
-          0.25,
+          0.28,
           0
         ],
         "Color": [
@@ -108,14 +108,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.2,
-          0.18
+          0.38,
+          0.22,
+          0.2
         ],
         "Position": [
           0,
-          0.2,
-          0.55
+          0.22,
+          0.58
         ],
         "Color": [
           0.1568627450980392,
@@ -140,14 +140,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.65,
+          0.7,
           0.1,
-          0.65
+          0.7
         ],
         "Position": [
           0,
-          0.4,
-          -0.2
+          0.42,
+          -0.22
         ],
         "Color": [
           0.16470588235294117,
@@ -174,11 +174,11 @@
         "Size": [
           0.14,
           0.18,
-          0.7
+          0.75
         ],
         "Position": [
-          -0.4,
-          -0.3,
+          -0.42,
+          -0.32,
           0
         ],
         "Color": [
@@ -206,11 +206,11 @@
         "Size": [
           0.14,
           0.18,
-          0.7
+          0.75
         ],
         "Position": [
-          0.4,
-          -0.3,
+          0.42,
+          -0.32,
           0
         ],
         "Color": [
@@ -224,6 +224,38 @@
       },
       "Attributes": {
         "TextureRole": "matte_rubber"
+      }
+    },
+    {
+      "Name": "Accent",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
+          0.08,
+          0.08
+        ],
+        "Position": [
+          0,
+          0.1,
+          0.5
+        ],
+        "Color": [
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -241,9 +273,9 @@
           0.08
         ],
         "Position": [
-          -0.3,
+          -0.32,
           0.15,
-          0.3
+          0.32
         ],
         "Color": [
           0.2823529411764706,
@@ -273,9 +305,9 @@
           0.08
         ],
         "Position": [
-          0.3,
+          0.32,
           0.15,
-          0.3
+          0.32
         ],
         "Color": [
           0.2823529411764706,
@@ -288,6 +320,38 @@
       },
       "Attributes": {
         "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "DroneVent0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.2,
+          0.1
+        ],
+        "Position": [
+          0,
+          0.05,
+          -0.5
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
       }
     }
   ]

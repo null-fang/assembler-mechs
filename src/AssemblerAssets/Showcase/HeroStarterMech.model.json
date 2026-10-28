@@ -44,14 +44,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          2.5,
-          2.1,
-          1.6
+          2.45,
+          2.05,
+          1.55
         ],
         "Position": [
           0.0,
           0.05,
-          -0.1
+          -0.12
         ],
         "Color": [
           0.16470588235294117,
@@ -76,9 +76,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          3.4,
-          2.4,
-          2.15
+          3.45,
+          2.45,
+          2.2
         ],
         "Position": [
           0.0,
@@ -108,19 +108,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          3.5,
+          3.55,
           0.1,
-          2.2
+          2.25
         ],
         "Position": [
           0.0,
-          0.15,
+          0.18,
           0.08
         ],
         "Color": [
           0.24313725490196078,
           0.3607843137254902,
           0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Torso_HullBelt",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          3.5,
+          0.14,
+          2.2
+        ],
+        "Position": [
+          0.0,
+          -0.55,
+          0.1
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -140,14 +172,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          2.5,
-          1.35,
-          0.32
+          2.55,
+          1.4,
+          0.34
         ],
         "Position": [
           0.0,
-          0.25,
-          1.2
+          0.28,
+          1.22
         ],
         "Color": [
           0.24313725490196078,
@@ -172,19 +204,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          2.05,
-          0.95,
-          0.28
+          2.1,
+          1.0,
+          0.3
         ],
         "Position": [
           0.0,
-          0.35,
-          1.4
+          0.38,
+          1.42
         ],
         "Color": [
-          0.30352941176470594,
-          0.4376470588235294,
-          0.22588235294117648
+          0.3102745098039216,
+          0.4473725490196079,
+          0.23090196078431374
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -204,14 +236,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.55,
-          0.22
+          1.55,
+          0.6,
+          0.24
         ],
         "Position": [
           0.0,
-          0.4,
-          1.55
+          0.42,
+          1.58
         ],
         "Color": [
           0.16470588235294117,
@@ -236,19 +268,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          2.3,
-          0.7,
-          0.3
+          2.35,
+          0.72,
+          0.32
         ],
         "Position": [
           0.0,
-          -0.45,
-          1.25
+          -0.48,
+          1.28
         ],
         "Color": [
           0.24313725490196078,
           0.3607843137254902,
           0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Torso_BreastSplit",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          1.6,
+          0.2
+        ],
+        "Position": [
+          0.0,
+          0.1,
+          1.55
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -268,14 +332,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.35,
+          0.95,
+          0.38,
           0.16
         ],
         "Position": [
           0.0,
-          -0.15,
-          1.5
+          -0.12,
+          1.55
         ],
         "Color": [
           0.16470588235294117,
@@ -301,13 +365,13 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.55,
+          0.6,
           0.14
         ],
         "Position": [
-          -0.55,
-          -0.15,
-          1.48
+          -0.58,
+          -0.12,
+          1.52
         ],
         "Color": [
           0.14823529411764705,
@@ -333,13 +397,13 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.55,
+          0.6,
           0.14
         ],
         "Position": [
-          0.55,
-          -0.15,
-          1.48
+          0.58,
+          -0.12,
+          1.52
         ],
         "Color": [
           0.14823529411764705,
@@ -364,19 +428,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.9,
+          1.95,
           0.16,
           0.14
         ],
         "Position": [
           0.0,
-          -0.85,
-          1.4
+          -0.88,
+          1.42
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -396,14 +460,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.9,
-          1.15,
-          1.6
+          1.95,
+          1.18,
+          1.65
         ],
         "Position": [
           0.0,
-          1.55,
-          0.2
+          1.58,
+          0.22
         ],
         "Color": [
           0.47058823529411764,
@@ -428,14 +492,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.55,
-          0.32,
-          1.25
+          1.58,
+          0.34,
+          1.28
         ],
         "Position": [
           0.0,
-          2.2,
-          0.15
+          2.25,
+          0.16
         ],
         "Color": [
           0.24313725490196078,
@@ -460,14 +524,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.85,
-          0.85,
-          0.35
+          1.9,
+          0.88,
+          0.38
         ],
         "Position": [
           0.0,
-          1.4,
-          1.05
+          1.42,
+          1.08
         ],
         "Color": [
           0.16470588235294117,
@@ -492,14 +556,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.65,
-          0.58,
-          0.28
+          1.7,
+          0.6,
+          0.3
         ],
         "Position": [
           0.0,
-          1.4,
-          1.35
+          1.42,
+          1.38
         ],
         "Color": [
           0.1568627450980392,
@@ -524,14 +588,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.7,
-          0.2
+          0.58,
+          0.72,
+          0.22
         ],
         "Position": [
           0.0,
-          1.4,
-          1.55
+          1.42,
+          1.58
         ],
         "Color": [
           0.36764705882352944,
@@ -556,14 +620,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.9,
+          1.95,
           0.18,
-          0.45
+          0.48
         ],
         "Position": [
           0.0,
-          1.9,
-          1.0
+          1.95,
+          1.02
         ],
         "Color": [
           0.43137254901960786,
@@ -588,14 +652,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.4,
+          1.45,
           0.14,
-          0.3
+          0.32
         ],
         "Position": [
           0.0,
           1.05,
-          1.2
+          1.25
         ],
         "Color": [
           0.2823529411764706,
@@ -621,13 +685,13 @@
         "CastShadow": true,
         "Size": [
           0.22,
-          0.4,
+          0.42,
           0.14
         ],
         "Position": [
-          -1.0,
-          1.35,
-          1.2
+          -1.02,
+          1.38,
+          1.22
         ],
         "Color": [
           0.1568627450980392,
@@ -653,13 +717,13 @@
         "CastShadow": true,
         "Size": [
           0.22,
-          0.4,
+          0.42,
           0.14
         ],
         "Position": [
-          1.0,
-          1.35,
-          1.2
+          1.02,
+          1.38,
+          1.22
         ],
         "Color": [
           0.1568627450980392,
@@ -684,14 +748,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          1.4,
-          1.2
+          0.72,
+          1.45,
+          1.25
         ],
         "Position": [
-          -1.9,
-          0.4,
-          0.4
+          -1.95,
+          0.42,
+          0.42
         ],
         "Color": [
           0.24313725490196078,
@@ -716,14 +780,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          1.4,
-          1.2
+          0.72,
+          1.45,
+          1.25
         ],
         "Position": [
-          1.9,
-          0.4,
-          0.4
+          1.95,
+          0.42,
+          0.42
         ],
         "Color": [
           0.24313725490196078,
@@ -749,13 +813,13 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.7,
-          0.7
+          0.75,
+          0.75
         ],
         "Position": [
-          -2.25,
-          0.35,
-          0.5
+          -2.3,
+          0.38,
+          0.52
         ],
         "Color": [
           0.16470588235294117,
@@ -781,13 +845,13 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.7,
-          0.7
+          0.75,
+          0.75
         ],
         "Position": [
-          2.25,
-          0.35,
-          0.5
+          2.3,
+          0.38,
+          0.52
         ],
         "Color": [
           0.16470588235294117,
@@ -812,13 +876,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          0.85,
-          1.35
+          1.25,
+          0.9,
+          1.4
         ],
         "Position": [
-          -2.2,
-          1.15,
+          -2.25,
+          1.18,
           0.05
         ],
         "Color": [
@@ -844,13 +908,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.2,
-          0.85,
-          1.35
+          1.25,
+          0.9,
+          1.4
         ],
         "Position": [
-          2.2,
-          1.15,
+          2.25,
+          1.18,
           0.05
         ],
         "Color": [
@@ -876,13 +940,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.28,
-          1.05
+          1.0,
+          0.3,
+          1.1
         ],
         "Position": [
-          -2.25,
-          1.6,
+          -2.3,
+          1.65,
           0.05
         ],
         "Color": [
@@ -908,13 +972,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.28,
-          1.05
+          1.0,
+          0.3,
+          1.1
         ],
         "Position": [
-          2.25,
-          1.6,
+          2.3,
+          1.65,
           0.05
         ],
         "Color": [
@@ -940,13 +1004,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.65,
-          0.5,
-          0.65
+          0.68,
+          0.52,
+          0.68
         ],
         "Position": [
-          -1.95,
-          0.85,
+          -2.0,
+          0.88,
           0.0
         ],
         "Color": [
@@ -973,13 +1037,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.65,
-          0.5,
-          0.65
+          0.68,
+          0.52,
+          0.68
         ],
         "Position": [
-          1.95,
-          0.85,
+          2.0,
+          0.88,
           0.0
         ],
         "Color": [
@@ -1006,13 +1070,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.4,
-          0.95
+          1.0,
+          0.42,
+          1.0
         ],
         "Position": [
           0.0,
-          -1.2,
+          -1.22,
           0.05
         ],
         "Color": [
@@ -1039,14 +1103,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          2.9,
-          0.45,
-          1.55
+          2.95,
+          0.48,
+          1.6
         ],
         "Position": [
           0.0,
-          -1.5,
-          0.1
+          -1.52,
+          0.12
         ],
         "Color": [
           0.43137254901960786,
@@ -1071,14 +1135,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          2.3,
-          0.28,
-          1.15
+          2.35,
+          0.3,
+          1.2
         ],
         "Position": [
           0.0,
-          -1.8,
-          0.25
+          -1.85,
+          0.28
         ],
         "Color": [
           0.16470588235294117,
@@ -1103,14 +1167,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.75,
-          1.05
+          0.58,
+          0.8,
+          1.1
         ],
         "Position": [
-          -1.6,
-          -1.4,
-          0.3
+          -1.65,
+          -1.42,
+          0.32
         ],
         "Color": [
           0.24313725490196078,
@@ -1135,14 +1199,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.75,
-          1.05
+          0.58,
+          0.8,
+          1.1
         ],
         "Position": [
-          1.6,
-          -1.4,
-          0.3
+          1.65,
+          -1.42,
+          0.32
         ],
         "Color": [
           0.24313725490196078,
@@ -1167,14 +1231,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          2.2,
-          1.5,
-          0.7
+          2.25,
+          1.55,
+          0.75
         ],
         "Position": [
           0.0,
-          0.3,
-          -1.35
+          0.32,
+          -1.4
         ],
         "Color": [
           0.16470588235294117,
@@ -1199,14 +1263,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.9,
-          0.2,
-          0.55
+          1.95,
+          0.22,
+          0.58
         ],
         "Position": [
           0.0,
-          1.1,
-          -1.35
+          1.15,
+          -1.4
         ],
         "Color": [
           0.2823529411764706,
@@ -1231,14 +1295,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.55,
-          0.75
+          0.58,
+          0.58,
+          0.8
         ],
         "Position": [
-          -0.55,
-          0.15,
-          -1.85
+          -0.58,
+          0.18,
+          -1.9
         ],
         "Color": [
           0.43137254901960786,
@@ -1264,14 +1328,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.55,
-          0.75
+          0.58,
+          0.58,
+          0.8
         ],
         "Position": [
-          0.55,
-          0.15,
-          -1.85
+          0.58,
+          0.18,
+          -1.9
         ],
         "Color": [
           0.43137254901960786,
@@ -1297,14 +1361,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.32,
-          0.32,
-          0.2
+          0.34,
+          0.34,
+          0.22
         ],
         "Position": [
-          -0.55,
-          0.15,
-          -2.3
+          -0.58,
+          0.18,
+          -2.35
         ],
         "Color": [
           0.1568627450980392,
@@ -1329,14 +1393,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.32,
-          0.32,
-          0.2
+          0.34,
+          0.34,
+          0.22
         ],
         "Position": [
-          0.55,
-          0.15,
-          -2.3
+          0.58,
+          0.18,
+          -2.35
         ],
         "Color": [
           0.1568627450980392,
@@ -1362,13 +1426,13 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          1.05,
+          1.1,
           0.14
         ],
         "Position": [
-          1.15,
-          2.25,
-          -0.35
+          1.18,
+          2.3,
+          -0.38
         ],
         "Color": [
           0.43137254901960786,
@@ -1393,19 +1457,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.18,
-          0.18,
-          0.18
+          0.2,
+          0.2,
+          0.2
         ],
         "Position": [
-          1.15,
-          2.8,
-          -0.35
+          1.18,
+          2.88,
+          -0.38
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -1425,14 +1489,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.35,
-          0.35
+          0.38,
+          0.38,
+          0.38
         ],
         "Position": [
-          -1.0,
-          2.0,
-          0.4
+          -1.05,
+          2.05,
+          0.42
         ],
         "Color": [
           0.43137254901960786,
@@ -1458,14 +1522,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.18,
-          0.18,
-          0.12
+          0.2,
+          0.2,
+          0.14
         ],
         "Position": [
-          -1.0,
-          2.0,
-          0.6
+          -1.05,
+          2.05,
+          0.65
         ],
         "Color": [
           0.1568627450980392,
@@ -1481,6 +1545,166 @@
       }
     },
     {
+      "Name": "Torso_RustPatchL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.85,
+          0.55,
+          0.18
+        ],
+        "Position": [
+          -1.1,
+          0.55,
+          1.35
+        ],
+        "Color": [
+          0.5490196078431373,
+          0.35294117647058826,
+          0.21568627450980393
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "Torso_RustPatchR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
+          0.4,
+          0.16
+        ],
+        "Position": [
+          1.2,
+          -0.2,
+          1.35
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.3333333333333333,
+          0.19607843137254902
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "Torso_CageRibL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          2.1,
+          1.9
+        ],
+        "Position": [
+          -1.85,
+          0.1,
+          0.0
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Torso_CageRibR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          2.1,
+          1.9
+        ],
+        "Position": [
+          1.85,
+          0.1,
+          0.0
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Torso_CageCross",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          3.1,
+          0.16,
+          0.16
+        ],
+        "Position": [
+          0.0,
+          0.6,
+          0.95
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.4627450980392157,
+          0.5019607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
       "Name": "Torso_SideVentL0",
       "ClassName": "Part",
       "Properties": {
@@ -1491,18 +1715,18 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.35,
+          0.32,
           0.12
         ],
         "Position": [
-          -1.8,
-          -0.2,
-          0.95
+          -1.85,
+          -0.25,
+          0.98
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1523,18 +1747,18 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.35,
+          0.32,
           0.12
         ],
         "Position": [
-          1.8,
-          -0.2,
-          0.95
+          1.85,
+          -0.25,
+          0.98
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1555,18 +1779,18 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.35,
+          0.32,
           0.12
         ],
         "Position": [
-          -1.8,
-          0.2,
-          0.95
+          -1.85,
+          0.15,
+          0.98
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1587,18 +1811,18 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.35,
+          0.32,
           0.12
         ],
         "Position": [
-          1.8,
-          0.2,
-          0.95
+          1.85,
+          0.15,
+          0.98
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1619,18 +1843,18 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.35,
+          0.32,
           0.12
         ],
         "Position": [
-          -1.8,
-          0.6,
-          0.95
+          -1.85,
+          0.55,
+          0.98
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1651,18 +1875,82 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.35,
+          0.32,
           0.12
         ],
         "Position": [
-          1.8,
-          0.6,
-          0.95
+          1.85,
+          0.55,
+          0.98
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "Torso_SideVentL3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          -1.85,
+          0.95,
+          0.98
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "Torso_SideVentR3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          1.85,
+          0.95,
+          0.98
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1687,14 +1975,14 @@
           0.12
         ],
         "Position": [
-          -0.45,
+          -0.55,
           0.55,
-          -1.7
+          -1.75
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1719,14 +2007,14 @@
           0.12
         ],
         "Position": [
-          0.0,
+          -0.20000000000000007,
           0.55,
-          -1.7
+          -1.75
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1751,14 +2039,46 @@
           0.12
         ],
         "Position": [
-          0.45,
+          0.1499999999999999,
           0.55,
-          -1.7
+          -1.75
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "Torso_BackVent3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.55,
+          0.12
+        ],
+        "Position": [
+          0.4999999999999998,
+          0.55,
+          -1.75
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -1783,9 +2103,9 @@
           0.11
         ],
         "Position": [
-          -1.2,
-          0.9,
-          1.15
+          -1.25,
+          0.95,
+          1.18
         ],
         "Color": [
           0.2823529411764706,
@@ -1815,9 +2135,9 @@
           0.11
         ],
         "Position": [
-          1.2,
-          0.9,
-          1.15
+          1.25,
+          0.95,
+          1.18
         ],
         "Color": [
           0.2823529411764706,
@@ -1847,9 +2167,9 @@
           0.11
         ],
         "Position": [
-          -1.0,
-          -0.4,
-          1.2
+          -1.05,
+          -0.45,
+          1.25
         ],
         "Color": [
           0.2823529411764706,
@@ -1879,9 +2199,9 @@
           0.11
         ],
         "Position": [
-          1.0,
-          -0.4,
-          1.2
+          1.05,
+          -0.45,
+          1.25
         ],
         "Color": [
           0.2823529411764706,
@@ -1911,9 +2231,9 @@
           0.11
         ],
         "Position": [
-          -0.7,
-          1.9,
-          0.75
+          -0.75,
+          1.95,
+          0.8
         ],
         "Color": [
           0.2823529411764706,
@@ -1943,9 +2263,9 @@
           0.11
         ],
         "Position": [
-          0.7,
-          1.9,
-          0.75
+          0.75,
+          1.95,
+          0.8
         ],
         "Color": [
           0.2823529411764706,
@@ -1975,9 +2295,9 @@
           0.11
         ],
         "Position": [
-          -2.2,
-          1.15,
-          0.7
+          -2.25,
+          1.2,
+          0.75
         ],
         "Color": [
           0.2823529411764706,
@@ -2007,9 +2327,73 @@
           0.11
         ],
         "Position": [
-          2.2,
-          1.15,
-          0.7
+          2.25,
+          1.2,
+          0.75
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "Torso_HullBolt8",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -0.9,
+          0.55,
+          1.5
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "Torso_HullBolt9",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          0.9,
+          0.55,
+          1.5
         ],
         "Color": [
           0.2823529411764706,
@@ -2034,9 +2418,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.7,
-          0.95
+          0.98,
+          0.72,
+          0.98
         ],
         "Position": [
           -1.1,
@@ -2067,12 +2451,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.55,
-          0.25
+          0.26,
+          0.58,
+          0.26
         ],
         "Position": [
-          -1.55,
+          -1.57,
           -0.8,
           0.2
         ],
@@ -2100,14 +2484,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
-          1.05,
-          1.25
+          1.18,
+          1.08,
+          1.28
         ],
         "Position": [
           -1.17,
           -1.4000000000000001,
-          0.44999999999999996
+          0.47
         ],
         "Color": [
           0.33725490196078434,
@@ -2132,14 +2516,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.0,
-          0.55,
-          1.0
+          1.02,
+          0.58,
+          1.02
         ],
         "Position": [
           -1.19,
-          -1.25,
-          0.7000000000000001
+          -1.23,
+          0.73
         ],
         "Color": [
           0.24313725490196078,
@@ -2164,14 +2548,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.85,
-          0.95
+          0.26,
+          0.9,
+          1.0
         ],
         "Position": [
-          -1.8,
+          -1.83,
           -1.4000000000000001,
-          0.5
+          0.53
         ],
         "Color": [
           0.24313725490196078,
@@ -2196,19 +2580,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
+          1.08,
           0.08,
-          1.15
+          1.18
         ],
         "Position": [
           -1.17,
-          -1.6500000000000001,
-          0.5
+          -1.6700000000000002,
+          0.53
         ],
         "Color": [
           0.16470588235294117,
           0.17254901960784313,
           0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "LegL_ThighPanel",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.85,
+          0.55,
+          0.28
+        ],
+        "Position": [
+          -1.17,
+          -1.35,
+          1.05
+        ],
+        "Color": [
+          0.30352941176470594,
+          0.4376470588235294,
+          0.22588235294117648
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -2228,14 +2644,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.1,
-          0.38,
-          1.1
+          1.12,
+          0.4,
+          1.12
         ],
         "Position": [
           -1.2,
           -2.1,
-          0.75
+          0.77
         ],
         "Color": [
           0.43137254901960786,
@@ -2261,14 +2677,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          0.45,
-          0.35
+          0.72,
+          0.48,
+          0.38
         ],
         "Position": [
           -1.2,
           -2.0,
-          1.2
+          1.23
         ],
         "Color": [
           0.2823529411764706,
@@ -2293,19 +2709,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.26,
-          0.65,
-          0.26
+          0.28,
+          0.68,
+          0.28
         ],
         "Position": [
-          -1.75,
+          -1.77,
           -2.1,
-          0.75
+          0.77
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -2325,14 +2741,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
-          1.2,
-          1.15
+          1.08,
+          1.25,
+          1.18
         ],
         "Position": [
           -1.1500000000000001,
-          -2.85,
-          0.5
+          -2.87,
+          0.53
         ],
         "Color": [
           0.33725490196078434,
@@ -2357,14 +2773,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.75,
-          0.35
+          0.95,
+          0.8,
+          0.38
         ],
         "Position": [
           -1.1500000000000001,
-          -2.75,
-          1.0
+          -2.77,
+          1.03
         ],
         "Color": [
           0.24313725490196078,
@@ -2390,13 +2806,13 @@
         "CastShadow": true,
         "Size": [
           0.22,
-          0.95,
-          0.5
+          1.0,
+          0.55
         ],
         "Position": [
-          -1.7000000000000002,
-          -2.8,
-          0.55
+          -1.73,
+          -2.83,
+          0.57
         ],
         "Color": [
           0.16470588235294117,
@@ -2422,12 +2838,12 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.85,
+          0.9,
           0.18
         ],
         "Position": [
-          -1.4,
-          -2.55,
+          -1.4300000000000002,
+          -2.5700000000000003,
           0.2
         ],
         "Color": [
@@ -2454,14 +2870,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
-          0.35,
-          1.1
+          1.18,
+          0.38,
+          1.12
         ],
         "Position": [
           -1.1,
-          -3.45,
-          0.6
+          -3.47,
+          0.63
         ],
         "Color": [
           0.43137254901960786,
@@ -2486,14 +2902,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.42,
-          1.8
+          1.55,
+          0.45,
+          1.85
         ],
         "Position": [
           -1.1,
-          -3.8,
-          0.75
+          -3.83,
+          0.77
         ],
         "Color": [
           0.10980392156862745,
@@ -2518,14 +2934,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.35,
+          1.4,
           0.12,
-          1.55
+          1.6
         ],
         "Position": [
           -1.1,
-          -4.050000000000001,
-          0.7000000000000001
+          -4.07,
+          0.73
         ],
         "Color": [
           0.16470588235294117,
@@ -2550,14 +2966,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.3,
-          0.25,
-          0.4
+          1.35,
+          0.28,
+          0.42
         ],
         "Position": [
           -1.1,
-          -3.6500000000000004,
-          1.5499999999999998
+          -3.67,
+          1.5699999999999998
         ],
         "Color": [
           0.24313725490196078,
@@ -2582,14 +2998,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
-          0.28,
-          0.4
+          1.08,
+          0.3,
+          0.42
         ],
         "Position": [
           -1.1,
-          -3.75,
-          -0.05000000000000002
+          -3.77,
+          -0.07
         ],
         "Color": [
           0.2823529411764706,
@@ -2615,13 +3031,13 @@
         "CastShadow": true,
         "Size": [
           0.16,
-          0.65,
+          0.7,
           0.12
         ],
         "Position": [
-          -1.6,
-          -2.9000000000000004,
-          1.0999999999999999
+          -1.63,
+          -2.93,
+          1.13
         ],
         "Color": [
           0.1568627450980392,
@@ -2646,19 +3062,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.22,
+          0.24,
           0.14,
           0.14
         ],
         "Position": [
-          -1.5,
+          -1.53,
           -3.4000000000000004,
-          1.05
+          1.0999999999999999
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -2666,6 +3082,38 @@
       },
       "Attributes": {
         "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "LegL_RustShin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.4,
+          0.2
+        ],
+        "Position": [
+          -1.1500000000000001,
+          -3.0,
+          1.2
+        ],
+        "Color": [
+          0.5098039215686274,
+          0.3137254901960784,
+          0.19607843137254902
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
       }
     },
     {
@@ -2684,13 +3132,13 @@
         ],
         "Position": [
           -1.1500000000000001,
-          -2.7,
-          1.15
+          -2.6500000000000004,
+          1.2
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -2716,13 +3164,13 @@
         ],
         "Position": [
           -1.1500000000000001,
-          -2.9000000000000004,
-          1.15
+          -2.85,
+          1.2
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -2748,13 +3196,45 @@
         ],
         "Position": [
           -1.1500000000000001,
-          -3.1,
-          1.15
+          -3.05,
+          1.2
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "LegL_ShinVent3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          -1.1500000000000001,
+          -3.25,
+          1.2
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -2779,9 +3259,9 @@
           0.11
         ],
         "Position": [
-          -1.55,
-          -1.1500000000000001,
-          1.05
+          -1.57,
+          -1.1300000000000001,
+          1.0999999999999999
         ],
         "Color": [
           0.2823529411764706,
@@ -2811,9 +3291,9 @@
           0.11
         ],
         "Position": [
-          -1.5,
-          -2.75,
-          1.0999999999999999
+          -1.53,
+          -2.77,
+          1.15
         ],
         "Color": [
           0.2823529411764706,
@@ -2843,9 +3323,9 @@
           0.11
         ],
         "Position": [
-          -0.7000000000000001,
-          -1.55,
-          1.0
+          -0.67,
+          -1.53,
+          1.05
         ],
         "Color": [
           0.2823529411764706,
@@ -2875,9 +3355,41 @@
           0.11
         ],
         "Position": [
-          -1.4500000000000002,
-          -3.55,
-          1.3499999999999999
+          -1.47,
+          -3.5700000000000003,
+          1.4
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "LegL_LegBolt4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -1.4,
+          -1.6500000000000001,
+          1.0
         ],
         "Color": [
           0.2823529411764706,
@@ -2902,9 +3414,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.7,
-          0.95
+          0.98,
+          0.72,
+          0.98
         ],
         "Position": [
           1.1,
@@ -2935,12 +3447,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.55,
-          0.25
+          0.26,
+          0.58,
+          0.26
         ],
         "Position": [
-          1.55,
+          1.57,
           -0.8,
           0.2
         ],
@@ -2968,14 +3480,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
-          1.05,
-          1.25
+          1.18,
+          1.08,
+          1.28
         ],
         "Position": [
           1.17,
           -1.4000000000000001,
-          0.44999999999999996
+          0.47
         ],
         "Color": [
           0.33725490196078434,
@@ -3000,14 +3512,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.0,
-          0.55,
-          1.0
+          1.02,
+          0.58,
+          1.02
         ],
         "Position": [
           1.19,
-          -1.25,
-          0.7000000000000001
+          -1.23,
+          0.73
         ],
         "Color": [
           0.24313725490196078,
@@ -3032,14 +3544,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.25,
-          0.85,
-          0.95
+          0.26,
+          0.9,
+          1.0
         ],
         "Position": [
-          1.8,
+          1.83,
           -1.4000000000000001,
-          0.5
+          0.53
         ],
         "Color": [
           0.24313725490196078,
@@ -3064,19 +3576,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
+          1.08,
           0.08,
-          1.15
+          1.18
         ],
         "Position": [
           1.17,
-          -1.6500000000000001,
-          0.5
+          -1.6700000000000002,
+          0.53
         ],
         "Color": [
           0.16470588235294117,
           0.17254901960784313,
           0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "LegR_ThighPanel",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.85,
+          0.55,
+          0.28
+        ],
+        "Position": [
+          1.17,
+          -1.35,
+          1.05
+        ],
+        "Color": [
+          0.30352941176470594,
+          0.4376470588235294,
+          0.22588235294117648
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -3096,14 +3640,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.1,
-          0.38,
-          1.1
+          1.12,
+          0.4,
+          1.12
         ],
         "Position": [
           1.2,
           -2.1,
-          0.75
+          0.77
         ],
         "Color": [
           0.43137254901960786,
@@ -3129,14 +3673,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          0.45,
-          0.35
+          0.72,
+          0.48,
+          0.38
         ],
         "Position": [
           1.2,
           -2.0,
-          1.2
+          1.23
         ],
         "Color": [
           0.2823529411764706,
@@ -3161,19 +3705,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.26,
-          0.65,
-          0.26
+          0.28,
+          0.68,
+          0.28
         ],
         "Position": [
-          1.75,
+          1.77,
           -2.1,
-          0.75
+          0.77
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -3193,14 +3737,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
-          1.2,
-          1.15
+          1.08,
+          1.25,
+          1.18
         ],
         "Position": [
           1.1500000000000001,
-          -2.85,
-          0.5
+          -2.87,
+          0.53
         ],
         "Color": [
           0.33725490196078434,
@@ -3225,14 +3769,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.75,
-          0.35
+          0.95,
+          0.8,
+          0.38
         ],
         "Position": [
           1.1500000000000001,
-          -2.75,
-          1.0
+          -2.77,
+          1.03
         ],
         "Color": [
           0.24313725490196078,
@@ -3258,13 +3802,13 @@
         "CastShadow": true,
         "Size": [
           0.22,
-          0.95,
-          0.5
+          1.0,
+          0.55
         ],
         "Position": [
-          1.7000000000000002,
-          -2.8,
-          0.55
+          1.73,
+          -2.83,
+          0.57
         ],
         "Color": [
           0.16470588235294117,
@@ -3290,12 +3834,12 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.85,
+          0.9,
           0.18
         ],
         "Position": [
-          1.4,
-          -2.55,
+          1.4300000000000002,
+          -2.5700000000000003,
           0.2
         ],
         "Color": [
@@ -3322,14 +3866,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
-          0.35,
-          1.1
+          1.18,
+          0.38,
+          1.12
         ],
         "Position": [
           1.1,
-          -3.45,
-          0.6
+          -3.47,
+          0.63
         ],
         "Color": [
           0.43137254901960786,
@@ -3354,14 +3898,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.42,
-          1.8
+          1.55,
+          0.45,
+          1.85
         ],
         "Position": [
           1.1,
-          -3.8,
-          0.75
+          -3.83,
+          0.77
         ],
         "Color": [
           0.10980392156862745,
@@ -3386,14 +3930,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.35,
+          1.4,
           0.12,
-          1.55
+          1.6
         ],
         "Position": [
           1.1,
-          -4.050000000000001,
-          0.7000000000000001
+          -4.07,
+          0.73
         ],
         "Color": [
           0.16470588235294117,
@@ -3418,14 +3962,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.3,
-          0.25,
-          0.4
+          1.35,
+          0.28,
+          0.42
         ],
         "Position": [
           1.1,
-          -3.6500000000000004,
-          1.5499999999999998
+          -3.67,
+          1.5699999999999998
         ],
         "Color": [
           0.24313725490196078,
@@ -3450,14 +3994,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.05,
-          0.28,
-          0.4
+          1.08,
+          0.3,
+          0.42
         ],
         "Position": [
           1.1,
-          -3.75,
-          -0.05000000000000002
+          -3.77,
+          -0.07
         ],
         "Color": [
           0.2823529411764706,
@@ -3483,13 +4027,13 @@
         "CastShadow": true,
         "Size": [
           0.16,
-          0.65,
+          0.7,
           0.12
         ],
         "Position": [
-          1.6,
-          -2.9000000000000004,
-          1.0999999999999999
+          1.63,
+          -2.93,
+          1.13
         ],
         "Color": [
           0.1568627450980392,
@@ -3514,19 +4058,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.22,
+          0.24,
           0.14,
           0.14
         ],
         "Position": [
-          1.5,
+          1.53,
           -3.4000000000000004,
-          1.05
+          1.0999999999999999
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -3534,6 +4078,38 @@
       },
       "Attributes": {
         "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "LegR_RustShin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.4,
+          0.2
+        ],
+        "Position": [
+          1.1500000000000001,
+          -3.0,
+          1.2
+        ],
+        "Color": [
+          0.5098039215686274,
+          0.3137254901960784,
+          0.19607843137254902
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
       }
     },
     {
@@ -3552,13 +4128,13 @@
         ],
         "Position": [
           1.1500000000000001,
-          -2.7,
-          1.15
+          -2.6500000000000004,
+          1.2
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -3584,13 +4160,13 @@
         ],
         "Position": [
           1.1500000000000001,
-          -2.9000000000000004,
-          1.15
+          -2.85,
+          1.2
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -3616,13 +4192,45 @@
         ],
         "Position": [
           1.1500000000000001,
-          -3.1,
-          1.15
+          -3.05,
+          1.2
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "LegR_ShinVent3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.55,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          1.1500000000000001,
+          -3.25,
+          1.2
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -3647,9 +4255,9 @@
           0.11
         ],
         "Position": [
-          1.55,
-          -1.1500000000000001,
-          1.05
+          1.57,
+          -1.1300000000000001,
+          1.0999999999999999
         ],
         "Color": [
           0.2823529411764706,
@@ -3679,9 +4287,9 @@
           0.11
         ],
         "Position": [
-          1.5,
-          -2.75,
-          1.0999999999999999
+          1.53,
+          -2.77,
+          1.15
         ],
         "Color": [
           0.2823529411764706,
@@ -3711,9 +4319,9 @@
           0.11
         ],
         "Position": [
-          0.7000000000000001,
-          -1.55,
-          1.0
+          0.67,
+          -1.53,
+          1.05
         ],
         "Color": [
           0.2823529411764706,
@@ -3743,9 +4351,41 @@
           0.11
         ],
         "Position": [
-          1.4500000000000002,
-          -3.55,
-          1.3499999999999999
+          1.47,
+          -3.5700000000000003,
+          1.4
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "LegR_LegBolt4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          1.4,
+          -1.6500000000000001,
+          1.0
         ],
         "Color": [
           0.2823529411764706,
@@ -3770,9 +4410,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.7,
-          0.7
+          0.92,
+          0.72,
+          0.72
         ],
         "Position": [
           -2.15,
@@ -3802,9 +4442,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.0,
+          1.02,
           0.22,
-          1.0
+          1.02
         ],
         "Position": [
           -2.15,
@@ -3835,9 +4475,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.0,
-          0.85,
-          1.4
+          1.02,
+          0.88,
+          1.45
         ],
         "Position": [
           -2.15,
@@ -3867,14 +4507,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.85,
-          0.55,
-          0.9
+          0.88,
+          0.58,
+          0.95
         ],
         "Position": [
           -2.15,
-          -0.09999999999999998,
-          1.15
+          -0.06999999999999995,
+          1.17
         ],
         "Color": [
           0.2823529411764706,
@@ -3899,14 +4539,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
-          1.0,
-          1.15
+          1.18,
+          1.05,
+          1.2
         ],
         "Position": [
           -2.15,
           -0.3,
-          1.95
+          1.97
         ],
         "Color": [
           0.38823529411764707,
@@ -3931,14 +4571,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.35,
-          0.85
+          0.95,
+          0.38,
+          0.9
         ],
         "Position": [
           -2.15,
-          0.20000000000000007,
-          2.0
+          0.22999999999999998,
+          2.0300000000000002
         ],
         "Color": [
           0.24313725490196078,
@@ -3963,14 +4603,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.95,
-          0.9
+          0.98,
+          0.98,
+          0.95
         ],
         "Position": [
           -2.15,
           -0.3,
-          2.55
+          2.5999999999999996
         ],
         "Color": [
           0.2823529411764706,
@@ -3996,14 +4636,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.26,
-          0.26,
-          1.65
+          0.28,
+          0.28,
+          1.7
         ],
         "Position": [
-          -2.4299999999999997,
-          -0.12999999999999998,
-          3.0999999999999996
+          -2.4499999999999997,
+          -0.10999999999999999,
+          3.1500000000000004
         ],
         "Color": [
           0.16470588235294117,
@@ -4029,14 +4669,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.26,
-          0.26,
-          1.65
+          0.28,
+          0.28,
+          1.7
         ],
         "Position": [
-          -1.8699999999999999,
-          -0.12999999999999998,
-          3.0999999999999996
+          -1.8499999999999999,
+          -0.10999999999999999,
+          3.1500000000000004
         ],
         "Color": [
           0.16470588235294117,
@@ -4062,14 +4702,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.26,
-          0.26,
-          1.65
+          0.28,
+          0.28,
+          1.7
         ],
         "Position": [
           -2.15,
-          -0.53,
-          3.0999999999999996
+          -0.55,
+          3.1500000000000004
         ],
         "Color": [
           0.16470588235294117,
@@ -4095,14 +4735,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.2,
-          1.35
+          0.22,
+          0.22,
+          1.4
         ],
         "Position": [
           -2.15,
-          0.0,
-          2.95
+          0.030000000000000027,
+          3.0
         ],
         "Color": [
           0.2823529411764706,
@@ -4128,19 +4768,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.2,
+          0.22,
+          0.22,
           0.14
         ],
         "Position": [
-          -2.4299999999999997,
-          -0.12999999999999998,
-          3.95
+          -2.4499999999999997,
+          -0.10999999999999999,
+          4.05
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -4160,19 +4800,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.2,
+          0.22,
+          0.22,
           0.14
         ],
         "Position": [
-          -1.8699999999999999,
-          -0.12999999999999998,
-          3.95
+          -1.8499999999999999,
+          -0.10999999999999999,
+          4.05
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -4192,19 +4832,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.2,
+          0.22,
+          0.22,
           0.14
         ],
         "Position": [
           -2.15,
-          -0.53,
-          3.95
+          -0.55,
+          4.05
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -4224,14 +4864,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
-          0.55,
-          0.6
+          0.72,
+          0.58,
+          0.65
         ],
         "Position": [
-          -1.4,
+          -1.3699999999999999,
           -0.5,
-          1.7
+          1.73
         ],
         "Color": [
           0.33725490196078434,
@@ -4258,12 +4898,12 @@
         "Size": [
           0.2,
           0.2,
-          0.75
+          0.8
         ],
         "Position": [
-          -1.7,
+          -1.67,
           -0.19999999999999998,
-          2.0999999999999996
+          2.13
         ],
         "Color": [
           0.1568627450980392,
@@ -4288,14 +4928,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.45,
-          0.65,
-          0.4
+          0.48,
+          0.68,
+          0.42
         ],
         "Position": [
-          -2.8499999999999996,
+          -2.87,
           -0.6,
-          1.7999999999999998
+          1.83
         ],
         "Color": [
           0.16470588235294117,
@@ -4320,13 +4960,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.38,
-          0.55,
-          0.38
+          0.4,
+          0.58,
+          0.4
         ],
         "Position": [
           -2.15,
-          -1.0499999999999998,
+          -1.0699999999999998,
           1.0999999999999999
         ],
         "Color": [
@@ -4353,13 +4993,13 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.35,
-          0.45
+          0.38,
+          0.48
         ],
         "Position": [
           -2.15,
-          0.35,
-          1.5
+          0.37,
+          1.5299999999999998
         ],
         "Color": [
           0.43137254901960786,
@@ -4390,8 +5030,8 @@
         ],
         "Position": [
           -2.15,
-          0.55,
-          1.65
+          0.5700000000000001,
+          1.67
         ],
         "Color": [
           0.1568627450980392,
@@ -4416,19 +5056,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
+          0.72,
           0.1,
           0.1
         ],
         "Position": [
           -2.15,
-          0.20000000000000007,
-          1.35
+          0.22999999999999998,
+          1.2999999999999998
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -4448,19 +5088,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
+          0.72,
           0.1,
           0.1
         ],
         "Position": [
           -2.15,
-          0.20000000000000007,
-          1.65
+          0.22999999999999998,
+          1.6
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -4480,19 +5120,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
+          0.72,
           0.1,
           0.1
         ],
         "Position": [
           -2.15,
-          0.20000000000000007,
-          1.95
+          0.22999999999999998,
+          1.9
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -4512,19 +5152,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
+          0.72,
           0.1,
           0.1
         ],
         "Position": [
           -2.15,
-          0.20000000000000007,
-          2.25
+          0.22999999999999998,
+          2.2
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "ArmL_CoolVent4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.72,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          -2.15,
+          0.22999999999999998,
+          2.45
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -4549,9 +5221,9 @@
           0.11
         ],
         "Position": [
-          -2.55,
-          0.0,
-          1.45
+          -2.57,
+          0.030000000000000027,
+          1.5
         ],
         "Color": [
           0.2823529411764706,
@@ -4581,9 +5253,9 @@
           0.11
         ],
         "Position": [
-          -1.75,
-          0.0,
-          1.45
+          -1.73,
+          0.030000000000000027,
+          1.5
         ],
         "Color": [
           0.2823529411764706,
@@ -4614,8 +5286,8 @@
         ],
         "Position": [
           -2.15,
-          -0.7,
-          2.3499999999999996
+          -0.73,
+          2.4
         ],
         "Color": [
           0.2823529411764706,
@@ -4645,9 +5317,41 @@
           0.11
         ],
         "Position": [
-          -1.5999999999999999,
-          0.0,
-          2.25
+          -1.5699999999999998,
+          0.030000000000000027,
+          2.3
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "ArmL_GunBolt4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -2.65,
+          -0.44999999999999996,
+          2.15
         ],
         "Color": [
           0.2823529411764706,
@@ -4672,9 +5376,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.85,
-          0.65,
-          0.65
+          0.88,
+          0.68,
+          0.68
         ],
         "Position": [
           2.15,
@@ -4704,9 +5408,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
+          0.98,
           0.2,
-          0.95
+          0.98
         ],
         "Position": [
           2.15,
@@ -4737,9 +5441,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.8,
-          1.5
+          0.98,
+          0.85,
+          1.55
         ],
         "Position": [
           2.15,
@@ -4769,14 +5473,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.8,
-          0.5,
-          1.0
+          0.82,
+          0.52,
+          1.05
         ],
         "Position": [
           2.15,
-          -0.04999999999999999,
-          1.15
+          -0.02999999999999997,
+          1.17
         ],
         "Color": [
           0.2823529411764706,
@@ -4801,9 +5505,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.75,
-          0.65,
-          0.55
+          0.78,
+          0.68,
+          0.58
         ],
         "Position": [
           2.15,
@@ -4833,14 +5537,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.38,
-          0.38,
-          1.7
+          0.4,
+          0.4,
+          1.75
         ],
         "Position": [
           2.15,
           -0.22999999999999998,
-          2.5
+          2.55
         ],
         "Color": [
           0.16470588235294117,
@@ -4866,14 +5570,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.55,
-          0.7
+          0.58,
+          0.58,
+          0.75
         ],
         "Position": [
           2.15,
           -0.22999999999999998,
-          1.9
+          1.93
         ],
         "Color": [
           0.2823529411764706,
@@ -4899,14 +5603,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.5,
+          0.52,
           0.12,
-          0.5
+          0.52
         ],
         "Position": [
           2.15,
           -0.22999999999999998,
-          2.8499999999999996
+          2.9
         ],
         "Color": [
           0.43137254901960786,
@@ -4932,14 +5636,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.5,
-          0.7,
-          0.4
+          0.52,
+          0.72,
+          0.42
         ],
         "Position": [
           2.15,
-          -0.95,
-          1.15
+          -0.97,
+          1.17
         ],
         "Color": [
           0.33725490196078434,
@@ -4964,14 +5668,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
+          0.58,
           0.12,
-          0.45
+          0.48
         ],
         "Position": [
           2.15,
-          -1.2999999999999998,
-          1.15
+          -1.33,
+          1.17
         ],
         "Color": [
           0.24313725490196078,
@@ -4997,13 +5701,13 @@
         "CastShadow": true,
         "Size": [
           0.16,
-          0.4,
-          0.5
+          0.42,
+          0.52
         ],
         "Position": [
           2.15,
-          0.20000000000000007,
-          1.5
+          0.22999999999999998,
+          1.5299999999999998
         ],
         "Color": [
           0.1568627450980392,
@@ -5028,19 +5732,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.48,
-          0.48,
-          0.28
+          0.5,
+          0.5,
+          0.3
         ],
         "Position": [
           2.15,
           -0.22999999999999998,
-          3.4000000000000004
+          3.5
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -5060,14 +5764,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.32,
+          0.34,
           0.18,
-          1.0
+          1.05
         ],
         "Position": [
           2.15,
-          -0.7,
-          1.9
+          -0.73,
+          1.93
         ],
         "Color": [
           0.2823529411764706,
@@ -5092,13 +5796,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.3,
-          0.45,
-          0.3
+          0.32,
+          0.48,
+          0.32
         ],
         "Position": [
           2.15,
-          -0.9,
+          -0.9299999999999999,
           0.7
         ],
         "Color": [
@@ -5124,19 +5828,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
+          0.75,
           0.12,
           0.12
         ],
         "Position": [
           2.15,
-          -0.7,
-          1.35
+          -0.73,
+          1.3699999999999999
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -5156,19 +5860,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
+          0.58,
           0.1,
           0.1
         ],
         "Position": [
           2.15,
-          0.15000000000000002,
+          0.17000000000000004,
           0.95
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -5188,19 +5892,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
+          0.58,
           0.1,
           0.1
         ],
         "Position": [
           2.15,
-          0.15000000000000002,
+          0.17000000000000004,
           1.2999999999999998
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -5220,19 +5924,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
+          0.58,
           0.1,
           0.1
         ],
         "Position": [
           2.15,
-          0.15000000000000002,
+          0.17000000000000004,
           1.65
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -5243,7 +5947,39 @@
       }
     },
     {
-      "Name": "ArmR_RivetBolt0",
+      "Name": "ArmR_RecvVent3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.58,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          2.15,
+          0.17000000000000004,
+          1.95
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "ArmR_SideBolt0",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -5257,9 +5993,9 @@
           0.11
         ],
         "Position": [
-          1.75,
-          -0.04999999999999999,
-          1.35
+          1.73,
+          -0.02999999999999997,
+          1.3699999999999999
         ],
         "Color": [
           0.2823529411764706,
@@ -5275,7 +6011,7 @@
       }
     },
     {
-      "Name": "ArmR_RivetBolt1",
+      "Name": "ArmR_SideBolt1",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -5289,9 +6025,9 @@
           0.11
         ],
         "Position": [
-          2.55,
-          -0.04999999999999999,
-          1.35
+          2.57,
+          -0.02999999999999997,
+          1.3699999999999999
         ],
         "Color": [
           0.2823529411764706,
@@ -5307,7 +6043,7 @@
       }
     },
     {
-      "Name": "ArmR_RivetBolt2",
+      "Name": "ArmR_SideBolt2",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -5322,8 +6058,8 @@
         ],
         "Position": [
           2.15,
-          -0.55,
-          2.25
+          -0.57,
+          2.3
         ],
         "Color": [
           0.2823529411764706,
@@ -5348,9 +6084,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.25,
-          0.55,
-          1.05
+          1.28,
+          0.58,
+          1.08
         ],
         "Position": [
           1.75,
@@ -5380,13 +6116,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.0,
-          0.25,
-          0.8
+          1.05,
+          0.28,
+          0.85
         ],
         "Position": [
           1.75,
-          1.7,
+          1.73,
           -0.8
         ],
         "Color": [
@@ -5412,14 +6148,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.4,
-          1.1,
-          1.45
+          1.45,
+          1.15,
+          1.5
         ],
         "Position": [
           1.75,
-          1.85,
-          -0.14999999999999997
+          1.87,
+          -0.12999999999999998
         ],
         "Color": [
           0.33725490196078434,
@@ -5444,14 +6180,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
-          0.7,
-          0.9
+          1.2,
+          0.75,
+          0.95
         ],
         "Position": [
           1.75,
-          2.0,
-          0.15000000000000002
+          2.0300000000000002,
+          0.20000000000000007
         ],
         "Color": [
           0.24313725490196078,
@@ -5476,14 +6212,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.5,
-          0.32,
-          1.5
+          1.55,
+          0.34,
+          1.55
         ],
         "Position": [
           1.75,
-          1.85,
-          0.55
+          1.87,
+          0.6
         ],
         "Color": [
           0.43137254901960786,
@@ -5509,14 +6245,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.65,
-          0.65,
-          2.35
+          0.68,
+          0.68,
+          2.4
         ],
         "Position": [
           1.75,
-          1.9,
-          1.75
+          1.9300000000000002,
+          1.7999999999999998
         ],
         "Color": [
           0.2823529411764706,
@@ -5542,14 +6278,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
-          0.9,
-          0.95
+          0.95,
+          0.95,
+          1.0
         ],
         "Position": [
           1.75,
-          1.9,
-          1.2000000000000002
+          1.9300000000000002,
+          1.23
         ],
         "Color": [
           0.3666666666666667,
@@ -5575,14 +6311,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.8,
+          0.85,
           0.16,
-          0.8
+          0.85
         ],
         "Position": [
           1.75,
-          1.9,
-          2.35
+          1.9300000000000002,
+          2.4
         ],
         "Color": [
           0.43137254901960786,
@@ -5608,14 +6344,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.42,
-          0.42,
-          0.28
+          0.45,
+          0.45,
+          0.3
         ],
         "Position": [
           1.75,
-          1.9,
-          2.9499999999999997
+          1.9300000000000002,
+          3.05
         ],
         "Color": [
           0.1568627450980392,
@@ -5641,13 +6377,13 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.7,
-          1.15
+          0.75,
+          1.2
         ],
         "Position": [
-          0.95,
-          2.15,
-          0.10000000000000003
+          0.9,
+          2.2,
+          0.13
         ],
         "Color": [
           0.24313725490196078,
@@ -5673,13 +6409,13 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.7,
-          1.15
+          0.75,
+          1.2
         ],
         "Position": [
-          2.55,
-          2.15,
-          0.10000000000000003
+          2.6,
+          2.2,
+          0.13
         ],
         "Color": [
           0.24313725490196078,
@@ -5705,13 +6441,13 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.4,
-          0.55
+          0.42,
+          0.58
         ],
         "Position": [
-          0.9,
-          2.4,
-          0.55
+          0.85,
+          2.45,
+          0.6
         ],
         "Color": [
           0.16470588235294117,
@@ -5737,13 +6473,13 @@
         "CastShadow": true,
         "Size": [
           0.14,
-          0.4,
-          0.55
+          0.42,
+          0.58
         ],
         "Position": [
-          2.6,
-          2.4,
-          0.55
+          2.65,
+          2.45,
+          0.6
         ],
         "Color": [
           0.16470588235294117,
@@ -5768,19 +6504,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
+          1.2,
           0.16,
           0.16
         ],
         "Position": [
           1.75,
-          1.2000000000000002,
-          0.20000000000000007
+          1.17,
+          0.22999999999999998
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -5800,12 +6536,12 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.8,
-          0.8,
-          0.8
+          0.85,
+          0.85,
+          0.85
         ],
         "Position": [
-          2.7,
+          2.75,
           1.45,
           -0.39999999999999997
         ],
@@ -5833,13 +6569,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.55,
-          0.2,
-          0.55
+          0.58,
+          0.22,
+          0.58
         ],
         "Position": [
-          2.7,
-          1.9,
+          2.75,
+          1.9300000000000002,
           -0.39999999999999997
         ],
         "Color": [
@@ -5866,14 +6602,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.2,
-          0.35,
-          1.3
+          0.22,
+          0.38,
+          1.35
         ],
         "Position": [
-          1.0,
-          1.7,
-          0.35
+          0.97,
+          1.73,
+          0.4
         ],
         "Color": [
           0.2823529411764706,
@@ -5898,19 +6634,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
+          0.95,
           0.1,
           0.1
         ],
         "Position": [
           1.75,
-          2.45,
-          -0.24999999999999997
+          2.5,
+          -0.3
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -5930,19 +6666,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
+          0.95,
           0.1,
           0.1
         ],
         "Position": [
           1.75,
-          2.45,
-          0.10000000000000003
+          2.5,
+          0.050000000000000044
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -5962,19 +6698,51 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.9,
+          0.95,
           0.1,
           0.1
         ],
         "Position": [
           1.75,
-          2.45,
-          0.45000000000000007
+          2.5,
+          0.4
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "ShoulderR_BreechVent3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.95,
+          0.1,
+          0.1
+        ],
+        "Position": [
+          1.75,
+          2.5,
+          0.7000000000000001
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -5999,9 +6767,9 @@
           0.11
         ],
         "Position": [
-          1.25,
-          2.25,
-          0.45000000000000007
+          1.2,
+          2.3,
+          0.5
         ],
         "Color": [
           0.2823529411764706,
@@ -6031,9 +6799,9 @@
           0.11
         ],
         "Position": [
-          2.25,
-          2.25,
-          0.45000000000000007
+          2.3,
+          2.3,
+          0.5
         ],
         "Color": [
           0.2823529411764706,
@@ -6063,9 +6831,9 @@
           0.11
         ],
         "Position": [
-          1.2,
-          1.6500000000000001,
-          0.85
+          1.17,
+          1.67,
+          0.9
         ],
         "Color": [
           0.2823529411764706,
@@ -6095,9 +6863,41 @@
           0.11
         ],
         "Position": [
-          2.3,
-          1.6500000000000001,
-          0.85
+          2.33,
+          1.67,
+          0.9
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "ShoulderR_CannonBolt4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          1.75,
+          2.25,
+          0.7500000000000001
         ],
         "Color": [
           0.2823529411764706,
@@ -6122,9 +6922,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.45,
-          0.85,
-          0.6
+          1.5,
+          0.9,
+          0.65
         ],
         "Position": [
           0.0,
@@ -6154,13 +6954,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.3,
-          0.18,
-          0.5
+          1.35,
+          0.2,
+          0.55
         ],
         "Position": [
           0.0,
-          0.65,
+          0.7000000000000001,
           -1.45
         ],
         "Color": [
@@ -6186,19 +6986,19 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.3,
-          0.3,
-          0.22
+          0.32,
+          0.32,
+          0.24
         ],
         "Position": [
-          0.45,
-          0.55,
-          -1.1
+          0.48,
+          0.57,
+          -1.0699999999999998
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -6218,14 +7018,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.3,
-          0.3,
-          0.22
+          0.32,
+          0.32,
+          0.24
         ],
         "Position": [
-          -0.45,
-          0.55,
-          -1.1
+          -0.48,
+          0.57,
+          -1.0699999999999998
         ],
         "Color": [
           0.43137254901960786,
@@ -6250,14 +7050,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          1.15,
+          1.2,
           0.12,
           0.1
         ],
         "Position": [
           0.0,
           0.3,
-          -1.1
+          -1.0699999999999998
         ],
         "Color": [
           0.1568627450980392,
@@ -6283,11 +7083,11 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.65,
-          0.45
+          0.7,
+          0.48
         ],
         "Position": [
-          -0.75,
+          -0.78,
           0.15,
           -1.45
         ],
@@ -6315,11 +7115,11 @@
         "CastShadow": true,
         "Size": [
           0.18,
-          0.65,
-          0.45
+          0.7,
+          0.48
         ],
         "Position": [
-          0.75,
+          0.78,
           0.15,
           -1.45
         ],
@@ -6327,6 +7127,38 @@
           0.43137254901960786,
           0.4627450980392157,
           0.5019607843137255
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "Battery_CellBand",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.55,
+          0.12,
+          0.7
+        ],
+        "Position": [
+          0.0,
+          -0.05000000000000002,
+          -1.45
+        ],
+        "Color": [
+          0.33725490196078434,
+          0.48627450980392156,
+          0.25098039215686274
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -6347,18 +7179,18 @@
         "CastShadow": true,
         "Size": [
           0.12,
-          0.4,
+          0.42,
           0.08
         ],
         "Position": [
-          -0.35,
+          -0.4,
           0.0,
-          -1.1
+          -1.0699999999999998
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -6379,18 +7211,18 @@
         "CastShadow": true,
         "Size": [
           0.12,
-          0.4,
+          0.42,
           0.08
         ],
         "Position": [
           0.0,
           0.0,
-          -1.1
+          -1.0699999999999998
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -6411,18 +7243,18 @@
         "CastShadow": true,
         "Size": [
           0.12,
-          0.4,
+          0.42,
           0.08
         ],
         "Position": [
-          0.35,
+          0.4,
           0.0,
-          -1.1
+          -1.0699999999999998
         ],
         "Color": [
-          0.14823529411764705,
-          0.15529411764705883,
-          0.16941176470588235
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -6447,9 +7279,9 @@
           0.11
         ],
         "Position": [
-          -0.5,
-          0.44999999999999996,
-          -1.15
+          -0.52,
+          0.47,
+          -1.13
         ],
         "Color": [
           0.2823529411764706,
@@ -6479,9 +7311,9 @@
           0.11
         ],
         "Position": [
-          0.5,
-          0.44999999999999996,
-          -1.15
+          0.52,
+          0.47,
+          -1.13
         ],
         "Color": [
           0.2823529411764706,
@@ -6506,9 +7338,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
+          0.75,
           0.12,
-          0.7
+          0.75
         ],
         "Position": [
           0.0,
@@ -6538,13 +7370,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.22,
-          0.35
+          0.38,
+          0.24,
+          0.38
         ],
         "Position": [
           0.0,
-          1.3299999999999998,
+          1.3499999999999999,
           0.35
         ],
         "Color": [
@@ -6570,14 +7402,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          0.14
+          0.15,
+          0.15,
+          0.15
         ],
         "Position": [
-          0.22,
-          1.29,
-          0.57
+          0.24,
+          1.2999999999999998,
+          0.59
         ],
         "Color": [
           0.1568627450980392,
@@ -6602,13 +7434,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.5,
-          0.22,
-          0.22
+          0.55,
+          0.24,
+          0.24
         ],
         "Position": [
           0.0,
-          1.5,
+          1.5299999999999998,
           0.19999999999999998
         ],
         "Color": [
@@ -6634,14 +7466,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
+          0.42,
           0.04,
           0.06
         ],
         "Position": [
           -0.1,
           1.23,
-          0.6
+          0.63
         ],
         "Color": [
           0.1568627450980392,
@@ -6668,10 +7500,10 @@
         "Size": [
           0.06,
           0.04,
-          0.35
+          0.38
         ],
         "Position": [
-          0.25,
+          0.28,
           1.23,
           0.3
         ],
@@ -6679,6 +7511,38 @@
           0.1568627450980392,
           0.8627450980392157,
           1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "CPU_TraceC",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.35,
+          0.04,
+          0.06
+        ],
+        "Position": [
+          0.05,
+          1.23,
+          0.06999999999999995
+        ],
+        "Color": [
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -6703,9 +7567,9 @@
           0.08
         ],
         "Position": [
-          -0.28,
+          -0.3,
           1.23,
-          0.06999999999999995
+          0.04999999999999999
         ],
         "Color": [
           0.2823529411764706,
@@ -6735,9 +7599,41 @@
           0.08
         ],
         "Position": [
-          0.28,
+          0.3,
           1.23,
-          0.06999999999999995
+          0.04999999999999999
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "CPU_CpuBolt2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.08,
+          0.08,
+          0.08
+        ],
+        "Position": [
+          -0.3,
+          1.23,
+          0.6499999999999999
         ],
         "Color": [
           0.2823529411764706,
@@ -6762,9 +7658,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.95,
-          0.4,
-          1.05
+          1.0,
+          0.42,
+          1.1
         ],
         "Position": [
           0.35,
@@ -6794,13 +7690,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.75,
-          0.15,
-          0.8
+          0.8,
+          0.16,
+          0.85
         ],
         "Position": [
           0.35,
-          2.4,
+          2.4299999999999997,
           -1.05
         ],
         "Color": [
@@ -6826,14 +7722,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.2,
-          0.18
+          0.38,
+          0.22,
+          0.2
         ],
         "Position": [
           0.35,
-          2.35,
-          -0.5
+          2.37,
+          -0.4700000000000001
         ],
         "Color": [
           0.1568627450980392,
@@ -6858,14 +7754,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.65,
+          0.7,
           0.1,
-          0.65
+          0.7
         ],
         "Position": [
           0.35,
-          2.55,
-          -1.25
+          2.57,
+          -1.27
         ],
         "Color": [
           0.16470588235294117,
@@ -6892,11 +7788,11 @@
         "Size": [
           0.14,
           0.18,
-          0.7
+          0.75
         ],
         "Position": [
-          -0.050000000000000044,
-          1.8499999999999999,
+          -0.07,
+          1.8299999999999998,
           -1.05
         ],
         "Color": [
@@ -6924,11 +7820,11 @@
         "Size": [
           0.14,
           0.18,
-          0.7
+          0.75
         ],
         "Position": [
-          0.75,
-          1.8499999999999999,
+          0.77,
+          1.8299999999999998,
           -1.05
         ],
         "Color": [
@@ -6942,6 +7838,38 @@
       },
       "Attributes": {
         "TextureRole": "matte_rubber"
+      }
+    },
+    {
+      "Name": "Drone_Accent",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.7,
+          0.08,
+          0.08
+        ],
+        "Position": [
+          0.35,
+          2.25,
+          -0.55
+        ],
+        "Color": [
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
       }
     },
     {
@@ -6959,9 +7887,9 @@
           0.08
         ],
         "Position": [
-          0.04999999999999999,
+          0.02999999999999997,
           2.3,
-          -0.75
+          -0.73
         ],
         "Color": [
           0.2823529411764706,
@@ -6991,9 +7919,9 @@
           0.08
         ],
         "Position": [
-          0.6499999999999999,
+          0.6699999999999999,
           2.3,
-          -0.75
+          -0.73
         ],
         "Color": [
           0.2823529411764706,
@@ -7006,6 +7934,38 @@
       },
       "Attributes": {
         "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "Drone_DroneVent0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.5,
+          0.2,
+          0.1
+        ],
+        "Position": [
+          0.35,
+          2.1999999999999997,
+          -1.55
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.17254901960784313,
+          0.18823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
       }
     },
     {
@@ -7028,9 +7988,9 @@
           0.4
         ],
         "Color": [
-          0.21568627450980393,
-          0.22745098039215686,
-          0.24313725490196078
+          0.16470588235294117,
+          0.14901960784313725,
+          0.12549019607843137
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -7060,9 +8020,9 @@
           2.4
         ],
         "Color": [
-          1.0,
-          0.5490196078431373,
-          0.18823529411764706
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -7076,8 +8036,10 @@
   "Name": "HeroStarterMech",
   "Attributes": {
     "AssemblerShowcase": true,
-    "ArtBar": "SuperMechs3D",
+    "ThemeLine": "Yardbone",
+    "ThemeId": "scrap",
     "Pose": "CombatReady",
-    "Camera": "FrontThreeQuarter"
+    "Camera": "FrontThreeQuarter",
+    "ArtBar": "SuperMechs3D"
   }
 }

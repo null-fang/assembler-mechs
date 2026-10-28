@@ -17,6 +17,12 @@ local activeArenaId: ArenaId? = nil
 local MECHS_NAME = "LiveMechs"
 local GARAGE_MECH_NAME = "GaragePreviewMech"
 local HERO_SHOWCASE_NAME = "HeroStarterShowcase"
+local THEME_SHOWCASES = {
+	{ asset = "ThemeScrapMech", name = "ThemeScrapShowcase", label = "Yardbone", side = -1, along = 0 },
+	{ asset = "ThemeArcticMech", name = "ThemeArcticShowcase", label = "Rimevault", side = 1, along = 0 },
+	{ asset = "ThemeDesertMech", name = "ThemeDesertShowcase", label = "Duneplate", side = -1, along = 14 },
+	{ asset = "ThemeNeonMech", name = "ThemeNeonShowcase", label = "Voltframe", side = 1, along = 14 },
+}
 
 local function waitChild(parent: Instance, name: string, timeout: number?): Instance?
 	local existing = parent:FindFirstChild(name)
@@ -299,20 +305,19 @@ function ArenaService.clearGaragePreview()
 	end
 end
 
--- Hand-authored SM-like hero (AssemblerAssets.Showcase) — art bar beside the garage.
-local function ensureHeroShowcase(lobby: Instance, pedestal: BasePart, facing: Vector3)
-	local existing = lobby:FindFirstChild(HERO_SHOWCASE_NAME)
-	if existing then
-		return
-	end
-	local assets = ReplicatedStorage:FindFirstChild("AssemblerAssets")
-	local folder = if assets then assets:FindFirstChild("Showcase") else nil
-	local template = if folder then folder:FindFirstChild("HeroStarterMech") else nil
-	if not (template and template:IsA("Model")) then
+local function placeShowcaseClone(
+	lobby: Instance,
+	template: Model,
+	cloneName: string,
+	label: string,
+	mount: Vector3,
+	facing: Vector3
+)
+	if lobby:FindFirstChild(cloneName) then
 		return
 	end
 	local clone = template:Clone()
-	clone.Name = HERO_SHOWCASE_NAME
+	clone.Name = cloneName
 	local root = clone:FindFirstChild("Root")
 	if root and root:IsA("BasePart") then
 		clone.PrimaryPart = root
@@ -327,19 +332,44 @@ local function ensureHeroShowcase(lobby: Instance, pedestal: BasePart, facing: V
 			d.Massless = true
 		end
 	end
+	clone:PivotTo(Assembler.worldCFrameAt(mount, facing))
+	clone:SetAttribute("Preview", true)
+	clone:SetAttribute("ArtBar", true)
+	clone.Parent = lobby
+	addNameplate(clone, label)
+	WorldBootstrap.tagMech(clone, true)
+end
+
+-- Hand-authored SM-like hero + themed kit lines beside the garage.
+local function ensureHeroShowcase(lobby: Instance, pedestal: BasePart, facing: Vector3)
+	local assets = ReplicatedStorage:FindFirstChild("AssemblerAssets")
+	local folder = if assets then assets:FindFirstChild("Showcase") else nil
+	if not folder then
+		return
+	end
 	local side = Vector3.new(-facing.Z, 0, facing.X)
 	if side.Magnitude < 0.05 then
 		side = Vector3.new(1, 0, 0)
 	else
 		side = side.Unit
 	end
-	local mount = mountPoint(pedestal, "MechRoot") + side * 10
-	clone:PivotTo(Assembler.worldCFrameAt(mount, facing))
-	clone:SetAttribute("Preview", true)
-	clone:SetAttribute("ArtBar", true)
-	clone.Parent = lobby
-	addNameplate(clone, "Hero art bar")
-	WorldBootstrap.tagMech(clone, true)
+	local along = facing
+	local base = mountPoint(pedestal, "MechRoot")
+
+	if not lobby:FindFirstChild(HERO_SHOWCASE_NAME) then
+		local hero = folder:FindFirstChild("HeroStarterMech")
+		if hero and hero:IsA("Model") then
+			placeShowcaseClone(lobby, hero, HERO_SHOWCASE_NAME, "Hero art bar", base + side * 10, facing)
+		end
+	end
+
+	for _, entry in THEME_SHOWCASES do
+		local template = folder:FindFirstChild(entry.asset)
+		if template and template:IsA("Model") then
+			local mount = base + side * (12 * entry.side) + along * entry.along
+			placeShowcaseClone(lobby, template, entry.name, entry.label, mount, facing)
+		end
+	end
 end
 
 function ArenaService.spawnGaragePreview(loadout: SoftSlots.EquippedLoadout, displayName: string)

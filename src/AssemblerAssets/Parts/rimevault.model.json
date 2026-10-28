@@ -1,0 +1,2415 @@
+{
+  "ClassName": "Model",
+  "Children": [
+    {
+      "Name": "Root",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          0,
+          0,
+          0
+        ],
+        "Color": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "Material": "SmoothPlastic",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 1.0
+      },
+      "Attributes": {
+        "TextureRole": "matte_rubber"
+      }
+    },
+    {
+      "Name": "CoreFrame",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.45,
+          2.05,
+          1.55
+        ],
+        "Position": [
+          0,
+          0.05,
+          -0.12
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "Hull",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          3.45,
+          2.45,
+          2.2
+        ],
+        "Position": [
+          0,
+          0.08,
+          0.08
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.8784313725490196,
+          0.9254901960784314
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HullSeam",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          3.55,
+          0.1,
+          2.25
+        ],
+        "Position": [
+          0,
+          0.18,
+          0.08
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HullBelt",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          3.5,
+          0.14,
+          2.2
+        ],
+        "Position": [
+          0,
+          -0.55,
+          0.1
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ChestPlateA",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.55,
+          1.4,
+          0.34
+        ],
+        "Position": [
+          0,
+          0.28,
+          1.22
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "ChestPlateB",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.1,
+          1.0,
+          0.3
+        ],
+        "Position": [
+          0,
+          0.38,
+          1.42
+        ],
+        "Color": [
+          0.7576470588235295,
+          0.808156862745098,
+          0.8514509803921569
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ChestPlateC",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.55,
+          0.6,
+          0.24
+        ],
+        "Position": [
+          0,
+          0.42,
+          1.58
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BreastLower",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.35,
+          0.72,
+          0.32
+        ],
+        "Position": [
+          0,
+          -0.48,
+          1.28
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BreastSplit",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.12,
+          1.6,
+          0.2
+        ],
+        "Position": [
+          0,
+          0.1,
+          1.55
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "VentF",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.95,
+          0.38,
+          0.16
+        ],
+        "Position": [
+          0,
+          -0.12,
+          1.55
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "VentFL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18,
+          0.6,
+          0.14
+        ],
+        "Position": [
+          -0.58,
+          -0.12,
+          1.52
+        ],
+        "Color": [
+          0.16941176470588235,
+          0.20470588235294118,
+          0.25411764705882356
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "VentFR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18,
+          0.6,
+          0.14
+        ],
+        "Position": [
+          0.58,
+          -0.12,
+          1.52
+        ],
+        "Color": [
+          0.16941176470588235,
+          0.20470588235294118,
+          0.25411764705882356
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "AccentHazard",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.95,
+          0.16,
+          0.14
+        ],
+        "Position": [
+          0,
+          -0.88,
+          1.42
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.7450980392156863,
+          0.9411764705882353
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "hazard_stripe"
+      }
+    },
+    {
+      "Name": "HeadDome",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.95,
+          1.18,
+          1.65
+        ],
+        "Position": [
+          0,
+          1.58,
+          0.22
+        ],
+        "Color": [
+          0.9254901960784314,
+          0.9568627450980393,
+          0.9803921568627451
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HeadCap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.58,
+          0.34,
+          1.28
+        ],
+        "Position": [
+          0,
+          2.25,
+          0.16
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "VisorRecess",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.9,
+          0.88,
+          0.38
+        ],
+        "Position": [
+          0,
+          1.42,
+          1.08
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "GlowVisor",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.7,
+          0.6,
+          0.3
+        ],
+        "Position": [
+          0,
+          1.42,
+          1.38
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "GlowVisorCore",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.58,
+          0.72,
+          0.22
+        ],
+        "Position": [
+          0,
+          1.42,
+          1.58
+        ],
+        "Color": [
+          0.6029411764705882,
+          0.9264705882352942,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "VisorBrow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.95,
+          0.18,
+          0.48
+        ],
+        "Position": [
+          0,
+          1.95,
+          1.02
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "VisorChin",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.45,
+          0.14,
+          0.32
+        ],
+        "Position": [
+          0,
+          1.05,
+          1.25
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "GlowSlitL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.22,
+          0.42,
+          0.14
+        ],
+        "Position": [
+          -1.02,
+          1.38,
+          1.22
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "GlowSlitR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.22,
+          0.42,
+          0.14
+        ],
+        "Position": [
+          1.02,
+          1.38,
+          1.22
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "CheekL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.72,
+          1.45,
+          1.25
+        ],
+        "Position": [
+          -1.95,
+          0.42,
+          0.42
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "CheekR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.72,
+          1.45,
+          1.25
+        ],
+        "Position": [
+          1.95,
+          0.42,
+          0.42
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "CheekVentL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18,
+          0.75,
+          0.75
+        ],
+        "Position": [
+          -2.3,
+          0.38,
+          0.52
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "CheekVentR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.18,
+          0.75,
+          0.75
+        ],
+        "Position": [
+          2.3,
+          0.38,
+          0.52
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PauldronL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.25,
+          0.9,
+          1.4
+        ],
+        "Position": [
+          -2.25,
+          1.18,
+          0.05
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.8784313725490196,
+          0.9254901960784314
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PauldronR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.25,
+          0.9,
+          1.4
+        ],
+        "Position": [
+          2.25,
+          1.18,
+          0.05
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.8784313725490196,
+          0.9254901960784314
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PauldronCapL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.0,
+          0.3,
+          1.1
+        ],
+        "Position": [
+          -2.3,
+          1.65,
+          0.05
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "PauldronCapR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.0,
+          0.3,
+          1.1
+        ],
+        "Position": [
+          2.3,
+          1.65,
+          0.05
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "ShoulderPivotL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.68,
+          0.52,
+          0.68
+        ],
+        "Position": [
+          -2.0,
+          0.88,
+          0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ShoulderPivotR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.68,
+          0.52,
+          0.68
+        ],
+        "Position": [
+          2.0,
+          0.88,
+          0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "HipDisk",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.0,
+          0.42,
+          1.0
+        ],
+        "Position": [
+          0,
+          -1.22,
+          0.05
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HipYoke",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.95,
+          0.48,
+          1.6
+        ],
+        "Position": [
+          0,
+          -1.52,
+          0.12
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "PelvisPlate",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.35,
+          0.3,
+          1.2
+        ],
+        "Position": [
+          0,
+          -1.85,
+          0.28
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "SkirtL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.58,
+          0.8,
+          1.1
+        ],
+        "Position": [
+          -1.65,
+          -1.42,
+          0.32
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "SkirtR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.58,
+          0.8,
+          1.1
+        ],
+        "Position": [
+          1.65,
+          -1.42,
+          0.32
+        ],
+        "Color": [
+          0.5882352941176471,
+          0.6666666666666666,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "BackPack",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.25,
+          1.55,
+          0.75
+        ],
+        "Position": [
+          0,
+          0.32,
+          -1.4
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BackPackLid",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.95,
+          0.22,
+          0.58
+        ],
+        "Position": [
+          0,
+          1.15,
+          -1.4
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ThrusterL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.58,
+          0.58,
+          0.8
+        ],
+        "Position": [
+          -0.58,
+          0.18,
+          -1.9
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "ThrusterR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.58,
+          0.58,
+          0.8
+        ],
+        "Position": [
+          0.58,
+          0.18,
+          -1.9
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "GlowExhaustL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.34,
+          0.34,
+          0.22
+        ],
+        "Position": [
+          -0.58,
+          0.18,
+          -2.35
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "GlowExhaustR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.34,
+          0.34,
+          0.22
+        ],
+        "Position": [
+          0.58,
+          0.18,
+          -2.35
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "Antenna",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          1.1,
+          0.14
+        ],
+        "Position": [
+          1.18,
+          2.3,
+          -0.38
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "AntennaTip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Position": [
+          1.18,
+          2.88,
+          -0.38
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.7450980392156863,
+          0.9411764705882353
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "SensorPod",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.38,
+          0.38,
+          0.38
+        ],
+        "Position": [
+          -1.05,
+          2.05,
+          0.42
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.6862745098039216,
+          0.7450980392156863
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Ball"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "GlowSensor",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.2,
+          0.2,
+          0.14
+        ],
+        "Position": [
+          -1.05,
+          2.05,
+          0.65
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "IceFinL",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.16,
+          1.35,
+          0.85
+        ],
+        "Position": [
+          -1.75,
+          0.7,
+          -0.55
+        ],
+        "Color": [
+          0.9254901960784314,
+          0.9568627450980393,
+          0.9803921568627451
+        ],
+        "Material": "Glass",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.25
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "IceFinR",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.16,
+          1.35,
+          0.85
+        ],
+        "Position": [
+          1.75,
+          0.7,
+          -0.55
+        ],
+        "Color": [
+          0.9254901960784314,
+          0.9568627450980393,
+          0.9803921568627451
+        ],
+        "Material": "Glass",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.25
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "FrostCrest",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.22,
+          1.2,
+          0.55
+        ],
+        "Position": [
+          0,
+          1.9,
+          0.85
+        ],
+        "Color": [
+          0.5764705882352941,
+          0.9215686274509804,
+          1.0
+        ],
+        "Material": "Glass",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.3
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "IceSkirt",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          2.6,
+          0.2,
+          1.3
+        ],
+        "Position": [
+          0,
+          -1.95,
+          0.45
+        ],
+        "Color": [
+          0.9254901960784314,
+          0.9568627450980393,
+          0.9803921568627451
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "RimePlate",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          1.8,
+          0.55,
+          0.2
+        ],
+        "Position": [
+          0,
+          0.7,
+          1.55
+        ],
+        "Color": [
+          0.85,
+          0.8966666666666666,
+          0.9366666666666668
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "metal_plate"
+      }
+    },
+    {
+      "Name": "SideVentL0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          -1.85,
+          -0.25,
+          0.98
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "SideVentR0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          1.85,
+          -0.25,
+          0.98
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "SideVentL1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          -1.85,
+          0.15,
+          0.98
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "SideVentR1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          1.85,
+          0.15,
+          0.98
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "SideVentL2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          -1.85,
+          0.55,
+          0.98
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "SideVentR2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          1.85,
+          0.55,
+          0.98
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "SideVentL3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          -1.85,
+          0.95,
+          0.98
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "SideVentR3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.32,
+          0.12
+        ],
+        "Position": [
+          1.85,
+          0.95,
+          0.98
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BackVent0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.55,
+          0.12
+        ],
+        "Position": [
+          -0.55,
+          0.55,
+          -1.75
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BackVent1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.55,
+          0.12
+        ],
+        "Position": [
+          -0.20000000000000007,
+          0.55,
+          -1.75
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BackVent2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.55,
+          0.12
+        ],
+        "Position": [
+          0.1499999999999999,
+          0.55,
+          -1.75
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "BackVent3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.14,
+          0.55,
+          0.12
+        ],
+        "Position": [
+          0.4999999999999998,
+          0.55,
+          -1.75
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.22745098039215686,
+          0.2823529411764706
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "carbon_dark"
+      }
+    },
+    {
+      "Name": "HullBolt0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -1.25,
+          0.95,
+          1.18
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          1.25,
+          0.95,
+          1.18
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -1.05,
+          -0.45,
+          1.25
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          1.05,
+          -0.45,
+          1.25
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -0.75,
+          1.95,
+          0.8
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt5",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          0.75,
+          1.95,
+          0.8
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -2.25,
+          1.2,
+          0.75
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt7",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          2.25,
+          1.2,
+          0.75
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt8",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          -0.9,
+          0.55,
+          1.5
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "HullBolt9",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.11,
+          0.11,
+          0.11
+        ],
+        "Position": [
+          0.9,
+          0.55,
+          1.5
+        ],
+        "Color": [
+          0.35294117647058826,
+          0.43137254901960786,
+          0.5098039215686274
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    }
+  ]
+}

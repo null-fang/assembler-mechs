@@ -44,9 +44,9 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.7,
+          0.75,
           0.12,
-          0.7
+          0.75
         ],
         "Position": [
           0,
@@ -76,13 +76,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.35,
-          0.22,
-          0.35
+          0.38,
+          0.24,
+          0.38
         ],
         "Position": [
           0,
-          0.18,
+          0.2,
           0
         ],
         "Color": [
@@ -108,14 +108,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.14,
-          0.14,
-          0.14
+          0.15,
+          0.15,
+          0.15
         ],
         "Position": [
-          0.22,
-          0.14,
-          0.22
+          0.24,
+          0.15,
+          0.24
         ],
         "Color": [
           0.1568627450980392,
@@ -140,13 +140,13 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.5,
-          0.22,
-          0.22
+          0.55,
+          0.24,
+          0.24
         ],
         "Position": [
           0,
-          0.35,
+          0.38,
           -0.15
         ],
         "Color": [
@@ -172,14 +172,14 @@
         "CanTouch": false,
         "CastShadow": true,
         "Size": [
-          0.4,
+          0.42,
           0.04,
           0.06
         ],
         "Position": [
           -0.1,
           0.08,
-          0.25
+          0.28
         ],
         "Color": [
           0.1568627450980392,
@@ -206,10 +206,10 @@
         "Size": [
           0.06,
           0.04,
-          0.35
+          0.38
         ],
         "Position": [
-          0.25,
+          0.28,
           0.08,
           -0.05
         ],
@@ -217,6 +217,38 @@
           0.1568627450980392,
           0.8627450980392157,
           1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "emissive_strip"
+      }
+    },
+    {
+      "Name": "TraceC",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.35,
+          0.04,
+          0.06
+        ],
+        "Position": [
+          0.05,
+          0.08,
+          -0.28
+        ],
+        "Color": [
+          0.7686274509803922,
+          0.3607843137254902,
+          0.16470588235294117
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -241,9 +273,9 @@
           0.08
         ],
         "Position": [
-          -0.28,
+          -0.3,
           0.08,
-          -0.28
+          -0.3
         ],
         "Color": [
           0.2823529411764706,
@@ -273,9 +305,41 @@
           0.08
         ],
         "Position": [
-          0.28,
+          0.3,
           0.08,
-          -0.28
+          -0.3
+        ],
+        "Color": [
+          0.2823529411764706,
+          0.3058823529411765,
+          0.34509803921568627
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Attributes": {
+        "TextureRole": "scratched_steel"
+      }
+    },
+    {
+      "Name": "CpuBolt2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "CanCollide": false,
+        "CanQuery": false,
+        "CanTouch": false,
+        "CastShadow": true,
+        "Size": [
+          0.08,
+          0.08,
+          0.08
+        ],
+        "Position": [
+          -0.3,
+          0.08,
+          0.3
         ],
         "Color": [
           0.2823529411764706,

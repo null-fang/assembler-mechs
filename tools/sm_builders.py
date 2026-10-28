@@ -338,6 +338,45 @@ def build_torso(base: list[float], *, style: str) -> list[dict]:
             *bolts("Bunker", [[-1.4, 0.8, 1.2], [1.4, 0.8, 1.2], [-1.2, -0.6, 1.2], [1.2, -0.6, 1.2]]),
             *vent_row("BunkerSide", [-1.85, 0.1, 0.9], count=4, spacing=0.32, size=[0.12, 0.4, 0.1], axis="y"),
         ]
+    elif style == "frost":
+        ice = lighten(paint, 0.35)
+        kids += [
+            part("IceFinL", [0.16, 1.3, 0.8], [-1.7, 0.65, -0.5], color=ice, material="Glass", transparency=0.28),
+            part("IceFinR", [0.16, 1.3, 0.8], [1.7, 0.65, -0.5], color=ice, material="Glass", transparency=0.28),
+            part("FrostCrest", [0.2, 1.1, 0.5], [0, 1.85, 0.8], color=VISOR_CYAN, material="Glass", transparency=0.3),
+            part("RimePlate", [1.85, 0.55, 0.22], [0, 0.65, 1.4], color=ice, material="Metal"),
+            *panel_stack("FrostFace", [2.2, 1.2, 0.35], [0, 0.2, 1.15], paint=panel, layers=3, shrink=0.18),
+            part("IceSkirt", [2.5, 0.18, 1.25], [0, -1.9, 0.4], color=ice, material="Metal"),
+            visor("GlowRime", [1.4, 0.14, 0.14], [0, 0.5, 1.5], VISOR_CYAN),
+            *bolts("Frost", [[-1.0, 0.8, 1.35], [1.0, 0.8, 1.35], [-0.8, -0.4, 1.35], [0.8, -0.4, 1.35]]),
+            *vent_row("FrostSide", [-1.7, 0.15, 0.9], count=4, spacing=0.28, size=[0.12, 0.4, 0.1], axis="y"),
+        ]
+    elif style == "dune":
+        kids += [
+            part("DuneNose", [1.45, 0.7, 0.7], [0, 0.05, 1.35], color=lighten(paint, 0.12), material="Metal"),
+            *panel_stack("DuneFace", [2.3, 1.3, 0.4], [0, 0.15, 1.05], paint=panel, layers=3, shrink=0.2),
+            part("SandSkirtL", [0.65, 0.9, 1.15], [-1.75, -1.3, 0.35], color=panel, material="Metal"),
+            part("SandSkirtR", [0.65, 0.9, 1.15], [1.75, -1.3, 0.35], color=panel, material="Metal"),
+            part("HeatSinkL", [0.2, 0.85, 0.7], [-2.0, 0.2, 0.85], color=vent, material="Metal"),
+            part("HeatSinkR", [0.2, 0.85, 0.7], [2.0, 0.2, 0.85], color=vent, material="Metal"),
+            part("OchreBand", [3.35, 0.16, 2.05], [0, -0.2, 0.1], color=VISOR_ORANGE, material="Neon"),
+            wedge("DuneSlope", [3.0, 0.45, 1.5], cf([0, 1.2, 0.25]), color=panel),
+            *bolts("Dune", [[-1.1, 0.7, 1.3], [1.1, 0.7, 1.3], [-0.9, -0.5, 1.3], [0.9, -0.5, 1.3]]),
+            *vent_row("Dune", [0, 0.55, 1.35], count=4, spacing=0.32, size=[0.14, 0.4, 0.1]),
+        ]
+    elif style == "neon":
+        kids += [
+            part("NeonTubeL", [0.12, 1.95, 0.12], [-1.5, 0.2, 1.1], color=VISOR_CYAN, material="Neon"),
+            part("NeonTubeR", [0.12, 1.95, 0.12], [1.5, 0.2, 1.1], color=VISOR_RED, material="Neon"),
+            part("NeonRing", [2.35, 0.12, 2.35], [0, 0.85, 0.1], color=VISOR_CYAN, material="Neon"),
+            part("MagPlate", [2.05, 0.9, 0.24], [0, 0.25, 1.4], color=panel, material="Metal"),
+            *panel_stack("VoltFace", [1.7, 0.7, 0.25], [0, 0.3, 1.5], paint=paint, layers=2, shrink=0.14),
+            visor("GlowMagCore", [0.55, 0.55, 0.2], [0, 0.25, 1.65], VISOR_RED),
+            part("NightFin", [0.18, 1.35, 0.95], [0, 0.75, -1.5], color=darken(paint, 0.15), material="Metal"),
+            part("BackGlow", [1.6, 0.14, 0.14], [0, 0.4, -1.7], color=VISOR_CYAN, material="Neon"),
+            *bolts("Neon", [[-1.0, 0.75, 1.3], [1.0, 0.75, 1.3], [-0.85, -0.4, 1.3], [0.85, -0.4, 1.3]]),
+            *vent_row("NeonSide", [-1.65, 0.1, 0.85], count=4, spacing=0.28, size=[0.12, 0.35, 0.1], axis="y"),
+        ]
     else:  # glass
         kids += [
             part("Canopy", [1.75, 0.95, 1.25], [0, 1.35, 0.5], color=lighten(paint, 0.35), material="Glass", transparency=0.35),
@@ -368,7 +407,7 @@ def build_leg(base: list[float], *, style: str, side: str) -> list[dict]:
 
     kids += joint_assembly("Hip", [0, 0, 0], scale=0.9)
 
-    if style in ("workboot", "stump", "hoof", "claw", "digit", "hinge"):
+    if style in ("workboot", "stump", "hoof", "claw", "digit", "hinge", "frostleg"):
         # Combat crouch: thigh pitched forward, knee disk proud, shin down, fat boot
         kids += [
             part("Thigh", [1.05, 0.95, 1.15], [0.1 * s, -0.55, 0.35], color=paint, material="Metal"),
@@ -414,6 +453,13 @@ def build_leg(base: list[float], *, style: str, side: str) -> list[dict]:
             kids += [
                 part("HingeBrace", [0.2, 1.1, 0.35], [0.55 * s, -1.4, 0.15], color=gm, material="Metal"),
                 joint_cyl("HingeRod", [0.18, 0.9, 0.18], [0.35 * s, -1.4, -0.1], color=lighten(gm, 0.1)),
+            ]
+        if style == "frostleg":
+            ice = lighten(paint, 0.3)
+            kids += [
+                part("IceToe", [1.15, 0.2, 0.5], [0, -2.35, 1.35], color=ice, material="Glass", transparency=0.3),
+                part("SkiBlade", [0.32, 0.12, 1.5], [0.5 * s, -2.55, 0.45], color=gm, material="Metal"),
+                visor("GlowShinIce", [0.5, 0.12, 0.12], [0.08 * s, -1.55, 0.85], VISOR_CYAN),
             ]
     elif style in ("sprint", "piston", "strut"):
         kids += [
