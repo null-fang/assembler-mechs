@@ -14,6 +14,14 @@ export type LogLine = {
 	side: BattleSide?,
 }
 
+export type FxEvent = {
+	kind: "hit" | "drone" | "move" | "overheat" | "battery",
+	side: BattleSide?,
+	damageType: Types.DamageType?,
+	amount: number?,
+	text: string?,
+}
+
 export type Battle = {
 	mode: BattleMode.BattleMode,
 	sideA: MechState.FighterState,
@@ -23,6 +31,8 @@ export type Battle = {
 	outcome: Types.BattleOutcome,
 	turnIndex: number,
 	log: { LogLine },
+	-- Short-lived FX hints for client juice (cleared on snapshot read).
+	fx: { FxEvent },
 }
 
 local Resolver = {}
@@ -40,6 +50,13 @@ local function pushLog(battle: Battle, text: string, side: BattleSide?)
 	-- Cap log so clients don't drown.
 	while #battle.log > 40 do
 		table.remove(battle.log, 1)
+	end
+end
+
+local function pushFx(battle: Battle, ev: FxEvent)
+	table.insert(battle.fx, ev)
+	while #battle.fx > 12 do
+		table.remove(battle.fx, 1)
 	end
 end
 
@@ -85,6 +102,12 @@ local function resolveDamage(
 		("%s hits %s for %d %s"):format(label, target.displayName, dealt, packet.damageType),
 		nil
 	)
+	pushFx(battle, {
+		kind = "hit",
+		damageType = packet.damageType,
+		amount = dealt,
+		text = label,
+	})
 
 	if target.resources.integrity <= 0 then
 		pushLog(battle, ("%s is scrap."):format(target.displayName), nil)
@@ -157,6 +180,7 @@ function Resolver.createBattle(
 		outcome = "Ongoing",
 		turnIndex = 1,
 		log = {},
+		fx = {},
 	}
 	pushLog(battle, ("Fight start — %s vs %s"):format(sideA.displayName, sideB.displayName), nil)
 	if sideA.weight.overWeight then
@@ -269,6 +293,13 @@ local function fireDrone(battle: Battle, ownerSide: BattleSide)
 		end
 	end
 	addSelfHeat(owner, drone.stats.heatCost)
+	pushFx(battle, {
+		kind = "drone",
+		side = ownerSide,
+		damageType = drone.stats.damageType,
+		amount = drone.stats.damage,
+		text = drone.name,
+	})
 	resolveDamage(battle, owner, foe, {
 		amount = drone.stats.damage,
 		damageType = drone.stats.damageType,
@@ -290,6 +321,7 @@ local function endOfTurnTicks(battle: Battle, side: BattleSide)
 		-- Dump heat toward cap so they can recover.
 		f.resources.temperature = f.resources.temperatureMax
 		pushLog(battle, ("%s overheated — next turn skipped."):format(f.displayName), side)
+		pushFx(battle, { kind = "overheat", side = side, text = f.displayName })
 	end
 
 	-- Phase 2: Freeze — if temperature hits a deep floor, lock move/melee.
@@ -385,6 +417,12 @@ function Resolver.applyAction(battle: Battle, action: Types.BattleAction): (bool
 			),
 			battle.activeSide
 		)
+		pushFx(battle, {
+			kind = "move",
+			side = battle.activeSide,
+			amount = self.position,
+			text = ("tile %d"):format(self.position),
+		})
 		return true, nil
 	end
 
@@ -455,8 +493,12 @@ function Resolver.snapshot(battle: Battle): { [string]: any }
 			overWeight = f.weight.overWeight,
 			weapons = weaponList,
 			droneName = if f.drone then f.drone.name else nil,
+			droneDamageType = if f.drone then f.drone.stats.damageType else nil,
+			moveRange = f.moveRange,
 		}
 	end
+	local fx = battle.fx
+	battle.fx = {}
 	return {
 		mode = battle.mode,
 		activeSide = battle.activeSide,
@@ -468,6 +510,7 @@ function Resolver.snapshot(battle: Battle): { [string]: any }
 		sideB = sideSnap(battle.sideB),
 		distance = MechState.distance(battle.sideA, battle.sideB),
 		log = battle.log,
+		fx = fx,
 	}
 end
 

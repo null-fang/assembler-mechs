@@ -120,9 +120,18 @@ def main() -> None:
     )
     need("src/Shared/Progress/AccountLevel.luau", ["fromXp", "xpForLevel"])
     need("src/Client/UI/Motions.luau", ["popIn", "revealStagger", "pulse"])
-    need("src/Client/UI/SoundHooks.luau", ["play"])
+    need("src/Client/UI/SoundHooks.luau", ["play", "telegraph", "drone", "spark"])
     need("src/Shared/UI/Theme.luau", ["bgTopbar", "rareCoin"])
-    ok("return lobby + reward sheet + modern topbar")
+    need("src/Shared/Economy/DailyLogin.luau", ["rewardForStreak", "BASE_COMMON"])
+    need("src/Server/Economy/DailyLoginService.luau", ["claim", "status"])
+    need("src/Client/DailyHud.luau", ["ClaimDaily", "DailyChip"])
+    need("src/Client/PvpHud.luau", ["QueuePvP", "Ghost spar", "StartGhostSpar"])
+    need("src/Shared/Parts/ThemedStarters.luau", ["ScrapBay", "ForgeYard", "clientList"])
+    need("src/Shared/Economy/Rewards.luau", ["isGuaranteedCrate", "guaranteedCrate"])
+    need("src/Server/Campaign/Ladder.luau", ["guaranteedCrateWin", "pacing", "threat", "elements"])
+    need("src/Shared/Combat/Elements.luau", ["GLYPH", "SHORT", "color"])
+    need("src/Client/CombatJuice.luau", ["spawnHitSparks", "telegraphMove", "showDroneTick"])
+    ok("return lobby + reward sheet + modern topbar + gameplay depth")
 
     # 7) Remotes contract for the loop
     remotes = read("src/Server/Remotes.luau")
@@ -142,17 +151,24 @@ def main() -> None:
         "WalletUpdated",
         "OpenCampaign",
         "OpenGarage",
+        "ClaimDaily",
+        "GetDaily",
+        "QueuePvP",
+        "LeaveQueue",
+        "StartGhostSpar",
+        "ListThemes",
+        "OpenPvP",
     ):
         if name not in remotes:
             fail(f"Remotes missing {name}")
     ok("remotes for full loop")
 
-    # 8) Join bar still exposes Campaign / Garage / Crate
+    # 8) Join bar still exposes Campaign / Garage / Crate / PvP
     join = read("src/Client/JoinHud.luau")
-    for needle in ('id = "campaign"', 'id = "garage"', 'id = "crate"', "openCrate"):
+    for needle in ('id = "campaign"', 'id = "garage"', 'id = "crate"', 'id = "pvp"', "openCrate", "THEMED STARTERS"):
         if needle not in join:
             fail(f"JoinHud missing {needle}")
-    ok("join bar campaign / garage / crate")
+    ok("join bar campaign / garage / crate / pvp + themes")
 
     print("PLAYTEST LOOP PASS — lobby→crate→garage→campaign→arena→return")
 

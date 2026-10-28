@@ -191,14 +191,28 @@ local function refreshCompare()
 	})
 	local y = 42
 	for i = 1, math.max(#bagStats, #eqStats) do
-		Theme.label(comparePanel, bagStats[i] or "—", UDim2.new(0.5, -6, 0, 14), UDim2.new(0, 4, 0, y), 11, {
-			color = Theme.colors.text,
+		local bagLine = bagStats[i]
+		local eqLine = eqStats[i]
+		local bagColor = Theme.colors.text
+		-- Soft upgrade cue when bag weight is lower or sell worth higher.
+		if bagLine and eqLine and string.find(bagLine, "Sell") and string.find(eqLine, "Sell") then
+			local bagN = tonumber(string.match(bagLine, "%d+"))
+			local eqN = tonumber(string.match(eqLine, "%d+"))
+			if bagN and eqN and bagN > eqN then
+				bagColor = Theme.colors.ok
+			end
+		end
+		Theme.label(comparePanel, bagLine or "—", UDim2.new(0.5, -6, 0, 14), UDim2.new(0, 4, 0, y), 11, {
+			color = bagColor,
 		})
-		Theme.label(comparePanel, eqStats[i] or "—", UDim2.new(0.5, -6, 0, 14), UDim2.new(0.5, 0, 0, y), 11, {
+		Theme.label(comparePanel, eqLine or "—", UDim2.new(0.5, -6, 0, 14), UDim2.new(0.5, 0, 0, y), 11, {
 			color = Theme.colors.textDim,
 		})
 		y += 14
 	end
+	Theme.label(comparePanel, "Upgrade stub · tiers later", UDim2.new(1, -8, 0, 14), UDim2.new(0, 4, 0, y + 4), 10, {
+		color = Theme.colors.textMuted,
+	})
 end
 
 local function hideConfirm()
@@ -428,9 +442,33 @@ function GarageHud.mount(parentGui: ScreenGui)
 	titleSub = Theme.label(root, "Primary · pedestal mirrors equip", UDim2.new(1, -100, 0, 18), UDim2.new(0, 16, 0, 38), 12, {
 		color = Theme.colors.textDim,
 	})
-	statusLabel = Theme.label(root, "", UDim2.new(1, -24, 0, 18), UDim2.new(0, 16, 1, -28), 11, {
+	statusLabel = Theme.label(root, "", UDim2.new(1, -180, 0, 18), UDim2.new(0, 16, 1, -28), 11, {
 		color = Theme.colors.textMuted,
 	})
+
+	local sellAllHint = Button.create(root, "Sell tips", UDim2.new(0, 78, 0, 26), UDim2.new(1, -176, 1, -42), "ghost", {
+		textSize = 11,
+	})
+	Tooltip.attach(sellAllHint, "Unequip first. $ sells one spare. Upgrade stub is browse-only.")
+	sellAllHint.MouseButton1Click:Connect(function()
+		setStatus("Sell: tap $ on a spare. Upgrade: coming with part tiers.")
+		SoundHooks.play("click")
+	end)
+
+	local upgradeStub = Button.create(root, "Upgrade", UDim2.new(0, 78, 0, 26), UDim2.new(1, -90, 1, -42), "secondary", {
+		textSize = 11,
+	})
+	Tooltip.attach(upgradeStub, "Part upgrade stub — tiers land with economy depth")
+	upgradeStub.MouseButton1Click:Connect(function()
+		if not selectedOwned then
+			setStatus("Select a spare in the bag to preview upgrade.")
+			SoundHooks.play("click")
+			return
+		end
+		SoundHooks.play("upgrade")
+		local s = selectedOwned.summary
+		setStatus(("Upgrade stub · %s stays Lv%d — polish only"):format(s.name, s.level or 1))
+	end)
 
 	slotList = Instance.new("ScrollingFrame")
 	slotList.Name = "Slots"

@@ -1,22 +1,37 @@
 -- Campaign ladder: 10 NPC fights, escalating, no bosses.
--- Distinct names, short taunts, loadout variety. No daily fuel gate.
+-- Richer fight cards: threat, elements, pacing, mid-ladder crate guarantees.
 
 local BattleOpponent = require(game.ReplicatedStorage.Shared.Modes.BattleOpponent)
 local Catalog = require(game.ReplicatedStorage.Shared.Parts.Catalog)
 local Slots = require(game.ReplicatedStorage.Shared.Parts.Slots)
 local Rewards = require(game.ReplicatedStorage.Shared.Economy.Rewards)
+local MechLine = require(game.ReplicatedStorage.Shared.Themes.MechLine)
+local ContentHooks = require(game.ReplicatedStorage.Shared.Campaign.ContentHooks)
+
+export type PacingBeat = "warmup" | "pressure" | "spike" | "finale"
 
 export type LadderFight = {
 	index: number,
 	opponent: BattleOpponent.BattleOpponent,
 	rewardCommonWin: number,
+	rewardCommonLoss: number,
 	blurb: string,
 	taunt: string,
+	threat: number, -- 1–5
+	elements: { string }, -- dominant damage types
+	pacing: PacingBeat,
+	guaranteedCrateWin: boolean,
+	lossHint: string,
+	winHint: string,
+	mechLine: string?,
 }
 
 local Ladder = {}
 
 Ladder.FIRST_SLICE_COUNT = 10
+
+-- Mid-ladder crate milestones (win only).
+Ladder.CRATE_MILESTONES = { [3] = true, [5] = true, [7] = true, [10] = true }
 
 local function loadout(parts: {
 	torso: string,
@@ -62,13 +77,47 @@ local function maybeSwap(baseId: string, pool: { string }, fightIndex: number, e
 	return pool[((fightIndex - 1) % #pool) + 1]
 end
 
+local function collectElements(built: Slots.EquippedLoadout): { string }
+	local seen: { [string]: boolean } = {}
+	local order: { string } = {}
+	local function add(w)
+		if not w or not w.weaponStats then
+			return
+		end
+		local dt = w.weaponStats.damageType
+		if dt and not seen[dt] then
+			seen[dt] = true
+			table.insert(order, dt)
+		end
+	end
+	add(built.lowerLeft)
+	add(built.lowerRight)
+	add(built.shoulderLeft)
+	add(built.shoulderRight)
+	if built.drone and built.drone.droneStats then
+		local dt = built.drone.droneStats.damageType
+		if dt and not seen[dt] then
+			seen[dt] = true
+			table.insert(order, dt)
+		end
+	end
+	if #order == 0 then
+		table.insert(order, "Physical")
+	end
+	return order
+end
+
 function Ladder.buildFirstSlice(): { LadderFight }
-	-- Invented bay scrap — short names, human taunts, distinct kits.
+	-- Invented bay scrap — short names, human taunts, distinct kits + pacing beats.
 	local defs = {
 		{
 			name = "Tin Rook",
 			blurb = "First day. Barely bolted.",
 			taunt = "Don't dent me.",
+			threat = 1,
+			pacing = "warmup",
+			lossHint = "Learn the lane. Soft payout still lands.",
+			winHint = "Warmup clear. Keep climbing.",
 			parts = {
 				torso = "rusty_cage",
 				leftLeg = "workboot_l",
@@ -80,8 +129,12 @@ function Ladder.buildFirstSlice(): { LadderFight }
 		},
 		{
 			name = "Scrap Mouse",
-			blurb = "Runs light. Hits soft.",
+			blurb = "Runs light. Hits soft. Drone ticks.",
 			taunt = "Too slow.",
+			threat = 1,
+			pacing = "warmup",
+			lossHint = "Watch the floor bit on end-turn.",
+			winHint = "Pressure starts next.",
 			parts = {
 				torso = "tin_can",
 				leftLeg = "digit_l",
@@ -96,8 +149,12 @@ function Ladder.buildFirstSlice(): { LadderFight }
 		},
 		{
 			name = "Hot Rivet",
-			blurb = "Likes warm metal.",
+			blurb = "Likes warm metal. Mid crate on win.",
 			taunt = "Smell that?",
+			threat = 2,
+			pacing = "pressure",
+			lossHint = "Cool between swings — heat stacks.",
+			winHint = "Milestone crate unlocked.",
 			parts = {
 				torso = "hot_box",
 				leftLeg = "workboot_l",
@@ -113,6 +170,10 @@ function Ladder.buildFirstSlice(): { LadderFight }
 			name = "Cold Span",
 			blurb = "Keeps range. Doesn't chat.",
 			taunt = "…",
+			threat = 2,
+			pacing = "pressure",
+			lossHint = "Close the gap before nail rack fires.",
+			winHint = "Range lesson learned.",
 			parts = {
 				torso = "mesh_cage",
 				leftLeg = "stump_l",
@@ -126,8 +187,12 @@ function Ladder.buildFirstSlice(): { LadderFight }
 		},
 		{
 			name = "Peg Runner",
-			blurb = "Longer legs. Still learning.",
+			blurb = "Longer legs. Still learning. Crate win.",
 			taunt = "Keep up.",
+			threat = 3,
+			pacing = "spike",
+			lossHint = "They step farther — match move range.",
+			winHint = "Mid-ladder crate secured.",
 			parts = {
 				torso = "scrap_weld",
 				leftLeg = "sprint_peg_l",
@@ -144,6 +209,10 @@ function Ladder.buildFirstSlice(): { LadderFight }
 			name = "Dust Arc",
 			blurb = "Arc practice. Pack runs hot.",
 			taunt = "Stand still.",
+			threat = 3,
+			pacing = "pressure",
+			lossHint = "Energy guns need battery — don't empty early.",
+			winHint = "Bay packs outscale desk bricks.",
 			parts = {
 				torso = "painted_crate",
 				leftLeg = "mud_l",
@@ -158,8 +227,12 @@ function Ladder.buildFirstSlice(): { LadderFight }
 		},
 		{
 			name = "Bolt Maw",
-			blurb = "Two arms and a temper.",
+			blurb = "Two arms and a temper. Crate win.",
 			taunt = "Come closer.",
+			threat = 4,
+			pacing = "spike",
+			lossHint = "Don't eat both lower mounts in one turn.",
+			winHint = "Spike cleared — crate paid.",
 			parts = {
 				torso = "iron_locker",
 				leftLeg = "claw_l",
@@ -177,6 +250,10 @@ function Ladder.buildFirstSlice(): { LadderFight }
 			name = "Lane Bite",
 			blurb = "Closes fast. Don't give space.",
 			taunt = "No room left.",
+			threat = 4,
+			pacing = "pressure",
+			lossHint = "Backstep when they close to melee.",
+			winHint = "Space control paid off.",
 			parts = {
 				torso = "plate_box",
 				leftLeg = "sprint_peg_l",
@@ -194,6 +271,10 @@ function Ladder.buildFirstSlice(): { LadderFight }
 			name = "Frame Check",
 			blurb = "Bay QA. Mean on purpose.",
 			taunt = "QA says fail.",
+			threat = 4,
+			pacing = "spike",
+			lossHint = "Heal beep ticks — finish before it stacks.",
+			winHint = "One fight left.",
 			parts = {
 				torso = "lattice_frame",
 				leftLeg = "workboot_l",
@@ -211,6 +292,10 @@ function Ladder.buildFirstSlice(): { LadderFight }
 			name = "Gate Weld",
 			blurb = "End of the starter ladder. Better bolts — not a boss.",
 			taunt = "End of the line.",
+			threat = 5,
+			pacing = "finale",
+			lossHint = "Full kit — chip resist and cool between fires.",
+			winHint = "Ladder clear. Finale crate.",
 			parts = {
 				torso = "bunker_shell",
 				leftLeg = "needle_leg_l",
@@ -237,13 +322,25 @@ function Ladder.buildFirstSlice(): { LadderFight }
 			p.lowerRight = maybeSwap(p.lowerRight, { "rivet_gun", "pipe_club", "torch_palm", "drill_punch" }, i, 1)
 		end
 		local built = loadout(p)
-		local reward = Rewards.forCampaignFight(i, true, i * 100)
+		local winReward = Rewards.forCampaignFight(i, true, i * 100)
+		local lossReward = Rewards.forCampaignFight(i, false, i * 100)
+		local torsoId = if built.torso then built.torso.id else "rusty_cage"
+		local hook = ContentHooks.extraFights[i]
+		local mechLine = (hook and hook.mechLine) or MechLine.fromPartId(torsoId)
 		table.insert(fights, {
 			index = i,
 			opponent = BattleOpponent.fromNpc(("npc-%02d"):format(i), def.name, ("mech-%02d"):format(i), built),
-			rewardCommonWin = reward.common,
+			rewardCommonWin = winReward.common,
+			rewardCommonLoss = lossReward.common,
 			blurb = def.blurb,
 			taunt = def.taunt,
+			threat = def.threat,
+			elements = collectElements(built),
+			pacing = def.pacing :: PacingBeat,
+			guaranteedCrateWin = Ladder.CRATE_MILESTONES[i] == true,
+			lossHint = def.lossHint,
+			winHint = def.winHint,
+			mechLine = mechLine,
 		})
 	end
 	return fights

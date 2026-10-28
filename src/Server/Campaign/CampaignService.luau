@@ -34,24 +34,38 @@ function CampaignService.listFights(userId)
 	local list = {}
 	for _, fight in ladderCache do
 		local arenaId = ArenaService.pickArenaForFight(fight.index)
-		local reward = Rewards.forCampaignFight(fight.index, true)
+		local winReward = Rewards.forCampaignFight(fight.index, true)
+		local lossReward = Rewards.forCampaignFight(fight.index, false)
 		local lo = fight.opponent.loadout
+		local nextUp = fight.index == progress.highestCleared + 1
 		table.insert(list, {
 			index = fight.index,
 			name = fight.opponent.displayName,
 			blurb = fight.blurb,
 			taunt = fight.taunt,
-			rewardCommon = fight.rewardCommonWin or reward.common,
-			rewardXp = reward.xp,
+			threat = fight.threat,
+			elements = fight.elements,
+			pacing = fight.pacing,
+			mechLine = fight.mechLine,
+			guaranteedCrateWin = fight.guaranteedCrateWin == true,
+			lossHint = fight.lossHint,
+			winHint = fight.winHint,
+			rewardCommon = fight.rewardCommonWin or winReward.common,
+			rewardCommonLoss = fight.rewardCommonLoss or lossReward.common,
+			rewardXp = winReward.xp,
+			rewardXpLoss = lossReward.xp,
 			crateChanceWin = Rewards.crateChance(fight.index, true),
+			crateChanceLoss = Rewards.crateChance(fight.index, false),
 			unlocked = fight.index <= progress.highestCleared + 1,
 			cleared = fight.index <= progress.highestCleared,
 			locked = fight.index > progress.highestCleared + 1,
+			nextUp = nextUp,
 			arenaId = arenaId,
 			silhouette = {
 				torso = if lo and lo.torso then lo.torso.id else "rusty_cage",
 				hasShoulder = lo ~= nil and (lo.shoulderLeft ~= nil or lo.shoulderRight ~= nil),
 				hasDrone = lo ~= nil and lo.drone ~= nil,
+				elements = fight.elements,
 			},
 		})
 	end
@@ -136,6 +150,7 @@ function CampaignService.settleIfFinished(userId, live)
 		crateOffer = CrateService.grantFightDrop(userId, fightIndex)
 	end
 
+	local fightMeta = Ladder.getFight(fightIndex)
 	local wallet = EconomyService.getWallet(userId)
 	local result = {
 		won = won,
@@ -144,6 +159,10 @@ function CampaignService.settleIfFinished(userId, live)
 		xp = reward.xp,
 		crateChance = reward.crateChance,
 		crateDrop = reward.crateDrop and crateOffer ~= nil,
+		guaranteedCrate = reward.guaranteedCrate == true,
+		pacingHint = if won
+			then (fightMeta and fightMeta.winHint)
+			else (fightMeta and fightMeta.lossHint),
 		highestCleared = progress.highestCleared,
 		totalXp = progress.xp,
 		walletCommon = wallet.common,

@@ -9,6 +9,7 @@ local CampaignService = require(script.Campaign.CampaignService)
 local CombatHost = require(script.Combat.CombatHost)
 local EconomyService = require(script.Economy.EconomyService)
 local CrateService = require(script.Economy.CrateService)
+local DailyLoginService = require(script.Economy.DailyLoginService)
 local InventoryService = require(script.Parts.InventoryService)
 local OnboardingService = require(script.Onboarding.OnboardingService)
 local ArenaService = require(script.World.ArenaService)
@@ -16,6 +17,9 @@ local LobbyPrompts = require(script.World.LobbyPrompts)
 local PlayerSession = require(script.Session.PlayerSession)
 local AccountLevel = require(game.ReplicatedStorage.Shared.Progress.AccountLevel)
 local Catalog = require(game.ReplicatedStorage.Shared.Parts.Catalog)
+local ThemedStarters = require(game.ReplicatedStorage.Shared.Parts.ThemedStarters)
+local BattleOpponent = require(game.ReplicatedStorage.Shared.Modes.BattleOpponent)
+local SoftStarter = require(game.ReplicatedStorage.Shared.Parts.StarterMech)
 
 Remotes.init()
 
@@ -107,6 +111,9 @@ Remotes.GetBootstrap.OnServerInvoke = function(player)
 		activeArena = ArenaService.getActiveArenaId(),
 		onboarding = OnboardingService.clientSnapshot(player.UserId),
 		crate = CrateService.clientSnapshot(player.UserId),
+		daily = DailyLoginService.status(player.UserId),
+		themes = ThemedStarters.clientList(),
+		queue = Matchmaking.status(player.UserId),
 	}
 end
 
@@ -285,6 +292,107 @@ Remotes.SubmitAction.OnServerInvoke = function(player, action)
 	return { ok = true, battle = snap }
 end
 
-local _ = Matchmaking
+Remotes.GetDaily.OnServerInvoke = function(player)
+	return DailyLoginService.status(player.UserId)
+end
 
-print("[Assembler] Server ready — walk Campaign / Garage / Starter crate")
+Remotes.ClaimDaily.OnServerInvoke = function(player)
+	local ok, err, payload = DailyLoginService.claim(player.UserId)
+	if not ok then
+		return { ok = false, error = err or "Claim failed", status = DailyLoginService.status(player.UserId) }
+	end
+	fireWallet(player)
+	Remotes.DailyClaimed:FireClient(player, payload)
+	return {
+		ok = true,
+		reward = payload,
+		status = DailyLoginService.status(player.UserId),
+		crate = CrateService.clientSnapshot(player.UserId),
+	}
+end
+
+Remotes.ListThemes.OnServerInvoke = function(_player)
+	return ThemedStarters.clientList()
+end
+
+Remotes.GetQueueStatus.OnServerInvoke = function(player)
+	return Matchmaking.status(player.UserId)
+end
+
+Remotes.QueuePvP.OnServerInvoke = function(player)
+	if CombatHost.getForUser(player.UserId) then
+		return { ok = false, error = "Already in a fight", status = Matchmaking.status(player.UserId) }
+	end
+	Matchmaking.enqueue({
+		userId = player.UserId,
+		displayName = player.DisplayName,
+		powerBand = 1,
+		joinedAt = os.clock(),
+	})
+	local status = Matchmaking.status(player.UserId)
+	Remotes.QueueUpdated:FireClient(player, status)
+	-- Thin stub: try pair if a second player is already waiting.
+	local pair = Matchmaking.tryPair()
+	if pair then
+		-- Full PvP duel deferred — both stay notified; no live dual session yet.
+		return {
+			ok = true,
+			status = Matchmaking.status(player.UserId),
+			paired = true,
+			note = "Pair found (stub) — use Ghost Spar to exercise resolver.",
+		}
+	end
+	return { ok = true, status = status, paired = false }
+end
+
+Remotes.LeaveQueue.OnServerInvoke = function(player)
+	Matchmaking.dequeue(player.UserId)
+	local status = Matchmaking.status(player.UserId)
+	Remotes.QueueUpdated:FireClient(player, status)
+	return { ok = true, status = status }
+end
+
+Remotes.StartGhostSpar.OnServerInvoke = function(player)
+	if CombatHost.getForUser(player.UserId) then
+		return { ok = false, error = "Already in a fight" }
+	end
+	Matchmaking.dequeue(player.UserId)
+	local loadout = InventoryService.activeLoadout(player.UserId)
+	if not SoftStarter.isLegal(loadout) then
+		InventoryService.grantStarter(player.UserId)
+		loadout = InventoryService.activeLoadout(player.UserId)
+		if not SoftStarter.isLegal(loadout) then
+			return { ok = false, error = "Mech not legal" }
+		end
+	end
+	local playerOpp = BattleOpponent.fromPlayer(player.UserId, player.DisplayName, "primary", loadout)
+	local ghost = Matchmaking.ghostOpponent("Queue Ghost")
+	local live = CombatHost.beginPvP(playerOpp, ghost, player.UserId)
+	local arenaId = ArenaService.spawnFight(
+		loadout,
+		player.DisplayName,
+		ghost.loadout :: any,
+		ghost.displayName,
+		1
+	)
+	;(live :: any).arenaId = arenaId
+	;(live :: any).taunt = "Queue stub. Same resolver."
+	;(live :: any).npcName = ghost.displayName
+	;(live :: any).isGhostSpar = true
+	PlayerSession.toCombat(player, arenaId, 0)
+	if arenaId then
+		ArenaService.teleportPlayerToArena(player, arenaId)
+	end
+	local snap = CombatHost.snapshot(live)
+	snap.arenaId = arenaId
+	snap.taunt = (live :: any).taunt
+	snap.npcName = (live :: any).npcName
+	snap.mode = "PvP"
+	Remotes.BattleUpdated:FireClient(player, snap)
+	Remotes.QueueUpdated:FireClient(player, Matchmaking.status(player.UserId))
+	return { ok = true, battle = snap, arenaId = arenaId }
+end
+
+-- Ghost spar settles through the same SubmitAction path; treat as soft campaign payout index 1.
+-- settleIfFinished already uses fightIndex — ghost sets nil; patch via CampaignService when index missing.
+print("[Assembler] Server ready — Campaign / Garage / Daily / PvP stub")

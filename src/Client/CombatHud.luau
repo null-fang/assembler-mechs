@@ -20,6 +20,10 @@ local CombatJuice = require(script.Parent:WaitForChild("CombatJuice"))
 local RewardSheet = require(script.Parent:WaitForChild("RewardSheet"))
 local CrateHud = require(script.Parent:WaitForChild("CrateHud"))
 local OnboardingHud = require(script.Parent:WaitForChild("OnboardingHud"))
+local DailyHud = require(script.Parent:WaitForChild("DailyHud"))
+local PvpHud = require(script.Parent:WaitForChild("PvpHud"))
+local SoundHooks = require(script.Parent:WaitForChild("UI"):WaitForChild("SoundHooks"))
+local Elements = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Combat"):WaitForChild("Elements"))
 
 local CombatHud = {}
 
@@ -155,9 +159,9 @@ local function makeSilhouette(parent: Instance, silhouette: any?, cleared: boole
 	end
 end
 
-local function rewardChip(parent: Instance, text: string, color: Color3, x: number, y: number)
+local function rewardChip(parent: Instance, text: string, color: Color3, x: number, y: number, width: number?)
 	local f = Instance.new("Frame")
-	f.Size = UDim2.new(0, 58, 0, 18)
+	f.Size = UDim2.new(0, width or 58, 0, 18)
 	f.Position = UDim2.new(1, x, 0, y)
 	f.BackgroundColor3 = Theme.colors.bgInset
 	f.BorderSizePixel = 0
@@ -172,6 +176,40 @@ local function rewardChip(parent: Instance, text: string, color: Color3, x: numb
 	l.TextColor3 = color
 	l.Text = text
 	l.Parent = f
+end
+
+local function threatPips(parent: Instance, threat: number, x: number, y: number)
+	local n = math.clamp(threat or 1, 1, 5)
+	for i = 1, 5 do
+		local pip = Instance.new("Frame")
+		pip.Size = UDim2.new(0, 8, 0, 8)
+		pip.Position = UDim2.new(0, x + (i - 1) * 10, 0, y)
+		pip.BackgroundColor3 = if i <= n then Theme.colors.danger else Theme.colors.bgInset
+		pip.BorderSizePixel = 0
+		pip.Parent = parent
+		Theme.corner(pip, 4)
+	end
+end
+
+local function elementRow(parent: Instance, elements: { string }?, x: number, y: number)
+	if not elements then
+		return
+	end
+	for i, dt in elements do
+		local chip = Instance.new("TextLabel")
+		chip.Size = UDim2.new(0, 40, 0, 14)
+		chip.Position = UDim2.new(0, x + (i - 1) * 44, 0, y)
+		chip.BackgroundColor3 = Theme.colors.bgInset
+		chip.BackgroundTransparency = 0.2
+		chip.BorderSizePixel = 0
+		chip.Font = Theme.fonts.mono
+		chip.TextSize = 9
+		chip.TextColor3 = Elements.color(dt :: any)
+		chip.Text = Elements.SHORT[dt] or dt
+		chip.Parent = parent
+		Theme.corner(chip, 3)
+		Theme.stroke(chip, Elements.color(dt :: any), 1)
+	end
 end
 
 local function clearFightRows()
@@ -262,53 +300,70 @@ function CombatHud.openCampaign()
 		order += 1
 		local card = Instance.new("Frame")
 		card.Name = "Fight_" .. tostring(fight.index)
-		card.Size = UDim2.new(1, -6, 0, 78)
+		card.Size = UDim2.new(1, -6, 0, 96)
 		card.BackgroundColor3 = if fight.unlocked then Theme.colors.bgRaised else Theme.colors.locked
 		card.BorderSizePixel = 0
 		card.LayoutOrder = order
 		card.Parent = fightList
 		Theme.corner(card, Theme.radii.sm)
 		local strokeColor = Theme.colors.stroke
-		if fight.cleared then
+		if fight.nextUp then
+			strokeColor = Theme.colors.accent
+		elseif fight.cleared then
 			strokeColor = Theme.colors.cyanDeep
 		elseif fight.unlocked then
 			strokeColor = Theme.colors.strokeBright
 		end
-		Theme.stroke(card, strokeColor, if fight.unlocked and not fight.cleared then 1.5 else 1)
+		Theme.stroke(card, strokeColor, if fight.nextUp or (fight.unlocked and not fight.cleared) then 1.5 else 1)
 
 		makeSilhouette(card, fight.silhouette, fight.cleared == true)
 
+		local titleBits = ("%d. %s"):format(fight.index, fight.name)
+		if fight.pacing then
+			titleBits ..= (" · %s"):format(fight.pacing)
+		end
 		Theme.label(
 			card,
-			("%d. %s"):format(fight.index, fight.name),
-			UDim2.new(1, -200, 0, 20),
-			UDim2.new(0, 60, 0, 8),
-			14,
+			titleBits,
+			UDim2.new(1, -200, 0, 18),
+			UDim2.new(0, 60, 0, 6),
+			13,
 			{
 				font = Theme.fonts.button,
 				color = if fight.unlocked then Theme.colors.text else Theme.colors.textMuted,
 			}
 		)
+		threatPips(card, fight.threat or 1, 60, 26)
+		elementRow(card, fight.elements, 118, 24)
+
 		local bits = {}
 		if fight.taunt and fight.taunt ~= "" then
 			table.insert(bits, '"' .. fight.taunt .. '"')
 		elseif fight.blurb then
 			table.insert(bits, fight.blurb)
 		end
-		if fight.arenaId then
-			table.insert(bits, fight.arenaId)
-		end
-		if fight.cleared then
+		if fight.nextUp then
+			table.insert(bits, "NEXT")
+		elseif fight.cleared then
 			table.insert(bits, "cleared")
 		elseif not fight.unlocked then
 			table.insert(bits, "locked")
 		end
-		Theme.label(card, table.concat(bits, " · "), UDim2.new(1, -200, 0, 36), UDim2.new(0, 60, 0, 30), 11, {
+		Theme.label(card, table.concat(bits, " · "), UDim2.new(1, -200, 0, 28), UDim2.new(0, 60, 0, 40), 11, {
 			color = Theme.colors.textDim,
 		})
+		local paceLine = if fight.guaranteedCrateWin
+			then ("Win crate locked · loss ~+%d"):format(fight.rewardCommonLoss or 12)
+			else ("Loss ~+%d common"):format(fight.rewardCommonLoss or 12)
+		Theme.label(card, paceLine, UDim2.new(1, -200, 0, 16), UDim2.new(0, 60, 0, 68), 10, {
+			color = Theme.colors.textMuted,
+		})
 
-		rewardChip(card, ("+%d"):format(fight.rewardCommon or 0), Theme.colors.commonCoin, -140, 8)
-		rewardChip(card, ("+%d XP"):format(fight.rewardXp or 0), Theme.colors.xpFill, -76, 8)
+		rewardChip(card, ("+%d"):format(fight.rewardCommon or 0), Theme.colors.commonCoin, -140, 6)
+		rewardChip(card, ("+%d XP"):format(fight.rewardXp or 0), Theme.colors.xpFill, -76, 6)
+		if fight.guaranteedCrateWin then
+			rewardChip(card, "CRATE", Theme.colors.accent, -140, 28, 58)
+		end
 
 		if fight.unlocked then
 			local deploy = Button.create(
@@ -320,8 +375,16 @@ function CombatHud.openCampaign()
 			)
 			local index = fight.index
 			local blurb = fight.blurb or "Deploy and fight."
-			Tooltip.attach(deploy, blurb)
+			local tip = blurb
+			if fight.winHint then
+				tip ..= "\nWin: " .. fight.winHint
+			end
+			if fight.lossHint then
+				tip ..= "\nLoss: " .. fight.lossHint
+			end
+			Tooltip.attach(deploy, tip)
 			deploy.MouseButton1Click:Connect(function()
+				SoundHooks.play("click")
 				startFight(index)
 			end)
 			card.MouseEnter:Connect(function()
@@ -335,7 +398,7 @@ function CombatHud.openCampaign()
 			})
 		end
 	end
-	setStatus("Pick a fight. Cleared stays open for replays.")
+	setStatus("Pick a fight. Mid-ladder crates on 3 / 5 / 7 / 10.")
 	campaignRoot.BackgroundTransparency = Theme.transparency.panel
 	TweenUtil.openFrom(
 		campaignRoot,
@@ -375,13 +438,29 @@ local function clearActions()
 	end
 end
 
-local function actionTitle(action): string
+local function weaponFor(action, you)
+	if action.kind ~= "Fire" or not you or not you.weapons then
+		return nil
+	end
+	for _, w in you.weapons do
+		if w.slot == action.weaponSlot then
+			return w
+		end
+	end
+	return nil
+end
+
+local function actionTitle(action, you): string
 	if action.kind == "EndTurn" then
 		return "End turn"
 	elseif action.kind == "Move" then
 		local sign = if action.delta > 0 then "+" else ""
 		return ("Move %s%d"):format(sign, action.delta)
 	elseif action.kind == "Fire" then
+		local w = weaponFor(action, you)
+		if w then
+			return ("%s %s"):format(Elements.GLYPH[w.damageType] or "·", w.name)
+		end
 		return "Fire"
 	end
 	return action.kind
@@ -389,48 +468,49 @@ end
 
 local function actionSubtitle(action, you): string
 	if action.kind == "EndTurn" then
-		return "Cool & recharge"
+		local drone = if you and you.droneName then (" · drone %s"):format(you.droneName) else ""
+		return "Cool & recharge" .. drone
 	elseif action.kind == "Move" then
-		return "1 AP · step the lane"
+		return "1 AP · telegraph lane"
 	elseif action.kind == "Fire" then
-		local slot = action.weaponSlot
-		if you and you.weapons then
-			for _, w in you.weapons do
-				if w.slot == slot then
-					return ("%s · %s %d"):format(w.name, w.damageType, w.damage)
-				end
-			end
+		local w = weaponFor(action, you)
+		if w then
+			return ("%s · %s %d"):format(Elements.SHORT[w.damageType] or w.damageType, w.damageType, w.damage)
 		end
-		return slot or "Weapon"
+		return action.weaponSlot or "Weapon"
 	end
 	return ""
 end
 
 local function actionTip(action, you): string
 	if action.kind == "EndTurn" then
-		return "End your turn. Cool down a bit."
+		local tip = "End your turn. Cool down a bit."
+		if you and you.droneName then
+			tip ..= (" Drone %s ticks."):format(you.droneName)
+		end
+		return tip
 	elseif action.kind == "Move" then
-		return "Step along the lane."
+		return "Step along the lane. Hover previews destination."
 	elseif action.kind == "Fire" then
-		local slot = action.weaponSlot
-		if you and you.weapons then
-			for _, w in you.weapons do
-				if w.slot == slot then
-					return w.tooltip or w.name
-				end
-			end
+		local w = weaponFor(action, you)
+		if w then
+			return (w.tooltip or w.name) .. (" [%s]"):format(Elements.label(w.damageType))
 		end
 		return "Fire weapon"
 	end
 	return ""
 end
 
-local function actionAccent(action): Color3
+local function actionAccent(action, you): Color3
 	if action.kind == "EndTurn" then
 		return Theme.colors.accent
 	elseif action.kind == "Move" then
 		return Theme.colors.cyan
 	elseif action.kind == "Fire" then
+		local w = weaponFor(action, you)
+		if w then
+			return Elements.color(w.damageType)
+		end
 		return Theme.colors.danger
 	end
 	return Theme.colors.strokeBright
@@ -549,7 +629,7 @@ function CombatHud.renderBattle(battle)
 
 		local accent = Instance.new("Frame")
 		accent.Size = UDim2.new(0, 3, 1, 0)
-		accent.BackgroundColor3 = actionAccent(action)
+		accent.BackgroundColor3 = actionAccent(action, you)
 		accent.BorderSizePixel = 0
 		accent.Parent = card
 
@@ -561,7 +641,7 @@ function CombatHud.renderBattle(battle)
 		title.TextSize = 13
 		title.TextColor3 = Theme.colors.text
 		title.TextXAlignment = Enum.TextXAlignment.Left
-		title.Text = actionTitle(action)
+		title.Text = actionTitle(action, you)
 		title.Parent = card
 
 		local sub = Instance.new("TextLabel")
@@ -584,11 +664,17 @@ function CombatHud.renderBattle(battle)
 			hovering = true
 			TweenUtil.play(card, Theme.tween.hover, { BackgroundColor3 = Theme.colors.bgHover })
 			TweenUtil.play(stroke, Theme.tween.hover, { Color = Theme.colors.strokeFocus })
+			if captured.kind == "Move" and you then
+				CombatJuice.telegraphMove(you.position, foe.position, (you.position or 1) + captured.delta)
+			end
 		end)
 		card.MouseLeave:Connect(function()
 			hovering = false
 			TweenUtil.play(card, Theme.tween.hover, { BackgroundColor3 = Theme.colors.bgRaised })
 			TweenUtil.play(stroke, Theme.tween.hover, { Color = Theme.colors.stroke })
+			if captured.kind == "Move" then
+				CombatJuice.updateLane(you and you.position, foe and foe.position)
+			end
 		end)
 		card.MouseButton1Down:Connect(function()
 			TweenUtil.play(card, Theme.tween.press, { BackgroundColor3 = Theme.colors.bgPress })
@@ -599,6 +685,11 @@ function CombatHud.renderBattle(battle)
 			})
 		end)
 		card.MouseButton1Click:Connect(function()
+			if captured.kind == "Fire" then
+				SoundHooks.play("fire")
+			elseif captured.kind == "Move" then
+				SoundHooks.play("move")
+			end
 			submit(captured)
 		end)
 	end
@@ -606,8 +697,12 @@ end
 
 function CombatHud.onSettled(settled)
 	local verb = if settled.won then "Win" else "Loss"
+	local hint = settled.pacingHint
 	setStatus(("%s · +%d common · +%d XP — payout…"):format(verb, settled.common, settled.xp))
-	CombatJuice.showBanner(settled.won == true, if settled.crateDrop then "Crate dropped." else "Bay pays out.")
+	local sub = if settled.crateDrop
+		then (if settled.guaranteedCrate then "Milestone crate." else "Crate dropped.")
+		else (hint or "Bay pays out.")
+	CombatJuice.showBanner(settled.won == true, sub)
 	task.delay(0.75, function()
 		RewardSheet.show(settled)
 	end)
@@ -658,6 +753,11 @@ function CombatHud.mount(garageModule)
 	})
 
 	CombatJuice.mount(screen)
+	DailyHud.mount(screen, {
+		onRefresh = function()
+			refreshBootstrap()
+		end,
+	})
 	RewardSheet.mount(screen)
 	CrateHud.mount(screen, {
 		onPicked = function(result)
@@ -692,6 +792,21 @@ function CombatHud.mount(garageModule)
 		end)
 	end
 
+	PvpHud.mount(screen, {
+		isBusy = function()
+			return inBattle
+		end,
+		onSpar = function(result)
+			if result.arenaId then
+				LobbyCamera.stop()
+				BattleCamera.startForArena(result.arenaId)
+			end
+			if result.battle then
+				CombatHud.renderBattle(result.battle)
+			end
+		end,
+	})
+
 	JoinHud.mount(screen, {
 		openCampaign = function()
 			CombatHud.openCampaign()
@@ -703,6 +818,13 @@ function CombatHud.mount(garageModule)
 		end,
 		openCrate = function()
 			CombatHud.openCrate()
+		end,
+		openPvP = function()
+			if GarageHud and GarageHud.isOpen() then
+				GarageHud.setOpen(false)
+			end
+			hideCampaign()
+			PvpHud.setOpen(true)
 		end,
 		isBusy = function()
 			return inBattle
@@ -717,7 +839,7 @@ function CombatHud.mount(garageModule)
 	statusSink.Text = ""
 	statusSink.Parent = screen
 
-	campaignRoot = Theme.panel(screen, "CampaignPanel", UDim2.new(0, 440, 0, 520), campaignRest, Theme.colors.cyan)
+	campaignRoot = Theme.panel(screen, "CampaignPanel", UDim2.new(0, 460, 0, 560), campaignRest, Theme.colors.cyan)
 	campaignRoot.Visible = false
 
 	Theme.label(campaignRoot, "CAMPAIGN", UDim2.new(1, -100, 0, 24), UDim2.new(0, 16, 0, 12), 18, {
@@ -726,7 +848,7 @@ function CombatHud.mount(garageModule)
 	})
 	Theme.label(
 		campaignRoot,
-		"Silhouette shows the foe. Rewards on the right.",
+		"Threat · elements · pacing. Crates on 3/5/7/10.",
 		UDim2.new(1, -28, 0, 32),
 		UDim2.new(0, 16, 0, 40),
 		12,
@@ -864,7 +986,7 @@ function CombatHud.mount(garageModule)
 		end
 	end)
 	refreshBootstrap()
-	print("[Assembler] Modern UI — topbar + crate polish + garage sell/compare (juice surface)")
+	print("[Assembler] Gameplay depth — campaign cards, daily, PvP stub, combat juice")
 end
 
 return CombatHud

@@ -25,10 +25,13 @@ local settingsPanel: Frame
 local mechsList: Frame
 local mechsRest: UDim2
 local settingsRest: UDim2
+local ThemedStarters = require(ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Parts"):WaitForChild("ThemedStarters"))
+
 local callbacks: {
 	openCampaign: () -> (),
 	openGarage: () -> (),
 	openCrate: (() -> ())?,
+	openPvP: (() -> ())?,
 	isBusy: () -> boolean,
 }?
 
@@ -64,6 +67,15 @@ local function openSide(panel: Frame, rest: UDim2, id: string)
 	TweenUtil.openFrom(panel, UDim2.new(rest.X.Scale, rest.X.Offset + 24, rest.Y.Scale, rest.Y.Offset), rest, Theme.transparency.panel)
 end
 
+local ACCENT_COLORS = {
+	scrap = Theme.colors.accentSoft,
+	ember = Theme.colors.temperature,
+	frost = Theme.colors.cyan,
+	arc = Theme.colors.battery,
+	toxin = Theme.colors.ok,
+	void = Theme.colors.premiumCoin,
+}
+
 local function renderMechs(boot)
 	for _, child in mechsList:GetChildren() do
 		if child:IsA("GuiObject") and not child:IsA("UIListLayout") then
@@ -78,11 +90,12 @@ local function renderMechs(boot)
 	}
 	local active = (inv and inv.activeBay) or "Primary"
 	local loadout = boot and boot.loadout
-	for _, bay in bays do
+	for bi, bay in bays do
 		local row = Instance.new("Frame")
-		row.Size = UDim2.new(1, -4, 0, 54)
+		row.Size = UDim2.new(1, -4, 0, 48)
 		row.BackgroundColor3 = if bay.unlocked then Theme.colors.bgRaised else Theme.colors.locked
 		row.BorderSizePixel = 0
+		row.LayoutOrder = bi
 		row.Parent = mechsList
 		Theme.corner(row, Theme.radii.sm)
 		if bay.id == active and bay.unlocked then
@@ -100,7 +113,7 @@ local function renderMechs(boot)
 		Theme.corner(strip, 2)
 
 		local title = if bay.unlocked then bay.name else (bay.name .. " · locked")
-		Theme.label(row, title, UDim2.new(1, -20, 0, 20), UDim2.new(0, 14, 0, 6), 14, {
+		Theme.label(row, title, UDim2.new(1, -20, 0, 18), UDim2.new(0, 14, 0, 4), 13, {
 			font = Theme.fonts.button,
 			color = if bay.unlocked then Theme.colors.text else Theme.colors.textMuted,
 		})
@@ -112,9 +125,47 @@ local function renderMechs(boot)
 		else
 			detail = "Unlock later"
 		end
-		Theme.label(row, detail, UDim2.new(1, -20, 0, 18), UDim2.new(0, 14, 0, 28), 12, {
+		Theme.label(row, detail, UDim2.new(1, -20, 0, 16), UDim2.new(0, 14, 0, 24), 11, {
 			color = Theme.colors.textDim,
 		})
+	end
+
+	-- Themed starters browse (apply locked until themes land).
+	Theme.label(mechsList, "THEMED STARTERS", UDim2.new(1, -8, 0, 16), UDim2.new(0, 0, 0, 0), 11, {
+		font = Theme.fonts.mono,
+		color = Theme.colors.textMuted,
+	}).LayoutOrder = 50
+	local themes = (boot and boot.themes) or ThemedStarters.clientList()
+	for i, theme in themes do
+		local row = Instance.new("Frame")
+		row.Size = UDim2.new(1, -4, 0, 52)
+		row.BackgroundColor3 = Theme.colors.bgRaised
+		row.BorderSizePixel = 0
+		row.LayoutOrder = 50 + i
+		row.Parent = mechsList
+		Theme.corner(row, Theme.radii.sm)
+		local accent = ACCENT_COLORS[theme.accent] or Theme.colors.strokeBright
+		Theme.stroke(row, accent, if theme.status == "live" then 1.5 else 1)
+		Theme.label(row, theme.name, UDim2.new(1, -70, 0, 16), UDim2.new(0, 10, 0, 4), 12, {
+			font = Theme.fonts.button,
+			color = Theme.colors.text,
+		})
+		Theme.label(row, theme.tagline, UDim2.new(1, -70, 0, 28), UDim2.new(0, 10, 0, 22), 10, {
+			color = Theme.colors.textDim,
+		})
+		local badge = Theme.label(
+			row,
+			if theme.status == "live" then "LIVE" elseif theme.status == "preview" then "PREVIEW" else "SOON",
+			UDim2.new(0, 56, 0, 16),
+			UDim2.new(1, -62, 0, 6),
+			10,
+			{
+				font = Theme.fonts.mono,
+				color = accent,
+				align = Enum.TextXAlignment.Right,
+			}
+		)
+		Tooltip.attach(badge, theme.unlockNote or "")
 	end
 end
 
@@ -201,16 +252,17 @@ function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 		{ id = "campaign", text = "Campaign", variant = "cyan" :: any, tip = "Fight ladder" },
 		{ id = "garage", text = "Garage", variant = "garage" :: any, tip = "Swap parts" },
 		{ id = "crate", text = "Crate", variant = "primary" :: any, tip = "Pick-3 pending crate" },
-		{ id = "mechs", text = "Mechs", variant = "secondary" :: any, tip = "Bay slots" },
+		{ id = "pvp", text = "PvP", variant = "danger" :: any, tip = "Queue stub / ghost spar" },
+		{ id = "mechs", text = "Mechs", variant = "secondary" :: any, tip = "Bay + themed starters" },
 		{ id = "settings", text = "Settings", variant = "secondary" :: any, tip = "Camera look" },
 	}
-	local btnW, btnH, gap = 92, 38, 8
+	local btnW, btnH, gap = 84, 38, 6
 	local totalW = #actions * btnW + (#actions - 1) * gap
 	local startX = 780 - totalW - 18
 	for i, a in actions do
 		local x = startX + (i - 1) * (btnW + gap)
 		local btn = Button.create(bar, a.text, UDim2.new(0, btnW, 0, btnH), UDim2.new(0, x, 0, 20), a.variant, {
-			textSize = 13,
+			textSize = 12,
 		})
 		btn.Name = "Btn_" .. a.id
 		Tooltip.attach(btn, a.tip)
@@ -228,6 +280,11 @@ function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 				hideSidePanels()
 				if callbacks.openCrate then
 					callbacks.openCrate()
+				end
+			elseif a.id == "pvp" then
+				hideSidePanels()
+				if callbacks.openPvP then
+					callbacks.openPvP()
 				end
 			elseif a.id == "mechs" then
 				local open = not mechsPanel.Visible
@@ -266,28 +323,34 @@ function JoinHud.mount(parent: ScreenGui, cbs: typeof(callbacks))
 		end)
 	end
 
-	mechsRest = UDim2.new(1, -316, 1, -340)
-	mechsPanel = Theme.panel(screen, "MechsPanel", UDim2.new(0, 300, 0, 240), mechsRest, Theme.colors.accent)
+	mechsRest = UDim2.new(1, -336, 1, -520)
+	mechsPanel = Theme.panel(screen, "MechsPanel", UDim2.new(0, 320, 0, 420), mechsRest, Theme.colors.accent)
 	mechsPanel.Visible = false
-	Theme.label(mechsPanel, "MECH SLOTS", UDim2.new(1, -90, 0, 22), UDim2.new(0, 14, 0, 12), 16, {
+	Theme.label(mechsPanel, "MECH BAY", UDim2.new(1, -90, 0, 22), UDim2.new(0, 14, 0, 12), 16, {
 		font = Theme.fonts.title,
 		color = Theme.colors.accent,
 	})
 	Theme.label(
 		mechsPanel,
-		"Starter is on Primary. Extra bays unlock later.",
+		"Slots + themed starters. Preview until art themes land.",
 		UDim2.new(1, -24, 0, 28),
 		UDim2.new(0, 14, 0, 36),
 		12,
 		{ color = Theme.colors.textDim }
 	)
-	mechsList = Instance.new("Frame")
+	mechsList = Instance.new("ScrollingFrame")
 	mechsList.Size = UDim2.new(1, -20, 1, -90)
 	mechsList.Position = UDim2.new(0, 10, 0, 72)
 	mechsList.BackgroundTransparency = 1
+	mechsList.ScrollBarThickness = 3
+	mechsList.ScrollBarImageColor3 = Theme.colors.cyanDeep
+	mechsList.BorderSizePixel = 0
+	mechsList.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	mechsList.CanvasSize = UDim2.new(0, 0, 0, 0)
 	mechsList.Parent = mechsPanel
 	local mechLayout = Instance.new("UIListLayout")
 	mechLayout.Padding = UDim.new(0, 6)
+	mechLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	mechLayout.Parent = mechsList
 	local closeMechs = Button.create(mechsPanel, "Close", UDim2.new(0, 64, 0, 26), UDim2.new(1, -78, 0, 10), "ghost")
 	closeMechs.MouseButton1Click:Connect(function()

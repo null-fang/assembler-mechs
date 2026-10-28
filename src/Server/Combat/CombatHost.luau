@@ -54,16 +54,18 @@ function CombatHost.beginPvE(
 end
 
 -- PvP entry uses the same resolver path; matchmaking fills opponents later.
+-- Optional userId binds the session for ghost-spar / thin queue stubs.
 function CombatHost.beginPvP(
 	oppA: BattleOpponent.BattleOpponent,
-	oppB: BattleOpponent.BattleOpponent
+	oppB: BattleOpponent.BattleOpponent,
+	userId: number?
 ): LiveBattle
 	local sideA = fighterFromOpponent(oppA, 2)
 	local sideB = fighterFromOpponent(oppB, Types.ARENA_TILES - 1)
 	local battle = Resolver.createBattle(BattleMode.PvP, sideA, sideB)
 	local live: LiveBattle = {
 		battleId = newBattleId(),
-		userId = nil,
+		userId = userId,
 		fightIndex = nil,
 		battle = battle,
 		playerSide = "A",
