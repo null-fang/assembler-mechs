@@ -29,5 +29,9 @@ KitContract.ROOT_NAME = "Root"
 KitContract.TEXTURED_ATTR = "AssemblerTextured"
 KitContract.ACCENT_PREFIX = "Accent"
 KitContract.GLOW_PREFIX = "Glow"
+-- Themed mech lines (Shared.Themes.ThemeIds / MechLine):
+--   Optional Attribute ThemeLine on kits; Assembler copies onto assembled mech Model.
+KitContract.THEME_LINE_ATTR = "ThemeLine"
 
 return KitContract
+

@@ -125,10 +125,19 @@ def main() -> None:
             "AssemblerTextured",
             "SurfaceAppearance",
         ],
-        "src/Shared/Assembler/KitContract.luau": ["ROOT_NAME", "TEXTURED_ATTR", "TextureRole", "TextureIds"],
+        "src/Shared/Assembler/KitContract.luau": [
+            "ROOT_NAME",
+            "TEXTURED_ATTR",
+            "THEME_LINE_ATTR",
+            "TextureRole",
+        ],
         "src/Shared/Assembler/Sockets.luau": ["TORSO_HEIGHT", "LeftHip", "ShoulderRight"],
         "src/Shared/Assembler/TextureApply.luau": ["applyModel", "preloadEmbeds", "TextureIds"],
         "src/Shared/Assembler/TextureIds.luau": ["metal_plate", "scratched_steel", "emissive_strip"],
+        "src/Shared/Themes/ThemeIds.luau": ["ScrapBay", "NeonDock", "ATTR_ARENA_THEME", "ScrapPit"],
+        "src/Shared/Themes/MechLine.luau": ["fromPartId", "applyToMech", "ThemeLine"],
+        "src/Shared/Campaign/ContentHooks.luau": ["FightContent", "extraFights", "cratePools"],
+        "src/Server/World/WorldBootstrap.luau": ["ThemeIds", "ATTR_ARENA_THEME", "MechLine"],
         "tools/smoke_textured_kits.py": ["TextureRole", "rusty_cage"],
     }
     for rel, needles in must_exist.items():

@@ -12,6 +12,10 @@ local Tags = {
 	ArenaOrigin = "AssemblerArenaOrigin",
 	Mech = "AssemblerMech",
 	GaragePreview = "AssemblerGaragePreview",
+	-- Theme / content workers: GetTagged these for themed lines + arena sets.
+	MechLine = "AssemblerMechLine",
+	ArenaTheme = "AssemblerArenaTheme",
 }
 
 return Tags
+

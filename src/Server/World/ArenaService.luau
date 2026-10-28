@@ -186,7 +186,8 @@ local function placeOn(
 	model.Parent = parent
 	addNameplate(model, displayName)
 	local isPreview = attrs ~= nil and attrs.Preview == true
-	WorldBootstrap.tagMech(model, isPreview)
+	local themeLine = model:GetAttribute("ThemeLine")
+	WorldBootstrap.tagMech(model, isPreview, if typeof(themeLine) == "string" then themeLine else nil)
 	return model
 end
 

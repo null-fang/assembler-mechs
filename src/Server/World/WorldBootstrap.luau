@@ -4,6 +4,7 @@ local CollectionService = game:GetService("CollectionService")
 local PhysicsService = game:GetService("PhysicsService")
 
 local Tags = require(game.ReplicatedStorage.Shared.World.Tags)
+local ThemeIds = require(game.ReplicatedStorage.Shared.Themes.ThemeIds)
 
 local WorldBootstrap = {}
 
@@ -57,7 +58,12 @@ function WorldBootstrap.tagWorld(lobby: Instance?, arenasFolder: Instance?)
 		for _, arena in arenasFolder:GetChildren() do
 			if arena:IsA("Model") then
 				tag(arena, Tags.Arena)
+				tag(arena, Tags.ArenaTheme)
 				arena:SetAttribute("ArenaId", arena.Name)
+				-- Arena theme-set worker reads/overrides ThemeId; defaults map 1:1 from name.
+				if arena:GetAttribute(ThemeIds.ATTR_ARENA_THEME) == nil then
+					arena:SetAttribute(ThemeIds.ATTR_ARENA_THEME, ThemeIds.arenaThemeFor(arena.Name))
+				end
 				local padA = arena:FindFirstChild("PadA", true)
 				local padB = arena:FindFirstChild("PadB", true)
 				local origin = arena:FindFirstChild("ArenaOrigin", true)
@@ -75,11 +81,15 @@ function WorldBootstrap.tagWorld(lobby: Instance?, arenasFolder: Instance?)
 	end
 end
 
-function WorldBootstrap.tagMech(model: Model, isPreview: boolean?)
+function WorldBootstrap.tagMech(model: Model, isPreview: boolean?, themeLine: string?)
 	WorldBootstrap.ensurePhysics()
 	tag(model, Tags.Mech)
+	tag(model, Tags.MechLine)
 	if isPreview then
 		tag(model, Tags.GaragePreview)
+	end
+	if themeLine then
+		model:SetAttribute(ThemeIds.ATTR_MECH_LINE, themeLine)
 	end
 	pcall(function()
 		model.ModelStreamingMode = Enum.ModelStreamingMode.Atomic

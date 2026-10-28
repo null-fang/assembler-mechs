@@ -8,6 +8,7 @@ local Sockets = require(script.Parent.Sockets)
 local TextureApply = require(script.Parent.TextureApply)
 local Slots = require(script.Parent.Parent.Parts.Slots)
 local Catalog = require(script.Parent.Parent.Parts.Catalog)
+local MechLine = require(script.Parent.Parent.Themes.MechLine)
 
 local Assembler = {}
 
@@ -430,6 +431,11 @@ function Assembler.buildModel(loadout: Slots.EquippedLoadout, opts: BuildOptions
 	model:SetAttribute("Assembled", true)
 	if loadout.torso then
 		model:SetAttribute("TorsoId", loadout.torso.id)
+		-- Themed mech-line worker may stamp ThemeLine on kits; else heuristic from torso id.
+		local line = MechLine.readFromInstance(
+			if torsoChild then torsoChild else model
+		) or MechLine.fromPartId(loadout.torso.id)
+		MechLine.applyToMech(model, line)
 	end
 	model:SetAttribute("UsesPartModels", usedKits)
 
