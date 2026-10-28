@@ -7,50 +7,68 @@ local MechLine = {}
 
 MechLine.ATTR = ThemeIds.ATTR_MECH_LINE
 
--- Heuristic starter mapping until catalog gets explicit theme fields.
+-- Heuristic mapping from part id → ThemeIds.MECH_LINES (Yardbone / Rimevault / Duneplate / Voltframe).
 local ID_HINTS = {
-	{ "frost", "IceRail" },
-	{ "ski", "IceRail" },
-	{ "ice", "IceRail" },
-	{ "volt", "VoltCage" },
-	{ "arc", "VoltCage" },
-	{ "pulse", "VoltCage" },
-	{ "neural", "VoltCage" },
-	{ "neon", "NeonDock" },
-	{ "glass", "NeonDock" },
-	{ "prism", "NeonDock" },
-	{ "forge", "ForgeYard" },
-	{ "furnace", "ForgeYard" },
+	{ "rime", "Rimevault" },
+	{ "frost", "Rimevault" },
+	{ "glacer", "Rimevault" },
+	{ "cryo", "Rimevault" },
+	{ "ice_", "Rimevault" },
+	{ "snow", "Rimevault" },
+	{ "ski", "Rimevault" },
+	{ "dune", "Duneplate" },
+	{ "ochre", "Duneplate" },
+	{ "sandal", "Duneplate" },
+	{ "sand_", "Duneplate" },
+	{ "dust", "Duneplate" },
+	{ "dry_cell", "Duneplate" },
+	{ "heat_skirt", "Duneplate" },
+	{ "sun_rack", "Duneplate" },
+	{ "volt", "Voltframe" },
+	{ "neon", "Voltframe" },
+	{ "night", "Voltframe" },
+	{ "mag_", "Voltframe" },
+	{ "pulseleg", "Voltframe" },
+	{ "cyan", "Voltframe" },
+	{ "glow_beetle", "Voltframe" },
+	{ "prism", "Voltframe" },
+	{ "arc_", "Voltframe" },
 	{ "slag", "ForgeYard" },
+	{ "furnace", "ForgeYard" },
 	{ "torch", "ForgeYard" },
-	{ "heat", "ForgeYard" },
+	{ "ember", "ForgeYard" },
 	{ "bunker", "BunkerLine" },
 	{ "vault", "BunkerLine" },
-	{ "plate", "BunkerLine" },
-	{ "iron", "BunkerLine" },
+	{ "yardbone", "Yardbone" },
+	{ "cinder", "Yardbone" },
+	{ "rust_", "Yardbone" },
+	{ "scrap_", "Yardbone" },
+	{ "rusty", "Yardbone" },
 }
 
 function MechLine.fromPartId(partId: string): string
 	local lower = string.lower(partId)
 	for _, pair in ID_HINTS do
 		if string.find(lower, pair[1], 1, true) then
-			return pair[2]
+			return ThemeIds.canonicalizeMechLine(pair[2])
 		end
 	end
-	return "ScrapBay"
+	return "Yardbone"
 end
 
 function MechLine.readFromInstance(inst: Instance): string?
 	local v = inst:GetAttribute(MechLine.ATTR)
 	if typeof(v) == "string" and ThemeIds.isMechLine(v) then
-		return v
+		return ThemeIds.canonicalizeMechLine(v)
 	end
 	return nil
 end
 
 function MechLine.applyToMech(model: Model, line: string)
 	if not ThemeIds.isMechLine(line) then
-		line = "ScrapBay"
+		line = "Yardbone"
+	else
+		line = ThemeIds.canonicalizeMechLine(line)
 	end
 	model:SetAttribute(MechLine.ATTR, line)
 end
