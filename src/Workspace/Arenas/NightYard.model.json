@@ -12,9 +12,9 @@
           108
         ],
         "Position": [
-          -400,
-          -1,
-          0
+          -400.0,
+          -1.0,
+          0.0
         ],
         "Color": [
           0.10980392156862745,
@@ -37,9 +37,9 @@
           30
         ],
         "Position": [
-          -400,
+          -400.0,
           0.12,
-          0
+          0.0
         ],
         "Color": [
           0.17647058823529413,
@@ -62,9 +62,9 @@
           80
         ],
         "Position": [
-          -400,
+          -400.0,
           0.2,
-          0
+          0.0
         ],
         "Color": [
           0.8235294117647058,
@@ -88,9 +88,9 @@
           2.5
         ],
         "Position": [
-          -400,
+          -400.0,
           0.2,
-          0
+          0.0
         ],
         "Color": [
           0.1568627450980392,
@@ -114,9 +114,9 @@
           36
         ],
         "Position": [
-          -400,
+          -400.0,
           0.22,
-          0
+          0.0
         ],
         "Color": [
           0.35294117647058826,
@@ -130,6 +130,156 @@
       }
     },
     {
+      "Name": "LaneRingOuter",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          52,
+          0.12,
+          52
+        ],
+        "Position": [
+          -400.0,
+          0.2,
+          0.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "DiagLane0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          0.12,
+          0.8
+        ],
+        "Position": [
+          -420.0,
+          0.18,
+          -20.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false,
+        "Orientation": [
+          0,
+          45,
+          0
+        ]
+      }
+    },
+    {
+      "Name": "DiagLane1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          0.12,
+          0.8
+        ],
+        "Position": [
+          -380.0,
+          0.18,
+          20.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false,
+        "Orientation": [
+          0,
+          45,
+          0
+        ]
+      }
+    },
+    {
+      "Name": "DiagLane2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          0.12,
+          0.8
+        ],
+        "Position": [
+          -420.0,
+          0.18,
+          20.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false,
+        "Orientation": [
+          0,
+          -45,
+          0
+        ]
+      }
+    },
+    {
+      "Name": "DiagLane3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          0.12,
+          0.8
+        ],
+        "Position": [
+          -380.0,
+          0.18,
+          -20.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false,
+        "Orientation": [
+          0,
+          -45,
+          0
+        ]
+      }
+    },
+    {
       "Name": "Fence0",
       "ClassName": "Part",
       "Properties": {
@@ -140,9 +290,9 @@
           1.2
         ],
         "Position": [
-          -400,
+          -400.0,
           5.5,
-          -50
+          -50.0
         ],
         "Color": [
           0.17647058823529413,
@@ -166,9 +316,9 @@
           0.25
         ],
         "Position": [
-          -400,
+          -400.0,
           11.2,
-          -50
+          -50.0
         ],
         "Color": [
           0.8235294117647058,
@@ -192,9 +342,9 @@
           1.2
         ],
         "Position": [
-          -400,
+          -400.0,
           5.5,
-          50
+          50.0
         ],
         "Color": [
           0.17647058823529413,
@@ -218,9 +368,9 @@
           0.25
         ],
         "Position": [
-          -400,
+          -400.0,
           11.2,
-          50
+          50.0
         ],
         "Color": [
           0.1568627450980392,
@@ -244,9 +394,9 @@
           100
         ],
         "Position": [
-          -450,
+          -450.0,
           5.5,
-          0
+          0.0
         ],
         "Color": [
           0.17647058823529413,
@@ -270,9 +420,9 @@
           96.0
         ],
         "Position": [
-          -450,
+          -450.0,
           11.2,
-          0
+          0.0
         ],
         "Color": [
           0.1568627450980392,
@@ -296,9 +446,9 @@
           100
         ],
         "Position": [
-          -350,
+          -350.0,
           5.5,
-          0
+          0.0
         ],
         "Color": [
           0.17647058823529413,
@@ -322,9 +472,9 @@
           96.0
         ],
         "Position": [
-          -350,
+          -350.0,
           11.2,
-          0
+          0.0
         ],
         "Color": [
           0.8235294117647058,
@@ -348,9 +498,9 @@
           16
         ],
         "Position": [
-          -458,
-          -8,
-          -58
+          -458.0,
+          -8.0,
+          -58.0
         ],
         "Color": [
           0.0392156862745098,
@@ -373,9 +523,9 @@
           14
         ],
         "Position": [
-          -458,
-          -14,
-          -58
+          -458.0,
+          -14.0,
+          -58.0
         ],
         "Color": [
           0.0784313725490196,
@@ -402,9 +552,9 @@
           16
         ],
         "Position": [
-          -342,
-          -8,
-          -58
+          -342.0,
+          -8.0,
+          -58.0
         ],
         "Color": [
           0.0392156862745098,
@@ -427,9 +577,9 @@
           14
         ],
         "Position": [
-          -342,
-          -14,
-          -58
+          -342.0,
+          -14.0,
+          -58.0
         ],
         "Color": [
           0.0784313725490196,
@@ -456,9 +606,9 @@
           16
         ],
         "Position": [
-          -458,
-          -8,
-          58
+          -458.0,
+          -8.0,
+          58.0
         ],
         "Color": [
           0.0392156862745098,
@@ -481,9 +631,9 @@
           14
         ],
         "Position": [
-          -458,
-          -14,
-          58
+          -458.0,
+          -14.0,
+          58.0
         ],
         "Color": [
           0.0784313725490196,
@@ -510,9 +660,9 @@
           16
         ],
         "Position": [
-          -342,
-          -8,
-          58
+          -342.0,
+          -8.0,
+          58.0
         ],
         "Color": [
           0.0392156862745098,
@@ -535,9 +685,9 @@
           14
         ],
         "Position": [
-          -342,
-          -14,
-          58
+          -342.0,
+          -14.0,
+          58.0
         ],
         "Color": [
           0.0784313725490196,
@@ -559,14 +709,14 @@
       "Properties": {
         "Anchored": true,
         "Size": [
-          18,
+          16,
           8,
-          8
+          7
         ],
         "Position": [
-          -436,
-          4,
-          -26
+          -436.0,
+          4.0,
+          -26.0
         ],
         "Color": [
           0.13725490196078433,
@@ -584,14 +734,14 @@
       "Properties": {
         "Anchored": true,
         "Size": [
-          18.2,
+          16.2,
           0.2,
           0.25
         ],
         "Position": [
-          -436,
+          -436.0,
           8.2,
-          -30.1
+          -29.6
         ],
         "Color": [
           0.1568627450980392,
@@ -605,19 +755,45 @@
       }
     },
     {
+      "Name": "ContainerSide0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -428.0,
+          4.0,
+          -26.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
       "Name": "Container1",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
         "Size": [
-          18,
+          16,
           8,
-          8
+          7
         ],
         "Position": [
-          -434,
-          4,
-          22
+          -434.0,
+          4.0,
+          22.0
         ],
         "Color": [
           0.39215686274509803,
@@ -635,14 +811,14 @@
       "Properties": {
         "Anchored": true,
         "Size": [
-          18.2,
+          16.2,
           0.2,
           0.25
         ],
         "Position": [
-          -434,
+          -434.0,
           8.2,
-          17.9
+          18.4
         ],
         "Color": [
           0.8235294117647058,
@@ -656,19 +832,45 @@
       }
     },
     {
+      "Name": "ContainerSide1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -442.0,
+          4.0,
+          22.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
       "Name": "Container2",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
         "Size": [
-          18,
+          16,
           8,
-          8
+          7
         ],
         "Position": [
-          -366,
-          4,
-          -24
+          -366.0,
+          4.0,
+          -24.0
         ],
         "Color": [
           0.1568627450980392,
@@ -686,14 +888,14 @@
       "Properties": {
         "Anchored": true,
         "Size": [
-          18.2,
+          16.2,
           0.2,
           0.25
         ],
         "Position": [
-          -366,
+          -366.0,
           8.2,
-          -28.1
+          -27.6
         ],
         "Color": [
           0.1568627450980392,
@@ -707,19 +909,45 @@
       }
     },
     {
+      "Name": "ContainerSide2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -358.0,
+          4.0,
+          -24.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
       "Name": "Container3",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
         "Size": [
-          18,
+          16,
           8,
-          8
+          7
         ],
         "Position": [
-          -368,
-          4,
-          26
+          -368.0,
+          4.0,
+          26.0
         ],
         "Color": [
           0.35294117647058826,
@@ -737,14 +965,14 @@
       "Properties": {
         "Anchored": true,
         "Size": [
-          18.2,
+          16.2,
           0.2,
           0.25
         ],
         "Position": [
-          -368,
+          -368.0,
           8.2,
-          21.9
+          22.4
         ],
         "Color": [
           0.8235294117647058,
@@ -758,19 +986,45 @@
       }
     },
     {
+      "Name": "ContainerSide3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -376.0,
+          4.0,
+          26.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
       "Name": "Container4",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
         "Size": [
-          18,
+          16,
           8,
-          8
+          7
         ],
         "Position": [
-          -420,
-          4,
-          -40
+          -420.0,
+          4.0,
+          -40.0
         ],
         "Color": [
           0.19607843137254902,
@@ -788,14 +1042,14 @@
       "Properties": {
         "Anchored": true,
         "Size": [
-          18.2,
+          16.2,
           0.2,
           0.25
         ],
         "Position": [
-          -420,
+          -420.0,
           8.2,
-          -44.1
+          -43.6
         ],
         "Color": [
           0.1568627450980392,
@@ -809,19 +1063,45 @@
       }
     },
     {
+      "Name": "ContainerSide4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -412.0,
+          4.0,
+          -40.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
       "Name": "Container5",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
         "Size": [
-          18,
+          16,
           8,
-          8
+          7
         ],
         "Position": [
-          -382,
-          4,
-          40
+          -382.0,
+          4.0,
+          40.0
         ],
         "Color": [
           0.27450980392156865,
@@ -839,19 +1119,353 @@
       "Properties": {
         "Anchored": true,
         "Size": [
-          18.2,
+          16.2,
           0.2,
           0.25
         ],
         "Position": [
-          -382,
+          -382.0,
           8.2,
-          35.9
+          36.4
         ],
         "Color": [
           0.8235294117647058,
           0.27450980392156865,
           0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ContainerSide5",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -390.0,
+          4.0,
+          40.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Container6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          8,
+          7
+        ],
+        "Position": [
+          -442.0,
+          4.0,
+          8.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.1568627450980392,
+          0.3137254901960784
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ContainerEdge6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12.2,
+          0.2,
+          0.25
+        ],
+        "Position": [
+          -442.0,
+          8.2,
+          4.4
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ContainerSide6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -434.0,
+          4.0,
+          8.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Container7",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          8,
+          7
+        ],
+        "Position": [
+          -358.0,
+          4.0,
+          -8.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.11764705882352941,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ContainerEdge7",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12.2,
+          0.2,
+          0.25
+        ],
+        "Position": [
+          -358.0,
+          8.2,
+          -11.6
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ContainerSide7",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -366.0,
+          4.0,
+          -8.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Container8",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          8,
+          7
+        ],
+        "Position": [
+          -400.0,
+          4.0,
+          -44.0
+        ],
+        "Color": [
+          0.17647058823529413,
+          0.13725490196078433,
+          0.35294117647058826
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ContainerEdge8",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12.2,
+          0.2,
+          0.25
+        ],
+        "Position": [
+          -400.0,
+          8.2,
+          -47.6
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ContainerSide8",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -392.0,
+          4.0,
+          -44.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "Container9",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          8,
+          7
+        ],
+        "Position": [
+          -400.0,
+          4.0,
+          44.0
+        ],
+        "Color": [
+          0.13725490196078433,
+          0.3137254901960784,
+          0.35294117647058826
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ContainerEdge9",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12.2,
+          0.2,
+          0.25
+        ],
+        "Position": [
+          -400.0,
+          8.2,
+          40.4
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ContainerSide9",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.2,
+          6,
+          0.25
+        ],
+        "Position": [
+          -408.0,
+          4.0,
+          44.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -870,9 +1484,9 @@
           70
         ],
         "Position": [
-          -444,
+          -444.0,
           3.2,
-          0
+          0.0
         ],
         "Color": [
           0.3137254901960784,
@@ -895,7 +1509,7 @@
           0.35
         ],
         "Position": [
-          -444,
+          -444.0,
           1.6,
           -34.0
         ],
@@ -920,7 +1534,7 @@
           0.35
         ],
         "Position": [
-          -444,
+          -444.0,
           1.6,
           0.0
         ],
@@ -945,7 +1559,7 @@
           0.35
         ],
         "Position": [
-          -444,
+          -444.0,
           1.6,
           34.0
         ],
@@ -970,9 +1584,134 @@
           50
         ],
         "Position": [
-          -444,
+          -444.0,
           0.5,
-          0
+          0.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.16470588235294117,
+          0.21568627450980393
+        ],
+        "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NightSpecE_Rail",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.4,
+          0.4,
+          70
+        ],
+        "Position": [
+          -356.0,
+          3.2,
+          0.0
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.39215686274509803,
+          0.47058823529411764
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NightSpecE_Post0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          3.2,
+          0.35
+        ],
+        "Position": [
+          -356.0,
+          1.6,
+          -34.0
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NightSpecE_Post1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          3.2,
+          0.35
+        ],
+        "Position": [
+          -356.0,
+          1.6,
+          0.0
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NightSpecE_Post2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.35,
+          3.2,
+          0.35
+        ],
+        "Position": [
+          -356.0,
+          1.6,
+          34.0
+        ],
+        "Color": [
+          0.21568627450980393,
+          0.22745098039215686,
+          0.25098039215686274
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "SpecPlatformE",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          6,
+          1,
+          50
+        ],
+        "Position": [
+          -356.0,
+          0.5,
+          0.0
         ],
         "Color": [
           0.1568627450980392,
@@ -995,9 +1734,9 @@
           1.5
         ],
         "Position": [
-          -442,
-          12,
-          -42
+          -442.0,
+          12.0,
+          -42.0
         ],
         "Color": [
           0.18823529411764706,
@@ -1020,9 +1759,9 @@
           3.5
         ],
         "Position": [
-          -442,
-          24,
-          -42
+          -442.0,
+          24.0,
+          -42.0
         ],
         "Color": [
           0.10980392156862745,
@@ -1030,9 +1769,9 @@
           0.13725490196078433
         ],
         "Material": "Metal",
-        "CanCollide": false,
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "CanCollide": false
       },
       "Children": [
         {
@@ -1064,9 +1803,9 @@
           1.8
         ],
         "Position": [
-          -442,
+          -442.0,
           22.5,
-          -42
+          -42.0
         ],
         "Color": [
           0.8235294117647058,
@@ -1090,9 +1829,9 @@
           1.5
         ],
         "Position": [
-          -358,
-          12,
-          -42
+          -358.0,
+          12.0,
+          -42.0
         ],
         "Color": [
           0.18823529411764706,
@@ -1115,9 +1854,9 @@
           3.5
         ],
         "Position": [
-          -358,
-          24,
-          -42
+          -358.0,
+          24.0,
+          -42.0
         ],
         "Color": [
           0.10980392156862745,
@@ -1125,9 +1864,9 @@
           0.13725490196078433
         ],
         "Material": "Metal",
-        "CanCollide": false,
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "CanCollide": false
       },
       "Children": [
         {
@@ -1159,9 +1898,9 @@
           1.8
         ],
         "Position": [
-          -358,
+          -358.0,
           22.5,
-          -42
+          -42.0
         ],
         "Color": [
           0.1568627450980392,
@@ -1185,9 +1924,9 @@
           1.5
         ],
         "Position": [
-          -442,
-          12,
-          42
+          -442.0,
+          12.0,
+          42.0
         ],
         "Color": [
           0.18823529411764706,
@@ -1210,9 +1949,9 @@
           3.5
         ],
         "Position": [
-          -442,
-          24,
-          42
+          -442.0,
+          24.0,
+          42.0
         ],
         "Color": [
           0.10980392156862745,
@@ -1220,9 +1959,9 @@
           0.13725490196078433
         ],
         "Material": "Metal",
-        "CanCollide": false,
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "CanCollide": false
       },
       "Children": [
         {
@@ -1254,9 +1993,9 @@
           1.8
         ],
         "Position": [
-          -442,
+          -442.0,
           22.5,
-          42
+          42.0
         ],
         "Color": [
           0.8235294117647058,
@@ -1280,9 +2019,9 @@
           1.5
         ],
         "Position": [
-          -358,
-          12,
-          42
+          -358.0,
+          12.0,
+          42.0
         ],
         "Color": [
           0.18823529411764706,
@@ -1305,9 +2044,9 @@
           3.5
         ],
         "Position": [
-          -358,
-          24,
-          42
+          -358.0,
+          24.0,
+          42.0
         ],
         "Color": [
           0.10980392156862745,
@@ -1315,9 +2054,9 @@
           0.13725490196078433
         ],
         "Material": "Metal",
-        "CanCollide": false,
         "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
+        "BottomSurface": "Smooth",
+        "CanCollide": false
       },
       "Children": [
         {
@@ -1349,9 +2088,9 @@
           1.8
         ],
         "Position": [
-          -358,
+          -358.0,
           22.5,
-          42
+          42.0
         ],
         "Color": [
           0.1568627450980392,
@@ -1375,9 +2114,9 @@
           1.2
         ],
         "Position": [
-          -400,
+          -400.0,
           6.0,
-          -40
+          -40.0
         ],
         "Color": [
           0.16470588235294117,
@@ -1400,9 +2139,9 @@
           3.2
         ],
         "Position": [
-          -400,
+          -400.0,
           12.4,
-          -40
+          -40.0
         ],
         "Color": [
           0.11764705882352941,
@@ -1419,8 +2158,8 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.5,
-            "Range": 40,
+            "Brightness": 1.55,
+            "Range": 46,
             "Angle": 65,
             "Color": [
               0.7058823529411765,
@@ -1444,9 +2183,9 @@
           1.2
         ],
         "Position": [
-          -400,
+          -400.0,
           6.0,
-          40
+          40.0
         ],
         "Color": [
           0.16470588235294117,
@@ -1469,9 +2208,9 @@
           3.2
         ],
         "Position": [
-          -400,
+          -400.0,
           12.4,
-          40
+          40.0
         ],
         "Color": [
           0.11764705882352941,
@@ -1488,12 +2227,12 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.5,
-            "Range": 40,
+            "Brightness": 1.55,
+            "Range": 46,
             "Angle": 65,
             "Color": [
-              0.5490196078431373,
-              0.8627450980392157,
+              0.7058823529411765,
+              0.6274509803921569,
               1.0
             ],
             "Face": "Bottom",
@@ -1513,9 +2252,9 @@
           1.2
         ],
         "Position": [
-          -440,
+          -440.0,
           6.0,
-          0
+          0.0
         ],
         "Color": [
           0.16470588235294117,
@@ -1538,9 +2277,9 @@
           3.2
         ],
         "Position": [
-          -440,
+          -440.0,
           12.4,
-          0
+          0.0
         ],
         "Color": [
           0.11764705882352941,
@@ -1557,8 +2296,8 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.5,
-            "Range": 40,
+            "Brightness": 1.55,
+            "Range": 46,
             "Angle": 65,
             "Color": [
               0.7058823529411765,
@@ -1582,9 +2321,9 @@
           1.2
         ],
         "Position": [
-          -360,
+          -360.0,
           6.0,
-          0
+          0.0
         ],
         "Color": [
           0.16470588235294117,
@@ -1607,9 +2346,9 @@
           3.2
         ],
         "Position": [
-          -360,
+          -360.0,
           12.4,
-          0
+          0.0
         ],
         "Color": [
           0.11764705882352941,
@@ -1626,12 +2365,150 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.5,
-            "Range": 40,
+            "Brightness": 1.55,
+            "Range": 46,
             "Angle": 65,
             "Color": [
-              0.5490196078431373,
-              0.8627450980392157,
+              0.7058823529411765,
+              0.6274509803921569,
+              1.0
+            ],
+            "Face": "Bottom",
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "YardLamp4_Pole",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.2,
+          12,
+          1.2
+        ],
+        "Position": [
+          -424.0,
+          6.0,
+          -24.0
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.1803921568627451,
+          0.20392156862745098
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "YardLamp4_Head",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.2,
+          1.0,
+          3.2
+        ],
+        "Position": [
+          -424.0,
+          12.4,
+          -24.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.12549019607843137,
+          0.14901960784313725
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Spot",
+          "ClassName": "SpotLight",
+          "Properties": {
+            "Brightness": 1.55,
+            "Range": 46,
+            "Angle": 65,
+            "Color": [
+              0.7058823529411765,
+              0.6274509803921569,
+              1.0
+            ],
+            "Face": "Bottom",
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "YardLamp5_Pole",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.2,
+          12,
+          1.2
+        ],
+        "Position": [
+          -376.0,
+          6.0,
+          24.0
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.1803921568627451,
+          0.20392156862745098
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "YardLamp5_Head",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.2,
+          1.0,
+          3.2
+        ],
+        "Position": [
+          -376.0,
+          12.4,
+          24.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.12549019607843137,
+          0.14901960784313725
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Spot",
+          "ClassName": "SpotLight",
+          "Properties": {
+            "Brightness": 1.55,
+            "Range": 46,
+            "Angle": 65,
+            "Color": [
+              0.7058823529411765,
+              0.6274509803921569,
               1.0
             ],
             "Face": "Bottom",
@@ -1651,9 +2528,9 @@
           0.5
         ],
         "Position": [
-          -400,
-          14,
-          -48
+          -400.0,
+          14.0,
+          -48.0
         ],
         "Color": [
           0.0784313725490196,
@@ -1717,7 +2594,7 @@
           0.2
         ],
         "Position": [
-          -400,
+          -400.0,
           12.1,
           -48.15
         ],
@@ -1725,6 +2602,98 @@
           0.8235294117647058,
           0.27450980392156865,
           0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "SignVoltframe",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14,
+          2.6,
+          0.45
+        ],
+        "Position": [
+          -400.0,
+          10.0,
+          48.0
+        ],
+        "Color": [
+          0.07058823529411765,
+          0.08627450980392157,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "VOLTFRAME",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.1568627450980392,
+                  0.7843137254901961,
+                  0.9019607843137255
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignVoltframe_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12.88,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          -400.0,
+          8.549999999999999,
+          47.85
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -1743,9 +2712,9 @@
           0.4
         ],
         "Position": [
-          -352,
-          8,
-          0
+          -352.0,
+          8.0,
+          0.0
         ],
         "Color": [
           0.10980392156862745,
@@ -1809,9 +2778,315 @@
           0.2
         ],
         "Position": [
-          -352,
+          -352.0,
           6.6,
           -0.15
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "NeonCrate0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          3,
+          4
+        ],
+        "Position": [
+          -430.0,
+          1.5,
+          10.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.13725490196078433,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NeonCrateGlow0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.15,
+          4.2
+        ],
+        "Position": [
+          -430.0,
+          0.2,
+          10.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "NeonCrate1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          3,
+          4
+        ],
+        "Position": [
+          -370.0,
+          1.5,
+          -12.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.23529411764705882,
+          0.3137254901960784
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NeonCrateGlow1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.15,
+          4.2
+        ],
+        "Position": [
+          -370.0,
+          0.2,
+          -12.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "NeonCrate2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          3,
+          4
+        ],
+        "Position": [
+          -412.0,
+          1.5,
+          30.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.13725490196078433,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NeonCrateGlow2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.15,
+          4.2
+        ],
+        "Position": [
+          -412.0,
+          0.2,
+          30.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "NeonCrate3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          3,
+          4
+        ],
+        "Position": [
+          -386.0,
+          1.5,
+          -32.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.23529411764705882,
+          0.3137254901960784
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NeonCrateGlow3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.15,
+          4.2
+        ],
+        "Position": [
+          -386.0,
+          0.2,
+          -32.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.7843137254901961,
+          0.9019607843137255
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "NeonCrate4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          3,
+          4
+        ],
+        "Position": [
+          -428.0,
+          1.5,
+          -14.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.13725490196078433,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NeonCrateGlow4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.15,
+          4.2
+        ],
+        "Position": [
+          -428.0,
+          0.2,
+          -14.0
+        ],
+        "Color": [
+          0.8235294117647058,
+          0.27450980392156865,
+          0.7058823529411765
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "NeonCrate5",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          3,
+          4
+        ],
+        "Position": [
+          -374.0,
+          1.5,
+          18.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.23529411764705882,
+          0.3137254901960784
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "NeonCrateGlow5",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.15,
+          4.2
+        ],
+        "Position": [
+          -374.0,
+          0.2,
+          18.0
         ],
         "Color": [
           0.1568627450980392,
@@ -1835,9 +3110,9 @@
           14
         ],
         "Position": [
-          -400,
+          -400.0,
           0.6,
-          -28
+          -28.0
         ],
         "Color": [
           0.35294117647058826,
@@ -1912,9 +3187,9 @@
           14
         ],
         "Position": [
-          -400,
+          -400.0,
           0.6,
-          28
+          28.0
         ],
         "Color": [
           0.7058823529411765,
@@ -1989,9 +3264,9 @@
           16.5
         ],
         "Position": [
-          -400,
+          -400.0,
           1.35,
-          -28
+          -28.0
         ],
         "Color": [
           0.1568627450980392,
@@ -2015,9 +3290,9 @@
           16.5
         ],
         "Position": [
-          -400,
+          -400.0,
           1.35,
-          28
+          28.0
         ],
         "Color": [
           0.8235294117647058,
@@ -2041,9 +3316,9 @@
           2
         ],
         "Position": [
-          -400,
-          1,
-          0
+          -400.0,
+          1.0,
+          0.0
         ],
         "Color": [
           1.0,
@@ -2081,9 +3356,9 @@
           40
         ],
         "Position": [
-          -400,
+          -400.0,
           1.2,
-          0
+          0.0
         ],
         "Color": [
           0.35294117647058826,
@@ -2102,7 +3377,7 @@
           "ClassName": "ParticleEmitter",
           "Properties": {
             "Texture": "rbxasset://textures/particles/smoke_main.dds",
-            "Rate": 5,
+            "Rate": 6,
             "Lifetime": [
               2.0,
               4.0
@@ -2177,9 +3452,9 @@
           100
         ],
         "Position": [
-          -400,
-          20,
-          0
+          -400.0,
+          20.0,
+          0.0
         ],
         "Color": [
           0.1568627450980392,
@@ -2192,6 +3467,43 @@
         "Transparency": 0.94,
         "CanCollide": false
       }
+    },
+    {
+      "Name": "MoodWash",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          100,
+          2,
+          100
+        ],
+        "Position": [
+          -400.0,
+          38.0,
+          0.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.23529411764705882,
+          0.7843137254901961
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.95,
+        "CanCollide": false
+      }
     }
+  ],
+  "Attributes": {
+    "ThemeId": "NightYard",
+    "ThemeLine": "Voltframe",
+    "ArenaId": "NightYard",
+    "Mood": "neon"
+  },
+  "Tags": [
+    "AssemblerArena",
+    "AssemblerArenaTheme"
   ]
 }

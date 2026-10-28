@@ -101,12 +101,15 @@ def main() -> None:
     )
     need("src/Client/CombatJuice.luau", ["leanMech", "showBanner", "setOverheat"])
     need("src/Server/init.server.luau", ["PlayerSession.toCombat", "PlayerSession.toLobby"])
-    for arena in ("ScrapPit", "DryDock", "NightYard"):
+    for arena in ("ScrapPit", "DryDock", "NightYard", "SandQuarry"):
         data = json.loads(read(f"src/Workspace/Arenas/{arena}.model.json"))
         for pad in ("PadA", "PadB"):
             if not find_named(data, pad):
                 fail(f"{arena}.{pad}")
-    ok("arena pads + combat juice + session phase")
+        if (data.get("Attributes") or {}).get("ThemeId") != arena:
+            fail(f"{arena} ThemeId")
+    need("src/Shared/Themes/ArenaMood.luau", ["applyForArena", "SandQuarry", "Atmosphere"])
+    ok("arena pads + ThemeId + combat juice + session phase")
 
     # 6) Return / payout / topbar
     need(

@@ -97,8 +97,28 @@ def main() -> None:
         fail("CampaignTerminal")
     ok("lobby hooks")
 
-    for arena in ("ScrapPit", "DryDock", "NightYard"):
+    lobby_hooks = ("GaragePedestal", "CampaignTerminal", "StarterCrate", "ShopTerminal")
+    for hook in lobby_hooks:
+        if not find_named(lobby, hook):
+            fail(f"lobby.{hook}")
+    ok("lobby shop/crate hooks")
+
+    expected_themes = {
+        "ScrapPit": "Yardbone",
+        "DryDock": "Rimevault",
+        "NightYard": "Voltframe",
+        "SandQuarry": "Duneplate",
+    }
+    for arena, line in expected_themes.items():
         data = json.loads((ROOT / f"src/Workspace/Arenas/{arena}.model.json").read_text())
+        attrs = data.get("Attributes") or {}
+        if attrs.get("ThemeId") != arena:
+            fail(f"{arena} ThemeId want {arena} got {attrs.get('ThemeId')}")
+        if attrs.get("ThemeLine") != line:
+            fail(f"{arena} ThemeLine want {line} got {attrs.get('ThemeLine')}")
+        tags = data.get("Tags") or []
+        if "AssemblerArenaTheme" not in tags:
+            fail(f"{arena} missing AssemblerArenaTheme tag")
         for pad in ("PadA", "PadB"):
             hits = find_named(data, pad)
             if not hits:
@@ -106,7 +126,9 @@ def main() -> None:
             kids = {c.get("Name") for c in hits[0].get("Children", [])}
             if "Spawn" not in kids:
                 fail(f"{arena}.{pad}.Spawn")
-        ok(f"{arena} pads")
+        if not find_named(data, "ArenaOrigin"):
+            fail(f"{arena}.ArenaOrigin")
+        ok(f"{arena} pads + ThemeId/{line}")
 
     must_exist = {
         "src/Shared/World/Tags.luau": ["AssemblerGaragePedestal", "AssemblerPadA", "AssemblerStarterCrate"],
@@ -117,7 +139,14 @@ def main() -> None:
         "src/Server/Session/PlayerSession.luau": ["toLobby", "toCombat"],
         "src/Client/KitPreload.luau": ["PreloadAsync"],
         "src/Client/SessionBridge.luau": ["ATTR_PHASE", "onChanged", "SessionBridge.start"],
-        "src/Server/World/ArenaService.luau": ["spawnGaragePreview", "spawnFight", "WorldBootstrap"],
+        "src/Server/World/ArenaService.luau": [
+            "spawnGaragePreview",
+            "spawnFight",
+            "WorldBootstrap",
+            "SandQuarry",
+            "ArenaMood",
+            "applyArenaMood",
+        ],
         "src/Server/World/LobbyPrompts.luau": ["Maid", "Tags"],
         "src/Server/init.server.luau": ["PlayerSession", "SUBMIT_MIN_GAP"],
         "src/Client/init.client.luau": ["KitPreload", "SessionBridge", "CombatHud"],
@@ -157,11 +186,22 @@ def main() -> None:
             "Voltframe",
             "ATTR_ARENA_THEME",
             "ScrapPit",
+            "SandQuarry",
+            "arenaMechLine",
+        ],
+        "src/Shared/Themes/ArenaMood.luau": [
+            "ScrapPit",
+            "DryDock",
+            "NightYard",
+            "SandQuarry",
+            "Atmosphere",
+            "applyForArena",
         ],
         "src/Shared/Themes/MechLine.luau": ["fromPartId", "applyToMech", "ThemeLine", "Yardbone"],
         "src/Shared/Campaign/ContentHooks.luau": ["FightContent", "extraFights", "cratePools"],
         "src/Server/World/WorldBootstrap.luau": ["ThemeIds", "ATTR_ARENA_THEME", "MechLine"],
         "tools/smoke_textured_kits.py": ["TextureRole", "rusty_cage"],
+        "tools/arena_themes.py": ["SandQuarry", "Yardbone", "AssemblerArenaTheme"],
     }
     for rel, needles in must_exist.items():
         text = (ROOT / rel).read_text()

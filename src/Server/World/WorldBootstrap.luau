@@ -60,9 +60,12 @@ function WorldBootstrap.tagWorld(lobby: Instance?, arenasFolder: Instance?)
 				tag(arena, Tags.Arena)
 				tag(arena, Tags.ArenaTheme)
 				arena:SetAttribute("ArenaId", arena.Name)
-				-- Arena theme-set worker reads/overrides ThemeId; defaults map 1:1 from name.
+				-- Prefer baked Rojo ThemeId; fall back to ThemeIds.arenaDefault.
 				if arena:GetAttribute(ThemeIds.ATTR_ARENA_THEME) == nil then
 					arena:SetAttribute(ThemeIds.ATTR_ARENA_THEME, ThemeIds.arenaThemeFor(arena.Name))
+				end
+				if arena:GetAttribute(ThemeIds.ATTR_MECH_LINE) == nil then
+					arena:SetAttribute(ThemeIds.ATTR_MECH_LINE, ThemeIds.mechLineForArena(arena.Name))
 				end
 				local padA = arena:FindFirstChild("PadA", true)
 				local padB = arena:FindFirstChild("PadB", true)

@@ -5791,7 +5791,7 @@
           0.6
         ],
         "Position": [
-          -50,
+          -55,
           6,
           -55
         ],
@@ -5857,14 +5857,14 @@
           0.6
         ],
         "Position": [
-          0,
+          -20,
           6,
           -55
         ],
         "Color": [
-          0.27450980392156865,
-          0.43137254901960786,
-          0.5490196078431373
+          0.35294117647058826,
+          0.5490196078431373,
+          0.7058823529411765
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -5923,7 +5923,7 @@
           0.6
         ],
         "Position": [
-          50,
+          20,
           6,
           -55
         ],
@@ -5977,6 +5977,1662 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "SignSandQuarry",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          10,
+          4,
+          0.6
+        ],
+        "Position": [
+          55,
+          6,
+          -55
+        ],
+        "Color": [
+          0.7058823529411765,
+          0.5098039215686274,
+          0.21568627450980393
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "SAND QUARRY \u2192",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignThemePlaza",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          16,
+          2.4,
+          0.45
+        ],
+        "Position": [
+          0,
+          8,
+          -72
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.12549019607843137,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "THEME BAYS",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  0.6666666666666666,
+                  0.19607843137254902
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignThemePlaza_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          14.72,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          0,
+          6.6499999999999995,
+          -72.15
+        ],
+        "Color": [
+          1.0,
+          0.6666666666666666,
+          0.19607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopLandmarkScrap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          6,
+          5
+        ],
+        "Position": [
+          -55.0,
+          3,
+          -78.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "ShopRoot",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              -2.8
+            ]
+          }
+        },
+        {
+          "Name": "BoothGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.2,
+            "Range": 22,
+            "Color": [
+              1.0,
+              0.5882352941176471,
+              0.23529411764705882
+            ],
+            "Shadows": true
+          }
+        },
+        {
+          "Name": "ShopLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "YARDBONE SHOP",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  0.5882352941176471,
+                  0.23529411764705882
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ShopHaloScrap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.18,
+          6
+        ],
+        "Position": [
+          -55.0,
+          0.25,
+          -78.0
+        ],
+        "Color": [
+          1.0,
+          0.5882352941176471,
+          0.23529411764705882
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopCanopyScrap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.5,
+          6
+        ],
+        "Position": [
+          -55.0,
+          6.4,
+          -78.0
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.20392156862745098,
+          0.22745098039215686
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ThemeCrateScrap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.4,
+          2.8,
+          3.4
+        ],
+        "Position": [
+          -48.5,
+          1.4,
+          -76.5
+        ],
+        "Color": [
+          0.5098039215686274,
+          0.35294117647058826,
+          0.19607843137254902
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "CrateLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "SCRAP CRATE",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  0.5882352941176471,
+                  0.23529411764705882
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        },
+        {
+          "Name": "CrateGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 0.7,
+            "Range": 12,
+            "Color": [
+              1.0,
+              0.5882352941176471,
+              0.23529411764705882
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "CrateRingScrap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.12,
+          4.2
+        ],
+        "Position": [
+          -48.5,
+          0.2,
+          -76.5
+        ],
+        "Color": [
+          1.0,
+          0.5882352941176471,
+          0.23529411764705882
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ThemePathScrap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.6,
+          0.12,
+          8
+        ],
+        "Position": [
+          -55.0,
+          0.18,
+          -66.0
+        ],
+        "Color": [
+          1.0,
+          0.5882352941176471,
+          0.23529411764705882
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopLandmarkArctic",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          6,
+          5
+        ],
+        "Position": [
+          -20.0,
+          3,
+          -78.0
+        ],
+        "Color": [
+          0.27450980392156865,
+          0.43137254901960786,
+          0.5490196078431373
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "ShopRoot",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              -2.8
+            ]
+          }
+        },
+        {
+          "Name": "BoothGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.2,
+            "Range": 22,
+            "Color": [
+              0.5490196078431373,
+              0.8627450980392157,
+              1.0
+            ],
+            "Shadows": true
+          }
+        },
+        {
+          "Name": "ShopLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "RIMEVAULT SHOP",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.5490196078431373,
+                  0.8627450980392157,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ShopHaloArctic",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.18,
+          6
+        ],
+        "Position": [
+          -20.0,
+          0.25,
+          -78.0
+        ],
+        "Color": [
+          0.5490196078431373,
+          0.8627450980392157,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopCanopyArctic",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.5,
+          6
+        ],
+        "Position": [
+          -20.0,
+          6.4,
+          -78.0
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.20392156862745098,
+          0.22745098039215686
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ThemeCrateArctic",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.4,
+          2.8,
+          3.4
+        ],
+        "Position": [
+          -13.5,
+          1.4,
+          -76.5
+        ],
+        "Color": [
+          0.7058823529411765,
+          0.7843137254901961,
+          0.8627450980392157
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "CrateLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "ICE CRATE",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.5490196078431373,
+                  0.8627450980392157,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        },
+        {
+          "Name": "CrateGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 0.7,
+            "Range": 12,
+            "Color": [
+              0.5490196078431373,
+              0.8627450980392157,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "CrateRingArctic",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.12,
+          4.2
+        ],
+        "Position": [
+          -13.5,
+          0.2,
+          -76.5
+        ],
+        "Color": [
+          0.5490196078431373,
+          0.8627450980392157,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ThemePathArctic",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.6,
+          0.12,
+          8
+        ],
+        "Position": [
+          -20.0,
+          0.18,
+          -66.0
+        ],
+        "Color": [
+          0.5490196078431373,
+          0.8627450980392157,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopLandmarkDesert",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          6,
+          5
+        ],
+        "Position": [
+          20.0,
+          3,
+          -78.0
+        ],
+        "Color": [
+          0.6274509803921569,
+          0.47058823529411764,
+          0.21568627450980393
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "ShopRoot",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              -2.8
+            ]
+          }
+        },
+        {
+          "Name": "BoothGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.2,
+            "Range": 22,
+            "Color": [
+              0.9019607843137255,
+              0.6666666666666666,
+              0.27450980392156865
+            ],
+            "Shadows": true
+          }
+        },
+        {
+          "Name": "ShopLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "DUNEPLATE SHOP",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.9019607843137255,
+                  0.6666666666666666,
+                  0.27450980392156865
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ShopHaloDesert",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.18,
+          6
+        ],
+        "Position": [
+          20.0,
+          0.25,
+          -78.0
+        ],
+        "Color": [
+          0.9019607843137255,
+          0.6666666666666666,
+          0.27450980392156865
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopCanopyDesert",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.5,
+          6
+        ],
+        "Position": [
+          20.0,
+          6.4,
+          -78.0
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.20392156862745098,
+          0.22745098039215686
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ThemeCrateDesert",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.4,
+          2.8,
+          3.4
+        ],
+        "Position": [
+          26.5,
+          1.4,
+          -76.5
+        ],
+        "Color": [
+          0.7450980392156863,
+          0.5882352941176471,
+          0.3137254901960784
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "CrateLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "DUNE CRATE",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.9019607843137255,
+                  0.6666666666666666,
+                  0.27450980392156865
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        },
+        {
+          "Name": "CrateGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 0.7,
+            "Range": 12,
+            "Color": [
+              0.9019607843137255,
+              0.6666666666666666,
+              0.27450980392156865
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "CrateRingDesert",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.12,
+          4.2
+        ],
+        "Position": [
+          26.5,
+          0.2,
+          -76.5
+        ],
+        "Color": [
+          0.9019607843137255,
+          0.6666666666666666,
+          0.27450980392156865
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ThemePathDesert",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.6,
+          0.12,
+          8
+        ],
+        "Position": [
+          20.0,
+          0.18,
+          -66.0
+        ],
+        "Color": [
+          0.9019607843137255,
+          0.6666666666666666,
+          0.27450980392156865
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopLandmarkNeon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          8,
+          6,
+          5
+        ],
+        "Position": [
+          55.0,
+          3,
+          -78.0
+        ],
+        "Color": [
+          0.1568627450980392,
+          0.13725490196078433,
+          0.27450980392156865
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "ShopRoot",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              -2.8
+            ]
+          }
+        },
+        {
+          "Name": "BoothGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.2,
+            "Range": 22,
+            "Color": [
+              0.3137254901960784,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        },
+        {
+          "Name": "ShopLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "VOLTFRAME SHOP",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.3137254901960784,
+                  0.9019607843137255,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ShopHaloNeon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.18,
+          6
+        ],
+        "Position": [
+          55.0,
+          0.25,
+          -78.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopCanopyNeon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.5,
+          6
+        ],
+        "Position": [
+          55.0,
+          6.4,
+          -78.0
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.20392156862745098,
+          0.22745098039215686
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ThemeCrateNeon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.4,
+          2.8,
+          3.4
+        ],
+        "Position": [
+          61.5,
+          1.4,
+          -76.5
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.19607843137254902,
+          0.39215686274509803
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "CrateLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "VOLT CRATE",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.3137254901960784,
+                  0.9019607843137255,
+                  1.0
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        },
+        {
+          "Name": "CrateGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 0.7,
+            "Range": 12,
+            "Color": [
+              0.3137254901960784,
+              0.9019607843137255,
+              1.0
+            ],
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "CrateRingNeon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.2,
+          0.12,
+          4.2
+        ],
+        "Position": [
+          61.5,
+          0.2,
+          -76.5
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ThemePathNeon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.6,
+          0.12,
+          8
+        ],
+        "Position": [
+          55.0,
+          0.18,
+          -66.0
+        ],
+        "Color": [
+          0.3137254901960784,
+          0.9019607843137255,
+          1.0
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ShopTerminal",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          7,
+          5.5,
+          4
+        ],
+        "Position": [
+          -18,
+          2.75,
+          28
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.20392156862745098,
+          0.24313725490196078
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Interact",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              -2.4
+            ]
+          }
+        },
+        {
+          "Name": "ShopGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.4,
+            "Range": 24,
+            "Color": [
+              1.0,
+              0.6666666666666666,
+              0.19607843137254902
+            ],
+            "Shadows": true
+          }
+        },
+        {
+          "Name": "ShopLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "SHOP",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  0.6666666666666666,
+                  0.19607843137254902
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ShopTerminalBase",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9,
+          0.4,
+          7
+        ],
+        "Position": [
+          -18,
+          0.2,
+          28
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.20392156862745098,
+          0.22745098039215686
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ShopTerminalHalo",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          10,
+          0.14,
+          8
+        ],
+        "Position": [
+          -18,
+          0.35,
+          28
+        ],
+        "Color": [
+          1.0,
+          0.6666666666666666,
+          0.19607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "SignShopWall",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          10,
+          2.2,
+          0.4
+        ],
+        "Position": [
+          -18,
+          9,
+          30.5
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.12549019607843137,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "PART SHOP",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  0.6666666666666666,
+                  0.19607843137254902
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignShopWall_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          9.200000000000001,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          -18,
+          7.75,
+          30.35
+        ],
+        "Color": [
+          1.0,
+          0.6666666666666666,
+          0.19607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "StarterCrate",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.4,
+          2.8,
+          3.4
+        ],
+        "Position": [
+          -10,
+          1.5,
+          2
+        ],
+        "Color": [
+          0.5098039215686274,
+          0.3607843137254902,
+          0.18823529411764706
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "Interact",
+          "ClassName": "Attachment",
+          "Properties": {
+            "Position": [
+              0,
+              0,
+              -2
+            ]
+          }
+        },
+        {
+          "Name": "CrateGlow",
+          "ClassName": "PointLight",
+          "Properties": {
+            "Brightness": 1.0,
+            "Range": 16,
+            "Color": [
+              1.0,
+              0.6666666666666666,
+              0.19607843137254902
+            ],
+            "Shadows": true
+          }
+        },
+        {
+          "Name": "CrateLabel",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Top",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "STARTER CRATE",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  0.6666666666666666,
+                  0.19607843137254902
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "StarterCrateRing",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.4,
+          0.14,
+          4.4
+        ],
+        "Position": [
+          -10,
+          0.2,
+          2
+        ],
+        "Color": [
+          1.0,
+          0.6666666666666666,
+          0.19607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "StarterCrateBeacon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.7,
+          4,
+          0.7
+        ],
+        "Position": [
+          -12.5,
+          2.2,
+          0
+        ],
+        "Color": [
+          0.18823529411764706,
+          0.20392156862745098,
+          0.22745098039215686
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "StarterCrateBeaconTip",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.9,
+          0.35,
+          0.9
+        ],
+        "Position": [
+          -12.5,
+          4.4,
+          0
+        ],
+        "Color": [
+          1.0,
+          0.6666666666666666,
+          0.19607843137254902
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
     },
     {
       "Name": "SteamVentA",

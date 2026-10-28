@@ -12,9 +12,9 @@
           96
         ],
         "Position": [
-          0,
-          -1,
-          400
+          0.0,
+          -1.0,
+          400.0
         ],
         "Color": [
           0.4627450980392157,
@@ -37,9 +37,9 @@
           52
         ],
         "Position": [
-          0,
+          0.0,
           0.1,
-          400
+          400.0
         ],
         "Color": [
           0.3333333333333333,
@@ -62,9 +62,9 @@
           22
         ],
         "Position": [
-          0,
+          0.0,
           -2.2,
-          400
+          400.0
         ],
         "Color": [
           0.1568627450980392,
@@ -87,9 +87,9 @@
           18
         ],
         "Position": [
-          0,
-          -12,
-          400
+          0.0,
+          -12.0,
+          400.0
         ],
         "Color": [
           0.09803921568627451,
@@ -112,9 +112,9 @@
           16
         ],
         "Position": [
-          0,
-          -20,
-          400
+          0.0,
+          -20.0,
+          400.0
         ],
         "Color": [
           0.0784313725490196,
@@ -141,14 +141,40 @@
           24
         ],
         "Position": [
-          0,
+          0.0,
           0.25,
-          400
+          400.0
         ],
         "Color": [
           1.0,
           0.5490196078431373,
           0.23529411764705882
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "PitInnerNeon",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          16,
+          0.15,
+          16
+        ],
+        "Position": [
+          0.0,
+          0.18,
+          400.0
+        ],
+        "Color": [
+          0.33725490196078434,
+          0.43137254901960786,
+          0.21568627450980393
         ],
         "Material": "Neon",
         "TopSurface": "Smooth",
@@ -167,13 +193,113 @@
           5
         ],
         "Position": [
-          0,
+          0.0,
           3.5,
-          354
+          354.0
         ],
         "Color": [
           0.37254901960784315,
           0.22745098039215686,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib0_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.5,
+          6.5,
+          0.6
+        ],
+        "Position": [
+          -30.0,
+          3.5,
+          354.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib0_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.5,
+          6.5,
+          0.6
+        ],
+        "Position": [
+          -10.0,
+          3.5,
+          354.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib0_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.5,
+          6.5,
+          0.6
+        ],
+        "Position": [
+          10.0,
+          3.5,
+          354.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib0_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.5,
+          6.5,
+          0.6
+        ],
+        "Position": [
+          30.0,
+          3.5,
+          354.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
           0.1568627450980392
         ],
         "Material": "CorrodedMetal",
@@ -192,13 +318,113 @@
           5
         ],
         "Position": [
-          0,
+          0.0,
           3.5,
-          446
+          446.0
         ],
         "Color": [
           0.37254901960784315,
           0.22745098039215686,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib1_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.5,
+          6.5,
+          0.6
+        ],
+        "Position": [
+          -30.0,
+          3.5,
+          446.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib1_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.5,
+          6.5,
+          0.6
+        ],
+        "Position": [
+          -10.0,
+          3.5,
+          446.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib1_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.5,
+          6.5,
+          0.6
+        ],
+        "Position": [
+          10.0,
+          3.5,
+          446.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib1_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.5,
+          6.5,
+          0.6
+        ],
+        "Position": [
+          30.0,
+          3.5,
+          446.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
           0.1568627450980392
         ],
         "Material": "CorrodedMetal",
@@ -217,13 +443,113 @@
           80
         ],
         "Position": [
-          -46,
+          -46.0,
           3.5,
-          400
+          400.0
         ],
         "Color": [
           0.37254901960784315,
           0.22745098039215686,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib2_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.6,
+          6.5,
+          2.5
+        ],
+        "Position": [
+          -46.0,
+          3.5,
+          372.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib2_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.6,
+          6.5,
+          2.5
+        ],
+        "Position": [
+          -46.0,
+          3.5,
+          392.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib2_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.6,
+          6.5,
+          2.5
+        ],
+        "Position": [
+          -46.0,
+          3.5,
+          408.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib2_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.6,
+          6.5,
+          2.5
+        ],
+        "Position": [
+          -46.0,
+          3.5,
+          428.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
           0.1568627450980392
         ],
         "Material": "CorrodedMetal",
@@ -242,13 +568,113 @@
           80
         ],
         "Position": [
-          46,
+          46.0,
           3.5,
-          400
+          400.0
         ],
         "Color": [
           0.37254901960784315,
           0.22745098039215686,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib3_0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.6,
+          6.5,
+          2.5
+        ],
+        "Position": [
+          46.0,
+          3.5,
+          372.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib3_1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.6,
+          6.5,
+          2.5
+        ],
+        "Position": [
+          46.0,
+          3.5,
+          392.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib3_2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.6,
+          6.5,
+          2.5
+        ],
+        "Position": [
+          46.0,
+          3.5,
+          408.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "BarrierRib3_3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          0.6,
+          6.5,
+          2.5
+        ],
+        "Position": [
+          46.0,
+          3.5,
+          428.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
           0.1568627450980392
         ],
         "Material": "CorrodedMetal",
@@ -267,9 +693,9 @@
           0.4
         ],
         "Position": [
-          0,
+          0.0,
           9.1,
-          357
+          357.0
         ],
         "Color": [
           0.47058823529411764,
@@ -294,7 +720,7 @@
         "Position": [
           -29.0,
           7.8,
-          357
+          357.0
         ],
         "Color": [
           0.21568627450980393,
@@ -319,7 +745,7 @@
         "Position": [
           0.0,
           7.8,
-          357
+          357.0
         ],
         "Color": [
           0.21568627450980393,
@@ -344,7 +770,7 @@
         "Position": [
           29.0,
           7.8,
-          357
+          357.0
         ],
         "Color": [
           0.21568627450980393,
@@ -367,9 +793,9 @@
           6
         ],
         "Position": [
-          0,
+          0.0,
           6.8,
-          357
+          357.0
         ],
         "Color": [
           0.35294117647058826,
@@ -377,6 +803,765 @@
           0.17647058823529413
         ],
         "Material": "DiamondPlate",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "SignScrap",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          18,
+          3.2,
+          0.5
+        ],
+        "Position": [
+          0.0,
+          12.0,
+          355.0
+        ],
+        "Color": [
+          0.23529411764705882,
+          0.1568627450980392,
+          0.10980392156862745
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "SCRAP PIT",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  1.0,
+                  0.5490196078431373,
+                  0.23529411764705882
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignScrap_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          16.560000000000002,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          0.0,
+          10.25,
+          354.85
+        ],
+        "Color": [
+          1.0,
+          0.5490196078431373,
+          0.23529411764705882
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "SignYardbone",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          12,
+          2.4,
+          0.4
+        ],
+        "Position": [
+          40.0,
+          10.0,
+          400.0
+        ],
+        "Color": [
+          0.10980392156862745,
+          0.12549019607843137,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      },
+      "Children": [
+        {
+          "Name": "T",
+          "ClassName": "SurfaceGui",
+          "Properties": {
+            "Face": "Front",
+            "LightInfluence": 0.15,
+            "PixelsPerStud": 22
+          },
+          "Children": [
+            {
+              "Name": "Label",
+              "ClassName": "TextLabel",
+              "Properties": {
+                "Size": {
+                  "UDim2": [
+                    [
+                      1.0,
+                      0
+                    ],
+                    [
+                      1.0,
+                      0
+                    ]
+                  ]
+                },
+                "BackgroundTransparency": 1.0,
+                "Text": "YARDBONE",
+                "TextScaled": true,
+                "Font": "GothamBold",
+                "TextColor3": [
+                  0.33725490196078434,
+                  0.43137254901960786,
+                  0.21568627450980393
+                ],
+                "TextStrokeTransparency": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SignYardbone_Glow",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          11.040000000000001,
+          0.18,
+          0.2
+        ],
+        "Position": [
+          40.0,
+          8.65,
+          399.85
+        ],
+        "Color": [
+          0.33725490196078434,
+          0.43137254901960786,
+          0.21568627450980393
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "ScrapHeap0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.5,
+          2.2,
+          3.0
+        ],
+        "Position": [
+          -32.0,
+          1.1,
+          368.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          -29.8,
+          0.7,
+          366.5
+        ],
+        "Color": [
+          0.3529411764705882,
+          0.22941176470588237,
+          0.1411764705882353
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.7,
+          2.75,
+          4.4
+        ],
+        "Position": [
+          30.0,
+          1.375,
+          370.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5.9,
+          3.3000000000000003,
+          3.0
+        ],
+        "Position": [
+          -30.0,
+          1.6500000000000001,
+          432.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          -27.8,
+          0.7,
+          430.5
+        ],
+        "Color": [
+          0.3529411764705882,
+          0.22941176470588237,
+          0.1411764705882353
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.5,
+          3.8500000000000005,
+          4.4
+        ],
+        "Position": [
+          32.0,
+          1.9250000000000003,
+          430.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.7,
+          2.2,
+          3.0
+        ],
+        "Position": [
+          -38.0,
+          1.1,
+          400.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          -35.8,
+          0.7,
+          398.5
+        ],
+        "Color": [
+          0.3529411764705882,
+          0.22941176470588237,
+          0.1411764705882353
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap5",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5.9,
+          2.75,
+          4.4
+        ],
+        "Position": [
+          38.0,
+          1.375,
+          405.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.5,
+          3.3000000000000003,
+          3.0
+        ],
+        "Position": [
+          0.0,
+          1.6500000000000001,
+          438.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          2.2,
+          0.7,
+          436.5
+        ],
+        "Color": [
+          0.3529411764705882,
+          0.22941176470588237,
+          0.1411764705882353
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap7",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.7,
+          3.8500000000000005,
+          4.4
+        ],
+        "Position": [
+          -22.0,
+          1.9250000000000003,
+          382.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap8",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5.9,
+          2.2,
+          3.0
+        ],
+        "Position": [
+          20.0,
+          1.1,
+          384.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk8",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          22.2,
+          0.7,
+          382.5
+        ],
+        "Color": [
+          0.3529411764705882,
+          0.22941176470588237,
+          0.1411764705882353
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap9",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.5,
+          2.75,
+          4.4
+        ],
+        "Position": [
+          -18.0,
+          1.375,
+          420.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap10",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.7,
+          3.3000000000000003,
+          3.0
+        ],
+        "Position": [
+          18.0,
+          1.6500000000000001,
+          422.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk10",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          20.2,
+          0.7,
+          420.5
+        ],
+        "Color": [
+          0.3529411764705882,
+          0.22941176470588237,
+          0.1411764705882353
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap11",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5.9,
+          3.8500000000000005,
+          4.4
+        ],
+        "Position": [
+          -40.0,
+          1.9250000000000003,
+          382.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap12",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.5,
+          2.2,
+          3.0
+        ],
+        "Position": [
+          40.0,
+          1.1,
+          418.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk12",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          42.2,
+          0.7,
+          416.5
+        ],
+        "Color": [
+          0.3529411764705882,
+          0.22941176470588237,
+          0.1411764705882353
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap13",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4.7,
+          2.75,
+          4.4
+        ],
+        "Position": [
+          10.0,
+          1.375,
+          362.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapHeap14",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5.9,
+          3.3000000000000003,
+          3.0
+        ],
+        "Position": [
+          -12.0,
+          1.6500000000000001,
+          436.0
+        ],
+        "Color": [
+          0.47058823529411764,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "CorrodedMetal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "ScrapChunk14",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          1.4,
+          1.8
+        ],
+        "Position": [
+          -9.8,
+          0.7,
+          434.5
+        ],
+        "Color": [
+          0.3529411764705882,
+          0.22941176470588237,
+          0.1411764705882353
+        ],
+        "Material": "CorrodedMetal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -392,9 +1577,9 @@
           6
         ],
         "Position": [
-          -32,
+          -32.0,
           2.0,
-          368
+          368.0
         ],
         "Color": [
           0.47058823529411764,
@@ -402,31 +1587,6 @@
           0.20392156862745098
         ],
         "Material": "Wood",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      }
-    },
-    {
-      "Name": "ScrapChunk0",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "Size": [
-          4.5,
-          2.8,
-          3.5
-        ],
-        "Position": [
-          -29,
-          1.4,
-          366
-        ],
-        "Color": [
-          0.39215686274509803,
-          0.27450980392156865,
-          0.19607843137254902
-        ],
-        "Material": "CorrodedMetal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -442,9 +1602,9 @@
           6
         ],
         "Position": [
-          30,
+          30.0,
           2.5,
-          370
+          370.0
         ],
         "Color": [
           0.47058823529411764,
@@ -452,31 +1612,6 @@
           0.20392156862745098
         ],
         "Material": "Wood",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      }
-    },
-    {
-      "Name": "ScrapChunk1",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "Size": [
-          4.5,
-          2.8,
-          3.5
-        ],
-        "Position": [
-          33,
-          1.4,
-          368
-        ],
-        "Color": [
-          0.39215686274509803,
-          0.27450980392156865,
-          0.19607843137254902
-        ],
-        "Material": "CorrodedMetal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -492,9 +1627,9 @@
           6
         ],
         "Position": [
-          -30,
+          -30.0,
           2.0,
-          432
+          432.0
         ],
         "Color": [
           0.47058823529411764,
@@ -502,31 +1637,6 @@
           0.20392156862745098
         ],
         "Material": "Wood",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      }
-    },
-    {
-      "Name": "ScrapChunk2",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "Size": [
-          4.5,
-          2.8,
-          3.5
-        ],
-        "Position": [
-          -27,
-          1.4,
-          430
-        ],
-        "Color": [
-          0.39215686274509803,
-          0.27450980392156865,
-          0.19607843137254902
-        ],
-        "Material": "CorrodedMetal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -542,9 +1652,9 @@
           6
         ],
         "Position": [
-          32,
+          32.0,
           2.5,
-          430
+          430.0
         ],
         "Color": [
           0.47058823529411764,
@@ -552,31 +1662,6 @@
           0.20392156862745098
         ],
         "Material": "Wood",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      }
-    },
-    {
-      "Name": "ScrapChunk3",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "Size": [
-          4.5,
-          2.8,
-          3.5
-        ],
-        "Position": [
-          35,
-          1.4,
-          428
-        ],
-        "Color": [
-          0.39215686274509803,
-          0.27450980392156865,
-          0.19607843137254902
-        ],
-        "Material": "CorrodedMetal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -592,9 +1677,9 @@
           6
         ],
         "Position": [
-          -38,
+          -38.0,
           2.0,
-          400
+          400.0
         ],
         "Color": [
           0.47058823529411764,
@@ -602,31 +1687,6 @@
           0.20392156862745098
         ],
         "Material": "Wood",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      }
-    },
-    {
-      "Name": "ScrapChunk4",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "Size": [
-          4.5,
-          2.8,
-          3.5
-        ],
-        "Position": [
-          -35,
-          1.4,
-          398
-        ],
-        "Color": [
-          0.39215686274509803,
-          0.27450980392156865,
-          0.19607843137254902
-        ],
-        "Material": "CorrodedMetal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -642,9 +1702,9 @@
           6
         ],
         "Position": [
-          38,
+          38.0,
           2.5,
-          405
+          405.0
         ],
         "Color": [
           0.47058823529411764,
@@ -652,31 +1712,6 @@
           0.20392156862745098
         ],
         "Material": "Wood",
-        "TopSurface": "Smooth",
-        "BottomSurface": "Smooth"
-      }
-    },
-    {
-      "Name": "ScrapChunk5",
-      "ClassName": "Part",
-      "Properties": {
-        "Anchored": true,
-        "Size": [
-          4.5,
-          2.8,
-          3.5
-        ],
-        "Position": [
-          41,
-          1.4,
-          403
-        ],
-        "Color": [
-          0.39215686274509803,
-          0.27450980392156865,
-          0.19607843137254902
-        ],
-        "Material": "CorrodedMetal",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -692,9 +1727,9 @@
           6
         ],
         "Position": [
-          0,
+          0.0,
           2.0,
-          438
+          438.0
         ],
         "Color": [
           0.47058823529411764,
@@ -707,26 +1742,26 @@
       }
     },
     {
-      "Name": "ScrapChunk6",
+      "Name": "ScrapPile7",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
         "Size": [
-          4.5,
-          2.8,
-          3.5
+          8,
+          5,
+          6
         ],
         "Position": [
-          3,
-          1.4,
-          436
+          -22.0,
+          2.5,
+          382.0
         ],
         "Color": [
-          0.39215686274509803,
-          0.27450980392156865,
-          0.19607843137254902
+          0.47058823529411764,
+          0.34509803921568627,
+          0.20392156862745098
         ],
-        "Material": "CorrodedMetal",
+        "Material": "Wood",
         "TopSurface": "Smooth",
         "BottomSurface": "Smooth"
       }
@@ -742,9 +1777,9 @@
           2.2
         ],
         "Position": [
-          -20,
+          -20.0,
           1.6,
-          362
+          362.0
         ],
         "Color": [
           0.43137254901960786,
@@ -773,14 +1808,14 @@
           2.2
         ],
         "Position": [
-          22,
+          22.0,
           1.6,
-          436
+          436.0
         ],
         "Color": [
+          0.33725490196078434,
           0.43137254901960786,
-          0.27450980392156865,
-          0.1568627450980392
+          0.21568627450980393
         ],
         "Material": "Metal",
         "TopSurface": "Smooth",
@@ -804,9 +1839,9 @@
           2.2
         ],
         "Position": [
-          -36,
+          -36.0,
           1.6,
-          418
+          418.0
         ],
         "Color": [
           0.43137254901960786,
@@ -825,7 +1860,255 @@
       }
     },
     {
-      "Name": "CraneTower",
+      "Name": "SlagDrum3",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          3.2,
+          2.2
+        ],
+        "Position": [
+          34.0,
+          1.6,
+          380.0
+        ],
+        "Color": [
+          0.33725490196078434,
+          0.43137254901960786,
+          0.21568627450980393
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "SlagDrum4",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          3.2,
+          2.2
+        ],
+        "Position": [
+          -10.0,
+          1.6,
+          440.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "SlagDrum5",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          3.2,
+          2.2
+        ],
+        "Position": [
+          12.0,
+          1.6,
+          360.0
+        ],
+        "Color": [
+          0.33725490196078434,
+          0.43137254901960786,
+          0.21568627450980393
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "SlagDrum6",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          3.2,
+          2.2
+        ],
+        "Position": [
+          -42.0,
+          1.6,
+          412.0
+        ],
+        "Color": [
+          0.43137254901960786,
+          0.27450980392156865,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "SlagDrum7",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2.2,
+          3.2,
+          2.2
+        ],
+        "Position": [
+          42.0,
+          1.6,
+          392.0
+        ],
+        "Color": [
+          0.33725490196078434,
+          0.43137254901960786,
+          0.21568627450980393
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "ScrapSpool0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          4,
+          5
+        ],
+        "Position": [
+          -28.0,
+          2.0,
+          410.0
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "ScrapSpool1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          4,
+          5
+        ],
+        "Position": [
+          26.0,
+          2.0,
+          388.0
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "ScrapSpool2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          5,
+          4,
+          5
+        ],
+        "Position": [
+          -8.0,
+          2.0,
+          366.0
+        ],
+        "Color": [
+          0.37254901960784315,
+          0.3058823529411765,
+          0.18823529411764706
+        ],
+        "Material": "Wood",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Shape": "Cylinder",
+        "Orientation": [
+          0,
+          0,
+          90
+        ]
+      }
+    },
+    {
+      "Name": "CraneTower0",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -835,9 +2118,9 @@
           4
         ],
         "Position": [
-          40,
-          15,
-          360
+          40.0,
+          15.0,
+          360.0
         ],
         "Color": [
           0.3058823529411765,
@@ -850,19 +2133,19 @@
       }
     },
     {
-      "Name": "CraneArm",
+      "Name": "CraneArm0",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
         "Size": [
-          40,
+          36,
           2,
           3
         ],
         "Position": [
-          20,
-          28,
-          360
+          24.0,
+          28.0,
+          360.0
         ],
         "Color": [
           0.7843137254901961,
@@ -875,19 +2158,95 @@
       }
     },
     {
-      "Name": "CraneNeon",
+      "Name": "CraneNeon0",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          32,
+          0.25,
+          0.35
+        ],
+        "Position": [
+          24.0,
+          27.0,
+          360.0
+        ],
+        "Color": [
+          1.0,
+          0.5490196078431373,
+          0.23529411764705882
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      }
+    },
+    {
+      "Name": "CraneTower1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          4,
+          30,
+          4
+        ],
+        "Position": [
+          -40.0,
+          15.0,
+          440.0
+        ],
+        "Color": [
+          0.3058823529411765,
+          0.32941176470588235,
+          0.3607843137254902
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CraneArm1",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
         "Size": [
           36,
+          2,
+          3
+        ],
+        "Position": [
+          -24.0,
+          28.0,
+          440.0
+        ],
+        "Color": [
+          0.7843137254901961,
+          0.5490196078431373,
+          0.1568627450980392
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "CraneNeon1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          32,
           0.25,
           0.35
         ],
         "Position": [
-          20,
-          27,
-          360
+          -24.0,
+          27.0,
+          440.0
         ],
         "Color": [
           1.0,
@@ -911,9 +2270,9 @@
           1.2
         ],
         "Position": [
-          -28,
+          -28.0,
           8.0,
-          372
+          372.0
         ],
         "Color": [
           0.16470588235294117,
@@ -936,9 +2295,9 @@
           3.2
         ],
         "Position": [
-          -28,
+          -28.0,
           16.4,
-          372
+          372.0
         ],
         "Color": [
           0.11764705882352941,
@@ -955,8 +2314,8 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.8,
-            "Range": 48,
+            "Brightness": 1.85,
+            "Range": 46,
             "Angle": 65,
             "Color": [
               1.0,
@@ -980,9 +2339,9 @@
           1.2
         ],
         "Position": [
-          28,
+          28.0,
           8.0,
-          372
+          372.0
         ],
         "Color": [
           0.16470588235294117,
@@ -1005,9 +2364,9 @@
           3.2
         ],
         "Position": [
-          28,
+          28.0,
           16.4,
-          372
+          372.0
         ],
         "Color": [
           0.11764705882352941,
@@ -1024,8 +2383,8 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.8,
-            "Range": 48,
+            "Brightness": 1.85,
+            "Range": 46,
             "Angle": 65,
             "Color": [
               1.0,
@@ -1049,9 +2408,9 @@
           1.2
         ],
         "Position": [
-          -28,
+          -28.0,
           8.0,
-          428
+          428.0
         ],
         "Color": [
           0.16470588235294117,
@@ -1074,9 +2433,9 @@
           3.2
         ],
         "Position": [
-          -28,
+          -28.0,
           16.4,
-          428
+          428.0
         ],
         "Color": [
           0.11764705882352941,
@@ -1093,8 +2452,8 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.8,
-            "Range": 48,
+            "Brightness": 1.85,
+            "Range": 46,
             "Angle": 65,
             "Color": [
               1.0,
@@ -1118,9 +2477,9 @@
           1.2
         ],
         "Position": [
-          28,
+          28.0,
           8.0,
-          428
+          428.0
         ],
         "Color": [
           0.16470588235294117,
@@ -1143,9 +2502,9 @@
           3.2
         ],
         "Position": [
-          28,
+          28.0,
           16.4,
-          428
+          428.0
         ],
         "Color": [
           0.11764705882352941,
@@ -1162,8 +2521,8 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.8,
-            "Range": 48,
+            "Brightness": 1.85,
+            "Range": 46,
             "Angle": 65,
             "Color": [
               1.0,
@@ -1187,9 +2546,9 @@
           1.2
         ],
         "Position": [
-          0,
+          0.0,
           8.0,
-          360
+          360.0
         ],
         "Color": [
           0.16470588235294117,
@@ -1212,9 +2571,9 @@
           3.2
         ],
         "Position": [
-          0,
+          0.0,
           16.4,
-          360
+          360.0
         ],
         "Color": [
           0.11764705882352941,
@@ -1231,8 +2590,215 @@
           "Name": "Spot",
           "ClassName": "SpotLight",
           "Properties": {
-            "Brightness": 1.8,
-            "Range": 48,
+            "Brightness": 1.85,
+            "Range": 46,
+            "Angle": 65,
+            "Color": [
+              1.0,
+              0.6666666666666666,
+              0.39215686274509803
+            ],
+            "Face": "Bottom",
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "RustLamp5_Pole",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.2,
+          16,
+          1.2
+        ],
+        "Position": [
+          0.0,
+          8.0,
+          440.0
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.1803921568627451,
+          0.20392156862745098
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "RustLamp5_Head",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.2,
+          1.0,
+          3.2
+        ],
+        "Position": [
+          0.0,
+          16.4,
+          440.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.12549019607843137,
+          0.14901960784313725
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Spot",
+          "ClassName": "SpotLight",
+          "Properties": {
+            "Brightness": 1.85,
+            "Range": 46,
+            "Angle": 65,
+            "Color": [
+              1.0,
+              0.6666666666666666,
+              0.39215686274509803
+            ],
+            "Face": "Bottom",
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "RustLamp6_Pole",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.2,
+          16,
+          1.2
+        ],
+        "Position": [
+          -40.0,
+          8.0,
+          400.0
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.1803921568627451,
+          0.20392156862745098
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "RustLamp6_Head",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.2,
+          1.0,
+          3.2
+        ],
+        "Position": [
+          -40.0,
+          16.4,
+          400.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.12549019607843137,
+          0.14901960784313725
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Spot",
+          "ClassName": "SpotLight",
+          "Properties": {
+            "Brightness": 1.85,
+            "Range": 46,
+            "Angle": 65,
+            "Color": [
+              1.0,
+              0.6666666666666666,
+              0.39215686274509803
+            ],
+            "Face": "Bottom",
+            "Shadows": true
+          }
+        }
+      ]
+    },
+    {
+      "Name": "RustLamp7_Pole",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          1.2,
+          16,
+          1.2
+        ],
+        "Position": [
+          40.0,
+          8.0,
+          400.0
+        ],
+        "Color": [
+          0.16470588235294117,
+          0.1803921568627451,
+          0.20392156862745098
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth"
+      }
+    },
+    {
+      "Name": "RustLamp7_Head",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          3.2,
+          1.0,
+          3.2
+        ],
+        "Position": [
+          40.0,
+          16.4,
+          400.0
+        ],
+        "Color": [
+          0.11764705882352941,
+          0.12549019607843137,
+          0.14901960784313725
+        ],
+        "Material": "Metal",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Spot",
+          "ClassName": "SpotLight",
+          "Properties": {
+            "Brightness": 1.85,
+            "Range": 46,
             "Angle": 65,
             "Color": [
               1.0,
@@ -1256,9 +2822,9 @@
           14
         ],
         "Position": [
-          -24,
+          -24.0,
           0.6,
-          400
+          400.0
         ],
         "Color": [
           0.7058823529411765,
@@ -1333,9 +2899,9 @@
           14
         ],
         "Position": [
-          24,
+          24.0,
           0.6,
-          400
+          400.0
         ],
         "Color": [
           0.3137254901960784,
@@ -1410,9 +2976,9 @@
           16.5
         ],
         "Position": [
-          -24,
+          -24.0,
           1.35,
-          400
+          400.0
         ],
         "Color": [
           1.0,
@@ -1436,9 +3002,9 @@
           16.5
         ],
         "Position": [
-          24,
+          24.0,
           1.35,
-          400
+          400.0
         ],
         "Color": [
           0.3137254901960784,
@@ -1462,9 +3028,9 @@
           1
         ],
         "Position": [
-          -18,
+          -18.0,
           0.2,
-          400
+          400.0
         ],
         "Color": [
           0.7843137254901961,
@@ -1488,9 +3054,9 @@
           1
         ],
         "Position": [
-          -12,
+          -12.0,
           0.2,
-          400
+          400.0
         ],
         "Color": [
           0.7843137254901961,
@@ -1514,9 +3080,9 @@
           1
         ],
         "Position": [
-          -6,
+          -6.0,
           0.2,
-          400
+          400.0
         ],
         "Color": [
           0.18823529411764706,
@@ -1540,9 +3106,9 @@
           1
         ],
         "Position": [
-          0,
+          0.0,
           0.2,
-          400
+          400.0
         ],
         "Color": [
           0.18823529411764706,
@@ -1566,9 +3132,9 @@
           1
         ],
         "Position": [
-          6,
+          6.0,
           0.2,
-          400
+          400.0
         ],
         "Color": [
           0.18823529411764706,
@@ -1592,9 +3158,9 @@
           1
         ],
         "Position": [
-          12,
+          12.0,
           0.2,
-          400
+          400.0
         ],
         "Color": [
           0.7843137254901961,
@@ -1618,9 +3184,9 @@
           1
         ],
         "Position": [
-          18,
+          18.0,
           0.2,
-          400
+          400.0
         ],
         "Color": [
           0.7843137254901961,
@@ -1644,9 +3210,9 @@
           2
         ],
         "Position": [
-          0,
-          1,
-          400
+          0.0,
+          1.0,
+          400.0
         ],
         "Color": [
           1.0,
@@ -1684,9 +3250,9 @@
           5
         ],
         "Position": [
-          0,
-          24,
-          400
+          0.0,
+          24.0,
+          400.0
         ],
         "Color": [
           0.1568627450980392,
@@ -1703,8 +3269,8 @@
           "Name": "Light",
           "ClassName": "PointLight",
           "Properties": {
-            "Brightness": 2.3,
-            "Range": 75,
+            "Brightness": 2.4,
+            "Range": 78,
             "Color": [
               1.0,
               0.7450980392156863,
@@ -1716,7 +3282,7 @@
       ]
     },
     {
-      "Name": "EmberFx",
+      "Name": "EmberFx0",
       "ClassName": "Part",
       "Properties": {
         "Anchored": true,
@@ -1726,9 +3292,9 @@
           2
         ],
         "Position": [
-          0,
-          2,
-          392
+          0.0,
+          2.0,
+          392.0
         ],
         "Color": [
           1.0,
@@ -1747,7 +3313,199 @@
           "ClassName": "ParticleEmitter",
           "Properties": {
             "Texture": "rbxasset://textures/particles/sparkles_main.dds",
-            "Rate": 7,
+            "Rate": 6,
+            "Lifetime": [
+              0.8,
+              1.8
+            ],
+            "Speed": [
+              1,
+              3
+            ],
+            "SpreadAngle": [
+              50.0,
+              50.0
+            ],
+            "Drag": 2.0,
+            "LightEmission": 0.7,
+            "LightInfluence": 0.2,
+            "Size": [
+              {
+                "time": 0.0,
+                "value": 0.2
+              },
+              {
+                "time": 1.0,
+                "value": 0.05
+              }
+            ],
+            "Transparency": [
+              {
+                "time": 0.0,
+                "value": 0.35
+              },
+              {
+                "time": 0.7,
+                "value": 0.55
+              },
+              {
+                "time": 1.0,
+                "value": 1.0
+              }
+            ],
+            "Color": [
+              {
+                "time": 0.0,
+                "value": [
+                  1.0,
+                  0.5882352941176471,
+                  0.19607843137254902
+                ]
+              },
+              {
+                "time": 1.0,
+                "value": [
+                  1.0,
+                  0.5882352941176471,
+                  0.19607843137254902
+                ]
+              }
+            ],
+            "Enabled": true,
+            "LockedToPart": false
+          }
+        }
+      ]
+    },
+    {
+      "Name": "EmberFx1",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          2,
+          2
+        ],
+        "Position": [
+          8.0,
+          2.0,
+          404.0
+        ],
+        "Color": [
+          1.0,
+          0.5490196078431373,
+          0.23529411764705882
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.8,
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Embers",
+          "ClassName": "ParticleEmitter",
+          "Properties": {
+            "Texture": "rbxasset://textures/particles/sparkles_main.dds",
+            "Rate": 6,
+            "Lifetime": [
+              0.8,
+              1.8
+            ],
+            "Speed": [
+              1,
+              3
+            ],
+            "SpreadAngle": [
+              50.0,
+              50.0
+            ],
+            "Drag": 2.0,
+            "LightEmission": 0.7,
+            "LightInfluence": 0.2,
+            "Size": [
+              {
+                "time": 0.0,
+                "value": 0.2
+              },
+              {
+                "time": 1.0,
+                "value": 0.05
+              }
+            ],
+            "Transparency": [
+              {
+                "time": 0.0,
+                "value": 0.35
+              },
+              {
+                "time": 0.7,
+                "value": 0.55
+              },
+              {
+                "time": 1.0,
+                "value": 1.0
+              }
+            ],
+            "Color": [
+              {
+                "time": 0.0,
+                "value": [
+                  1.0,
+                  0.5882352941176471,
+                  0.19607843137254902
+                ]
+              },
+              {
+                "time": 1.0,
+                "value": [
+                  1.0,
+                  0.5882352941176471,
+                  0.19607843137254902
+                ]
+              }
+            ],
+            "Enabled": true,
+            "LockedToPart": false
+          }
+        }
+      ]
+    },
+    {
+      "Name": "EmberFx2",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          2,
+          2,
+          2
+        ],
+        "Position": [
+          -6.0,
+          2.0,
+          406.0
+        ],
+        "Color": [
+          1.0,
+          0.5490196078431373,
+          0.23529411764705882
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.8,
+        "CanCollide": false
+      },
+      "Children": [
+        {
+          "Name": "Embers",
+          "ClassName": "ParticleEmitter",
+          "Properties": {
+            "Texture": "rbxasset://textures/particles/sparkles_main.dds",
+            "Rate": 6,
             "Lifetime": [
               0.8,
               1.8
@@ -1822,9 +3580,9 @@
           90
         ],
         "Position": [
-          0,
-          18,
-          400
+          0.0,
+          18.0,
+          400.0
         ],
         "Color": [
           0.7058823529411765,
@@ -1837,6 +3595,43 @@
         "Transparency": 0.92,
         "CanCollide": false
       }
+    },
+    {
+      "Name": "MoodWash",
+      "ClassName": "Part",
+      "Properties": {
+        "Anchored": true,
+        "Size": [
+          88,
+          2,
+          88
+        ],
+        "Position": [
+          0.0,
+          36.0,
+          400.0
+        ],
+        "Color": [
+          1.0,
+          0.6274509803921569,
+          0.3137254901960784
+        ],
+        "Material": "Neon",
+        "TopSurface": "Smooth",
+        "BottomSurface": "Smooth",
+        "Transparency": 0.94,
+        "CanCollide": false
+      }
     }
+  ],
+  "Attributes": {
+    "ThemeId": "ScrapPit",
+    "ThemeLine": "Yardbone",
+    "ArenaId": "ScrapPit",
+    "Mood": "scrap"
+  },
+  "Tags": [
+    "AssemblerArena",
+    "AssemblerArenaTheme"
   ]
 }

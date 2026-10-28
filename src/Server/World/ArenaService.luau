@@ -5,13 +5,14 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
 local Assembler = require(game.ReplicatedStorage.Shared.Assembler.Assembler)
 local SoftSlots = require(game.ReplicatedStorage.Shared.Parts.Slots)
+local ArenaMood = require(game.ReplicatedStorage.Shared.Themes.ArenaMood)
 local WorldBootstrap = require(script.Parent.WorldBootstrap)
 
 local ArenaService = {}
 
-export type ArenaId = "ScrapPit" | "DryDock" | "NightYard"
+export type ArenaId = "ScrapPit" | "DryDock" | "NightYard" | "SandQuarry"
 
-ArenaService.ARENA_ORDER = { "ScrapPit", "DryDock", "NightYard" } :: { ArenaId }
+ArenaService.ARENA_ORDER = { "ScrapPit", "DryDock", "NightYard", "SandQuarry" } :: { ArenaId }
 
 local activeArenaId: ArenaId? = nil
 local MECHS_NAME = "LiveMechs"
@@ -409,7 +410,17 @@ function ArenaService.spawnGaragePreview(loadout: SoftSlots.EquippedLoadout, dis
 	ensureHeroShowcase(lobby, pedestal, facing)
 end
 
+function ArenaService.applyArenaMood(arenaId: ArenaId?)
+	if arenaId then
+		local arena = ArenaService.getArenaModel(arenaId)
+		ArenaMood.applyForArena(arena)
+	else
+		ArenaMood.applyLobby()
+	end
+end
+
 function ArenaService.teleportPlayerToLobby(player: Player)
+	ArenaMood.applyLobby()
 	local lobby = ArenaService.getLobby()
 	if not lobby then
 		return
@@ -442,6 +453,7 @@ function ArenaService.teleportPlayerToArena(player: Player, arenaId: ArenaId?)
 	if not pad then
 		return
 	end
+	ArenaService.applyArenaMood(id)
 	local character = player.Character
 	if not character then
 		return
